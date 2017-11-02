@@ -153,6 +153,19 @@
             <br> fives.push(v)
             <br>})</p>
           <p>啰嗦一句，请注意箭头函数中的this！！！！！！！！神坑啊</p>
+          <p>嵌套的箭头函数怎么办，箭头函数内部，还可以再使用箭头函数
+            <br>let insertn = (v) = &gt; ({intro:(arr)=&gt;({obj:(o)=&gt;
+            <br> {
+            <br> arr.splice(array.indexOf(o)+1,0,v);
+            <br> return arr;
+            <br> }
+            <br>})})</p>
+          <p>//部署管道机制，即前一个函数的输出是后一个函数的输入。
+            <br>const pip = (…fn) =&gt; val =&gt;fn.reduce((a,b)=&gt;b(a),val);</p>
+          <p>const p1 = a =&gt;a+1
+            <br>const p2 = a =&gt;a*2
+            <br>const add = pip(p1,p2)
+            <br>add(5);</p>
           <p>############################################################################################</p>
           <p>十五、解构</p>
           <p>var [a,,b] = [1,2,3];
@@ -526,8 +539,8 @@
             <br>multiLine -&gt; This Line Spans Multiple Lines</p>
           <p>想继续的宝宝 戳一戳 去下一弹👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇</p>
           <p>
-            <a href="http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC%E4%BA%8C%E5%BC%B9/" target="_blank"
-                                                                                            rel="external">http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC%E4%BA%8C%E5%BC%B9/</a>
+            <a href="http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC3%E5%BC%B9/" target="_blank"
+                                                                                            rel="external">http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC3%E5%BC%B9/</a>
           </p>
           <p>🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆</p>
         </div>

@@ -39,7 +39,225 @@
         </h1>
         <div class="post__main echo">
           <p>OK，CONTINUE…</p>
-          <p>二十一、</p>
+          <p>二十一、尾调用</p>
+          <p>尾调用的概念非常简单，一句话就能说清楚，就是指某个函数的最后一步是调用另一个函数。</p>
+          <p>function factorial(n, acc = 1) {
+            <br> if (n &lt;= 1) return acc;
+            <br> return factorial(n - 1, n * acc);
+            <br>}
+            <br>console.log(factorial(10))
+            <br>console.log(factorial(100))
+            <br>console.log(factorial(1000))
+            <br>console.log(factorial(10000))
+            <br>console.log(factorial(100000))
+            <br>console.log(factorial(1000000))</p>
+          <p>factorial(10) -&gt; 3628800
+            <br>factorial(100) -&gt; 9.332621544394418e+157
+            <br>factorial(1000) -&gt; Infinity
+            <br>factorial(10000) -&gt; Infinity
+            <br>factorial(100000) -&gt; RangeError: Maximum call stack size exceeded
+            <br>factorial(1000000) -&gt; RangeError: Maximum call stack size exceeded</p>
+          <p>二十二、扩展➕对象字面量</p>
+          <p>let {x,y,…z} = {x:1,y:2,a:3,b:4}
+            <br>console.log(x);//1
+            <br>console.log(y);//2
+            <br>console.log(z);//{ a: 3, b: 4 }</p>
+          <p>let n = {x,y,…z};
+            <br>console.log(n)//{ x: 1, y: 2, a: 3, b: 4 }
+            <br>console.log(obj）</p>
+          <p>二十三、故障弱化解构</p>
+          <p>var [a] = []
+            <br>var [b = 1] = []
+            <br>var c = []
+            <br>console.log(a)
+            <br>console.log(b)
+            <br>console.log(c)</p>
+          <p>a -&gt; undefined
+            <br>b -&gt; 1
+            <br>c -&gt; []</p>
+          <p>function f(x,y=12){
+            <br> return x + y
+            <br>}</p>
+          <p>console.log(f(3))
+            <br>console.log(f(3,2))</p>
+          <p>f(3) -&gt; 15
+            <br>f(3,2) -&gt; 5</p>
+          <p>function f(x,y,z){
+            <br> return x + y + z;
+            <br>}
+            <br>// 传递数组的每个元素作为参数
+            <br>console.log(f(…[1,2,3]))
+            <br>f(…[1,2,3]) -&gt; 6</p>
+          <p>function f([x,y,z]){
+            <br> return x + y + z;
+            <br>}
+            <br>// 传递数组的每个元素作为参数
+            <br>console.log(f([1,2,3]))
+            <br>f([1,2,3]) -&gt; 6</p>
+          <p>var parts = [“shoulders”,”knees”];
+            <br>var lyric = [“head”,…parts,”and”,”toes”];</p>
+          <p>console.log(lyric)
+            <br>lyrics -&gt; [“head”,”shoulders”,”knees”,”and”,”toes”]</p>
+          <p>二十四、代理</p>
+          <p>代理可以用来改变对象的行为。 它们允许我们定义 trap
+            <br>var obj = function ProfanityGenerator(){
+            <br> return {
+            <br> word:”111111112222”
+            <br> }
+            <br>}()</p>
+          <p>var handler = function CensoringHandler(){
+            <br> return {
+            <br> get:function(target,key){
+            <br> return target[key].replace(“11111111”,”3333”)
+            <br> }
+            <br> }
+            <br>}()</p>
+          <p>var proxy = new Proxy(obj, handler);
+            <br>console.log(proxy.words);</p>
+          <p>proxy.words -&gt; 33332222</p>
+          <p>var handler =
+            <br>{
+            <br> get:…,
+            <br> set:…,
+            <br> has:…,
+            <br> deleteProperty:…,
+            <br> apply:…,
+            <br> construct:…,
+            <br> getOwnPropertyDescriptor:…,
+            <br> defineProperty:…,
+            <br> getPrototypeOf:…,
+            <br> setPrototypeOf:…,
+            <br> enumerate:…,
+            <br> ownKeys:…,
+            <br> preventExtensions:…,
+            <br> isExtensible:…
+            <br>}</p>
+          <p>二十五、反射</p>
+          <p>新类型的元编程与新的API现有的还有一些新的方法。
+            <br>var z = {w: “Super Hello”}
+            <br>var y = {x: “hello”,
+            <strong>proto</strong>: z};</p>
+          <p>console.log(Reflect.getOwnPropertyDescriptor(y, “x”));
+            <br>console.log(Reflect.has(y, “w”));
+            <br>console.log(Reflect.ownKeys(y, “w”));</p>
+          <p>console.log(Reflect.has(y, “x”));
+            <br>console.log(Reflect.deleteProperty(y,”x”))
+            <br>console.log(Reflect.has(y, “x”));</p>
+          <p>Reflect.getOwnPropertyDescriptor(y, “x”) -&gt; {“value”:”hello”,”writable”:true,”enumerable”:true,”configurable”:true}
+            <br>Reflect.has(y, “w”) -&gt; true
+            <br>Reflect.ownKeys(y, “w”) -&gt; [“x”]
+            <br>Reflect.has(y, “x”) -&gt; true
+            <br>Reflect.deleteProperty(y,”x”) -&gt; true
+            <br>Reflect.has(y, “x”) -&gt; false</p>
+          <p>二十六、可继承内置函数</p>
+          <p>我们现在可以继承原生类。</p>
+          <p>class CustomArray extends Array{
+            <br>}
+            <br>var a = new CustomArray();
+            <br>a[0] = 2
+            <br>console.log(a[0])</p>
+          <p>a[0] -&gt; 2
+            <br>//不能使用数组的代理(Proxy)来覆盖getter函数。</p>
+          <p>二十七、新类库</p>
+          <p>console.log(Number.EPSILON)
+            <br>console.log(Number.isInteger(Infinity))
+            <br>console.log(Number.isNaN(“NaN”))</p>
+          <p>console.log(Math.acosh(3))
+            <br>console.log(Math.hypot(3, 4))
+            <br>console.log(Math.imul(Math.pow(2, 32) - 1, Math.pow(2, 32) - 2))</p>
+          <p>console.log(“abcde”.includes(“cd”) )
+            <br>console.log(“abc”.repeat(3) )</p>
+          <p>console.log(Array.of(1, 2, 3) )
+            <br>console.log([0, 0, 0].fill(7, 1) )
+            <br>console.log([1, 2, 3].find(x =&gt; x == 3) )
+            <br>console.log([1, 2, 3].findIndex(x =&gt; x == 2))
+            <br>console.log([1, 2, 3, 4, 5].copyWithin(3, 0))
+            <br>console.log([“a”, “b”, “c”].entries() )
+            <br>console.log([“a”, “b”, “c”].keys() )
+            <br>console.log([“a”, “b”, “c”].values() )</p>
+          <p>console.log(Object.assign({}, { origin: new Point(0,0) }))</p>
+          <p>Number.EPSILON -&gt; 2.220446049250313e-16
+            <br>Number.isInteger(Infinity) -&gt; false
+            <br>Number.isNaN(“NaN”) -&gt; false
+            <br>Math.acosh(3) -&gt; 1.7627471740390859
+            <br>Math.hypot(3, 4) -&gt; 5
+            <br>Math.imul(Math.pow(2, 32) - 1, Math.pow(2, 32) - 2) -&gt; 2
+            <br>“abcde”.includes(“cd”) -&gt; true
+            <br>“abc”.repeat(3) -&gt; abcabcabc
+            <br>Array.of(1, 2, 3) -&gt; [1,2,3]
+            <br>[0, 0, 0].fill(7, 1) -&gt; [0,7,7]
+            <br>[1, 2, 3].find(x =&gt; x == 3) -&gt; 3
+            <br>[1, 2, 3].findIndex(x =&gt; x == 2) -&gt; 1
+            <br>[1, 2, 3, 4, 5].copyWithin(3, 0) -&gt; [1,2,3,1,2]
+            <br>[“a”, “b”, “c”].entries() -&gt; {}
+            <br>[“a”, “b”, “c”].keys() -&gt; {}
+            <br>[“a”, “b”, “c”].values() -&gt; TypeError: [“a”,”b”,”c”].values is not
+            a function
+            <br>Object.assign({}, { origin: new Point(0,0) }) -&gt; ReferenceError: Point
+            is not define
+          </p>
+          <p>二十八、Reflect</p>
+          <p>Reflect对象的设计目的有这样几个。
+            <br>将Object对象的一些明显属于语言内部的方法（比如Object.defineProperty），放到Reflect对象上
+            <br>修改某些Object方法的返回结果，让其变得更合理
+            <br>让Object操作都变成函数行为。
+            <br>Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法</p>
+          <p>Reflect对象一共有13个静态方法。</p>
+          <p>Reflect.apply(target,thisArg,args)
+            <br>Reflect.construct(target,args)
+            <br>Reflect.get(target,name,receiver)
+            <br>Reflect.set(target,name,value,receiver)
+            <br>Reflect.defineProperty(target,name,desc)
+            <br>Reflect.deleteProperty(target,name)
+            <br>Reflect.has(target,name)
+            <br>Reflect.ownKeys(target)
+            <br>Reflect.isExtensible(target)
+            <br>Reflect.preventExtensions(target)
+            <br>Reflect.getOwnPropertyDescriptor(target, name)
+            <br>Reflect.getPrototypeOf(target)
+            <br>Reflect.setPrototypeOf(target, prototype)
+            <br>上面这些方法的作用，大部分与Object对象的同名方法的作用都是相同的，而且它与Proxy对象的方法是一一对应的</p>
+          <p>Reflect.get(target, name, receiver)
+            <br>Reflect.get方法查找并返回target对象的name属性，如果没有该属性，则返回undefined。
+            <br>var myObject = {
+            <br> foo: 1,
+            <br> bar: 2,
+            <br> get baz() {
+            <br> return this.foo + this.bar;
+            <br> },
+            <br>}</p>
+          <p>Reflect.get(myObject, ‘foo’) // 1
+            <br>Reflect.get(myObject, ‘bar’) // 2
+            <br>Reflect.get(myObject, ‘baz’) // 3</p>
+          <p>如果name属性部署了读取函数（getter），则读取函数的this绑定receiver。
+            <br>var myObject = {
+            <br> foo: 1,
+            <br> bar: 2,
+            <br> get baz() {
+            <br> return this.foo + this.bar;
+            <br> },
+            <br>};</p>
+          <p>var myReceiverObject = {
+            <br> foo: 4,
+            <br> bar: 4,
+            <br>};</p>
+          <p>Reflect.get(myObject, ‘baz’, myReceiverObject) // 8
+            <br>如果第一个参数不是对象，Reflect.get方法会报错
+            <br>Reflect.get(1, ‘foo’) // 报错
+            <br>Reflect.get(false, ‘foo’) // 报错</p>
+          <p>Reflect.set(target, name, value, receiver)
+            <br>Reflect.set方法设置target对象的name属性等于value。
+            <br>var myObject = {
+            <br> foo: 1,
+            <br> set bar(value) {
+            <br> return this.foo = value;
+            <br> },
+            <br>}</p>
+          <p>myObject.foo // 1</p>
+          <p>Reflect.set(myObject, ‘foo’, 2);
+            <br>myObject.foo // 2</p>
+          <p>Reflect.set(myObject, ‘bar’, 3)
+            <br>myObject.foo // 3</p>
         </div>
       </header>
       <footer class="post__foot u-cf">
