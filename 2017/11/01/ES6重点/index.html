@@ -38,7 +38,8 @@
           <a href="/2017/11/01/ES6重点/">ES6所有特点应用</a>
         </h1>
         <div class="post__main echo">
-          <p>1、let
+          <p>ps：这是本宝宝搜罗N多个人的博客、资料最后的大汇总，如有雷同也是正常现象</p>
+          <p>一、let
             <br>{
             <br> var globalVar = “from demo1”
             <br>}
@@ -62,7 +63,7 @@
             <br>console.log(me);
             <br>SyntaxError: Identifier ‘me’ has already been declared</p>
           <p>#####################################################################</p>
-          <p>2、const
+          <p>二、const
             <br>一个不能被更改的值
             <br>const a = “b”
             <br>a = “a”
@@ -73,7 +74,7 @@
             <br>console.log(a)
             <br>a -&gt; {“a”:”b”}</p>
           <p>#####################################################################</p>
-          <p>3、class
+          <p>三、class
             <br>class ColorPoint extends Point {
             <br>}
             <br>// 等同于
@@ -81,8 +82,8 @@
             <br> constructor(…args) {
             <br> super(…args);
             <br> }
-            <br>}
-            <br>让我们举个栗子吧
+            <br>}</p>
+          <p>举个🌰吧
             <br>class Point {
             <br> constructor(x, y) {
             <br> this.x = x;
@@ -101,6 +102,99 @@ this.color = color; // 正确
             <br>//上面代码中，实例对象cp同时是ColorPoint和Point两个类的实例
             <br>cp instanceof ColorPoint // true
             <br>cp instanceof Point // true</p>
+          <p>再举个🌰
+            <br>class A {
+            <br> static hello() {
+            <br> console.log(‘hello world’);
+            <br> }
+            <br>}
+            <br>class B extends A {
+            <br>}
+            <br>B.hello() // hello world
+            <br>//hello()是A类的静态方法，B继承A，也继承了A的静态方法</p>
+          <p>还想再来个🌰
+            <br>class A {
+            <br> constructor() {
+            <br> console.log(new.target.name);
+            <br> //new.target指向当前正在执行的函数
+            <br> }
+            <br>}
+            <br>class B extends A {
+            <br> constructor() {
+            <br> super();
+            <br> }
+            <br>}
+            <br>new A() // A
+            <br>new B() // B</p>
+          <p>小可爱们看过来吖，看过来👀</p>
+          <p>class Student {
+            <br> // 构造函数
+            <br> // 只能声明一个，否则会报以下错误(Safari 10.0)：
+            <br> // SyntaxError: Cannot declare multiple constructors in a single class.
+            <br> constructor(name, age) {
+            <br> // 类成员变量不用事先声明
+            <br> this.name = name;
+            <br> this.age = age;</p>
+          <pre><code>    if (age === undefined) {
+        log(&apos;没有传age参数&apos;);
+    }
+}
+
+// 方法
+sayHello(message) {
+    // this不能省略
+    log(&quot;Hello &quot; + this.name + &quot;: &quot; + message);
+}
+
+sayHelloEx(message) {
+    log(&quot;Hello &quot; + this.name + &apos;[&apos; + this.age + &apos;]: &apos; + message);
+}
+</code></pre>
+          <p>}</p>
+          <p>class SkinnedMesh extends THREES.Mesh {
+            <br> constructor(geometry,materials){
+            <br> super(geometry,materials);// 调用父类的constructor
+            <br> //子类必须在constructor方法中调用super方法，否则新建实例时会报错
+            <br> //这是因为子类没有自己的this对象，而是继承父类的this对象
+            <br> this.idMatrix = SkinnedMesh.defaultMatrix();
+            <br> this.bones = [];
+            <br> this.bonesMatrices = []
+            <br> //在子类的构造函数中，只有调用super之后，才可以使用this关键字
+            <br> }
+            <br> //constructor方法之中，都出现了super关键字，它在这里表示父类的构造函数，用来新建父类的this对象。
+            <br> update(camera){
+            <br> super.update()
+            <br> }
+            <br> get boneCount(){
+            <br> return this.bones.length
+            <br> }
+            <br> set MatrixType(matrixType){
+            <br> this.idMatrix = SkinnedMesh
+            <a href="">matrixType</a>;
+            <br> }
+            <br> static defaultMatrix(){
+            <br> return new THREES.Matrix4();
+            <br> }
+            <br>}</p>
+          <p>四、for…of</p>
+          <p>迭代器的新类型，可以替代for..in。 它返回的是值而不是keys
+            <br>let list = [4, 5, 6];
+            <br>console.log(list)
+            <br>for (let i of list) {
+            <br> console.log(i);
+            <br>}
+            <br>list -&gt; [4,5,6]
+            <br>i -&gt; 4
+            <br>i -&gt; 5
+            <br>i -&gt; 6</p>
+          <p>没有对比就没有伤害👇
+            <br>for(let i in list){
+            <br> console.log(i)
+            <br>}
+            <br>list -&gt; [4,5,6]
+            <br>i -&gt; 0
+            <br>i -&gt; 1
+            <br>i -&gt; 2</p>
         </div>
       </header>
       <footer class="post__foot u-cf">
