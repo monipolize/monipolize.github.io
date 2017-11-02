@@ -9,7 +9,7 @@
   <meta name="description" content="monopolize my hero">
   <link rel="alternative" href="/atom.xml" title="In My World" type="application/atom+xml">
   <link rel="icon" href="/favicon.png">
-  <title>ES6所有特点应用 - In My World</title>
+  <title>ES6所有特点应用 -- 第一弹 - In My World</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
   <!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]-->
@@ -35,7 +35,7 @@
       <header class="post__head">
         <time class="post__time" datetime="2017-11-01T03:19:09.000Z">November 1, 2017</time>
         <h1 class="post__title">
-          <a href="/2017/11/01/ES6重点/">ES6所有特点应用</a>
+          <a href="/2017/11/01/ES6重点/">ES6所有特点应用 -- 第一弹</a>
         </h1>
         <div class="post__main echo">
           <p>ps：这是本宝宝搜罗N多个人的博客、资料最后的大汇总，如有雷同也是正常现象
@@ -64,7 +64,7 @@
             <br>let me = “bar”;
             <br>console.log(me);
             <br>SyntaxError: Identifier ‘me’ has already been declared</p>
-          <p>#####################################################################</p>
+          <p>############################################################################################</p>
           <p>二、Const</p>
           <p>一个不能被更改的值
             <br>const a = “b”
@@ -75,7 +75,7 @@
             <br>a.a = “b”
             <br>console.log(a)
             <br>a -&gt; {“a”:”b”}</p>
-          <p>#####################################################################</p>
+          <p>############################################################################################</p>
           <p>三、Class类</p>
           <p>class ColorPoint extends Point {
             <br>}
@@ -178,6 +178,7 @@ sayHelloEx(message) {
             <br> return new THREES.Matrix4();
             <br> }
             <br>}</p>
+          <p>############################################################################################</p>
           <p>四、For…of</p>
           <p>迭代器的新类型，可以替代for..in。 它返回的是值而不是keys
             <br>let list = [4, 5, 6];
@@ -197,6 +198,7 @@ sayHelloEx(message) {
             <br>i -&gt; 0
             <br>i -&gt; 1
             <br>i -&gt; 2</p>
+          <p>############################################################################################</p>
           <p>五、Set</p>
           <p>Set 为数学对应，其中所有项目都是唯一的
             <br>var set = new Set();
@@ -210,6 +212,7 @@ sayHelloEx(message) {
             <br>set.has(“Tomato”) -&gt; true
             <br>item -&gt; Potato
             <br>item -&gt; Tomato</p>
+          <p>############################################################################################</p>
           <p>六、Rest</p>
           <p>我们可以使用 rest 操作符来允许无限参数 rest …
             <br>function demo(part1,…part2){
@@ -217,6 +220,7 @@ sayHelloEx(message) {
             <br>}
             <br>console.log(demo(1,2,3,4,6))
             <br>demo(1,2,3,4,5,6) -&gt; {“part1”:1,”part2”:[2,3,4,5,6]}</p>
+          <p>############################################################################################</p>
           <p>七、Map</p>
           <p>var map = new Map();
             <br>map.set(“Potato”,12)
@@ -240,6 +244,7 @@ sayHelloEx(message) {
             <br>console.log(map.get({a: “a”}))</p>
           <p>map.get(key) -&gt; 12
             <br>map.get({a: “a”}) -&gt; undefined</p>
+          <p>############################################################################################</p>
           <p>八、WeakMap</p>
           <p>使用键的对象，并且只保留对键的弱引用。
             <br>var wm = new WeakMap();</p>
@@ -269,6 +274,7 @@ sayHelloEx(message) {
           <p>surprise！！！🎉 有没有很惊喜吖 是不是和想的不一样捏
             <br>吼吼 稳住 我们能赢
             <br>让我们趁热打铁，来迎接下一个暴击</p>
+          <p>############################################################################################</p>
           <p>九、WeakSet</p>
           <p>也是不重复的值的集合
             <br>WeakSet 的成员只能是对象
@@ -293,6 +299,25 @@ sayHelloEx(message) {
             <br>const ws = new WeakSet(a);
             <br>// WeakSet {[1, 2], [3, 4]}
             <br>注意，是a数组的成员成为 WeakSet 的成员，而不是a数组本身。这意味着，数组的成员只能是对象</p>
+          <p>############################################################################################</p>
+          <p>十、关于This</p>
+          <p>var object = {
+            <br> name:”Name”,
+            <br> arrowGetName:() =&gt; this.name,
+            <br> regularGetName:function(){ return this.name },
+            <br> arrowGetThis:() =&gt; this,
+            <br> regularGetThis:function(){ return this }
+            <br>}
+            <br>console.log(object.arrowGetName())
+            <br>console.log((object.arrowGetThis())
+            <br>console.log(this)
+            <br>console.log(object.regularGetName())
+            <br>console.log(object.regularGetThis())</p>
+          <p>object.arrowGetName() -&gt;
+            <br>object.arrowGetThis() -&gt; [object Window]
+            <br>this -&gt; [object Window]
+            <br>object.regularGetName() -&gt; Name
+            <br>object.regularGetThis() -&gt; {“name”:”Name”}</p>
         </div>
       </header>
       <footer class="post__foot u-cf">
