@@ -251,6 +251,78 @@
             <br>③ http和https使用的是完全不同的连接方式用的端口也不一样,前者是80,后者是443</p>
           <p>SSL的位置介于应用层和TCP层之间，应用层数据不再直接传递给传输层，而是传递给SSL层，SSL层对从应用层收到的数据进行加密，并增加自己的SSL头
             <br>TLS/SSL中使用了非对称加密，对称加密以及HASH算法</p>
+          <p>14、常见的DOM操作</p>
+          <p>
+
+            <body>
+              <br>
+              <div id="container">
+                <br>
+                <p id="child1">djsklajldks</p>
+                <br>
+                <div id="child2">
+                  <a href="">llllllll</a>
+                </div>
+                <br> </div>
+            </body>
+          </p>
+          <p>
+
+          </p>
+          <script type="text/javascript">
+            //创建节点
+            var container = document.getElementById("container")
+            var para = document.createElement("p")
+            var text = document.createTextNode("只是创建的节点")
+            var c2 = document.getElementById('child2')
+            para.appendChild(text);
+            container.appendChild(para)
+            //删除
+            container.removeChild(document.getElementById('child1'))
+            //替换
+            container.replaceChild(para, c2)
+            //插入
+            // container.insertBefore(para,c2)
+            //克隆
+            var x = container.cloneNode()
+            console.log(x)
+
+          </script>
+
+          <p>15、闭包问题</p>
+          <p>简单来说，就是能访问一个函数内部的函数</p>
+          <p>举个🌰
+            <br>function makeClosures(arr, fn) {
+            <br> var result = [];
+            <br> arr.forEach(function(e){
+            <br> result.push(function(){
+            <br> return fn(e)
+            <br> })
+            <br> })
+            <br> return result
+            <br>}</p>
+          <p>再举个🌰</p>
+          <p>function a() {
+            <br> var arg = [];
+            <br> for(var i = 0;i &lt; 10;i++) {
+            <br> arg[i] = function() {
+            <br> return i;
+            <br> };
+            <br> }
+            <br> return arg;
+            <br>}</p>
+          <p>a()
+            <a href="">1</a>; // 10</p>
+          <p>啦啦啦啦啦 最近有工作要忙 先到这
+            <br>BUT 后面还有大批大批的僵尸会袭来呦😨😨😨😨😨😨😨😨😨😨😨😨😨😨😨😨😨</p>
+          <p>想继续的宝宝 戳一戳 去下一弹👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇</p>
+          <p>
+            <a href="http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC%E4%BA%8C%E5%BC%B9/" target="_blank"
+                                                                                            rel="external">http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC%E4%BA%8C%E5%BC%B9/</a>
+          </p>
+          <p>🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆</p>
+          <p>觉得小仙女叨叨的还不错的宝宝 可以戳下边打赏哦！！！！！！！！！☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟</p>
+          <p>么么哒😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘</p>
         </div>
       </header>
       <footer class="post__foot u-cf">
@@ -259,10 +331,10 @@
             <a class="post__tag__link" href="/tags/ALL/">ALL</a>
           </li>
           <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/JS/">JS</a>
+            <a class="post__tag__link" href="/tags/前端面试题/">前端面试题</a>
           </li>
           <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/前端面试题/">前端面试题</a>
+            <a class="post__tag__link" href="/tags/JS/">JS</a>
           </li>
         </ul>
       </footer>
