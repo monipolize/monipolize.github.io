@@ -9,7 +9,7 @@
   <meta name="description" content="monopolize my hero">
   <link rel="alternative" href="/atom.xml" title="In My World" type="application/atom+xml">
   <link rel="icon" href="/favicon.png">
-  <title>ES6重点 - In My World</title>
+  <title>ES6所有特点应用 - In My World</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
   <!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]-->
@@ -35,9 +35,72 @@
       <header class="post__head">
         <time class="post__time" datetime="2017-11-01T03:19:09.000Z">November 1, 2017</time>
         <h1 class="post__title">
-          <a href="/2017/11/01/ES6重点/">ES6重点</a>
+          <a href="/2017/11/01/ES6重点/">ES6所有特点应用</a>
         </h1>
         <div class="post__main echo">
+          <p>1、let
+            <br>{
+            <br> var globalVar = “from demo1”
+            <br>}
+            <br>{
+            <br> let globalLet = “from demo2”
+            <br>}
+            <br>console.log(globalVar)
+            <br>console.log(globalLet)</p>
+          <p>globalVar -&gt; from demo1
+            <br>globalLet -&gt; ReferenceError: globalLet is not defined</p>
+          <p>它不会向window分配任何内容：
+            <br>let me = “go”
+            <br>var i = “able”</p>
+          <p>console.log(window.me)
+            <br>console.log(window.i)</p>
+          <p>window.me -&gt; undefined
+            <br>window.i -&gt; able</p>
+          <p>不能使用let重新声明一个变量：
+            <br>let me = “foo”;
+            <br>let me = “bar”;
+            <br>console.log(me);
+            <br>SyntaxError: Identifier ‘me’ has already been declared</p>
+          <p>#####################################################################</p>
+          <p>2、const
+            <br>一个不能被更改的值
+            <br>const a = “b”
+            <br>a = “a”
+            <br>TypeError: Assignment to constant variable.</p>
+          <p>应该注意，const 对象仍然可以被改变的。
+            <br>const a = { a: “a” }
+            <br>a.a = “b”
+            <br>console.log(a)
+            <br>a -&gt; {“a”:”b”}</p>
+          <p>#####################################################################</p>
+          <p>3、class
+            <br>class ColorPoint extends Point {
+            <br>}
+            <br>// 等同于
+            <br>class ColorPoint extends Point {
+            <br> constructor(…args) {
+            <br> super(…args);
+            <br> }
+            <br>}
+            <br>让我们举个栗子吧
+            <br>class Point {
+            <br> constructor(x, y) {
+            <br> this.x = x;
+            <br> this.y = y;
+            <br> }
+            <br>}</p>
+          <p>class ColorPoint extends Point {
+            <br> constructor(x, y, color) {
+            <br> this.color = color; // ReferenceError</p>
+          <pre><code>super(x, y);
+this.color = color; // 正确
+</code></pre>
+          <p> }
+            <br>}
+            <br>let cp = new ColorPoint(25, 8, ‘green’);
+            <br>//上面代码中，实例对象cp同时是ColorPoint和Point两个类的实例
+            <br>cp instanceof ColorPoint // true
+            <br>cp instanceof Point // true</p>
         </div>
       </header>
       <footer class="post__foot u-cf">
