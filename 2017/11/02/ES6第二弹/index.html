@@ -38,7 +38,498 @@
           <a href="/2017/11/02/ES6第二弹/">ES6所有特点应用 -- 第二弹</a>
         </h1>
         <div class="post__main echo">
-          <p>来吧，小宝贝，咱们书接上回</p>
+          <p>吼吼，来吧，小宝贝，废话不多说，咱们书接上回。。。。</p>
+          <p>十一、Prosmises</p>
+          <p>异步编程
+            <br>所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件
+            <br>从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。</p>
+          <p>Promise对象有以下两个特点:
+            <br>（1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfilled（已成功）和
+            <br> rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态
+            <br>（2）Promise对象的状态改变，只有两种可能：从pending变为fulfilled和从pending变为rejected。
+            <br> 只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果，这时就称为 resolved（已定型）</p>
+          <p>var promise = new Promise(function(resolve, reject) {
+            <br> // … some code</p>
+          <p> if (/
+            <em> 异步操作成功 </em>/){
+            <br> resolve(value);
+            <br> resolve函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved）
+            <br> } else {
+            <br> reject(error);
+            <br> reject函数的作用是，将Promise对象的状态从“未完成”变为“失败”（即从 pending 变为 rejected
+            <br> }
+            <br>});</p>
+          <p>Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数。
+            <br>promise.then(function(value) {
+            <br> // success
+            <br>}, function(error) {
+            <br> // failure
+            <br>});
+            <br>then方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为resolved时调用
+            <br>第二个回调函数是Promise对象的状态变为rejected时调用。</p>
+          <p>来个 🌰 吼吼 👇</p>
+          <p>var p1 = new Promise((resolve,reject)=&gt;{
+            <br> setTimeout(()=&gt;resolve(“1”),101)
+            <br>})
+            <br>var p2 = new Promise((resolve, reject) =&gt; {
+            <br> setTimeout(() =&gt; resolve(“2”), 100)
+            <br>})
+            <br>Promise.race([p1, p2]).then((res) =&gt; {
+            <br> console.log(res)
+            <br>})
+            <br>Promise.all([p1, p2]).then((res) =&gt; {
+            <br> console.log(res)
+            <br>})</p>
+          <p>res -&gt; 2
+            <br>res -&gt; [“1”,”2”]</p>
+          <p>var p1 = Promise.resolve(“1”)
+            <br>var p2 = Promise.reject(“2”)
+            <br>Promise.race([p1, p2]).then((res) =&gt; {
+            <br> console.log(res)
+            <br>})
+            <br>※※※※ ➡️ 如果一个 promise 失败，all和race也将 reject(拒绝)。</p>
+          <p>让我们举个 🌰 ，come on 👇</p>
+          <p>var p1 = new Promise((resolve, reject) =&gt; {
+            <br> setTimeout(() =&gt; resolve(“1”), 1001)
+            <br>})
+            <br>var p2 = new Promise((resolve, reject) =&gt; {
+            <br> setTimeout(() =&gt; reject(“2”), 1)
+            <br>})</p>
+          <p>Promise.race([p1, p2]).then((res) =&gt; {
+            <br> console.log(“success” + res)
+            <br>}, res =&gt; {
+            <br> console.log(“error “ + res)
+            <br>})</p>
+          <p>Promise.all([p1, p2]).then((res) =&gt; {
+            <br> console.log(“success” + res)
+            <br>}, res =&gt; {
+            <br> console.log(“error “ + res)
+            <br>})</p>
+          <p>“error “ + res -&gt; error 2
+            <br>“error “ + res -&gt; error 2</p>
+          <p>Promise也有一些缺点。首先，无法取消Promise，
+            <br>Promise 新建后就会立即执行</p>
+          <p>############################################################################################</p>
+          <p>十二、Symbol</p>
+          <p>话不多说，直接上干货</p>
+          <p>var typeSymbol = Symbol(“type”);
+            <br>var typeSymbol = Symbol(“type”);</p>
+          <p>class Pet{
+            <br> constructor(type){
+            <br> this[typeSymbol] = type
+            <br> }
+            <br> getType(){
+            <br> return this[typeSymbol]
+            <br> }
+            <br>}
+            <br>var a = new Pet(“dog”);
+            <br>console.log(a.getType());
+            <br>console.log(Object.getOwnPropertyNames(a))</p>
+          <p>console.log(Symbol(“a”) === Symbol(“a”))</p>
+          <p>a.getType() -&gt; dog
+            <br>Object.getOwnPropertyNames(a) -&gt; []
+            <br>Symbol(“a”) === Symbol(“a”) -&gt; false</p>
+          <p>############################################################################################</p>
+          <p>十三、Unicode</p>
+          <p>var regex = new RegExp(‘\u{61}’,’u’)</p>
+          <p>console.log(regex.unicode)
+            <br>console.log(“\uD842\uDFD7”)
+            <br>console.log(“\uD842\uDFD7”.codePointAt())</p>
+          <p>############################################################################################</p>
+          <p>十四、箭头函数</p>
+          <p>var evens = [2, 4, 6, 8, 10, 12, 14];
+            <br>var odds = evens.map(v =&gt; v + 1)
+            <br>var nums = events.map((v,i) =&gt; v + i)
+            <br>var pairs = events.map(v =&gt; ({even: v,odd:v + 1}))</p>
+          <p>0:{even: 2, odd: 3}
+            <br>1:{even: 4, odd: 5}
+            <br>2:{even: 6, odd: 7}
+            <br>3:{even: 8, odd: 9}
+            <br>4:{even: 10, odd: 11}
+            <br>5:{even: 12, odd: 13}
+            <br>6:{even: 14, odd: 15}</p>
+          <p>nums.forEach(v =&gt; {
+            <br> if(v%5 === 0)
+            <br> fives.push(v)
+            <br>})</p>
+          <p>啰嗦一句，请注意箭头函数中的this！！！！！！！！神坑啊</p>
+          <p>############################################################################################</p>
+          <p>十五、解构</p>
+          <p>var [a,,b] = [1,2,3];
+            <br>console.log(a);
+            <br>console.log(b);</p>
+          <p>a -&gt; 1
+            <br>b -&gt; 3</p>
+          <p>nodes = () =&gt;{ return {op:’a’,lhs:’b’,rhs:’c’} }
+            <br>var { op:a,lhs:b,rhs:c } = nodes()
+            <br>conosle.log(a);
+            <br>console.log(b);
+            <br>console.log(c);</p>
+          <p>a -&gt; a
+            <br>b -&gt; b
+            <br>c -&gt; c</p>
+          <p>nodes = () =&gt; { return {lhs: “a”, op: “b”, rhs: “c”}}</p>
+          <p>// binds
+            <code>op</code>,
+            <code>lhs</code> and
+            <code>rhs</code> in scope
+            <br>var {op, lhs, rhs} = nodes()
+            <br>console.log(op)
+            <br>console.log(lhs)
+            <br>console.log(rhs)</p>
+          <p>op -&gt; b
+            <br>lhs -&gt; a
+            <br>rhs -&gt; c</p>
+          <p>unction g({name:x}){
+            <br> return x;
+            <br>}</p>
+          <p>function m({name}){
+            <br> return name
+            <br>}
+            <br>console.log(g({name:5}))
+            <br>console.log(m({name:5}))</p>
+          <p>g({name: 5}) -&gt; 5
+            <br>m({name: 5}) -&gt; 5</p>
+          <p>############################################################################################</p>
+          <p>十六、模块和模块加载器</p>
+          <p>ES6 模块不是对象，而是通过export命令显式指定输出的代码，再通过import命令输入。
+            <br>eg: import { stat, exists, readFile } from ‘fs’;
+            <br>上面代码的实质是从fs模块加载3个方法，其他方法不加载</p>
+          <p>ES6 的模块自动采用严格模式，不管你有没有在模块头部加上”use strict”;。
+            <br>ES6 的模块自动采用严格模式，不管你有没有在模块头部加上”use strict”;。
+            <br>ES6 的模块自动采用严格模式，不管你有没有在模块头部加上”use strict”;。</p>
+          <p>重要的事情说三遍！！！！！！</p>
+          <p>严格模式主要有以下限制:
+            <br>1、变量必须声明后再使用
+            <br>2、函数的参数不能有同名属性，否则报错
+            <br>3、不能使用with语句
+            <br>4、不能对只读属性赋值，否则报错
+            <br>5、不能使用前缀0表示八进制数，否则报错
+            <br>6、不能删除不可删除的属性，否则报错
+            <br>7、不能删除变量delete prop，会报错，只能删除属性delete global[prop]
+            <br>8、eval不会在它的外层作用域引入变量
+            <br>9、eval和arguments不能被重新赋值
+            <br>10、arguments不会自动反映函数参数的变化
+            <br>11、不能使用arguments.callee
+            <br>12、不能使用arguments.caller
+            <br>13、禁止this指向全局对象
+            <br>14、不能使用fn.caller和fn.arguments获取函数调用的堆栈
+            <br>15、增加了保留字（比如protected、static和interface）</p>
+          <p>上个 🌰
+            <br>import {firstName, lastName, year} from ‘./profile’;
+            <br>//import后面的from指定模块文件的位置，可以是相对路径，也可以是绝对路径，.js后缀可以省略</p>
+          <p>function setName(element) {
+            <br> element.textContent = firstName + ‘ ‘ + lastName;
+            <br>}
+            <br>如果想为输入的变量重新取一个名字，import命令要使用as关键字，将输入的变量重命名。
+            <br>import { lastName as surname } from ‘./profile’;</p>
+          <p>警报警报 一大波 僵尸袭来
+            <del>~</del>~</p>
+          <p>import defaultMember from “module-name”;
+            <br>import
+            <em> as name from “module-name”;
+              <br>import { member } from “module-name”;
+              <br>import { member as alias } from “module-name”;
+              <br>import { member1 , member2 } from “module-name”;
+              <br>import { member1 , member2 as alias2 , […] } from “module-name”;
+              <br>import defaultMember, { member [ , […] ] } from “module-name”;
+              <br>import defaultMember, </em> as name from “module-name”;
+            <br>import “module-name”;</p>
+          <p>再来说说export这个小妖精
+            <br>export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能</p>
+          <p>export var firstName = ‘Michael’;
+            <br>export var lastName = ‘Jackson’;
+            <br>export var year = 1958;</p>
+          <p>// profile.js
+            <br>var firstName = ‘Michael’;
+            <br>var lastName = ‘Jackson’;
+            <br>var year = 1958;</p>
+          <p>export {firstName, lastName, year};</p>
+          <p>通常情况下，export输出的变量就是本来的名字，但是可以使用as关键字重命名
+            <br>function v1() { … }
+            <br>function v2() { … }</p>
+          <p>export {
+            <br> v1 as streamV1,
+            <br> v2 as streamV2,
+            <br> v2 as streamLatestVersion
+            <br>};</p>
+          <p>重命名后，v2可以用不同的名字输出两次</p>
+          <p>哇呕
+            <del>~</del>~~~有一大波僵尸正在狂奔而来！！！！！</p>
+          <p>export { name1, name2, …, nameN };
+            <br>export { variable1 as name1, variable2 as name2, …, nameN };
+            <br>export let name1, name2, …, nameN; // also var
+            <br>export let name1 = …, name2 = …, …, nameN; // also var, const</p>
+          <p>export expression;
+            <br>export default expression;
+            <br>export default function (…) { … } // also class, function
+            <em>
+              <br>export default function name1(…) { … } // also class, function</em>
+            <br>export { name1 as default, … };</p>
+          <p>export * from …;
+            <br>export { name1, name2, …, nameN } from …;
+            <br>export { import1 as name1, import2 as name}</p>
+          <p>############################################################################################</p>
+          <p>十七、生成器</p>
+          <p>生成器创建迭代器，并且比迭代器更具动态性</p>
+          <p>先来一堆代码
+            <br>var initinity = {</p>
+          <pre><code>[Symbol.iterator]:function*(){
+    var c = 1;
+    for(;;){
+        yield c++;
+    }
+}
+</code></pre>
+          <p>}</p>
+          <p>console.log(“start”)
+            <br>for(var n of infinity){
+            <br> if(n&gt;10)
+            <br> break;
+            <br> console.log(n)
+            <br>}</p>
+          <p>“start” -&gt; start
+            <br>n -&gt; 1
+            <br>n -&gt; 2
+            <br>n -&gt; 3
+            <br>n -&gt; 4
+            <br>n -&gt; 5
+            <br>n -&gt; 6
+            <br>n -&gt; 7
+            <br>n -&gt; 8
+            <br>n -&gt; 9
+            <br>n -&gt; 10</p>
+          <p>interface Generator extends Iterator {
+            <br> next(value?: any): IteratorResult;
+            <br> throw(exception: any);
+            <br>}
+            <br>function* anotherGenerator(i) {
+            <br> yield i + 1;
+            <br> yield i + 2;
+            <br> yield i + 3;
+            <br>}</p>
+          <p>function
+            <em> generator(i) {
+              <br> yield i;
+              <br> yield</em> anotherGenerator(i);
+            <br> yield i + 10;
+            <br>}</p>
+          <p>var gen = generator(10);</p>
+          <p>console.log(gen.next().value);
+            <br>console.log(gen.next().value);
+            <br>console.log(gen.next().value);
+            <br>console.log(gen.next().value);
+            <br>console.log(gen.next().value);</p>
+          <p>gen.next().value -&gt; 10
+            <br>gen.next().value -&gt; 11
+            <br>gen.next().value -&gt; 12
+            <br>gen.next().value -&gt; 13
+            <br>gen.next().value -&gt; 20</p>
+          <p>function* list(value) {
+            <br> for (var item of value) {
+            <br> yield item;
+            <br> }
+            <br>}</p>
+          <p>for (var value of list([1, 2, 3])) {
+            <br> console.log(value);
+            <br>}</p>
+          <p>var iterator = list([1, 2, 3]);</p>
+          <p>console.log(typeof iterator.next); // function
+            <br>console.log(typeof iterator[Symbol.iterator]); // function</p>
+          <p>console.log(iterator.next().value); // 1</p>
+          <p>for (var value of iterator) {
+            <br> console.log(value); // 2, 3
+            <br>}
+            <br>table[Symbol.iterator] = function* () {
+            <br> var keys = Object.keys(this).sort();</p>
+          <p> for (var item of keys) {
+            <br> yield item;
+            <br> }
+            <br>}</p>
+          <p>执行 Generator 函数会返回一个遍历器对象，也就是说，
+            <br>Generator 函数除了状态机，还是一个遍历器对象生成函数
+            <br>返回的遍历器对象，可以依次遍历 Generator 函数内部的每一个状态</p>
+          <p>形式上，Generator 函数是一个普通函数，但是有两个特征
+            <br>一是，function关键字与函数名之间有一个星号；
+            <br>二是，函数体内部使用yield表达式，定义不同的内部状态</p>
+          <p>function* helloWorldGenerator() {
+            <br> yield ‘hello’;
+            <br> yield ‘world’;
+            <br> return ‘ending’;
+            <br>}
+            <br>然后，Generator 函数的调用方法与普通函数一样，也是在函数名后面加上一对圆括号。
+            <br>不同的是，调用 Generator 函数后，该函数并不执行，返回的也不是函数运行结果，
+            <br>而是一个指向内部状态的指针对象</p>
+          <p>下一步，必须调用遍历器对象的next方法，使得指针移向下一个状态
+            <br>也就是说，每次调用next方法，内部指针就从函数头部或上一次停下来的地方开始执行，
+            <br>直到遇到下一个yield表达式（或return语句）为止
+            <br>换言之，Generator 函数是分段执行的，yield表达式是暂停执行的标记，
+            <br>而next方法可以恢复执行</p>
+          <p>hw.next()
+            <br>// { value: ‘hello’, done: false }</p>
+          <p>hw.next()
+            <br>// { value: ‘world’, done: false }</p>
+          <p>hw.next()
+            <br>// { value: ‘ending’, done: true }</p>
+          <p>hw.next()
+            <br>// { value: undefined, done: true }</p>
+          <p>yield 表达式
+            <br>由于 Generator 函数返回的遍历器对象，只有调用next方法才会遍历下一个内部状态，
+            <br>所以其实提供了一种可以暂停执行的函数。yield表达式就是暂停标志。</p>
+          <p>############################################################################################</p>
+          <p>十八、迭代器</p>
+          <p>迭代器是一个比数组更动态的类型
+            <br>允许我们在语言层面上定义一个（有限或无限的）序列。
+            <br>对于for-in循环，它有许多的问题。但是最大的问题，便是它不保证迭代的顺序。
+            <br>但是当我们使用ES6迭代器时，这个问题就迎刃而解了。
+            <br>let infinite = {
+            <br>
+            <a href="">Symbol.iterator</a>{
+            <br> let c = 0;
+            <br> return {
+            <br> next(){
+            <br> c++;
+            <br> return { done:false,value:c }
+            <br> }
+            <br> }
+            <br> }
+            <br>}</p>
+          <p>console.log(“start”)</p>
+          <p>for(var n of infinite){
+            <br> if(n &gt; 10)
+            <br> break;
+            <br> console.log(n);
+            <br>}</p>
+          <p>“start” -&gt; start
+            <br>n -&gt; 1
+            <br>n -&gt; 2
+            <br>n -&gt; 3
+            <br>n -&gt; 4
+            <br>n -&gt; 5
+            <br>n -&gt; 6
+            <br>n -&gt; 7
+            <br>n -&gt; 8
+            <br>n -&gt; 9
+            <br>n -&gt; 10</p>
+          <p>//使用Typescript，我们可以看到它接口的样子
+            <br>interface IteratorResult {
+            <br> done:boolean;
+            <br> value:any;
+            <br>}</p>
+          <p>interface Iterator{
+            <br> next():IteratorResult;
+            <br>}</p>
+          <p>interface Iterable{
+            <br>
+            <a href="">Symbol.iterator</a>:Iterator
+            <br>}</p>
+          <p>使用for-of，我们得到的是一个可以保证顺序的迭代。
+            <br>为了让一个对象可以被迭代器所迭代，对象需要实现一个“迭代协议”，即拥有一个Symbol.iterator属性。
+            <br>这个属性会被for-of所使用，在我们的例子中，它就是table[Symbol.iterator]。
+            <br>Symbol.iterator只需认为它是对象的一个特殊属性，并且永远不会和其他普通属性产生冲突</p>
+          <p>table[Symbol.iterator]的值，必须是一个符合“迭代协议”的函数，
+            <br>即它需要返回一个类似于{ next: function () {} }的对象。
+            <br>table[Symbol.iterator] = function () {
+            <br> return {
+            <br> next: function () {}
+            <br> }
+            <br>}
+            <br>然后，在for-of循环每次调用next()函数时，
+            <br>它需要返回一个类似于{value: …, done: [true/false]}的对象。
+            <br>所以，一个迭代器的完整实现类似于如下的例子：</p>
+          <p>table[Symbol.iterator] = function () {
+            <br> var keys = Object.keys(this).sort();
+            <br> var index = 0;</p>
+          <p> return {
+            <br> next: function () {
+            <br> return {
+            <br> value: keys[index], done: index++ &gt;= keys.length
+            <br> };
+            <br> }
+            <br> }
+            <br>}
+            <br>惰性执行
+            <br>迭代器允许我们在第一次调用next()函数之后，再执行相应的逻辑。
+            <br>在上面的例子里，当我们调用迭代器的瞬间，我们就立刻执行了排序和取值的工作。
+            <br>但是，如果next()函数永远不被调用的话，我们就浪费了性能。所以让我们来优化它：</p>
+          <p>table[Symbol.iterator] = function () {
+            <br> var _this = this;
+            <br> var keys = null;
+            <br> var index = 0;</p>
+          <p> return {
+            <br> next: function () {
+            <br> if (keys === null) {
+            <br> keys = Object.keys(_this).sort();
+            <br> }</p>
+          <pre><code>  return {
+    value: keys[index], done: index++ &gt;= keys.length
+  };
+}
+</code></pre>
+          <p> }
+            <br>}
+            <br>String，Array，TypedArray，Map和Set都是内置迭代器，因为它们的原型中都有一个Symbol.iterator方法</p>
+          <p>只要永远不返回done: true，就实现了一个无限迭代器。当然，需要极力避免出现这种情况。
+            <br>var ids = {
+            <br> *[Symbol.iterator]: function () {
+            <br> var index = 0;</p>
+          <pre><code>return {
+  next: function () {
+    return { value: &apos;id-&apos; + index++, done: false };
+  }
+};
+</code></pre>
+          <p> }
+            <br>};</p>
+          <p>var counter = 0;</p>
+          <p>for (var value of ids) {
+            <br> console.log(value);</p>
+          <p> if (counter++ &gt; 1000) { // let’s make sure we get out!
+            <br> break;
+            <br> }
+            <br>}</p>
+          <p>############################################################################################</p>
+          <p>十九、增强对象字面量</p>
+          <p>var theProtoObj = {
+            <br> toString:function(){
+            <br> return “the ProtoObject to string”
+            <br> }
+            <br>}</p>
+          <p>var handler = () =&gt; “handler”</p>
+          <p>var obj = {
+            <br>
+            <em>proto</em>:theProtoObj,
+            <br> handler,
+            <br> toString(){
+            <br> return “d “+super.toString();
+            <br> },</p>
+          <pre><code>[&quot;prop_&quot; + (() =&gt; 42)()]:42
+</code></pre>
+          <p>}
+            <br>console.log(obj.handler)
+            <br>console.log(obj.handler())
+            <br>console.log(obj.toString())
+            <br>console.log(obj.prop_42)</p>
+          <p>############################################################################################</p>
+          <p>二十、字符串插值</p>
+          <p>var name = “Bob”,time = “today”;
+            <br>var multiLine = `This</p>
+          <p>Line</p>
+          <p>Spans Multiple</p>
+          <p>Line`</p>
+          <p>console.log(
+            <code>Hello ${name},how are you ${time}?</code>);
+            <br>console.log(multiLine)
+            <br>
+            <code>Hello ${name},how are you ${time}?</code> -&gt; Hello Bob,how are you
+            today?
+            <br>multiLine -&gt; This Line Spans Multiple Lines</p>
+          <p>想继续的宝宝 戳一戳 去下一弹👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇</p>
+          <p>
+            <a href="http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC%E4%BA%8C%E5%BC%B9/" target="_blank"
+                                                                                            rel="external">http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC%E4%BA%8C%E5%BC%B9/</a>
+          </p>
+          <p>🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆</p>
         </div>
       </header>
       <footer class="post__foot u-cf">
