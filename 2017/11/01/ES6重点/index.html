@@ -38,9 +38,11 @@
           <a href="/2017/11/01/ES6重点/">ES6所有特点应用</a>
         </h1>
         <div class="post__main echo">
-          <p>ps：这是本宝宝搜罗N多个人的博客、资料最后的大汇总，如有雷同也是正常现象</p>
-          <p>一、let
-            <br>{
+          <p>ps：这是本宝宝搜罗N多个人的博客、资料最后的大汇总，如有雷同也是正常现象
+            <br>pps：各位大大们请不要在意这些细节喽，宽容点噻。
+            <br>ppps：由于本仙女实在是太懒了，so，嘿嘿!就只挑重点记录喽，please 不要喷我。。。</p>
+          <p>一、Let</p>
+          <p>{
             <br> var globalVar = “from demo1”
             <br>}
             <br>{
@@ -63,8 +65,8 @@
             <br>console.log(me);
             <br>SyntaxError: Identifier ‘me’ has already been declared</p>
           <p>#####################################################################</p>
-          <p>二、const
-            <br>一个不能被更改的值
+          <p>二、Const</p>
+          <p>一个不能被更改的值
             <br>const a = “b”
             <br>a = “a”
             <br>TypeError: Assignment to constant variable.</p>
@@ -74,8 +76,8 @@
             <br>console.log(a)
             <br>a -&gt; {“a”:”b”}</p>
           <p>#####################################################################</p>
-          <p>三、class
-            <br>class ColorPoint extends Point {
+          <p>三、Class类</p>
+          <p>class ColorPoint extends Point {
             <br>}
             <br>// 等同于
             <br>class ColorPoint extends Point {
@@ -83,7 +85,7 @@
             <br> super(…args);
             <br> }
             <br>}</p>
-          <p>举个🌰吧
+          <p>举个🌰 吧
             <br>class Point {
             <br> constructor(x, y) {
             <br> this.x = x;
@@ -176,7 +178,7 @@ sayHelloEx(message) {
             <br> return new THREES.Matrix4();
             <br> }
             <br>}</p>
-          <p>四、for…of</p>
+          <p>四、For…of</p>
           <p>迭代器的新类型，可以替代for..in。 它返回的是值而不是keys
             <br>let list = [4, 5, 6];
             <br>console.log(list)
@@ -187,7 +189,7 @@ sayHelloEx(message) {
             <br>i -&gt; 4
             <br>i -&gt; 5
             <br>i -&gt; 6</p>
-          <p>没有对比就没有伤害👇
+          <p>没有对比就没有伤害，看这里👇
             <br>for(let i in list){
             <br> console.log(i)
             <br>}
@@ -195,6 +197,102 @@ sayHelloEx(message) {
             <br>i -&gt; 0
             <br>i -&gt; 1
             <br>i -&gt; 2</p>
+          <p>五、Set</p>
+          <p>Set 为数学对应，其中所有项目都是唯一的
+            <br>var set = new Set();
+            <br>set.add(“Potato”).add(“Tomato”).add(“Tomato”)
+            <br>console.log(set.size)
+            <br>console.log(set.has(“Tomato”))
+            <br>for(var item of set) {
+            <br> console.log(item)
+            <br>}</p>
+          <p>set.size -&gt; 2
+            <br>set.has(“Tomato”) -&gt; true
+            <br>item -&gt; Potato
+            <br>item -&gt; Tomato</p>
+          <p>六、Rest</p>
+          <p>我们可以使用 rest 操作符来允许无限参数 rest …
+            <br>function demo(part1,…part2){
+            <br> return {part1,part2}
+            <br>}
+            <br>console.log(demo(1,2,3,4,6))
+            <br>demo(1,2,3,4,5,6) -&gt; {“part1”:1,”part2”:[2,3,4,5,6]}</p>
+          <p>七、Map</p>
+          <p>var map = new Map();
+            <br>map.set(“Potato”,12)
+            <br>map.set(“Tomato”,34)
+            <br>console.log(map.get(“Potato”))
+            <br>for(let item of map){
+            <br> console.log(item)
+            <br>}</p>
+          <p>map.get(“Potato”) -&gt; 12
+            <br>item -&gt; [“Potato”,12]
+            <br>item -&gt; [“Tomato”,34]</p>
+          <p>for(let item in map){
+            <br> console.log(item)
+            <br>}</p>
+          <p>//undefined</p>
+          <p>可以使用除字符串之外的其他类型。
+            <br>var map = new Map();
+            <br>var key = {a: “a”}
+            <br>map.set(key, 12);</p>
+          <p>console.log(map.get(key))
+            <br>console.log(map.get({a: “a”}))</p>
+          <p>map.get(key) -&gt; 12
+            <br>map.get({a: “a”}) -&gt; undefined</p>
+          <p>八、WeakMap</p>
+          <p>使用键的对象，并且只保留对键的弱引用。
+            <br>var wm = new WeakMap();</p>
+          <p>var o1 = {}
+            <br>var o2 = {}
+            <br>var o3 = {}</p>
+          <p>wm.set(o1,1)
+            <br>wm.set(o2,2)
+            <br>wm.set(o3,{a:”a”})
+            <br>wm.set({},4)</p>
+          <p>console.log(wm.get(o2))
+            <br>console.log(wm.has({}))</p>
+          <p>delete o2;
+            <br>console.log(wm.get(o3))</p>
+          <p>for(let item in wm) {
+            <br> console.log(item)
+            <br>}
+            <br>for(let item of wm) {
+            <br> console.log(item)
+            <br>}
+            <br>接下来让我们来看一下输出的结果吧
+            <br>wm.get(o2) -&gt; 2
+            <br>wm.has({}) -&gt; false
+            <br>wm.get(o3) -&gt; {“a”:”a”}
+            <br>没有size属性,没有办法遍历它的成员
+            <br>TypeError: wm[Symbol.iterator] is not a function</p>
+          <p>surprise！！！🎉 有没有很惊喜吖 是不是和想的不一样捏
+            <br>吼吼 稳住 我们能赢
+            <br>让我们趁热打铁，来迎接下一个暴击</p>
+          <p>九、WeakSet</p>
+          <p>也是不重复的值的集合
+            <br>WeakSet 的成员只能是对象
+            <br>WeakSet对象允许您在集合中存储弱持有的对象,没有引用的对象将被垃圾回收</p>
+          <p>var item = {a:”Potato”}
+            <br>var set new WeakSet();</p>
+          <p>set.add({a:”Potato”}).add(item).add({a:”Tomato”}).add({a:”Tomato”})
+            <br>console.log(set.size)
+            <br>console.log(set.has({a:”Tomato”}))
+            <br>console.log(set.has(item))</p>
+          <p>for(let item of set) {
+            <br> console.log(item)
+            <br>}
+            <br>※※※ ➡ WeakSet没有size属性,没有办法遍历它的成员</p>
+          <p>接下来让我们再来看一下输出的结果吧！！！！
+            <br>set.size -&gt; undefined
+            <br>set.has({a:”Tomato”}) -&gt; false
+            <br>set.has(item) -&gt; true
+            <br>TypeError: set[Symbol.iterator] is not a function</p>
+          <p>号外号外 📢
+            <br>const a = [[1, 2], [3, 4]];
+            <br>const ws = new WeakSet(a);
+            <br>// WeakSet {[1, 2], [3, 4]}
+            <br>注意，是a数组的成员成为 WeakSet 的成员，而不是a数组本身。这意味着，数组的成员只能是对象</p>
         </div>
       </header>
       <footer class="post__foot u-cf">
