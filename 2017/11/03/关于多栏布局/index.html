@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Yan Ni">
-  <meta name="description" content="monopolize my hero">
+  <meta name="description" content="前端BLOG">
   <link rel="alternative" href="/atom.xml" title="In My World" type="application/atom+xml">
   <link rel="icon" href="/favicon.png">
-  <title>关于多栏布局 - In My World</title>
+  <title>关于多栏布局和自适应问题 - In My World</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
   <!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]-->
@@ -35,12 +35,237 @@
       <header class="post__head">
         <time class="post__time" datetime="2017-11-03T06:27:03.000Z">November 3, 2017</time>
         <h1 class="post__title">
-          <a href="/2017/11/03/关于多栏布局/">关于多栏布局</a>
+          <a href="/2017/11/03/关于多栏布局/">关于多栏布局和自适应问题</a>
         </h1>
         <div class="post__main echo">
           <p>今天我们来谈谈多栏布局吧！Let’s Go 🚄🚄🚄🚄🚄</p>
           <p>下面是我日常遇见过得双栏布局和三栏布局，当然还有其他布局模式，BUT今天就先说说这两个吧</p>
-          <p>1、关于两栏布局：</p>
+          <p>①、关于两栏布局：
+            <br>两栏布局顾名思义就是主内容分为左右两侧各有一栏。实现两栏布局有很多种办法在这里，我将最常见的几种方法列举出来</p>
+          <p>方法一：最简单粗暴的方式，百分比这里我就不写出来了，相信大家都会
+            <br>方法二：BFC方式</p>
+          <pre><code>&lt;style&gt;
+     #header, #footer{ 
+        height: 100px;
+        background: red;
+     }
+     #content .right{
+         height: 200px;
+         background: green;
+         overflow: auto;
+     }
+     #content .left{
+         height: 200px;
+         width: 100px;
+         background: blue;
+         float: left;
+     }
+ &lt;/style&gt;
+</code></pre>
+
+          <body>
+            <br>
+            <div id="header"></div>
+            <br>
+            <div id="content">
+              <br>
+              <div class="left"></div>
+              <br>
+              <div class="right">
+                <br> right right right right right right
+                <br> </div>
+              <br> </div>
+            <br>
+            <div id="footer"></div>
+            <br> </body>
+
+          <p>原理：将左侧区域浮动，再讲右侧区域设置auto，形成BFC独立区域，块级上下文</p>
+          <p>方法三：负边距大法</p>
+          <pre><code>&lt;style type=&quot;text/css&quot;&gt;
+     html,body{
+         padding: 0;
+         margin: 0;
+     }
+     #header, #footer{ 
+         height: 100px;
+         background: red;
+        overflow: hidden;
+      }
+     #main{
+        overflow: auto;
+     }
+     #main .center{
+         height: 200px;
+        width: 100%;
+         float: left;
+     }
+    .center .content{
+        height: 200px;
+        background: green;
+        margin-right: 100px;
+    }
+     #main .aside{
+         height: 200px;
+         width: 100px;
+         background: blue;
+         float: left;
+        margin-left: -100px;
+     }
+ &lt;/style&gt;
+</code></pre>
+          <p>
+
+            <br>
+
+            <body>
+              <br>
+              <div id="header">header</div>
+              <br>
+              <div id="main">
+                <br>
+                <div class="center">
+                  <br>
+                  <div class="content">
+                    <br> 我是主区块 我是主区块 main main main
+                    <br> </div>
+                  <br> </div>
+                <br>
+                <div class="aside"></div>
+                <br> </div>
+              <br>
+              <div id="footer">footer</div>
+            </body>
+          </p>
+          <p>当需要自适应的时候</p>
+          <pre><code>#left {
+    float: left;
+    background-color: red;
+}
+#right {
+    overflow: hidden;
+    background-color: blue;
+}
+</code></pre>
+          <p>或者
+            <br> .left{
+            <br> position:absolute;
+            <br> // margin-left: -200px;
+            <br> height:400px;
+            <br> width:200px;
+            <br> background-color:blue;
+            <br> }
+            <br> .right{
+            <br> padding-left:200px;
+            <br> background-color:red;
+            <br> }
+            <br>再或者
+            <br> .left-3{
+            <br> position:relative;
+            <br> padding-right: 200px;//留出右侧内边距
+            <br> height:300px;
+            <br> background-color:yellow;
+            <br> }
+            <br> .right-3{
+            <br> position:absolute;//绝对定位到右边
+            <br> right:0;
+            <br> height:400px;
+            <br> background-color:#808080;
+            <br> }</p>
+          <p>②、关于三栏布局</p>
+          <p>三栏布局是在两栏布局的基础上进行的扩展</p>
+          <p>方法一：绝对定位法</p>
+          <pre><code>&lt;style type=&quot;text/css&quot;&gt;
+    html，body{
+        margin:0;
+        height: 100%;
+    }
+    #left，#right{
+        position: absolute;
+        top: 0;
+        width: 200px;
+        height: 100px;
+    }
+    #left{
+        left: 0;
+    }
+    #right{
+        right: 0;
+    }
+    #main{
+        margin: 0 210px;
+        height: 100%;
+    }
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;div id=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;main&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;right&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+          <p>※如果中间栏含有最小宽度限制，或是含有宽度的内部元素，当浏览器宽度小到一定程度，会发生层重叠的情况</p>
+          <p>方法二：负margin法</p>
+          <pre><code>&lt;style type=&quot;text/css&quot;&gt;
+    html，body{
+        margin:0;
+        height: 100%;
+    }
+    #left，#right{
+        width: 200px;
+        height: 100px;
+        float:left;
+    }
+    #left{
+        margin-left: -100%;
+    }
+    #right{
+        margin-right: -200px;
+    }
+    #main,#body{
+        margin: 0 210px;
+        height:100%;
+    }
+    #main{
+        width:100%;
+        height: 100%;
+        float:left;
+    }
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;div id=&quot;main&quot;&gt;
+        &lt;div id=&quot;body&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;    
+    &lt;div id=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;right&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+          <p>方法三：</p>
+          <pre><code>&lt;style type=&quot;text/css&quot;&gt;
+    .left{
+            float:left;
+            width:100px;
+            height: 30px;
+            background: red;
+        }
+        .right{
+            float: right;
+            width:150px;
+            height: 30px;
+            background: green;
+        }
+        .center{
+            background: pink;
+            height: 50px;
+            margin-left: 100px;
+            margin-right: 150px;
+        }
+&lt;/style&gt;
+
+&lt;body&gt;
+    &lt;div class=&quot;left&quot;&gt;11&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;333&lt;/div&gt;
+    &lt;div class=&quot;center&quot;&gt;222&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
         </div>
       </header>
       <footer class="post__foot u-cf">
