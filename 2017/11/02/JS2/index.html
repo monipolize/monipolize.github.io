@@ -41,57 +41,56 @@
           <p>来来来 看过来。。。。继续挖坑。。。。</p>
           <p>16、事件监听</p>
           <p>直接上干货</p>
-          <p>
-
-            <body>
-              <br>
-              <div id="clickme">点我</div>
-              <br>
-              <div id="kk" onclick="handler()">注册时间</div>
-              <br>
-            </body>
-          </p>
-          <script type="text/javascript">
-            function handler() {
-              alert('aaaa')
-            }
-            window.onload = function() {
-              var btn = document.getElementById('clickme');
-              btn.addEventListener('click', function() {
-                alert("dddd")
-              }, false)
-              btn.addEventListener('click', function() {
-                alert("cccc")
-              }, false)
-              //错误写法，传入的function其实并不是同一个function
-              btn.removeEventListener('click', function() {
-                alert('nnnn')
-              })
-              //改写
-              function AAA() {
-                alert('lllll')
-              }
-              btn.addEventListener('click', AAA, false);
-              btn.removeEventListener('click', AAA, false)
+          <pre><code>&lt;body&gt;
+    &lt;div id=&quot;clickme&quot;&gt;点我&lt;/div&gt;
+    &lt;div id=&quot;kk&quot; onclick=&quot;handler()&quot;&gt;注册时间&lt;/div&gt;
+&lt;/body&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        function handler(){
+                alert(&apos;aaaa&apos;)
             }
 
-          </script>
+        window.onload = function(){
+            var btn = document.getElementById(&apos;clickme&apos;);
+            btn.addEventListener(&apos;click&apos;,function(){
+                alert(&quot;dddd&quot;)
+            },false)
 
+            btn.addEventListener(&apos;click&apos;,function(){
+                alert(&quot;cccc&quot;)
+            },false)
+            //错误写法，传入的function其实并不是同一个function
+            btn.removeEventListener(&apos;click&apos;,function(){
+                alert(&apos;nnnn&apos;)
+            })
+            //改写
+            function AAA(){
+                alert(&apos;lllll&apos;)
+            }
+            btn.addEventListener(&apos;click&apos;,AAA,false);
+            btn.removeEventListener(&apos;click&apos;,AAA,false)
+        }
+&lt;/script&gt;
+</code></pre>
           <p>17、最常见的邮箱正则是什么？</p>
-          <p>function isAvailableEmail(sEmail) {
-            <br> var reg = /^(\w)+(.\w+)*@(\w)+((.\w+))+$/;
-            <br> return reg.test(sEmail);
-            <br>}</p>
-          <p>18、实现字符串驼峰</p>
-          <p>function cssStyle2DomStyle(sName) {
-            <br> return sName.replace(/(?!^)-(\w)(\w+)/g, function(a, b, c){
-            <br> return b.toUpperCase() + c.toLowerCase();
-            <br> }).replace(/^-/, ‘’);
-            <br>}</p>
+          <pre><code>function isAvailableEmail(sEmail) {
+    var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w+))+$/;
+    return reg.test(sEmail);
+}
+
+18、实现字符串驼峰
+
+function cssStyle2DomStyle(sName) {
+    return sName.replace(/(?!^)\-(\w)(\w+)/g, function(a, b, c){
+            return b.toUpperCase() + c.toLowerCase();
+        }).replace(/^\-/, &apos;&apos;);
+}
+</code></pre>
           <p>19、检查字符串重复数字</p>
-          <p>function containsRepeatingLetter(str) {
-            <br> return /([a-zA-Z])\1/.test(str);
-            <br> }</p>
+          <pre><code>function containsRepeatingLetter(str) {
+     return /([a-zA-Z])\1/.test(str);
+}
+</code></pre>
           <p>当然还有很多很多题目。。。BUT 有些是作为大前端必备的基础
             <br>SO 本宝宝会单独列出专题
             <br>FOR EXAMPLE 像是继承啦。。。一些基础算法啦。。对象啦等等一系列必备技能

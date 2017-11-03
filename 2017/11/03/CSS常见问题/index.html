@@ -40,381 +40,214 @@
         <div class="post__main echo">
           <p>一、清除浮动的几种方式</p>
           <p>1、额外标签法</p>
-          <p>&lt;!DOCTYPE html&gt;</p>
-          <html lang="en">
-          <br>
+          <pre><code>&lt;style&gt;
+    .outer{
+        border: 1px solid black;
+        width: 300px;
+    }
+    .inner{
+        width: 50px;
+        height: 50px;
+        background-color: #ff4400;
+        margin-right: 20px;
+        float: left;
+    }
+    .footer{
+        background-color: #005FC3;
+        width: 200px;
+        height: 100px;
+    }
+    .clearfix{
+        clear: both;
+    }
+&lt;/style&gt;
 
-          <head>
-            <br>
-            <meta charset="UTF-8">
-            <br>
-            <title></title>
-            <br>
-            <style>
-              <br>.outer {
-                <br>border: 1px solid black;
-                <br>width: 300px;
-                <br>
-              }
-
-              <br>.inner {
-                <br>width: 50px;
-                <br>height: 50px;
-                <br>background-color: #ff4400;
-                <br>margin-right: 20px;
-                <br>float: left;
-                <br>
-              }
-
-              <br>.footer {
-                <br>background-color: #005FC3;
-                <br>width: 200px;
-                <br>height: 100px;
-                <br>
-              }
-
-              <br>.clearfix {
-                <br>clear: both;
-                <br>
-              }
-
-              <br>
-
-            </style>
-            <br>
-          </head>
-          <br>
-
-          <body>
-            <br>
-            <div class="outer">
-              <br>
-              <div class="inner"></div>
-              <br>
-              <div class="inner"></div>
-              <br>
-              <div class="inner"></div>
-              <br>
-              <div class="clearfix"></div>
-              <br> </div>
-            <br>
-            <div class="footer"></div>
-            <br>
-          </body>
-          <br>
-
-          </html>
-          <br>2、使用:after 伪元素
-          <br>
-          <br>&lt;!DOCTYPE html&gt;
-          <br>
-          <html lang="en">
-          <br>
-
-          <head>
-            <br>
-            <meta charset="UTF-8">
-            <br>
-            <title></title>
-            <br>
-            <style>
-              <br>.outer {
-                <br>border: 1px solid black;
-                <br>width: 300px;
-                <br>
-              }
-
-              <br>.inner {
-                <br>width: 50px;
-                <br>height: 50px;
-                <br>background-color: #ff4400;
-                <br>margin-right: 20px;
-                <br>float: left;
-                <br>
-              }
-
-              <br>.footer {
-                <br>background-color: #005FC3;
-                <br>width: 200px;
-                <br>height: 100px;
-                <br>
-              }
-
-              <br>.clearfix:after {
-                /<em>最简方式</em>/<br>content: ‘’;
-                <br>display: block;
-                <br>clear: both;
-                <br>
-              }
-
-              <br>/<em>新浪使用方式<br>.clearfix:after {
-                <br>content: ‘’;
-                <br>display: block;
-                <br>clear: both;
-                <br>height: 0;
-                <br>visibility: hidden;
-                <br>
-              }
-
-              </em>/<br>.clearfix {
-                /<em>兼容 IE</em>/<br>zoom: 1;
-                <br>
-              }
-
-              <br>
-
-            </style>
-            <br>
-          </head>
-          <br>
-
-          <body>
-            <br>
-            <div class="outer clearfix">
-              <br>
-              <div class="inner"></div>
-              <br>
-              <div class="inner"></div>
-              <br>
-              <div class="inner"></div>
-              <br> </div>
-            <br>
-            <div class="footer"></div>
-            <br>
-          </body>
-          <br>
-
-          </html>
-
+&lt;body&gt;
+    &lt;div class=&quot;outer&quot;&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;clearfix&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+          <p>2、使用:after 伪元素</p>
+          <pre><code>&lt;style&gt;
+    .outer{
+        border: 1px solid black;
+        width: 300px;
+    }
+    .inner{
+        width: 50px;
+        height: 50px;
+        background-color: #ff4400;
+        margin-right: 20px;
+        float: left;
+    }
+    .footer{
+        background-color: #005FC3;
+        width: 200px;
+        height: 100px;
+    }
+    .clearfix:after{  /*最简方式*/
+        content: &apos;&apos;;
+        display: block;
+        clear: both;
+    }
+    /* 新浪使用方式
+    .clearfix:after{ 
+        content: &apos;&apos;;
+        display: block;
+        clear: both;
+        height: 0;
+        visibility: hidden;
+    }
+    */
+    .clearfix{ /*兼容 IE*/
+        zoom: 1;
+    }
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;div class=&quot;outer clearfix&quot;&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
           <p>3、给父元素定高</p>
-          <p>&lt;!DOCTYPE html&gt;</p>
-          <html lang="en">
-          <br>
+          <pre><code>&lt;style&gt;
+    .outer{
+        border: 1px solid black;
+        width: 300px;
+    }
+    .inner{
+        width: 50px;
+        height: 50px;
+        background-color: #ff4400;
+        margin-right: 20px;
+        float: left;
+    }
+    .footer{
+        background-color: #005FC3;
+        width: 200px;
+        height: 100px;
+    }
+    .clearfix{
+        clear: both;
+    }
+&lt;/style&gt;
 
-          <head>
-            <br>
-            <meta charset="UTF-8">
-            <br>
-            <title></title>
-            <br>
-            <style>
-              <br>.outer {
-                <br>border: 1px solid black;
-                <br>width: 300px;
-                <br>
-              }
-
-              <br>.inner {
-                <br>width: 50px;
-                <br>height: 50px;
-                <br>background-color: #ff4400;
-                <br>margin-right: 20px;
-                <br>float: left;
-                <br>
-              }
-
-              <br>.footer {
-                <br>background-color: #005FC3;
-                <br>width: 200px;
-                <br>height: 100px;
-                <br>
-              }
-
-              <br>.clearfix {
-                <br>clear: both;
-                <br>
-              }
-
-              <br>
-
-            </style>
-            <br>
-          </head>
-          <br>
-
-          <body>
-            <br>
-            <div class="outer">
-              <br>
-              <div class="inner"></div>
-              <br>
-              <div class="inner"></div>
-              <br>
-              <div class="inner"></div>
-              <br> </div>
-            <br>
-            <div class="footer"></div>
-            <br>
-          </body>
-          <br>
-
-          </html>
-
+&lt;body&gt;
+    &lt;div class=&quot;outer&quot;&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
           <p>4、利用overflow:hidden;属性</p>
-          <p>&lt;!DOCTYPE html&gt;</p>
-          <html lang="en">
-          <br>
-
-          <head>
-            <br>
-            <meta charset="UTF-8">
-            <br>
-            <title></title>
-            <br>
-            <style>
-              <br>.outer {
-                <br>border: 1px solid black;
-                <br>width: 300px;
-                <br>overflow: hidden;
-                <br>zoom: 1;
-                /<em>兼容 IE</em>/<br>
-              }
-
-              <br>.inner {
-                <br>width: 50px;
-                <br>height: 50px;
-                <br>background-color: #ff4400;
-                <br>margin-right: 20px;
-                <br>float: left;
-                <br>
-              }
-
-              <br>.footer {
-                <br>background-color: #005FC3;
-                <br>width: 200px;
-                <br>height: 100px;
-                <br>
-              }
-
-              <br>
-
-            </style>
-            <br>
-          </head>
-          <br>
-
-          <body>
-            <br>
-            <div class="outer">
-              <br>
-              <div class="inner"></div>
-              <br>
-              <div class="inner"></div>
-              <br>
-              <div class="inner"></div>
-              <br> </div>
-            <br>
-            <div class="footer"></div>
-            <br>
-          </body>
-          <br>
-
-          </html>
-
+          <pre><code>&lt;style&gt;
+    .outer{
+        border: 1px solid black;
+        width: 300px;
+        overflow: hidden;
+        zoom: 1;/*兼容 IE*/
+    }
+    .inner{
+        width: 50px;
+        height: 50px;
+        background-color: #ff4400;
+        margin-right: 20px;
+        float: left;
+    }
+    .footer{
+        background-color: #005FC3;
+        width: 200px;
+        height: 100px;
+    }
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;div class=&quot;outer&quot;&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
           <p>5、父元素浮动</p>
           <p>6、父元素处于绝对定位</p>
-          <p>&lt;!DOCTYPE html&gt;</p>
-          <html lang="en">
-          <br>
-
-          <head>
-            <br>
-            <meta charset="UTF-8">
-            <br>
-            <title></title>
-            <br>
-            <style>
-              <br>.outer {
-                <br>border: 1px solid black;
-                <br>width: 300px;
-                <br>position: absolute;
-                <br>
-              }
-
-              <br>.inner {
-                <br>width: 50px;
-                <br>height: 50px;
-                <br>background-color: #ff4400;
-                <br>margin-right: 20px;
-                <br>float: left;
-                <br>
-              }
-
-              <br>.footer {
-                <br>background-color: #005FC3;
-                <br>width: 200px;
-                <br>height: 100px;
-                <br>
-              }
-
-              <br>
-
-            </style>
-            <br>
-          </head>
-          <br>
-
-          <body>
-            <br>
-            <div class="outer">
-              <br>
-              <div class="inner"></div>
-              <br>
-              <div class="inner"></div>
-              <br>
-              <div class="inner"></div>
-              <br> </div>
-            <br>
-            <div class="clearfix"></div>
-            <br>
-            <div class="footer"></div>
-            <br>
-          </body>
-          <br>
-
-          </html>
-
+          <pre><code>&lt;style&gt;
+    .outer{
+        border: 1px solid black;
+        width: 300px;
+        position: absolute;
+    }
+    .inner{
+        width: 50px;
+        height: 50px;
+        background-color: #ff4400;
+        margin-right: 20px;
+        float: left;
+    }
+    .footer{
+        background-color: #005FC3;
+        width: 200px;
+        height: 100px;
+    }
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;div class=&quot;outer&quot;&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;clearfix&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
           <p>二、小箭头问题</p>
-          <div id="demo12"></div>
-          <br>
-          <style>
-            <br>#demo12 {
-              <br>border: 10px solid #000;
-              <br>border-left-color: #f00;
-              <br>width: 0;
-              <br>height: 0;
-              <br>
-            }
-
+          <pre><code>&lt;div id=&quot;demo12&quot;&gt;&lt;/div&gt;
+&lt;style&gt;
+    #demo12 {
+      border: 10px solid #000;
+      border-left-color: #f00;
+      width: 0;
+      height: 0;
+    }
+&lt;/style&gt;
+</code></pre>
+          <p>即通过调整“边框”厚度可以配置出任意角度
             <br>
+            <div id="demo14">
+            </div>
+          </p>
+          <pre><code>&lt;/div&gt;
 
-          </style>
-          <br>
-          <br>即通过调整“边框”厚度可以配置出任意角度
-          <br>
-          <div id="demo14"></div>
-
-          <style>
-            #demo14 {
-              border: 10px solid transparent;
-              border-left: 20px solid #f00;
-              width: 0;
-              height: 0px;
-            }
-
-          </style>
-
+&lt;style&gt;
+    #demo14 {
+      border: 10px solid transparent;
+      border-left: 20px solid #f00;
+      width: 0;
+      height: 0px;
+    }
+&lt;/style&gt;
+</code></pre>
           <p>三、rem和em的区别</p>
           <p>em是相对于父元素的属性而计算的
-            <br>Rem是相对于根元素
-            <html>
+            <br>Rem是相对于根元素’
+            <html>‘
 
             </html>
           </p>
           <p>四、viewport都有什么</p>
-          <p>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-            <br>让当前viewport的宽度等于设备的宽度，同时不允许用户手动缩放。也许允不允许用户缩放不同的网站有不同的要求</p>
+          <pre><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0&quot;&gt;
+</code></pre>
+          <p>让当前viewport的宽度等于设备的宽度，同时不允许用户手动缩放。也许允不允许用户缩放不同的网站有不同的要求</p>
         </div>
       </header>
       <footer class="post__foot u-cf">
@@ -423,10 +256,10 @@
             <a class="post__tag__link" href="/tags/ALL/">ALL</a>
           </li>
           <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/CSS/">CSS</a>
+            <a class="post__tag__link" href="/tags/前端面试题/">前端面试题</a>
           </li>
           <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/前端面试题/">前端面试题</a>
+            <a class="post__tag__link" href="/tags/CSS/">CSS</a>
           </li>
         </ul>
       </footer>
