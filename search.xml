@@ -16,8 +16,8 @@
     <content type="text"><![CDATA[方法一：伪等高 这种方式，并不是真正的实现了元素等高 上代码喽 &lt;style&gt; *{ margin: 0; } .p{ position: relative; } .left{ position: absolute; top:0; left: 0; width:100px; background: green } .right{ position: absolute; top: 0; right: 0; width:200px; background: pink; } .center{ box-sizing:border-box; background-clip: content-box; padding:0 20px; border-left: 100px solid green; border-right: 200px solid pink; background: red; } &lt;/style&gt; &lt;body&gt; &lt;div class=&quot;par&quot;&gt; &lt;div class=&quot;left&quot;&gt; &lt;p&gt;jjj&lt;/p&gt; &lt;/div&gt; &lt;div class=&quot;center&quot;&gt; &lt;p&gt;lllll&lt;/p&gt; &lt;p&gt;jkljlkjl&lt;/p&gt; &lt;p&gt;jlskjldjsas&lt;/p&gt; &lt;/div&gt; &lt;div class=&quot;right&quot;&gt; &lt;p&gt;;;;;&lt;/p&gt; &lt;p&gt;jjjjj&lt;/p&gt; &lt;/div&gt; &lt;/div&gt; &lt;/body&gt; 结果： 方法二：伪等高 &lt;style&gt; *{ margin:0; } .par{ overflow: hidden; } .left{ float: left; width: 20%; padding-bottom: 9999px; margin-bottom: -9999px; background: red; } .center{ margin:0 20px; background: pink; } .right{ float: right; width: 20%; padding-bottom: 9999px; margin-bottom: -9999px; background: red; } &lt;/style&gt; &lt;body&gt; &lt;div class=&quot;par&quot;&gt; &lt;div class=&quot;left&quot;&gt; &lt;p&gt;jjj&lt;/p&gt; &lt;/div&gt; &lt;div class=&quot;right&quot;&gt; &lt;p&gt;;;;;&lt;/p&gt; &lt;p&gt;jjjjj&lt;/p&gt; &lt;/div&gt; &lt;div class=&quot;center&quot;&gt; &lt;p&gt;lllll&lt;/p&gt; &lt;p&gt;jkljlkjl&lt;/p&gt; &lt;p&gt;jlskjldjsas&lt;/p&gt; &lt;/div&gt; &lt;/div&gt; &lt;/body&gt; 结果： 方法三：真等高 &lt;style&gt; body,p{margin: 0;} .parent{ display: table; width: 100%; table-layout: fixed; } .left,.centerWrap,.right{ display: table-cell; } .center{ margin: 0 20px; } &lt;/style&gt; &lt;body&gt; &lt;div class=&quot;parent&quot; style=&quot;background-color: lightgrey;&quot;&gt; &lt;div class=&quot;left&quot; style=&quot;background-color: lightblue;&quot;&gt; &lt;p&gt;left&lt;/p&gt; &lt;/div&gt; &lt;div class=&quot;centerWrap&quot;&gt; &lt;div class=&quot;center&quot; style=&quot;background-color: pink;&quot;&gt; &lt;p&gt;center&lt;/p&gt; &lt;p&gt;center&lt;/p&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;right&quot; style=&quot;background-color: lightgreen;&quot;&gt; &lt;p&gt;right&lt;/p&gt; &lt;/div&gt; &lt;/div&gt; 结果： 方法四：真等高 //设置子元素的top:0;bottom:0 body,p{ margin: 0; } .parent{ position: relative; height: 40px; } .left,.center,.right{ position: absolute; top: 0; bottom: 0; } .left{ left: 0; width: 100px; } .center{ left: 120px; right: 120px; } .right{ width: 100px; right: 0; } 方法五：flex &lt;!-- flex中的伸缩项目默认都拉伸为父元素的高度，也实现了等高效果 --&gt; body,p{ margin: 0; } .parent{ display: flex; } .left,.center,.right{ flex: 1; } .center{ margin: 0 20px; }]]></content>
       <tags>
         <tag>ALL</tag>
-        <tag>前端面试题</tag>
         <tag>CSS</tag>
+        <tag>前端面试题</tag>
       </tags>
   </entry>
   <entry>
@@ -26,8 +26,8 @@
     <content type="text"><![CDATA[前两天在一个项目里，小仙女可是被这个分割线问题气死了 😠😠😠😠😠😠😠 不知道小可爱们会不会遇到下面的问题 看下面 👇👇👇👇👇👇👇👇 &lt;style type=&quot;text/css&quot;&gt; div{ padding: 0 20px 0; margin: 20px 0; line-height: 1px; border-left: 200px solid #ddd; border-right: 200px solid #ddd; text-align: center; } &lt;/style&gt; &lt;body&gt; &lt;div&gt;hkjhjhjhkhkj&lt;/div&gt; &lt;/body&gt; 这样 原本看上去 很美好😊😊😊😊😊😊😊😊 but 当你将屏幕横向拉伸的时候 苦逼的事情就粗线了 😨 看这里 👇👇👇👇 AND 看这里 👇👇👇👇👇 真是要疯掉了，人家想要的是无论什么情况下，都是介个样子滴 👇👇👇👇👇 蓝瘦香菇😭 So 基于上线的小仙女 想了一个办法，总算可以解决这个问题，but 不一定是最好的，但是可以参考一下啦！！！！ 🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉 &lt;style&gt; .flex{ list-style:none; display:-webkit-flex; padding:0; margin:0; color:#fff; } .red{ background-color: red; flex:2; } .blue{ background-color:green; flex:3; text-align: center; } .green{ background-color:red; flex:2; } .three-column { width: 100%; height: 500px; display: box; display: -webkit-box; display: flex; } .two { -webkit-box-flex: 1; flex: 1 } .one, .three { width: 200px; } &lt;/style&gt; &lt;body&gt; &lt;ul class=&quot;flex&quot;&gt; &lt;li class=&quot;red&quot;&gt;11&lt;/li&gt; &lt;li class=&quot;blue&quot;&gt;jjjjj&lt;/li&gt; &lt;li class=&quot;green&quot;&gt;33&lt;/li&gt; &lt;/ul&gt; &lt;/body&gt;]]></content>
       <tags>
         <tag>ALL</tag>
-        <tag>前端面试题</tag>
         <tag>CSS</tag>
+        <tag>前端面试题</tag>
       </tags>
   </entry>
   <entry>
@@ -45,8 +45,8 @@
     <content type="text"><![CDATA[一、清除浮动的几种方式 1、额外标签法 &lt;style&gt; .outer{ border: 1px solid black; width: 300px; } .inner{ width: 50px; height: 50px; background-color: #ff4400; margin-right: 20px; float: left; } .footer{ background-color: #005FC3; width: 200px; height: 100px; } .clearfix{ clear: both; } &lt;/style&gt; &lt;body&gt; &lt;div class=&quot;outer&quot;&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;div class=&quot;clearfix&quot;&gt;&lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt; &lt;/body&gt; 2、使用:after 伪元素 &lt;style&gt; .outer{ border: 1px solid black; width: 300px; } .inner{ width: 50px; height: 50px; background-color: #ff4400; margin-right: 20px; float: left; } .footer{ background-color: #005FC3; width: 200px; height: 100px; } .clearfix:after{ /*最简方式*/ content: &apos;&apos;; display: block; clear: both; } /* 新浪使用方式 .clearfix:after{ content: &apos;&apos;; display: block; clear: both; height: 0; visibility: hidden; } */ .clearfix{ /*兼容 IE*/ zoom: 1; } &lt;/style&gt; &lt;body&gt; &lt;div class=&quot;outer clearfix&quot;&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt; &lt;/body&gt; 3、给父元素定高 &lt;style&gt; .outer{ border: 1px solid black; width: 300px; } .inner{ width: 50px; height: 50px; background-color: #ff4400; margin-right: 20px; float: left; } .footer{ background-color: #005FC3; width: 200px; height: 100px; } .clearfix{ clear: both; } &lt;/style&gt; &lt;body&gt; &lt;div class=&quot;outer&quot;&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt; &lt;/body&gt; 4、利用overflow:hidden;属性 &lt;style&gt; .outer{ border: 1px solid black; width: 300px; overflow: hidden; zoom: 1;/*兼容 IE*/ } .inner{ width: 50px; height: 50px; background-color: #ff4400; margin-right: 20px; float: left; } .footer{ background-color: #005FC3; width: 200px; height: 100px; } &lt;/style&gt; &lt;body&gt; &lt;div class=&quot;outer&quot;&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt; &lt;/body&gt; 5、父元素浮动 6、父元素处于绝对定位 &lt;style&gt; .outer{ border: 1px solid black; width: 300px; position: absolute; } .inner{ width: 50px; height: 50px; background-color: #ff4400; margin-right: 20px; float: left; } .footer{ background-color: #005FC3; width: 200px; height: 100px; } &lt;/style&gt; &lt;body&gt; &lt;div class=&quot;outer&quot;&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt; &lt;/div&gt; &lt;div class=&quot;clearfix&quot;&gt;&lt;/div&gt; &lt;div class=&quot;footer&quot;&gt;&lt;/div&gt; &lt;/body&gt; 二、小箭头问题 &lt;div id=&quot;demo12&quot;&gt;&lt;/div&gt; &lt;style&gt; #demo12 { border: 10px solid #000; border-left-color: #f00; width: 0; height: 0; } &lt;/style&gt; 即通过调整“边框”厚度可以配置出任意角度 &lt;/div&gt; &lt;style&gt; #demo14 { border: 10px solid transparent; border-left: 20px solid #f00; width: 0; height: 0px; } &lt;/style&gt; 三、rem和em的区别 em是相对于父元素的属性而计算的 Rem是相对于根元素’ ‘ 四、viewport都有什么 &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0&quot;&gt; 让当前viewport的宽度等于设备的宽度，同时不允许用户手动缩放。也许允不允许用户缩放不同的网站有不同的要求 五、常见的布局方式有哪些？ 1、零布局 零布局的意思就是几乎完全按照正常文档流的方式来布局，不采用比如float，position，display等css属性。 2、display布局 3、float布局 4、position布局 5、table布局 六、0.5边框问题 1、缩放 .border { position: relative; } .border:after { content: &quot; &quot;; display: block; position: absolute; box-sizing: border-box; left: 0px; top:0px; height: 200%; width: 200%; transform-origin: 0 0; border: 1px solid red; transform: scale(.5); } 2、图片]]></content>
       <tags>
         <tag>ALL</tag>
-        <tag>前端面试题</tag>
         <tag>CSS</tag>
+        <tag>前端面试题</tag>
       </tags>
   </entry>
   <entry>
@@ -113,19 +113,19 @@
       <tags>
         <tag>ALL</tag>
         <tag>ES6</tag>
+        <tag>CSS</tag>
+        <tag>前端面试题</tag>
+        <tag>HTML</tag>
+        <tag>JS</tag>
         <tag>WEBPACK</tag>
         <tag>WEBFRAME</tag>
         <tag>NODEJS</tag>
         <tag>PIT</tag>
-        <tag>前端面试题</tag>
         <tag>ARTICAL</tag>
         <tag>LIFT</tag>
         <tag>SENTIMENTS</tag>
-        <tag>JS</tag>
         <tag>JQ</tag>
         <tag>H5</tag>
-        <tag>HTML</tag>
-        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
