@@ -177,31 +177,32 @@
             <img src="/2017/11/03/等高布局的五种方式/3.png" alt="这里是图片">
           </p>
           <p>方法四：真等高</p>
-          <p>//设置子元素的top:0;bottom:0
-            <br> body,p{
-            <br> margin: 0;
-            <br> }
-            <br> .parent{
-            <br> position: relative;
-            <br> height: 40px;
-            <br> }
-            <br> .left,.center,.right{
-            <br> position: absolute;
-            <br> top: 0;
-            <br> bottom: 0;
-            <br> }
-            <br> .left{
-            <br> left: 0;
-            <br> width: 100px;
-            <br> }
-            <br> .center{
-            <br> left: 120px;
-            <br> right: 120px;
-            <br> }
-            <br> .right{
-            <br> width: 100px;
-            <br> right: 0;
-            <br> }</p>
+          <p>//设置子元素的top:0;bottom:0</p>
+          <pre><code>body,p{
+    margin: 0;
+}
+.parent{
+    position: relative;
+    height: 40px;
+}
+.left,.center,.right{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+.left{
+    left: 0;
+    width: 100px;
+}
+.center{
+    left: 120px;
+    right: 120px;
+}
+.right{
+    width: 100px;
+    right: 0;
+}
+</code></pre>
           <p>方法五：flex</p>
           <pre><code>&lt;!-- 　flex中的伸缩项目默认都拉伸为父元素的高度，也实现了等高效果 --&gt;
 body,p{
@@ -225,10 +226,10 @@ body,p{
             <a class="post__tag__link" href="/tags/ALL/">ALL</a>
           </li>
           <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/CSS/">CSS</a>
+            <a class="post__tag__link" href="/tags/前端面试题/">前端面试题</a>
           </li>
           <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/前端面试题/">前端面试题</a>
+            <a class="post__tag__link" href="/tags/CSS/">CSS</a>
           </li>
         </ul>
       </footer>
