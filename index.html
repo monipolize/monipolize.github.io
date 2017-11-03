@@ -1,38 +1,1460 @@
 <!DOCTYPE html>
-<html class="index" lang="zh-CN">
+
+<html class="theme-next pisces use-motion" lang="">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Yan Ni">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"
+  />
+  <meta name="theme-color" content="#222">
+
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"
+  />
+
+  <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"
+                                                                                  rel="stylesheet" type="text/css">
+
+  <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet"
+                                                                                  type="text/css" />
+
+  <link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+  <meta name="keywords" content="In My World" />
+
   <meta name="description" content="前端BLOG">
-  <link rel="alternative" href="/atom.xml" title="In My World" type="application/atom+xml">
-  <link rel="icon" href="/favicon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="In My World">
+  <meta property="og:url" content="http://icey-monopolize.com/tags/ALL/index.html">
+  <meta property="og:site_name" content="In My World">
+  <meta property="og:description" content="前端BLOG">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="In My World">
+  <meta name="twitter:description" content="前端BLOG">
+
+  <script type="text/javascript" id="hexo.configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {
+      root: '/',
+      scheme: 'Pisces',
+      version: '5.1.3',
+      sidebar: {
+        "position": "left",
+        "display": "post",
+        "offset": 12,
+        "b2t": false,
+        "scrollpercent": false,
+        "onmobile": false
+      },
+      fancybox: true,
+      tabs: true,
+      motion: {
+        "enable": true,
+        "async": false,
+        "transition": {
+          "post_block": "fadeIn",
+          "post_header": "slideDownIn",
+          "post_body": "slideDownIn",
+          "coll_header": "slideLeftIn",
+          "sidebar": "slideUpIn"
+        }
+      },
+      duoshuo: {
+        userId: '0',
+        author: 'ICEY'
+      },
+      algolia: {
+        applicationID: '',
+        apiKey: '',
+        indexName: '',
+        hits: {
+          "per_page": 10
+        },
+        labels: {
+          "input_placeholder": "Search for Posts",
+          "hits_empty": "We didn't find any results for the search: ${query}",
+          "hits_stats": "${hits} results found in ${time} ms"
+        }
+      }
+    };
+
+  </script>
+
+  <link rel="canonical" href="http://icey-monopolize.com/tags/ALL/" />
+
   <title>In My World</title>
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
-  <!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]-->
-  <script src="/js/jquery-3.1.1.min.js"></script>
-  <script src="/js/fancybox/jquery.fancybox.min.js"></script>
+
 </head>
 
-<body>
-  <div class="hide" id="particles-oli-wrapper"></div>
-  <div class="index-wrapper">
-    <header class="head index hide">
-      <h1 class="head-title u-fl">In My World</h1>
-      <nav class="head-nav u-fr">
-        <ul class="head-nav__list">
-          <li class="head-nav__item">
-            <a class="head-nav__link" href="/tags/ALL">目录</a>
-          </li>
-        </ul>
-      </nav>
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+        <div class="site-brand-wrapper">
+          <div class="site-meta ">
+
+            <div class="custom-logo-site-title">
+              <a href="/" class="brand" rel="start">
+                <span class="logo-line-before">
+                  <i></i>
+                </span>
+                <span class="site-title">In My World</span>
+                <span class="logo-line-after">
+                  <i></i>
+                </span>
+              </a>
+            </div>
+
+            <p class="site-subtitle">想去天边打个滚儿</p>
+
+          </div>
+
+          <div class="site-nav-toggle">
+            <button>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+            </button>
+          </div>
+        </div>
+
+        <nav class="site-nav">
+
+          <ul id="menu" class="menu">
+
+            <li class="menu-item menu-item-home">
+              <a href="/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-question-circle"></i>
+                <br /> Home
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-commonweal">
+              <a href="/404.html" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-question-circle"></i>
+                <br /> Commonweal 404
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-search">
+
+              <a href="javascript:;" class="popup-trigger">
+
+                <i class="menu-item-icon fa fa-search fa-fw"></i>
+                <br /> Search
+              </a>
+            </li>
+
+          </ul>
+
+          <div class="site-search">
+
+            <div class="popup search-popup local-search-popup">
+              <div class="local-search-header clearfix">
+                <span class="search-icon">
+                  <i class="fa fa-search"></i>
+                </span>
+                <span class="popup-btn-close">
+                  <i class="fa fa-times-circle"></i>
+                </span>
+                <div class="local-search-input-wrapper">
+                  <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text"
+                                                                                                  id="local-search-input">
+                </div>
+              </div>
+              <div id="local-search-result"></div>
+            </div>
+
+          </div>
+
+        </nav>
+
+      </div>
     </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+
+            <section id="posts" class="posts-expand">
+
+              <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="http://icey-monopolize.com/tags/ALL/2017/11/01/Website/">
+
+                  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="吃多了的小仙女">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.jpg">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="In My World">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h1 class="post-title" itemprop="name headline">
+
+                      <a class="post-title-link" href="/2017/11/01/Website/" itemprop="url">This Is the Beginning of the Story</a>
+                    </h1>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">Posted on</span>
+
+                        <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-01T10:57:12+08:00">
+                          2017-11-01
+                        </time>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/2017/11/01/Website/#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/01/Website/"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    忘了是什么时间，忘了在什么地点，只记得有人写过这样的话。。。 我走过山的时候，山不说话 我路过海的时候，海不说话 我坐着的毛驴一步一步滴滴答答 我带着的倚天喑哑
+                    大家说我因为爱着杨过大侠 找不到 所以在峨眉安家 其实我只是喜欢峨眉的雾 像十六岁那年绽放的烟花 我路过海的时候，海不说话
+                    我走过山的时候也听不到回答 我骑的毛驴 步步滴滴答答 悠悠飘向远处可从不想 ...
+                    <!--noindex-->
+                    <div class="post-button text-center">
+                      <a class="btn" href="/2017/11/01/Website/#more" rel="contents">
+                        Read more &raquo;
+                      </a>
+                    </div>
+                    <!--/noindex-->
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-eof"></div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="http://icey-monopolize.com/tags/ALL/2017/11/01/ES6重点/">
+
+                  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="吃多了的小仙女">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.jpg">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="In My World">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h1 class="post-title" itemprop="name headline">
+
+                      <a class="post-title-link" href="/2017/11/01/ES6重点/" itemprop="url">ES6所有特点应用 -- 第一弹</a>
+                    </h1>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">Posted on</span>
+
+                        <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-01T11:19:09+08:00">
+                          2017-11-01
+                        </time>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/2017/11/01/ES6重点/#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/01/ES6重点/"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    ps：这是本宝宝搜罗N多个人的博客、资料最后的大汇总，如有雷同也是正常现象 pps：各位大大们请不要在意这些细节喽，宽容点噻。 ppps：由于本仙女实在是太懒了，so，嘿嘿!就只挑重点记录喽，please
+                    不要喷我。。。 一、Let { var globalVar = “from demo1” } { let globalLet
+                    = “from demo2” } ...
+                    <!--noindex-->
+                    <div class="post-button text-center">
+                      <a class="btn" href="/2017/11/01/ES6重点/#more" rel="contents">
+                        Read more &raquo;
+                      </a>
+                    </div>
+                    <!--/noindex-->
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-eof"></div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="http://icey-monopolize.com/tags/ALL/2017/11/02/ES6第二弹/">
+
+                  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="吃多了的小仙女">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.jpg">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="In My World">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h1 class="post-title" itemprop="name headline">
+
+                      <a class="post-title-link" href="/2017/11/02/ES6第二弹/" itemprop="url">ES6所有特点应用 -- 第二弹</a>
+                    </h1>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">Posted on</span>
+
+                        <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-02T16:35:00+08:00">
+                          2017-11-02
+                        </time>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/2017/11/02/ES6第二弹/#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/02/ES6第二弹/"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    吼吼，来吧，小宝贝，废话不多说，咱们书接上回。。。。 十一、Prosmises 异步编程 所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件
+                    从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。 Promise对象有以下两个特点: （1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfill
+                    ...
+                    <!--noindex-->
+                    <div class="post-button text-center">
+                      <a class="btn" href="/2017/11/02/ES6第二弹/#more" rel="contents">
+                        Read more &raquo;
+                      </a>
+                    </div>
+                    <!--/noindex-->
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-eof"></div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="http://icey-monopolize.com/tags/ALL/2017/11/02/ES6第3弹/">
+
+                  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="吃多了的小仙女">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.jpg">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="In My World">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h1 class="post-title" itemprop="name headline">
+
+                      <a class="post-title-link" href="/2017/11/02/ES6第3弹/" itemprop="url">ES6所有特点应用 -- 第三弹</a>
+                    </h1>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">Posted on</span>
+
+                        <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-02T17:31:48+08:00">
+                          2017-11-02
+                        </time>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/2017/11/02/ES6第3弹/#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/02/ES6第3弹/"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    OK，CONTINUE… 二十一、尾调用 尾调用的概念非常简单，一句话就能说清楚，就是指某个函数的最后一步是调用另一个函数。 function factorial(n,
+                    acc = 1) { if (n &lt;= 1) return acc; return factorial(n - 1,
+                    n * acc); } console.log(factorial(10)) co ...
+                    <!--noindex-->
+                    <div class="post-button text-center">
+                      <a class="btn" href="/2017/11/02/ES6第3弹/#more" rel="contents">
+                        Read more &raquo;
+                      </a>
+                    </div>
+                    <!--/noindex-->
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-eof"></div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="http://icey-monopolize.com/tags/ALL/2017/11/02/JS1/">
+
+                  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="吃多了的小仙女">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.jpg">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="In My World">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h1 class="post-title" itemprop="name headline">
+
+                      <a class="post-title-link" href="/2017/11/02/JS1/" itemprop="url">JS面试那些事 -- Part One 基础篇</a>
+                    </h1>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">Posted on</span>
+
+                        <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-02T17:59:00+08:00">
+                          2017-11-02
+                        </time>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/2017/11/02/JS1/#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/02/JS1/"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    啦啦啦啦啦啦。。。。。这可是本仙女呕心沥血总结出的，关于JS面试会问到的一些面试题。。。。。 都是血和泪啊 😢😢😢😢😢😢😢😢😢😢😢😢😢
+                    小伙伴们别在踩坑了 😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭 本章先说一说比较常见的、基础问题问题
+                    🐩 1、什么是事件机制？ 先说说什么是事件流。 事件流：指从页面中接收事件的 ...
+                    <!--noindex-->
+                    <div class="post-button text-center">
+                      <a class="btn" href="/2017/11/02/JS1/#more" rel="contents">
+                        Read more &raquo;
+                      </a>
+                    </div>
+                    <!--/noindex-->
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-eof"></div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="http://icey-monopolize.com/tags/ALL/2017/11/02/JS2/">
+
+                  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="吃多了的小仙女">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.jpg">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="In My World">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h1 class="post-title" itemprop="name headline">
+
+                      <a class="post-title-link" href="/2017/11/02/JS2/" itemprop="url">JS面试那些事 -- Part Two 基础篇</a>
+                    </h1>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">Posted on</span>
+
+                        <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-02T18:54:11+08:00">
+                          2017-11-02
+                        </time>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/2017/11/02/JS2/#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/02/JS2/"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    来来来 看过来。。。。继续挖坑。。。。 16、事件监听 直接上干货 &lt;body&gt; &lt;div id=&quot;clickme&quot;&gt;点我&lt;/div&gt;
+                    &lt;div id=&quot;kk&quot; onclick=&quot;handler()&quot;&gt;注册时间&lt;/div&gt;
+                    &lt;/body&gt; &l ...
+                    <!--noindex-->
+                    <div class="post-button text-center">
+                      <a class="btn" href="/2017/11/02/JS2/#more" rel="contents">
+                        Read more &raquo;
+                      </a>
+                    </div>
+                    <!--/noindex-->
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-eof"></div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="http://icey-monopolize.com/tags/ALL/2017/11/03/HTML常见问题/">
+
+                  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="吃多了的小仙女">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.jpg">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="In My World">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h1 class="post-title" itemprop="name headline">
+
+                      <a class="post-title-link" href="/2017/11/03/HTML常见问题/" itemprop="url">HTML常见问题</a>
+                    </h1>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">Posted on</span>
+
+                        <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-03T11:09:24+08:00">
+                          2017-11-03
+                        </time>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/2017/11/03/HTML常见问题/#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/03/HTML常见问题/"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    一、行内元素和块级元素的实质上去别 1、行内元素会在一条直线上排列，都是同一行的，水平方向排列 块级元素各占据一行，垂直方向排列。块级元素从新行开始结束接着一个断行。
+                    2、块级元素可以包含行内元素和块级元素。行内元素只能容纳文本或者其他行内元素，除ins和del外，不能包含块状元素。 3、行内元素设置width无效宽度只与内容有关，height无效(可以设置line-height)，
+                    ...
+                    <!--noindex-->
+                    <div class="post-button text-center">
+                      <a class="btn" href="/2017/11/03/HTML常见问题/#more" rel="contents">
+                        Read more &raquo;
+                      </a>
+                    </div>
+                    <!--/noindex-->
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-eof"></div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="http://icey-monopolize.com/tags/ALL/2017/11/03/CSS常见问题/">
+
+                  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="吃多了的小仙女">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.jpg">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="In My World">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h1 class="post-title" itemprop="name headline">
+
+                      <a class="post-title-link" href="/2017/11/03/CSS常见问题/" itemprop="url">CSS常见问题</a>
+                    </h1>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">Posted on</span>
+
+                        <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-03T11:12:35+08:00">
+                          2017-11-03
+                        </time>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/2017/11/03/CSS常见问题/#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/03/CSS常见问题/"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    一、清除浮动的几种方式 1、额外标签法 &lt;style&gt; .outer{ border: 1px solid black; width: 300px;
+                    } .inner{ width: 50px; height: 50px; background-color: #ff4400;
+                    ...
+                    <!--noindex-->
+                    <div class="post-button text-center">
+                      <a class="btn" href="/2017/11/03/CSS常见问题/#more" rel="contents">
+                        Read more &raquo;
+                      </a>
+                    </div>
+                    <!--/noindex-->
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-eof"></div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="http://icey-monopolize.com/tags/ALL/2017/11/03/关于多栏布局/">
+
+                  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="吃多了的小仙女">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.jpg">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="In My World">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h1 class="post-title" itemprop="name headline">
+
+                      <a class="post-title-link" href="/2017/11/03/关于多栏布局/" itemprop="url">关于多栏布局和自适应问题</a>
+                    </h1>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">Posted on</span>
+
+                        <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-03T14:27:03+08:00">
+                          2017-11-03
+                        </time>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/2017/11/03/关于多栏布局/#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/03/关于多栏布局/"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    今天我们来谈谈多栏布局吧！Let’s Go 🚄🚄🚄🚄🚄 下面是我日常遇见过得双栏布局和三栏布局，当然还有其他布局模式，BUT今天就先说说这两个吧 ①、关于两栏布局：
+                    两栏布局顾名思义就是主内容分为左右两侧各有一栏。实现两栏布局有很多种办法在这里，我将最常见的几种方法列举出来 方法一：最简单粗暴的方式，百分比这里我就不写出来了，相信大家都会
+                    方法二：BFC方式 &lt;style& ...
+                    <!--noindex-->
+                    <div class="post-button text-center">
+                      <a class="btn" href="/2017/11/03/关于多栏布局/#more" rel="contents">
+                        Read more &raquo;
+                      </a>
+                    </div>
+                    <!--/noindex-->
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-eof"></div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="http://icey-monopolize.com/tags/ALL/2017/11/03/文字分割线问题/">
+
+                  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="吃多了的小仙女">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.jpg">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="In My World">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h1 class="post-title" itemprop="name headline">
+
+                      <a class="post-title-link" href="/2017/11/03/文字分割线问题/" itemprop="url">文字分割线问题</a>
+                    </h1>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">Posted on</span>
+
+                        <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-03T14:36:27+08:00">
+                          2017-11-03
+                        </time>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/2017/11/03/文字分割线问题/#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/03/文字分割线问题/"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    前两天在一个项目里，小仙女可是被这个分割线问题气死了 😠😠😠😠😠😠😠 不知道小可爱们会不会遇到下面的问题 看下面 👇👇👇👇👇👇👇👇
+                    &lt;style type=&quot;text/css&quot;&gt; div{ padding: 0 20px
+                    0; margin: 20px 0; line-heig ...
+                    <!--noindex-->
+                    <div class="post-button text-center">
+                      <a class="btn" href="/2017/11/03/文字分割线问题/#more" rel="contents">
+                        Read more &raquo;
+                      </a>
+                    </div>
+                    <!--/noindex-->
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-eof"></div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+            </section>
+
+            <nav class="pagination">
+              <span class="page-number current">1</span>
+              <a class="page-number" href="/page/2/">2</a>
+              <a class="extend next" rel="next" href="/page/2/">
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </nav>
+
+          </div>
+
+        </div>
+
+        <div class="sidebar-toggle">
+          <div class="sidebar-toggle-line-wrap">
+            <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+          </div>
+        </div>
+
+        <aside id="sidebar" class="sidebar">
+
+          <div class="sidebar-inner">
+
+            <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+              <div class="site-overview">
+                <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+
+                  <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="吃多了的小仙女"
+                  />
+
+                  <p class="site-author-name" itemprop="name">吃多了的小仙女</p>
+                  <p class="site-description motion-element" itemprop="description">前端BLOG</p>
+                </div>
+
+                <nav class="site-state motion-element">
+
+                  <div class="site-state-item site-state-posts">
+
+                    <a href="/artical">
+
+                      <span class="site-state-item-count">12</span>
+                      <span class="site-state-item-name">posts</span>
+                    </a>
+                  </div>
+
+                  <div class="site-state-item site-state-tags">
+
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">tags</span>
+
+                  </div>
+
+                </nav>
+
+                <div class="links-of-author motion-element">
+
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/monipolize" target="_blank" title="GitHub">
+
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+
+                </div>
+
+              </div>
+            </section>
+
+          </div>
+        </aside>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash;
+          <span itemprop="copyrightYear">2017</span>
+          <span class="with-love">
+            <i class="fa fa-YAN NI"></i>
+          </span>
+          <span class="author" itemprop="copyrightHolder">吃多了的小仙女</span>
+
+        </div>
+
+        <div class="powered-by">Powered by
+          <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a>
+        </div>
+
+        <span class="post-meta-divider">|</span>
+
+        <div class="theme-info">Theme &mdash;
+          <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+
+    </div>
+
   </div>
-  <script src="/js/particles.min.js"></script>
-  <script src="/js/particles.oli.js"></script>
+
+  <script type="text/javascript">
+    if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+      window.Promise = null;
+    }
+
+  </script>
+
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+  <script type="text/javascript">
+    var duoshuoQuery = {
+      short_name: "true"
+    };
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';
+      ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+
+  </script>
+
+  <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+  <script src="/js/src/hook-duoshuo.js"></script>
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+    var onPopupClose = function(e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append(
+          '<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css(
+        'text-align', 'center');
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(
+                  /<[^>]+>/g, "");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if (title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text,
+                      caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0,
+                        position = [],
+                        index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word,
+                          startPosition)) > -1) {
+                        index.push({
+                          position: position,
+                          word: word
+                        });
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+                    indexOfTitle = indexOfTitle.concat(
+                      getIndexByWord(keyword,
+                        titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(
+                      getIndexByWord(keyword,
+                        contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length >
+                    0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length +
+                      indexOfContent.length;
+                  }
+                }
+                // show search results
+                if (isMatch) {
+                  // sort index by position of keyword
+                  [indexOfTitle, indexOfContent].forEach(function(
+                    index) {
+                    index.sort(function(itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft
+                        .position) {
+                        return itemRight.position -
+                          itemLeft.position;
+                      } else {
+                        return itemLeft.word.length -
+                          itemRight.word.length;
+                      }
+                    });
+                  });
+                  // merge hits into slices
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index
+                      .length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({
+                        position: position,
+                        length: word.length
+                      });
+                      var wordEnd = position + word.length;
+                      // move to next position of hit
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0,
+                      title.length, indexOfTitle));
+                  }
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length -
+                      1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if (start < 0) {
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if (end > content.length) {
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content,
+                      start, end, indexOfContent));
+                  }
+                  // sort slices in content by search text's count and hits' count
+                  slicesOfContent.sort(function(sliceLeft,
+                    sliceRight) {
+                    if (sliceLeft.searchTextCount !==
+                      sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount -
+                        sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !==
+                      sliceRight.hits.length) {
+                      return sliceRight.hits.length -
+                        sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+                  // select top N slices in content
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0,
+                      upperBound);
+                  }
+                  // highlight title and content
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function(hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' +
+                        text.substring(hit.position, end) +
+                        '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+                  var resultItem = '';
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" +
+                      highlightKeyword(title, slicesOfTitle[0]) +
+                      "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" + title +
+                      "</a>";
+                  }
+                  slicesOfContent.forEach(function(slice) {
+                    resultItem += "<a href='" + articleUrl +
+                      "'>" +
+                      "<p class=\"search-result\">" +
+                      highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function(resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft
+                    .searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList =
+                '<ul class=\"search-result-list\">';
+              resultItems.forEach(function(result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function(event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+          proceedsearch();
+        }
+      });
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function(event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes:
+    true, skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for (i=0; i
+    < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax'
+                                                                                    ; } }); </script>
+      <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 </body>
 
 </html>

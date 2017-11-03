@@ -23,7 +23,7 @@
   <entry>
     <title><![CDATA[文字分割线问题]]></title>
     <url>%2F2017%2F11%2F03%2F%E6%96%87%E5%AD%97%E5%88%86%E5%89%B2%E7%BA%BF%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[前两天在一个项目里，小仙女可是被这个分割线问题气死了 😠😠😠😠😠😠😠😠😠😠😠😠😠😠😠😠😠😠😠😠😠😠😠😠 ☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠ 不知道小可爱们会不会遇到下面的问题 看下面 👇👇👇👇👇👇👇👇 &lt;style type=&quot;text/css&quot;&gt; div{ padding: 0 20px 0; margin: 20px 0; line-height: 1px; border-left: 200px solid #ddd; border-right: 200px solid #ddd; text-align: center; } &lt;/style&gt; &lt;body&gt; &lt;div&gt;hkjhjhjhkhkj&lt;/div&gt; &lt;/body&gt; 这样 原本看上去 很美好😊😊😊😊😊😊😊😊 but 当你将屏幕横向拉伸的时候 苦逼的事情就粗线了 😨 看这里 👇👇👇👇 AND 看这里 👇👇👇👇👇 真是要疯掉了，人家想要的是无论什么情况下，都是介个样子滴 👇👇👇👇👇 蓝瘦香菇😭 So 基于上线的小仙女 想了一个办法，总算可以解决这个问题，but 不一定是最好的，但是可以参考一下啦！！！！ 🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉 &lt;style&gt; .flex{ list-style:none; display:-webkit-flex; padding:0; margin:0; color:#fff; } .red{ background-color: red; flex:2; } .blue{ background-color:green; flex:3; text-align: center; } .green{ background-color:red; flex:2; } .three-column { width: 100%; height: 500px; display: box; display: -webkit-box; display: flex; } .two { -webkit-box-flex: 1; flex: 1 } .one, .three { width: 200px; } &lt;/style&gt; &lt;body&gt; &lt;ul class=&quot;flex&quot;&gt; &lt;li class=&quot;red&quot;&gt;11&lt;/li&gt; &lt;li class=&quot;blue&quot;&gt;jjjjj&lt;/li&gt; &lt;li class=&quot;green&quot;&gt;33&lt;/li&gt; &lt;/ul&gt; &lt;/body&gt;]]></content>
+    <content type="text"><![CDATA[前两天在一个项目里，小仙女可是被这个分割线问题气死了 😠😠😠😠😠😠😠 不知道小可爱们会不会遇到下面的问题 看下面 👇👇👇👇👇👇👇👇 &lt;style type=&quot;text/css&quot;&gt; div{ padding: 0 20px 0; margin: 20px 0; line-height: 1px; border-left: 200px solid #ddd; border-right: 200px solid #ddd; text-align: center; } &lt;/style&gt; &lt;body&gt; &lt;div&gt;hkjhjhjhkhkj&lt;/div&gt; &lt;/body&gt; 这样 原本看上去 很美好😊😊😊😊😊😊😊😊 but 当你将屏幕横向拉伸的时候 苦逼的事情就粗线了 😨 看这里 👇👇👇👇 AND 看这里 👇👇👇👇👇 真是要疯掉了，人家想要的是无论什么情况下，都是介个样子滴 👇👇👇👇👇 蓝瘦香菇😭 So 基于上线的小仙女 想了一个办法，总算可以解决这个问题，but 不一定是最好的，但是可以参考一下啦！！！！ 🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉 &lt;style&gt; .flex{ list-style:none; display:-webkit-flex; padding:0; margin:0; color:#fff; } .red{ background-color: red; flex:2; } .blue{ background-color:green; flex:3; text-align: center; } .green{ background-color:red; flex:2; } .three-column { width: 100%; height: 500px; display: box; display: -webkit-box; display: flex; } .two { -webkit-box-flex: 1; flex: 1 } .one, .three { width: 200px; } &lt;/style&gt; &lt;body&gt; &lt;ul class=&quot;flex&quot;&gt; &lt;li class=&quot;red&quot;&gt;11&lt;/li&gt; &lt;li class=&quot;blue&quot;&gt;jjjjj&lt;/li&gt; &lt;li class=&quot;green&quot;&gt;33&lt;/li&gt; &lt;/ul&gt; &lt;/body&gt;]]></content>
       <tags>
         <tag>ALL</tag>
         <tag>CSS</tag>
@@ -115,6 +115,8 @@
         <tag>CSS</tag>
         <tag>前端面试题</tag>
         <tag>ES6</tag>
+        <tag>HTML</tag>
+        <tag>JS</tag>
         <tag>WEBPACK</tag>
         <tag>WEBFRAME</tag>
         <tag>NODEJS</tag>
@@ -122,15 +124,13 @@
         <tag>ARTICAL</tag>
         <tag>LIFT</tag>
         <tag>SENTIMENTS</tag>
-        <tag>JS</tag>
         <tag>JQ</tag>
         <tag>H5</tag>
-        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2017%2F10%2F31%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick Start Create a new post 1 $ hexo new "My New Post" More info: Writing Run server 1 $ hexo server More info: Server Generate static files 1 $ hexo generate More info: Generating Deploy to remote sites 1 $ hexo deploy More info: Deployment]]></content>
+    <title></title>
+    <url>%2F404.html</url>
+    <content type="text"><![CDATA[]]></content>
   </entry>
 </search>

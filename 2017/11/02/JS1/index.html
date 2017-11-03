@@ -1,356 +1,1130 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+
+<html class="theme-next pisces use-motion" lang="">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Yan Ni">
-  <meta name="description" content="前端BLOG">
-  <link rel="alternative" href="/atom.xml" title="In My World" type="application/atom+xml">
-  <link rel="icon" href="/favicon.png">
-  <title>JS面试那些事 -- Part One 基础篇 - In My World</title>
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
-  <!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]-->
-  <script src="/js/jquery-3.1.1.min.js"></script>
-  <script src="/js/fancybox/jquery.fancybox.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"
+  />
+  <meta name="theme-color" content="#222">
+
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"
+  />
+
+  <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"
+                                                                                  rel="stylesheet" type="text/css">
+
+  <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet"
+                                                                                  type="text/css" />
+
+  <link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+  <meta name="keywords" content="ALL,前端面试题,JS," />
+
+  <meta name="description" content="啦啦啦啦啦啦。。。。。这可是本仙女呕心沥血总结出的，关于JS面试会问到的一些面试题。。。。。   都是血和泪啊 😢😢😢😢😢😢😢😢😢😢😢😢😢   小伙伴们别在踩坑了 😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭 本章先说一说比较常见的、基础问题问题 🐩 1、什么是事件机制？ 先说说什么是事件流。   事件流：指从页面中接收事件的">
+  <meta name="keywords" content="ALL,前端面试题,JS">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="JS面试那些事 -- Part One 基础篇">
+  <meta property="og:url" content="http://icey-monopolize.com/tags/ALL/2017/11/02/JS1/index.html">
+  <meta property="og:site_name" content="In My World">
+  <meta property="og:description" content="啦啦啦啦啦啦。。。。。这可是本仙女呕心沥血总结出的，关于JS面试会问到的一些面试题。。。。。   都是血和泪啊 😢😢😢😢😢😢😢😢😢😢😢😢😢   小伙伴们别在踩坑了 😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭 本章先说一说比较常见的、基础问题问题 🐩 1、什么是事件机制？ 先说说什么是事件流。   事件流：指从页面中接收事件的">
+  <meta property="og:updated_time" content="2017-11-02T11:20:12.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JS面试那些事 -- Part One 基础篇">
+  <meta name="twitter:description" content="啦啦啦啦啦啦。。。。。这可是本仙女呕心沥血总结出的，关于JS面试会问到的一些面试题。。。。。   都是血和泪啊 😢😢😢😢😢😢😢😢😢😢😢😢😢   小伙伴们别在踩坑了 😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭 本章先说一说比较常见的、基础问题问题 🐩 1、什么是事件机制？ 先说说什么是事件流。   事件流：指从页面中接收事件的">
+
+  <script type="text/javascript" id="hexo.configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {
+      root: '/',
+      scheme: 'Pisces',
+      version: '5.1.3',
+      sidebar: {
+        "position": "left",
+        "display": "post",
+        "offset": 12,
+        "b2t": false,
+        "scrollpercent": false,
+        "onmobile": false
+      },
+      fancybox: true,
+      tabs: true,
+      motion: {
+        "enable": true,
+        "async": false,
+        "transition": {
+          "post_block": "fadeIn",
+          "post_header": "slideDownIn",
+          "post_body": "slideDownIn",
+          "coll_header": "slideLeftIn",
+          "sidebar": "slideUpIn"
+        }
+      },
+      duoshuo: {
+        userId: '0',
+        author: 'ICEY'
+      },
+      algolia: {
+        applicationID: '',
+        apiKey: '',
+        indexName: '',
+        hits: {
+          "per_page": 10
+        },
+        labels: {
+          "input_placeholder": "Search for Posts",
+          "hits_empty": "We didn't find any results for the search: ${query}",
+          "hits_stats": "${hits} results found in ${time} ms"
+        }
+      }
+    };
+
+  </script>
+
+  <link rel="canonical" href="http://icey-monopolize.com/tags/ALL/2017/11/02/JS1/"
+  />
+
+  <title>JS面试那些事 -- Part One 基础篇 | In My World</title>
+
 </head>
 
-<body style="opacity:0;">
-  <header class="head">
-    <h1 class="head-title u-fl">
-      <a href="/">In My World</a>
-    </h1>
-    <nav class="head-nav u-fr">
-      <ul class="head-nav__list">
-        <li class="head-nav__item">
-          <a class="head-nav__link" href="/tags/ALL">目录</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <main class="main">
-    <article class="post">
-      <header class="post__head">
-        <time class="post__time" datetime="2017-11-02T09:59:00.000Z">November 2, 2017</time>
-        <h1 class="post__title">
-          <a href="/2017/11/02/JS1/">JS面试那些事 -- Part One 基础篇</a>
-        </h1>
-        <div class="post__main echo">
-          <p>啦啦啦啦啦啦。。。。。这可是本仙女呕心沥血总结出的，关于JS面试会问到的一些面试题。。。。。
-            <br>都是血和泪啊 😢😢😢😢😢😢😢😢😢😢😢😢😢
-            <br>小伙伴们别在踩坑了 😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭</p>
-          <p>本章先说一说比较常见的、基础问题问题 🐩</p>
-          <p>1、什么是事件机制？</p>
-          <p>先说说什么是事件流。
-            <br>事件流：指从页面中接收事件的顺序，有冒泡流和捕获流。</p>
-          <p>冒泡和捕获
-            <br>我们点击一个div, 实际上是先点击document，然后点击事件传递到div,而且并不会在这个div就停下，
-            <br>div有子元素就还会向下传递，最后又会冒泡传递回document
-            <br>为了兼容更多的浏览器，非特殊情况一般我们都是把事件添加到在事件冒泡阶段。</p>
-          <p>因为冒泡机制，比如既然点击子元素，也会触发父元素的点击事件，
-            <br>那我们完全可以将子元素的事件要做的事写到父元素的事件里，
-            <br>也就是将子元素的事件处理程序写到父元素的事件处理程序中，这就是事件委托；
-            <br>利用事件委托，只指定一个事件处理程序，就可以管理某一个类型的所有事件</p>
-          <p>2、伪数组转数组 </p>
-          <p>方法一、 声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中，大家都会，这不是面试官要的
-            <br>var aLi = document.querySelectorAll(‘li’);
-            <br> var arr = [];
-            <br> for (var i = 0; i &lt; aLi.length; i++) {
-            <br> arr[arr.length] = aLi[i]
-            <br> }</p>
-          <p>方法二、使用数组的slice()方法 它返回的是数组，使用call或者apply指向伪数组
-            <br>var arr = Array.prototype.slice.call(aLi);</p>
-          <p>方法3、 ES6中数组的新方法 from()
-            <br>// ES5的写法
-            <br>var arr1 = [].slice.call(arrayLike)
-            <br>// ES6的写法
-            <br>let arr2 = Array.from(arrayLike)</p>
-          <p>3、基本数据类型和引用数据类型区别</p>
-          <p>基本数据类型指的是简单的数据段，引用数据类型指的是有多个值构成的对象
-            <br>Number、String 、Boolean、Null和Undefined。基本数据类型是按值访问的，
-            <br>因为可以直接操作保存在变量中的实际值。示例：
-            <br>var a = 10;
-            <br>var b = a;
-            <br>b = 20;</p>
-          <p>console.log(a); // 10值
-            <br>上面，b获取的是a值得一份拷贝，虽然，两个变量的值相等，但是两个变量保存了两个不同的基本数据类型值
-            <br>b只是保存了a复制的一个副本。所以，b的改变，对a没有影响。</p>
-          <p>引用类型数据：对象类型Object type();Object 、Array 、Function 、Data
-            <br>javascript的引用数据类型是保存在堆内存中的对象。
-            <br>与其他语言的不同是，你不可以直接访问堆内存空间中的位置和操作堆内存空间。只能操作对象在栈内存中的引用地址。
-            <br>var obj1 = new Object();
-            <br>var obj2 = obj1;
-            <br>obj2.name = “我有名字了”;
-            <br>console.log(obj1.name); // 我有名字了
-            <br>说明这两个引用数据类型指向了同一个堆内存对象。obj1赋值给onj2，实际上这个堆内存对象在栈内存的引用地址复制了一份给了obj2，
-            <br>但是实际上他们共同指向了同一个堆内存对象。实际上改变的是堆内存对象。</p>
-          <p>Es5的基本数据类型：undefined，null,Object,function,Number,string
-            <br>es6新增的一个数据类型：Symbol</p>
-          <p>4、实现回文字符串</p>
-          <p>//判断回文
-            <br>function isPalindrome(line) {
-            <br> line += “”;
-            <br> return line === line.split(“”).reverse().join(“”);
-            <br>} </p>
-          <p>这种方法很方便，但效率不高，字符串分割，倒转，聚合都需要很多额外的操作。</p>
-          <p>function isPalindrome(line) {
-            <br> line += “”;
-            <br> for(var i=0,j=line.length-1;i&lt;j;i++,j–){
-            <br> if(line.charAt(i) !== line.charAt(j)){
-            <br> return false;
-            <br> }
-            <br> }
-            <br> return true;
-            <br> }</p>
-          <p>5、call，apply，bind之间的区别有哪些？</p>
-          <p>在说区别之前还是先总结一下三者的相似之处：
-            <br>① 都是用来改变函数的this对象的指向的。
-            <br>② 第一个参数都是this要指向的对象。
-            <br>③ 都可以利用后续参数传参。</p>
-          <p>区别:
-            <br>① bind不会立即调用，其他两个会立即调用
-            <br>② apply和call都是为了改变某个函数运行时的上下文而存在的（就是为了改变函数内部this的指向）；
-            <br>③ bind（)也是改变函数体内this的指向;</p>
-          <p>6、js的节流和去抖</p>
-          <p>节流：多次反复调用提议行为时 利用settimeout ，在一定时间内 不允许重复执行</p>
-          <p>消抖：多次反复调用提议行为时 利用settimeout，若在一时间内再次出发相同行为，则将之前行为的定时器去掉</p>
-          <p>7、settimeout和setInterval</p>
-          <p>javascript都是以单线程的方式运行于浏览器的javascript引擎中的,
-            <br>setTimeout和setInterval的作用只是把你要执行的代码在你设定的一个
-            <br>时间点插入js引擎维护的一个代码队列中, 插入代码队列并不意味着你的代码就会立马执行的</p>
-          <p>① setTimeout
-            <br>function click() {
-            <br>// code block1…
-            <br>setTimeout(function() {
-            <br>// process …
-            <br>}, 200);
-            <br>// code block2
-            <br>}
-            <br> 假设我们给一个button的onclick事件绑定了此方法, 当我们按下按钮后,
-            <br>肯定先执行block1的内容, 然后运行到setTimeout的地方, setTimeout会告诉浏览器说,
-            <br>“200ms后我会插一段要执行的代码给你的队列中”, 浏览器当然答应了(注意插入代码并不意味着立马执行),
-            <br>setTimeout代码运行后, 紧跟其后的block2代码开始执行, 这里就开始说明问题了,
-            <br>如果block2的代码执行时间超过200ms, 那结果会是如何? 或许按照你之前的理解,
-            <br>会理所当然的认为200ms一到, 你的process代码会立马执行…事实是, 在block2执行过程中(执行了200ms后)process代码被插入代码队列,
-            但一直要等click方法执行结束, 才会执行process代码段, 从代码队列上看process代码是在click后面的, 再加上js以单线程方式执行,
-            所以应该不难理解. 如果是另一种情况, block2代码执行的时间&lt;200ms, setTimeout在200ms后将process代码插入到代码队列,
-            而那时执行线程可能已经处于空闲状态了(idle), 那结果就是200ms后, process代码插入队列就立马执行了, 就让你感觉200ms后,
-            就执行了.</p>
-          <p>② setInterval
-            <br>时间间隔或许会跳过
-            <br>时间间隔可能&lt;定时调用的代码的执行时间
-            <br>function click() {
-            <br>// code block1…
-            <br>setInterval(function() {
-            <br>// process …
-            <br>}, 200);
-            <br>// code block2
-            <br>}
-            <br> 比如onclick要300ms执行完, block1代码执行完, 在5ms时执行setInterval, 以此为一个时间点,
-            <br>在205ms时插入process代码, click代码顺利结束, process代码开始执行(相当于图中的timer code),
-            <br>然而process代码也执行了一个比较长的时间, 超过了接下来一个插入时间点405ms,
-            <br>这样代码队列后又插入了一份process代码, process继续执行着, 而且超过了605ms这个插入时间点,
-            <br>下面问题来, 可能你还会认为代码队列后面又会继续插入一份process代码…真实的情况是,
-            <br>由于代码队列中已经有了一份未执行的process代码, 所以605ms这个插入时间点将会被”无情”的跳过,
-            <br>因为js引擎只允许有一份未执行的process代码, 说到这里不知道您是不是会豁然开朗呢…</p>
-          <p>8、解析url中的参数</p>
-          <p>function getUrlParam(sUrl,sKey){
-            <br> var result = {};
-            <br> sUrl.replace(/\??(\w+)=(\w+)&amp;?/g,function(a,k,v){
-            <br> if(result[k] !== void 0){
-            <br> var t = result[k];
-            <br> result[k] = [].concat(t,v);
-            <br> }else{
-            <br> result[k] = v;
-            <br> }
-            <br> });
-            <br> if(sKey === void 0){
-            <br> return result;
-            <br> }else{
-            <br> return result[sKey] || ‘’;
-            <br> }
-            <br>}</p>
-          <p>9、JS的组成部分有那些</p>
-          <p>JavaScript的三大组成部分是:
-            <br>① ECMAScript：JavaScript的核心，描述了语言的基本语法(var、for、if、array等)和
-            <br> 数据类型(数字、字符串、布尔、函数、对象(obj、[]、{}、null)、未定义)，
-            <br> ECMAScript是一套标准，定义了一种语言（比如JS）是什么样子
-            <br>② 文档对象模型（DOM）：DOM（文档对象模型）是 HTML 和 XML 的应用程序接口（API），DOM 将把
-            <br> 整个页面规划成由节点层级构成的文档
-            <br>③ 浏览器对象模型（BOM）：对浏览器窗口进行访问和操作。
-            <br> 弹出新的浏览器窗口，移动、改变和关闭浏览器窗口，
-            <br> 提供详细的网络浏览器信息（navigator object），详细的页面信
-            <br> 息（location object），详细的用户屏幕分辨率的信息（screen object），
-            <br> 对cookies的支持等等</p>
-          <p>10、函数声明方式</p>
-          <p>//函数声明
-            <br>function x(){}</p>
-          <p>//函数表达式）：
-            <br>var a = function(){}</p>
-          <p>//构造函数发
-            <br>var x = new Function();</p>
-          <p>函数声明在代码执行以前被加载到作用域中，
-            <br>函数表达式则是在代码执行到那一行的时候才会有定义</p>
-          <p>11、Date类型</p>
-          <p>Date.parse(‘1900-01-19’);</p>
-          <p>// -2207433600000\
-            <br>//
-            <br>// 创建一个日期对象, var now = new Date(), 新对象自动获得当前时间和对象。</p>
-          <p>如果想根据指定日期和时间的话，就必须传入该日期的毫秒数(从UTC时间1970年1月1日起)。
-            <br>Date.parse(‘May 25, 2004’), 转成毫秒数。 (UTC时间)
-            <br>Date.UTC(2005, 4, 5, 17, 55, 55), 转成毫秒数。2005-05-05-17-55-55。(GMT时间)
-            <br>new Date()会模仿上面2种方法，也就是说可以直接向Date()构造函数传入上面两种参数的一种。
-            <br>但是有一点儿区别，new Date()模仿的时候，都是根据UTC(世界协调时间)时间创建的，而非GMT(格林尼治标准时间)创建。</p>
-          <p>12、常见状态码的含义</p>
-          <p>2开头 （请求成功）表示成功处理了请求的状态代码。
-            <br>200 （成功） 服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。
-            <br>201 （已创建） 请求成功并且服务器创建了新的资源。
-            <br>202 （已接受） 服务器已接受请求，但尚未处理。
-            <br>203 （非授权信息） 服务器已成功处理了请求，但返回的信息可能来自另一来源。
-            <br>204 （无内容） 服务器成功处理了请求，但没有返回任何内容。
-            <br>205 （重置内容） 服务器成功处理了请求，但没有返回任何内容。
-            <br>206 （部分内容） 服务器成功处理了部分 GET 请求。</p>
-          <p>3开头 （请求被重定向）表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。
-            <br>300 （多种选择） 针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。
-            <br>301 （永久移动） 请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。
-            <br>302 （临时移动） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。
-            <br>303 （查看其他位置） 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。
-            <br>304 （未修改） 自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。
-            <br>305 （使用代理） 请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理。
-            <br>307 （临时重定向） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>
-          <p>4开头 （请求错误）这些状态代码表示请求可能出错，妨碍了服务器的处理。
-            <br>400 （错误请求） 服务器不理解请求的语法。
-            <br>401 （未授权） 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。
-            <br>403 （禁止） 服务器拒绝请求。
-            <br>404 （未找到） 服务器找不到请求的网页。
-            <br>405 （方法禁用） 禁用请求中指定的方法。
-            <br>406 （不接受） 无法使用请求的内容特性响应请求的网页。
-            <br>407 （需要代理授权） 此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。
-            <br>408 （请求超时） 服务器等候请求时发生超时。
-            <br>409 （冲突） 服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。
-            <br>410 （已删除） 如果请求的资源已永久删除，服务器就会返回此响应。
-            <br>411 （需要有效长度） 服务器不接受不含有效内容长度标头字段的请求。
-            <br>412 （未满足前提条件） 服务器未满足请求者在请求中设置的其中一个前提条件。
-            <br>413 （请求实体过大） 服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。
-            <br>414 （请求的 URI 过长） 请求的 URI（通常为网址）过长，服务器无法处理。
-            <br>415 （不支持的媒体类型） 请求的格式不受请求页面的支持。
-            <br>416 （请求范围不符合要求） 如果页面无法提供请求的范围，则服务器会返回此状态代码。
-            <br>417 （未满足期望值） 服务器未满足”期望”请求标头字段的要求。</p>
-          <p>5开头（服务器错误）这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。
-            <br>500 （服务器内部错误） 服务器遇到错误，无法完成请求。
-            <br>501 （尚未实施） 服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码。
-            <br>502 （错误网关） 服务器作为网关或代理，从上游服务器收到无效响应。
-            <br>503 （服务不可用） 服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。
-            <br>504 （网关超时） 服务器作为网关或代理，但是没有及时从上游服务器收到请求。
-            <br>505 （HTTP 版本不受支持） 服务器不支持请求中所用的 HTTP 协议版本。</p>
-          <p>13、http和https</p>
-          <p>① HTTPS是以安全为目标的HTTP通道，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL
-            <br>② https具有安全性的ssl加密传输协议需要到ca申请证书，http是超文本传输协议，明文传输
-            <br>③ http和https使用的是完全不同的连接方式用的端口也不一样,前者是80,后者是443</p>
-          <p>SSL的位置介于应用层和TCP层之间，应用层数据不再直接传递给传输层，而是传递给SSL层，SSL层对从应用层收到的数据进行加密，并增加自己的SSL头
-            <br>TLS/SSL中使用了非对称加密，对称加密以及HASH算法</p>
-          <p>14、常见的DOM操作</p>
-          <p>
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
 
-            <body>
-              <br>
-              <div id="container">
-                <br>
-                <p id="child1">djsklajldks</p>
-                <br>
-                <div id="child2">
-                  <a href="">llllllll</a>
-                </div>
-                <br> </div>
-            </body>
-          </p>
-          <p>
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
 
-          </p>
-          <script type="text/javascript">
-            //创建节点
-            var container = document.getElementById("container")
-            var para = document.createElement("p")
-            var text = document.createTextNode("只是创建的节点")
-            var c2 = document.getElementById('child2')
-            para.appendChild(text);
-            container.appendChild(para)
-            //删除
-            container.removeChild(document.getElementById('child1'))
-            //替换
-            container.replaceChild(para, c2)
-            //插入
-            // container.insertBefore(para,c2)
-            //克隆
-            var x = container.cloneNode()
-            console.log(x)
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+        <div class="site-brand-wrapper">
+          <div class="site-meta ">
 
-          </script>
+            <div class="custom-logo-site-title">
+              <a href="/" class="brand" rel="start">
+                <span class="logo-line-before">
+                  <i></i>
+                </span>
+                <span class="site-title">In My World</span>
+                <span class="logo-line-after">
+                  <i></i>
+                </span>
+              </a>
+            </div>
 
-          <p>15、闭包问题</p>
-          <p>简单来说，就是能访问一个函数内部的函数</p>
-          <p>举个🌰
-            <br>function makeClosures(arr, fn) {
-            <br> var result = [];
-            <br> arr.forEach(function(e){
-            <br> result.push(function(){
-            <br> return fn(e)
-            <br> })
-            <br> })
-            <br> return result
-            <br>}</p>
-          <p>再举个🌰</p>
-          <p>function a() {
-            <br> var arg = [];
-            <br> for(var i = 0;i &lt; 10;i++) {
-            <br> arg[i] = function() {
-            <br> return i;
-            <br> };
-            <br> }
-            <br> return arg;
-            <br>}</p>
-          <p>a()
-            <a href="">1</a>; // 10</p>
-          <p>啦啦啦啦啦 最近有工作要忙 先到这
-            <br>BUT 后面还有大批大批的僵尸会袭来呦😨😨😨😨😨😨😨😨😨😨😨😨😨😨😨😨😨</p>
-          <p>想继续的宝宝 戳一戳 去下一弹👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇</p>
-          <p>
-            <a href="http://icey-monopolize.com/2017/11/02/JS2/">http://icey-monopolize.com/2017/11/02/JS2/</a>
-          </p>
-          <p>🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆</p>
-          <p>觉得小仙女叨叨的还不错的宝宝 可以戳下边打赏哦！！！！！！！！！☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟</p>
-          <p>么么哒😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘</p>
+            <p class="site-subtitle">想去天边打个滚儿</p>
+
+          </div>
+
+          <div class="site-nav-toggle">
+            <button>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+            </button>
+          </div>
         </div>
-      </header>
-      <footer class="post__foot u-cf">
-        <ul class="post__tag u-fl">
-          <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/ALL/">ALL</a>
-          </li>
-          <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/前端面试题/">前端面试题</a>
-          </li>
-          <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/JS/">JS</a>
-          </li>
-        </ul>
-      </footer>
-    </article>
-    <section class="reward">
-      <a class="btn-reward" href="#">打赏</a>
-      <div class="reward-wrapper clearfix">
-        <img src="/img/wei.jpg" title="微信">
-        <img src="/img/zhi.jpg" title="支付宝">
+
+        <nav class="site-nav">
+
+          <ul id="menu" class="menu">
+
+            <li class="menu-item menu-item-home">
+              <a href="/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-question-circle"></i>
+                <br /> Home
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-commonweal">
+              <a href="/404.html" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-question-circle"></i>
+                <br /> Commonweal 404
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-search">
+
+              <a href="javascript:;" class="popup-trigger">
+
+                <i class="menu-item-icon fa fa-search fa-fw"></i>
+                <br /> Search
+              </a>
+            </li>
+
+          </ul>
+
+          <div class="site-search">
+
+            <div class="popup search-popup local-search-popup">
+              <div class="local-search-header clearfix">
+                <span class="search-icon">
+                  <i class="fa fa-search"></i>
+                </span>
+                <span class="popup-btn-close">
+                  <i class="fa fa-times-circle"></i>
+                </span>
+                <div class="local-search-input-wrapper">
+                  <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text"
+                                                                                                  id="local-search-input">
+                </div>
+              </div>
+              <div id="local-search-result"></div>
+            </div>
+
+          </div>
+
+        </nav>
+
       </div>
-    </section>
-  </main>
-  <footer class="foot">
-    <div class="foot-copy">&copy; 2016-2017 Yan Ni</div>
-  </footer>
-  <script src="/js/scroller.js"></script>
-  <script src="/js/main.js"></script>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+
+            <div id="posts" class="posts-expand">
+
+              <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="http://icey-monopolize.com/tags/ALL/2017/11/02/JS1/">
+
+                  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="吃多了的小仙女">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.jpg">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="In My World">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h1 class="post-title" itemprop="name headline">JS面试那些事 -- Part One 基础篇</h1>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">Posted on</span>
+
+                        <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-02T17:59:00+08:00">
+                          2017-11-02
+                        </time>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/2017/11/02/JS1/#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/02/JS1/"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    <p>啦啦啦啦啦啦。。。。。这可是本仙女呕心沥血总结出的，关于JS面试会问到的一些面试题。。。。。
+                      <br>都是血和泪啊 😢😢😢😢😢😢😢😢😢😢😢😢😢
+                      <br>小伙伴们别在踩坑了 😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭</p>
+                    <p>本章先说一说比较常见的、基础问题问题 🐩</p>
+                    <p>1、什么是事件机制？</p>
+                    <p>先说说什么是事件流。
+                      <br>事件流：指从页面中接收事件的顺序，有冒泡流和捕获流。</p>
+                    <p>冒泡和捕获
+                      <br>我们点击一个div, 实际上是先点击document，然后点击事件传递到div,而且并不会在这个div就停下，
+                      <br>div有子元素就还会向下传递，最后又会冒泡传递回document
+                      <br>为了兼容更多的浏览器，非特殊情况一般我们都是把事件添加到在事件冒泡阶段。</p>
+                    <p>因为冒泡机制，比如既然点击子元素，也会触发父元素的点击事件，
+                      <br>那我们完全可以将子元素的事件要做的事写到父元素的事件里，
+                      <br>也就是将子元素的事件处理程序写到父元素的事件处理程序中，这就是事件委托；
+                      <br>利用事件委托，只指定一个事件处理程序，就可以管理某一个类型的所有事件</p>
+                    <p>2、伪数组转数组 </p>
+                    <p>方法一、 声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中，大家都会，这不是面试官要的
+                      <br>var aLi = document.querySelectorAll(‘li’);
+                      <br> var arr = [];
+                      <br> for (var i = 0; i &lt; aLi.length; i++) {
+                      <br> arr[arr.length] = aLi[i]
+                      <br> }</p>
+                    <p>方法二、使用数组的slice()方法 它返回的是数组，使用call或者apply指向伪数组
+                      <br>var arr = Array.prototype.slice.call(aLi);</p>
+                    <p>方法3、 ES6中数组的新方法 from()
+                      <br>// ES5的写法
+                      <br>var arr1 = [].slice.call(arrayLike)
+                      <br>// ES6的写法
+                      <br>let arr2 = Array.from(arrayLike)</p>
+                    <p>3、基本数据类型和引用数据类型区别</p>
+                    <p>基本数据类型指的是简单的数据段，引用数据类型指的是有多个值构成的对象
+                      <br>Number、String 、Boolean、Null和Undefined。基本数据类型是按值访问的，
+                      <br>因为可以直接操作保存在变量中的实际值。示例：
+                      <br>var a = 10;
+                      <br>var b = a;
+                      <br>b = 20;</p>
+                    <p>console.log(a); // 10值
+                      <br>上面，b获取的是a值得一份拷贝，虽然，两个变量的值相等，但是两个变量保存了两个不同的基本数据类型值
+                      <br>b只是保存了a复制的一个副本。所以，b的改变，对a没有影响。</p>
+                    <p>引用类型数据：对象类型Object type();Object 、Array 、Function 、Data
+                      <br>javascript的引用数据类型是保存在堆内存中的对象。
+                      <br>与其他语言的不同是，你不可以直接访问堆内存空间中的位置和操作堆内存空间。只能操作对象在栈内存中的引用地址。
+                      <br>var obj1 = new Object();
+                      <br>var obj2 = obj1;
+                      <br>obj2.name = “我有名字了”;
+                      <br>console.log(obj1.name); // 我有名字了
+                      <br>说明这两个引用数据类型指向了同一个堆内存对象。obj1赋值给onj2，实际上这个堆内存对象在栈内存的引用地址复制了一份给了obj2，
+                      <br>但是实际上他们共同指向了同一个堆内存对象。实际上改变的是堆内存对象。</p>
+                    <p>Es5的基本数据类型：undefined，null,Object,function,Number,string
+                      <br>es6新增的一个数据类型：Symbol</p>
+                    <p>4、实现回文字符串</p>
+                    <p>//判断回文
+                      <br>function isPalindrome(line) {
+                      <br> line += “”;
+                      <br> return line === line.split(“”).reverse().join(“”);
+                      <br>} </p>
+                    <p>这种方法很方便，但效率不高，字符串分割，倒转，聚合都需要很多额外的操作。</p>
+                    <p>function isPalindrome(line) {
+                      <br> line += “”;
+                      <br> for(var i=0,j=line.length-1;i&lt;j;i++,j–){
+                      <br> if(line.charAt(i) !== line.charAt(j)){
+                      <br> return false;
+                      <br> }
+                      <br> }
+                      <br> return true;
+                      <br> }</p>
+                    <p>5、call，apply，bind之间的区别有哪些？</p>
+                    <p>在说区别之前还是先总结一下三者的相似之处：
+                      <br>① 都是用来改变函数的this对象的指向的。
+                      <br>② 第一个参数都是this要指向的对象。
+                      <br>③ 都可以利用后续参数传参。</p>
+                    <p>区别:
+                      <br>① bind不会立即调用，其他两个会立即调用
+                      <br>② apply和call都是为了改变某个函数运行时的上下文而存在的（就是为了改变函数内部this的指向）；
+                      <br>③ bind（)也是改变函数体内this的指向;</p>
+                    <p>6、js的节流和去抖</p>
+                    <p>节流：多次反复调用提议行为时 利用settimeout ，在一定时间内 不允许重复执行</p>
+                    <p>消抖：多次反复调用提议行为时 利用settimeout，若在一时间内再次出发相同行为，则将之前行为的定时器去掉</p>
+                    <p>7、settimeout和setInterval</p>
+                    <p>javascript都是以单线程的方式运行于浏览器的javascript引擎中的,
+                      <br>setTimeout和setInterval的作用只是把你要执行的代码在你设定的一个
+                      <br>时间点插入js引擎维护的一个代码队列中, 插入代码队列并不意味着你的代码就会立马执行的</p>
+                    <p>① setTimeout
+                      <br>function click() {
+                      <br>// code block1…
+                      <br>setTimeout(function() {
+                      <br>// process …
+                      <br>}, 200);
+                      <br>// code block2
+                      <br>}
+                      <br> 假设我们给一个button的onclick事件绑定了此方法, 当我们按下按钮后,
+                      <br>肯定先执行block1的内容, 然后运行到setTimeout的地方, setTimeout会告诉浏览器说,
+                      <br>“200ms后我会插一段要执行的代码给你的队列中”, 浏览器当然答应了(注意插入代码并不意味着立马执行),
+                      <br>setTimeout代码运行后, 紧跟其后的block2代码开始执行, 这里就开始说明问题了,
+                      <br>如果block2的代码执行时间超过200ms, 那结果会是如何? 或许按照你之前的理解,
+                      <br>会理所当然的认为200ms一到, 你的process代码会立马执行…事实是, 在block2执行过程中(执行了200ms后)process代码被插入代码队列,
+                      但一直要等click方法执行结束, 才会执行process代码段, 从代码队列上看process代码是在click后面的,
+                      再加上js以单线程方式执行, 所以应该不难理解. 如果是另一种情况, block2代码执行的时间&lt;200ms,
+                      setTimeout在200ms后将process代码插入到代码队列, 而那时执行线程可能已经处于空闲状态了(idle),
+                      那结果就是200ms后, process代码插入队列就立马执行了, 就让你感觉200ms后, 就执行了.</p>
+                    <p>② setInterval
+                      <br>时间间隔或许会跳过
+                      <br>时间间隔可能&lt;定时调用的代码的执行时间
+                      <br>function click() {
+                      <br>// code block1…
+                      <br>setInterval(function() {
+                      <br>// process …
+                      <br>}, 200);
+                      <br>// code block2
+                      <br>}
+                      <br> 比如onclick要300ms执行完, block1代码执行完, 在5ms时执行setInterval, 以此为一个时间点,
+                      <br>在205ms时插入process代码, click代码顺利结束, process代码开始执行(相当于图中的timer
+                      code),
+                      <br>然而process代码也执行了一个比较长的时间, 超过了接下来一个插入时间点405ms,
+                      <br>这样代码队列后又插入了一份process代码, process继续执行着, 而且超过了605ms这个插入时间点,
+                      <br>下面问题来, 可能你还会认为代码队列后面又会继续插入一份process代码…真实的情况是,
+                      <br>由于代码队列中已经有了一份未执行的process代码, 所以605ms这个插入时间点将会被”无情”的跳过,
+                      <br>因为js引擎只允许有一份未执行的process代码, 说到这里不知道您是不是会豁然开朗呢…</p>
+                    <p>8、解析url中的参数</p>
+                    <p>function getUrlParam(sUrl,sKey){
+                      <br> var result = {};
+                      <br> sUrl.replace(/\??(\w+)=(\w+)&amp;?/g,function(a,k,v){
+                      <br> if(result[k] !== void 0){
+                      <br> var t = result[k];
+                      <br> result[k] = [].concat(t,v);
+                      <br> }else{
+                      <br> result[k] = v;
+                      <br> }
+                      <br> });
+                      <br> if(sKey === void 0){
+                      <br> return result;
+                      <br> }else{
+                      <br> return result[sKey] || ‘’;
+                      <br> }
+                      <br>}</p>
+                    <p>9、JS的组成部分有那些</p>
+                    <p>JavaScript的三大组成部分是:
+                      <br>① ECMAScript：JavaScript的核心，描述了语言的基本语法(var、for、if、array等)和
+                      <br> 数据类型(数字、字符串、布尔、函数、对象(obj、[]、{}、null)、未定义)，
+                      <br> ECMAScript是一套标准，定义了一种语言（比如JS）是什么样子
+                      <br>② 文档对象模型（DOM）：DOM（文档对象模型）是 HTML 和 XML 的应用程序接口（API），DOM 将把
+                      <br> 整个页面规划成由节点层级构成的文档
+                      <br>③ 浏览器对象模型（BOM）：对浏览器窗口进行访问和操作。
+                      <br> 弹出新的浏览器窗口，移动、改变和关闭浏览器窗口，
+                      <br> 提供详细的网络浏览器信息（navigator object），详细的页面信
+                      <br> 息（location object），详细的用户屏幕分辨率的信息（screen object），
+                      <br> 对cookies的支持等等</p>
+                    <p>10、函数声明方式</p>
+                    <p>//函数声明
+                      <br>function x(){}</p>
+                    <p>//函数表达式）：
+                      <br>var a = function(){}</p>
+                    <p>//构造函数发
+                      <br>var x = new Function();</p>
+                    <p>函数声明在代码执行以前被加载到作用域中，
+                      <br>函数表达式则是在代码执行到那一行的时候才会有定义</p>
+                    <p>11、Date类型</p>
+                    <p>Date.parse(‘1900-01-19’);</p>
+                    <p>// -2207433600000\
+                      <br>//
+                      <br>// 创建一个日期对象, var now = new Date(), 新对象自动获得当前时间和对象。</p>
+                    <p>如果想根据指定日期和时间的话，就必须传入该日期的毫秒数(从UTC时间1970年1月1日起)。
+                      <br>Date.parse(‘May 25, 2004’), 转成毫秒数。 (UTC时间)
+                      <br>Date.UTC(2005, 4, 5, 17, 55, 55), 转成毫秒数。2005-05-05-17-55-55。(GMT时间)
+                      <br>new Date()会模仿上面2种方法，也就是说可以直接向Date()构造函数传入上面两种参数的一种。
+                      <br>但是有一点儿区别，new Date()模仿的时候，都是根据UTC(世界协调时间)时间创建的，而非GMT(格林尼治标准时间)创建。</p>
+                    <p>12、常见状态码的含义</p>
+                    <p>2开头 （请求成功）表示成功处理了请求的状态代码。
+                      <br>200 （成功） 服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。
+                      <br>201 （已创建） 请求成功并且服务器创建了新的资源。
+                      <br>202 （已接受） 服务器已接受请求，但尚未处理。
+                      <br>203 （非授权信息） 服务器已成功处理了请求，但返回的信息可能来自另一来源。
+                      <br>204 （无内容） 服务器成功处理了请求，但没有返回任何内容。
+                      <br>205 （重置内容） 服务器成功处理了请求，但没有返回任何内容。
+                      <br>206 （部分内容） 服务器成功处理了部分 GET 请求。</p>
+                    <p>3开头 （请求被重定向）表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。
+                      <br>300 （多种选择） 针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。
+                      <br>301 （永久移动） 请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。
+                      <br>302 （临时移动） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。
+                      <br>303 （查看其他位置） 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。
+                      <br>304 （未修改） 自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。
+                      <br>305 （使用代理） 请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理。
+                      <br>307 （临时重定向） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>
+                    <p>4开头 （请求错误）这些状态代码表示请求可能出错，妨碍了服务器的处理。
+                      <br>400 （错误请求） 服务器不理解请求的语法。
+                      <br>401 （未授权） 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。
+                      <br>403 （禁止） 服务器拒绝请求。
+                      <br>404 （未找到） 服务器找不到请求的网页。
+                      <br>405 （方法禁用） 禁用请求中指定的方法。
+                      <br>406 （不接受） 无法使用请求的内容特性响应请求的网页。
+                      <br>407 （需要代理授权） 此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。
+                      <br>408 （请求超时） 服务器等候请求时发生超时。
+                      <br>409 （冲突） 服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。
+                      <br>410 （已删除） 如果请求的资源已永久删除，服务器就会返回此响应。
+                      <br>411 （需要有效长度） 服务器不接受不含有效内容长度标头字段的请求。
+                      <br>412 （未满足前提条件） 服务器未满足请求者在请求中设置的其中一个前提条件。
+                      <br>413 （请求实体过大） 服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。
+                      <br>414 （请求的 URI 过长） 请求的 URI（通常为网址）过长，服务器无法处理。
+                      <br>415 （不支持的媒体类型） 请求的格式不受请求页面的支持。
+                      <br>416 （请求范围不符合要求） 如果页面无法提供请求的范围，则服务器会返回此状态代码。
+                      <br>417 （未满足期望值） 服务器未满足”期望”请求标头字段的要求。</p>
+                    <p>5开头（服务器错误）这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。
+                      <br>500 （服务器内部错误） 服务器遇到错误，无法完成请求。
+                      <br>501 （尚未实施） 服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码。
+                      <br>502 （错误网关） 服务器作为网关或代理，从上游服务器收到无效响应。
+                      <br>503 （服务不可用） 服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。
+                      <br>504 （网关超时） 服务器作为网关或代理，但是没有及时从上游服务器收到请求。
+                      <br>505 （HTTP 版本不受支持） 服务器不支持请求中所用的 HTTP 协议版本。</p>
+                    <p>13、http和https</p>
+                    <p>① HTTPS是以安全为目标的HTTP通道，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL
+                      <br>② https具有安全性的ssl加密传输协议需要到ca申请证书，http是超文本传输协议，明文传输
+                      <br>③ http和https使用的是完全不同的连接方式用的端口也不一样,前者是80,后者是443</p>
+                    <p>SSL的位置介于应用层和TCP层之间，应用层数据不再直接传递给传输层，而是传递给SSL层，SSL层对从应用层收到的数据进行加密，并增加自己的SSL头
+                      <br>TLS/SSL中使用了非对称加密，对称加密以及HASH算法</p>
+                    <p>14、常见的DOM操作</p>
+                    <p>
+
+                      <body>
+                        <br>
+                        <div id="container">
+                          <br>
+                          <p id="child1">djsklajldks</p>
+                          <br>
+                          <div id="child2">
+                            <a href="">llllllll</a>
+                          </div>
+                          <br> </div>
+                      </body>
+                    </p>
+                    <p>
+
+                    </p>
+                    <script type="text/javascript">
+                      //创建节点
+                      var container = document.getElementById("container")
+                      var para = document.createElement("p")
+                      var text = document.createTextNode("只是创建的节点")
+                      var c2 = document.getElementById('child2')
+                      para.appendChild(text);
+                      container.appendChild(para)
+                      //删除
+                      container.removeChild(document.getElementById('child1'))
+                      //替换
+                      container.replaceChild(para, c2)
+                      //插入
+                      // container.insertBefore(para,c2)
+                      //克隆
+                      var x = container.cloneNode()
+                      console.log(x)
+
+                    </script>
+
+                    <p>15、闭包问题</p>
+                    <p>简单来说，就是能访问一个函数内部的函数</p>
+                    <p>举个🌰
+                      <br>function makeClosures(arr, fn) {
+                      <br> var result = [];
+                      <br> arr.forEach(function(e){
+                      <br> result.push(function(){
+                      <br> return fn(e)
+                      <br> })
+                      <br> })
+                      <br> return result
+                      <br>}</p>
+                    <p>再举个🌰</p>
+                    <p>function a() {
+                      <br> var arg = [];
+                      <br> for(var i = 0;i &lt; 10;i++) {
+                      <br> arg[i] = function() {
+                      <br> return i;
+                      <br> };
+                      <br> }
+                      <br> return arg;
+                      <br>}</p>
+                    <p>a()
+                      <a href="">1</a>; // 10</p>
+                    <p>啦啦啦啦啦 最近有工作要忙 先到这
+                      <br>BUT 后面还有大批大批的僵尸会袭来呦😨😨😨😨😨😨😨😨😨😨😨😨😨😨😨😨😨</p>
+                    <p>想继续的宝宝 戳一戳 去下一弹👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇</p>
+                    <p>
+                      <a href="http://icey-monopolize.com/2017/11/02/JS2/">http://icey-monopolize.com/2017/11/02/JS2/</a>
+                    </p>
+                    <p>🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆</p>
+                    <p>觉得小仙女叨叨的还不错的宝宝 可以戳下边打赏哦！！！！！！！！！☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟☟</p>
+                    <p>么么哒😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘</p>
+
+                  </div>
+
+                  <div>
+                    <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+                      <div>如果你觉得还OK，可以打赏一下小仙女呦！</div>
+                      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+                        <span>Donate</span>
+                      </button>
+                      <div id="QR" style="display: none;">
+
+                        <div id="wechat" style="display: inline-block">
+                          <img id="wechat_qr" src="/images/wei.jpg" alt="吃多了的小仙女 WeChat Pay" />
+                          <p>WeChat Pay</p>
+                        </div>
+
+                        <div id="alipay" style="display: inline-block">
+                          <img id="alipay_qr" src="/images/zhi.jpg" alt="吃多了的小仙女 Alipay" />
+                          <p>Alipay</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-tags">
+
+                      <a href="/tags/ALL/" rel="tag"># ALL</a>
+
+                      <a href="/tags/前端面试题/" rel="tag"># 前端面试题</a>
+
+                      <a href="/tags/JS/" rel="tag"># JS</a>
+
+                    </div>
+
+                    <div class="post-nav">
+                      <div class="post-nav-next post-nav-item">
+
+                        <a href="/2017/11/02/ES6第3弹/" rel="next" title="ES6所有特点应用 -- 第三弹">
+                          <i class="fa fa-chevron-left"></i> ES6所有特点应用 -- 第三弹
+                        </a>
+
+                      </div>
+
+                      <span class="post-nav-divider"></span>
+
+                      <div class="post-nav-prev post-nav-item">
+
+                        <a href="/2017/11/02/JS2/" rel="prev" title="JS面试那些事 -- Part Two 基础篇">
+                          JS面试那些事 -- Part Two 基础篇
+                          <i class="fa fa-chevron-right"></i>
+                        </a>
+
+                      </div>
+                    </div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <div class="post-spread">
+
+                <div class="ds-share flat" data-thread-key="2017/11/02/JS1/" data-title="JS面试那些事 -- Part One 基础篇"
+                                                                                                data-content="" data-url="http://icey-monopolize.com/tags/ALL/2017/11/02/JS1/">
+                  <div class="ds-share-inline">
+                    <ul class="ds-share-icons-16">
+
+                      <li data-toggle="ds-share-icons-more">
+                        <a class="ds-more" href="javascript:void(0);">分享到：</a>
+                      </li>
+                      <li>
+                        <a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a>
+                      </li>
+                      <li>
+                        <a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a>
+                      </li>
+                      <li>
+                        <a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a>
+                      </li>
+                      <li>
+                        <a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a>
+                      </li>
+
+                    </ul>
+                    <div class="ds-share-icons-more">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="comments" id="comments">
+            <div class="ds-thread" data-thread-key="2017/11/02/JS1/" data-title="JS面试那些事 -- Part One 基础篇"
+                                                                                            data-url="http://icey-monopolize.com/tags/ALL/2017/11/02/JS1/">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sidebar-toggle">
+          <div class="sidebar-toggle-line-wrap">
+            <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+          </div>
+        </div>
+
+        <aside id="sidebar" class="sidebar">
+
+          <div class="sidebar-inner">
+
+            <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+              <div class="site-overview">
+                <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+
+                  <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="吃多了的小仙女"
+                  />
+
+                  <p class="site-author-name" itemprop="name">吃多了的小仙女</p>
+                  <p class="site-description motion-element" itemprop="description">前端BLOG</p>
+                </div>
+
+                <nav class="site-state motion-element">
+
+                  <div class="site-state-item site-state-posts">
+
+                    <a href="/artical">
+
+                      <span class="site-state-item-count">12</span>
+                      <span class="site-state-item-name">posts</span>
+                    </a>
+                  </div>
+
+                  <div class="site-state-item site-state-tags">
+
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">tags</span>
+
+                  </div>
+
+                </nav>
+
+                <div class="links-of-author motion-element">
+
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/monipolize" target="_blank" title="GitHub">
+
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+
+                </div>
+
+              </div>
+            </section>
+
+          </div>
+        </aside>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash;
+          <span itemprop="copyrightYear">2017</span>
+          <span class="with-love">
+            <i class="fa fa-YAN NI"></i>
+          </span>
+          <span class="author" itemprop="copyrightHolder">吃多了的小仙女</span>
+
+        </div>
+
+        <div class="powered-by">Powered by
+          <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a>
+        </div>
+
+        <span class="post-meta-divider">|</span>
+
+        <div class="theme-info">Theme &mdash;
+          <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+    if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+      window.Promise = null;
+    }
+
+  </script>
+
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+  <script type="text/javascript">
+    var duoshuoQuery = {
+      short_name: "true"
+    };
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';
+      ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+
+  </script>
+
+  <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+  <script src="/js/src/hook-duoshuo.js"></script>
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+    var onPopupClose = function(e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append(
+          '<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css(
+        'text-align', 'center');
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(
+                  /<[^>]+>/g, "");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if (title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text,
+                      caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0,
+                        position = [],
+                        index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word,
+                          startPosition)) > -1) {
+                        index.push({
+                          position: position,
+                          word: word
+                        });
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+                    indexOfTitle = indexOfTitle.concat(
+                      getIndexByWord(keyword,
+                        titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(
+                      getIndexByWord(keyword,
+                        contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length >
+                    0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length +
+                      indexOfContent.length;
+                  }
+                }
+                // show search results
+                if (isMatch) {
+                  // sort index by position of keyword
+                  [indexOfTitle, indexOfContent].forEach(function(
+                    index) {
+                    index.sort(function(itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft
+                        .position) {
+                        return itemRight.position -
+                          itemLeft.position;
+                      } else {
+                        return itemLeft.word.length -
+                          itemRight.word.length;
+                      }
+                    });
+                  });
+                  // merge hits into slices
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index
+                      .length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({
+                        position: position,
+                        length: word.length
+                      });
+                      var wordEnd = position + word.length;
+                      // move to next position of hit
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0,
+                      title.length, indexOfTitle));
+                  }
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length -
+                      1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if (start < 0) {
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if (end > content.length) {
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content,
+                      start, end, indexOfContent));
+                  }
+                  // sort slices in content by search text's count and hits' count
+                  slicesOfContent.sort(function(sliceLeft,
+                    sliceRight) {
+                    if (sliceLeft.searchTextCount !==
+                      sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount -
+                        sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !==
+                      sliceRight.hits.length) {
+                      return sliceRight.hits.length -
+                        sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+                  // select top N slices in content
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0,
+                      upperBound);
+                  }
+                  // highlight title and content
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function(hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' +
+                        text.substring(hit.position, end) +
+                        '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+                  var resultItem = '';
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" +
+                      highlightKeyword(title, slicesOfTitle[0]) +
+                      "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" + title +
+                      "</a>";
+                  }
+                  slicesOfContent.forEach(function(slice) {
+                    resultItem += "<a href='" + articleUrl +
+                      "'>" +
+                      "<p class=\"search-result\">" +
+                      highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function(resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft
+                    .searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList =
+                '<ul class=\"search-result-list\">';
+              resultItems.forEach(function(result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function(event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+          proceedsearch();
+        }
+      });
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function(event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+  </script>
+
 </body>
 
 </html>

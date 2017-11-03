@@ -1,573 +1,1347 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+
+<html class="theme-next pisces use-motion" lang="">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Yan Ni">
-  <meta name="description" content="前端BLOG">
-  <link rel="alternative" href="/atom.xml" title="In My World" type="application/atom+xml">
-  <link rel="icon" href="/favicon.png">
-  <title>ES6所有特点应用 -- 第二弹 - In My World</title>
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
-  <!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]-->
-  <script src="/js/jquery-3.1.1.min.js"></script>
-  <script src="/js/fancybox/jquery.fancybox.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"
+  />
+  <meta name="theme-color" content="#222">
+
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"
+  />
+
+  <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"
+                                                                                  rel="stylesheet" type="text/css">
+
+  <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet"
+                                                                                  type="text/css" />
+
+  <link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+  <meta name="keywords" content="ALL,ES6," />
+
+  <meta name="description" content="吼吼，来吧，小宝贝，废话不多说，咱们书接上回。。。。 十一、Prosmises 异步编程   所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件   从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。 Promise对象有以下两个特点:   （1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfill">
+  <meta name="keywords" content="ALL,ES6">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ES6所有特点应用 -- 第二弹">
+  <meta property="og:url" content="http://icey-monopolize.com/tags/ALL/2017/11/02/ES6第二弹/index.html">
+  <meta property="og:site_name" content="In My World">
+  <meta property="og:description" content="吼吼，来吧，小宝贝，废话不多说，咱们书接上回。。。。 十一、Prosmises 异步编程   所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件   从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。 Promise对象有以下两个特点:   （1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfill">
+  <meta property="og:updated_time" content="2017-11-02T09:39:51.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ES6所有特点应用 -- 第二弹">
+  <meta name="twitter:description" content="吼吼，来吧，小宝贝，废话不多说，咱们书接上回。。。。 十一、Prosmises 异步编程   所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件   从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。 Promise对象有以下两个特点:   （1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfill">
+
+  <script type="text/javascript" id="hexo.configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {
+      root: '/',
+      scheme: 'Pisces',
+      version: '5.1.3',
+      sidebar: {
+        "position": "left",
+        "display": "post",
+        "offset": 12,
+        "b2t": false,
+        "scrollpercent": false,
+        "onmobile": false
+      },
+      fancybox: true,
+      tabs: true,
+      motion: {
+        "enable": true,
+        "async": false,
+        "transition": {
+          "post_block": "fadeIn",
+          "post_header": "slideDownIn",
+          "post_body": "slideDownIn",
+          "coll_header": "slideLeftIn",
+          "sidebar": "slideUpIn"
+        }
+      },
+      duoshuo: {
+        userId: '0',
+        author: 'ICEY'
+      },
+      algolia: {
+        applicationID: '',
+        apiKey: '',
+        indexName: '',
+        hits: {
+          "per_page": 10
+        },
+        labels: {
+          "input_placeholder": "Search for Posts",
+          "hits_empty": "We didn't find any results for the search: ${query}",
+          "hits_stats": "${hits} results found in ${time} ms"
+        }
+      }
+    };
+
+  </script>
+
+  <link rel="canonical" href="http://icey-monopolize.com/tags/ALL/2017/11/02/ES6第二弹/"
+  />
+
+  <title>ES6所有特点应用 -- 第二弹 | In My World</title>
+
 </head>
 
-<body style="opacity:0;">
-  <header class="head">
-    <h1 class="head-title u-fl">
-      <a href="/">In My World</a>
-    </h1>
-    <nav class="head-nav u-fr">
-      <ul class="head-nav__list">
-        <li class="head-nav__item">
-          <a class="head-nav__link" href="/tags/ALL">目录</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <main class="main">
-    <article class="post">
-      <header class="post__head">
-        <time class="post__time" datetime="2017-11-02T08:35:00.000Z">November 2, 2017</time>
-        <h1 class="post__title">
-          <a href="/2017/11/02/ES6第二弹/">ES6所有特点应用 -- 第二弹</a>
-        </h1>
-        <div class="post__main echo">
-          <p>吼吼，来吧，小宝贝，废话不多说，咱们书接上回。。。。</p>
-          <p>十一、Prosmises</p>
-          <p>异步编程
-            <br>所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件
-            <br>从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。</p>
-          <p>Promise对象有以下两个特点:
-            <br>（1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfilled（已成功）和
-            <br> rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态
-            <br>（2）Promise对象的状态改变，只有两种可能：从pending变为fulfilled和从pending变为rejected。
-            <br> 只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果，这时就称为 resolved（已定型）</p>
-          <p>var promise = new Promise(function(resolve, reject) {
-            <br> // … some code</p>
-          <p> if (/
-            <em> 异步操作成功 </em>/){
-            <br> resolve(value);
-            <br> resolve函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved）
-            <br> } else {
-            <br> reject(error);
-            <br> reject函数的作用是，将Promise对象的状态从“未完成”变为“失败”（即从 pending 变为 rejected
-            <br> }
-            <br>});</p>
-          <p>Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数。
-            <br>promise.then(function(value) {
-            <br> // success
-            <br>}, function(error) {
-            <br> // failure
-            <br>});
-            <br>then方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为resolved时调用
-            <br>第二个回调函数是Promise对象的状态变为rejected时调用。</p>
-          <p>来个 🌰 吼吼 👇</p>
-          <p>var p1 = new Promise((resolve,reject)=&gt;{
-            <br> setTimeout(()=&gt;resolve(“1”),101)
-            <br>})
-            <br>var p2 = new Promise((resolve, reject) =&gt; {
-            <br> setTimeout(() =&gt; resolve(“2”), 100)
-            <br>})
-            <br>Promise.race([p1, p2]).then((res) =&gt; {
-            <br> console.log(res)
-            <br>})
-            <br>Promise.all([p1, p2]).then((res) =&gt; {
-            <br> console.log(res)
-            <br>})</p>
-          <p>res -&gt; 2
-            <br>res -&gt; [“1”,”2”]</p>
-          <p>var p1 = Promise.resolve(“1”)
-            <br>var p2 = Promise.reject(“2”)
-            <br>Promise.race([p1, p2]).then((res) =&gt; {
-            <br> console.log(res)
-            <br>})
-            <br>※※※※ ➡️ 如果一个 promise 失败，all和race也将 reject(拒绝)。</p>
-          <p>让我们举个 🌰 ，come on 👇</p>
-          <p>var p1 = new Promise((resolve, reject) =&gt; {
-            <br> setTimeout(() =&gt; resolve(“1”), 1001)
-            <br>})
-            <br>var p2 = new Promise((resolve, reject) =&gt; {
-            <br> setTimeout(() =&gt; reject(“2”), 1)
-            <br>})</p>
-          <p>Promise.race([p1, p2]).then((res) =&gt; {
-            <br> console.log(“success” + res)
-            <br>}, res =&gt; {
-            <br> console.log(“error “ + res)
-            <br>})</p>
-          <p>Promise.all([p1, p2]).then((res) =&gt; {
-            <br> console.log(“success” + res)
-            <br>}, res =&gt; {
-            <br> console.log(“error “ + res)
-            <br>})</p>
-          <p>“error “ + res -&gt; error 2
-            <br>“error “ + res -&gt; error 2</p>
-          <p>Promise也有一些缺点。首先，无法取消Promise，
-            <br>Promise 新建后就会立即执行</p>
-          <p>############################################################################################</p>
-          <p>十二、Symbol</p>
-          <p>话不多说，直接上干货</p>
-          <p>var typeSymbol = Symbol(“type”);
-            <br>var typeSymbol = Symbol(“type”);</p>
-          <p>class Pet{
-            <br> constructor(type){
-            <br> this[typeSymbol] = type
-            <br> }
-            <br> getType(){
-            <br> return this[typeSymbol]
-            <br> }
-            <br>}
-            <br>var a = new Pet(“dog”);
-            <br>console.log(a.getType());
-            <br>console.log(Object.getOwnPropertyNames(a))</p>
-          <p>console.log(Symbol(“a”) === Symbol(“a”))</p>
-          <p>a.getType() -&gt; dog
-            <br>Object.getOwnPropertyNames(a) -&gt; []
-            <br>Symbol(“a”) === Symbol(“a”) -&gt; false</p>
-          <p>############################################################################################</p>
-          <p>十三、Unicode</p>
-          <p>var regex = new RegExp(‘\u{61}’,’u’)</p>
-          <p>console.log(regex.unicode)
-            <br>console.log(“\uD842\uDFD7”)
-            <br>console.log(“\uD842\uDFD7”.codePointAt())</p>
-          <p>############################################################################################</p>
-          <p>十四、箭头函数</p>
-          <p>var evens = [2, 4, 6, 8, 10, 12, 14];
-            <br>var odds = evens.map(v =&gt; v + 1)
-            <br>var nums = events.map((v,i) =&gt; v + i)
-            <br>var pairs = events.map(v =&gt; ({even: v,odd:v + 1}))</p>
-          <p>0:{even: 2, odd: 3}
-            <br>1:{even: 4, odd: 5}
-            <br>2:{even: 6, odd: 7}
-            <br>3:{even: 8, odd: 9}
-            <br>4:{even: 10, odd: 11}
-            <br>5:{even: 12, odd: 13}
-            <br>6:{even: 14, odd: 15}</p>
-          <p>nums.forEach(v =&gt; {
-            <br> if(v%5 === 0)
-            <br> fives.push(v)
-            <br>})</p>
-          <p>啰嗦一句，请注意箭头函数中的this！！！！！！！！神坑啊</p>
-          <p>嵌套的箭头函数怎么办，箭头函数内部，还可以再使用箭头函数
-            <br>let insertn = (v) = &gt; ({intro:(arr)=&gt;({obj:(o)=&gt;
-            <br> {
-            <br> arr.splice(array.indexOf(o)+1,0,v);
-            <br> return arr;
-            <br> }
-            <br>})})</p>
-          <p>//部署管道机制，即前一个函数的输出是后一个函数的输入。
-            <br>const pip = (…fn) =&gt; val =&gt;fn.reduce((a,b)=&gt;b(a),val);</p>
-          <p>const p1 = a =&gt;a+1
-            <br>const p2 = a =&gt;a*2
-            <br>const add = pip(p1,p2)
-            <br>add(5);</p>
-          <p>############################################################################################</p>
-          <p>十五、解构</p>
-          <p>var [a,,b] = [1,2,3];
-            <br>console.log(a);
-            <br>console.log(b);</p>
-          <p>a -&gt; 1
-            <br>b -&gt; 3</p>
-          <p>nodes = () =&gt;{ return {op:’a’,lhs:’b’,rhs:’c’} }
-            <br>var { op:a,lhs:b,rhs:c } = nodes()
-            <br>conosle.log(a);
-            <br>console.log(b);
-            <br>console.log(c);</p>
-          <p>a -&gt; a
-            <br>b -&gt; b
-            <br>c -&gt; c</p>
-          <p>nodes = () =&gt; { return {lhs: “a”, op: “b”, rhs: “c”}}</p>
-          <p>// binds
-            <code>op</code>,
-            <code>lhs</code> and
-            <code>rhs</code> in scope
-            <br>var {op, lhs, rhs} = nodes()
-            <br>console.log(op)
-            <br>console.log(lhs)
-            <br>console.log(rhs)</p>
-          <p>op -&gt; b
-            <br>lhs -&gt; a
-            <br>rhs -&gt; c</p>
-          <p>unction g({name:x}){
-            <br> return x;
-            <br>}</p>
-          <p>function m({name}){
-            <br> return name
-            <br>}
-            <br>console.log(g({name:5}))
-            <br>console.log(m({name:5}))</p>
-          <p>g({name: 5}) -&gt; 5
-            <br>m({name: 5}) -&gt; 5</p>
-          <p>############################################################################################</p>
-          <p>十六、模块和模块加载器</p>
-          <p>ES6 模块不是对象，而是通过export命令显式指定输出的代码，再通过import命令输入。
-            <br>eg: import { stat, exists, readFile } from ‘fs’;
-            <br>上面代码的实质是从fs模块加载3个方法，其他方法不加载</p>
-          <p>ES6 的模块自动采用严格模式，不管你有没有在模块头部加上”use strict”;。
-            <br>ES6 的模块自动采用严格模式，不管你有没有在模块头部加上”use strict”;。
-            <br>ES6 的模块自动采用严格模式，不管你有没有在模块头部加上”use strict”;。</p>
-          <p>重要的事情说三遍！！！！！！</p>
-          <p>严格模式主要有以下限制:
-            <br>1、变量必须声明后再使用
-            <br>2、函数的参数不能有同名属性，否则报错
-            <br>3、不能使用with语句
-            <br>4、不能对只读属性赋值，否则报错
-            <br>5、不能使用前缀0表示八进制数，否则报错
-            <br>6、不能删除不可删除的属性，否则报错
-            <br>7、不能删除变量delete prop，会报错，只能删除属性delete global[prop]
-            <br>8、eval不会在它的外层作用域引入变量
-            <br>9、eval和arguments不能被重新赋值
-            <br>10、arguments不会自动反映函数参数的变化
-            <br>11、不能使用arguments.callee
-            <br>12、不能使用arguments.caller
-            <br>13、禁止this指向全局对象
-            <br>14、不能使用fn.caller和fn.arguments获取函数调用的堆栈
-            <br>15、增加了保留字（比如protected、static和interface）</p>
-          <p>上个 🌰
-            <br>import {firstName, lastName, year} from ‘./profile’;
-            <br>//import后面的from指定模块文件的位置，可以是相对路径，也可以是绝对路径，.js后缀可以省略</p>
-          <p>function setName(element) {
-            <br> element.textContent = firstName + ‘ ‘ + lastName;
-            <br>}
-            <br>如果想为输入的变量重新取一个名字，import命令要使用as关键字，将输入的变量重命名。
-            <br>import { lastName as surname } from ‘./profile’;</p>
-          <p>警报警报 一大波 僵尸袭来
-            <del>~</del>~</p>
-          <p>import defaultMember from “module-name”;
-            <br>import
-            <em> as name from “module-name”;
-              <br>import { member } from “module-name”;
-              <br>import { member as alias } from “module-name”;
-              <br>import { member1 , member2 } from “module-name”;
-              <br>import { member1 , member2 as alias2 , […] } from “module-name”;
-              <br>import defaultMember, { member [ , […] ] } from “module-name”;
-              <br>import defaultMember, </em> as name from “module-name”;
-            <br>import “module-name”;</p>
-          <p>再来说说export这个小妖精
-            <br>export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能</p>
-          <p>export var firstName = ‘Michael’;
-            <br>export var lastName = ‘Jackson’;
-            <br>export var year = 1958;</p>
-          <p>// profile.js
-            <br>var firstName = ‘Michael’;
-            <br>var lastName = ‘Jackson’;
-            <br>var year = 1958;</p>
-          <p>export {firstName, lastName, year};</p>
-          <p>通常情况下，export输出的变量就是本来的名字，但是可以使用as关键字重命名
-            <br>function v1() { … }
-            <br>function v2() { … }</p>
-          <p>export {
-            <br> v1 as streamV1,
-            <br> v2 as streamV2,
-            <br> v2 as streamLatestVersion
-            <br>};</p>
-          <p>重命名后，v2可以用不同的名字输出两次</p>
-          <p>哇呕
-            <del>~</del>~~~有一大波僵尸正在狂奔而来！！！！！</p>
-          <p>export { name1, name2, …, nameN };
-            <br>export { variable1 as name1, variable2 as name2, …, nameN };
-            <br>export let name1, name2, …, nameN; // also var
-            <br>export let name1 = …, name2 = …, …, nameN; // also var, const</p>
-          <p>export expression;
-            <br>export default expression;
-            <br>export default function (…) { … } // also class, function
-            <em>
-              <br>export default function name1(…) { … } // also class, function</em>
-            <br>export { name1 as default, … };</p>
-          <p>export * from …;
-            <br>export { name1, name2, …, nameN } from …;
-            <br>export { import1 as name1, import2 as name}</p>
-          <p>############################################################################################</p>
-          <p>十七、生成器</p>
-          <p>生成器创建迭代器，并且比迭代器更具动态性</p>
-          <p>先来一堆代码
-            <br>var initinity = {</p>
-          <pre><code>[Symbol.iterator]:function*(){
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+        <div class="site-brand-wrapper">
+          <div class="site-meta ">
+
+            <div class="custom-logo-site-title">
+              <a href="/" class="brand" rel="start">
+                <span class="logo-line-before">
+                  <i></i>
+                </span>
+                <span class="site-title">In My World</span>
+                <span class="logo-line-after">
+                  <i></i>
+                </span>
+              </a>
+            </div>
+
+            <p class="site-subtitle">想去天边打个滚儿</p>
+
+          </div>
+
+          <div class="site-nav-toggle">
+            <button>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+            </button>
+          </div>
+        </div>
+
+        <nav class="site-nav">
+
+          <ul id="menu" class="menu">
+
+            <li class="menu-item menu-item-home">
+              <a href="/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-question-circle"></i>
+                <br /> Home
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-commonweal">
+              <a href="/404.html" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-question-circle"></i>
+                <br /> Commonweal 404
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-search">
+
+              <a href="javascript:;" class="popup-trigger">
+
+                <i class="menu-item-icon fa fa-search fa-fw"></i>
+                <br /> Search
+              </a>
+            </li>
+
+          </ul>
+
+          <div class="site-search">
+
+            <div class="popup search-popup local-search-popup">
+              <div class="local-search-header clearfix">
+                <span class="search-icon">
+                  <i class="fa fa-search"></i>
+                </span>
+                <span class="popup-btn-close">
+                  <i class="fa fa-times-circle"></i>
+                </span>
+                <div class="local-search-input-wrapper">
+                  <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text"
+                                                                                                  id="local-search-input">
+                </div>
+              </div>
+              <div id="local-search-result"></div>
+            </div>
+
+          </div>
+
+        </nav>
+
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+
+            <div id="posts" class="posts-expand">
+
+              <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="http://icey-monopolize.com/tags/ALL/2017/11/02/ES6第二弹/">
+
+                  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="吃多了的小仙女">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.jpg">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="In My World">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h1 class="post-title" itemprop="name headline">ES6所有特点应用 -- 第二弹</h1>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">Posted on</span>
+
+                        <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-02T16:35:00+08:00">
+                          2017-11-02
+                        </time>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/2017/11/02/ES6第二弹/#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/02/ES6第二弹/"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    <p>吼吼，来吧，小宝贝，废话不多说，咱们书接上回。。。。</p>
+                    <p>十一、Prosmises</p>
+                    <p>异步编程
+                      <br>所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件
+                      <br>从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。</p>
+                    <p>Promise对象有以下两个特点:
+                      <br>（1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfilled（已成功）和
+                      <br> rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态
+                      <br>（2）Promise对象的状态改变，只有两种可能：从pending变为fulfilled和从pending变为rejected。
+                      <br> 只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果，这时就称为 resolved（已定型）</p>
+                    <p>var promise = new Promise(function(resolve, reject) {
+                      <br> // … some code</p>
+                    <p> if (/
+                      <em> 异步操作成功 </em>/){
+                      <br> resolve(value);
+                      <br> resolve函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved）
+                      <br> } else {
+                      <br> reject(error);
+                      <br> reject函数的作用是，将Promise对象的状态从“未完成”变为“失败”（即从 pending 变为 rejected
+                      <br> }
+                      <br>});</p>
+                    <p>Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数。
+                      <br>promise.then(function(value) {
+                      <br> // success
+                      <br>}, function(error) {
+                      <br> // failure
+                      <br>});
+                      <br>then方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为resolved时调用
+                      <br>第二个回调函数是Promise对象的状态变为rejected时调用。</p>
+                    <p>来个 🌰 吼吼 👇</p>
+                    <p>var p1 = new Promise((resolve,reject)=&gt;{
+                      <br> setTimeout(()=&gt;resolve(“1”),101)
+                      <br>})
+                      <br>var p2 = new Promise((resolve, reject) =&gt; {
+                      <br> setTimeout(() =&gt; resolve(“2”), 100)
+                      <br>})
+                      <br>Promise.race([p1, p2]).then((res) =&gt; {
+                      <br> console.log(res)
+                      <br>})
+                      <br>Promise.all([p1, p2]).then((res) =&gt; {
+                      <br> console.log(res)
+                      <br>})</p>
+                    <p>res -&gt; 2
+                      <br>res -&gt; [“1”,”2”]</p>
+                    <p>var p1 = Promise.resolve(“1”)
+                      <br>var p2 = Promise.reject(“2”)
+                      <br>Promise.race([p1, p2]).then((res) =&gt; {
+                      <br> console.log(res)
+                      <br>})
+                      <br>※※※※ ➡️ 如果一个 promise 失败，all和race也将 reject(拒绝)。</p>
+                    <p>让我们举个 🌰 ，come on 👇</p>
+                    <p>var p1 = new Promise((resolve, reject) =&gt; {
+                      <br> setTimeout(() =&gt; resolve(“1”), 1001)
+                      <br>})
+                      <br>var p2 = new Promise((resolve, reject) =&gt; {
+                      <br> setTimeout(() =&gt; reject(“2”), 1)
+                      <br>})</p>
+                    <p>Promise.race([p1, p2]).then((res) =&gt; {
+                      <br> console.log(“success” + res)
+                      <br>}, res =&gt; {
+                      <br> console.log(“error “ + res)
+                      <br>})</p>
+                    <p>Promise.all([p1, p2]).then((res) =&gt; {
+                      <br> console.log(“success” + res)
+                      <br>}, res =&gt; {
+                      <br> console.log(“error “ + res)
+                      <br>})</p>
+                    <p>“error “ + res -&gt; error 2
+                      <br>“error “ + res -&gt; error 2</p>
+                    <p>Promise也有一些缺点。首先，无法取消Promise，
+                      <br>Promise 新建后就会立即执行</p>
+                    <p>############################################################################################</p>
+                    <p>十二、Symbol</p>
+                    <p>话不多说，直接上干货</p>
+                    <p>var typeSymbol = Symbol(“type”);
+                      <br>var typeSymbol = Symbol(“type”);</p>
+                    <p>class Pet{
+                      <br> constructor(type){
+                      <br> this[typeSymbol] = type
+                      <br> }
+                      <br> getType(){
+                      <br> return this[typeSymbol]
+                      <br> }
+                      <br>}
+                      <br>var a = new Pet(“dog”);
+                      <br>console.log(a.getType());
+                      <br>console.log(Object.getOwnPropertyNames(a))</p>
+                    <p>console.log(Symbol(“a”) === Symbol(“a”))</p>
+                    <p>a.getType() -&gt; dog
+                      <br>Object.getOwnPropertyNames(a) -&gt; []
+                      <br>Symbol(“a”) === Symbol(“a”) -&gt; false</p>
+                    <p>############################################################################################</p>
+                    <p>十三、Unicode</p>
+                    <p>var regex = new RegExp(‘\u{61}’,’u’)</p>
+                    <p>console.log(regex.unicode)
+                      <br>console.log(“\uD842\uDFD7”)
+                      <br>console.log(“\uD842\uDFD7”.codePointAt())</p>
+                    <p>############################################################################################</p>
+                    <p>十四、箭头函数</p>
+                    <p>var evens = [2, 4, 6, 8, 10, 12, 14];
+                      <br>var odds = evens.map(v =&gt; v + 1)
+                      <br>var nums = events.map((v,i) =&gt; v + i)
+                      <br>var pairs = events.map(v =&gt; ({even: v,odd:v + 1}))</p>
+                    <p>0:{even: 2, odd: 3}
+                      <br>1:{even: 4, odd: 5}
+                      <br>2:{even: 6, odd: 7}
+                      <br>3:{even: 8, odd: 9}
+                      <br>4:{even: 10, odd: 11}
+                      <br>5:{even: 12, odd: 13}
+                      <br>6:{even: 14, odd: 15}</p>
+                    <p>nums.forEach(v =&gt; {
+                      <br> if(v%5 === 0)
+                      <br> fives.push(v)
+                      <br>})</p>
+                    <p>啰嗦一句，请注意箭头函数中的this！！！！！！！！神坑啊</p>
+                    <p>嵌套的箭头函数怎么办，箭头函数内部，还可以再使用箭头函数
+                      <br>let insertn = (v) = &gt; ({intro:(arr)=&gt;({obj:(o)=&gt;
+                      <br> {
+                      <br> arr.splice(array.indexOf(o)+1,0,v);
+                      <br> return arr;
+                      <br> }
+                      <br>})})</p>
+                    <p>//部署管道机制，即前一个函数的输出是后一个函数的输入。
+                      <br>const pip = (…fn) =&gt; val =&gt;fn.reduce((a,b)=&gt;b(a),val);</p>
+                    <p>const p1 = a =&gt;a+1
+                      <br>const p2 = a =&gt;a*2
+                      <br>const add = pip(p1,p2)
+                      <br>add(5);</p>
+                    <p>############################################################################################</p>
+                    <p>十五、解构</p>
+                    <p>var [a,,b] = [1,2,3];
+                      <br>console.log(a);
+                      <br>console.log(b);</p>
+                    <p>a -&gt; 1
+                      <br>b -&gt; 3</p>
+                    <p>nodes = () =&gt;{ return {op:’a’,lhs:’b’,rhs:’c’} }
+                      <br>var { op:a,lhs:b,rhs:c } = nodes()
+                      <br>conosle.log(a);
+                      <br>console.log(b);
+                      <br>console.log(c);</p>
+                    <p>a -&gt; a
+                      <br>b -&gt; b
+                      <br>c -&gt; c</p>
+                    <p>nodes = () =&gt; { return {lhs: “a”, op: “b”, rhs: “c”}}</p>
+                    <p>// binds
+                      <code>op</code>,
+                      <code>lhs</code> and
+                      <code>rhs</code> in scope
+                      <br>var {op, lhs, rhs} = nodes()
+                      <br>console.log(op)
+                      <br>console.log(lhs)
+                      <br>console.log(rhs)</p>
+                    <p>op -&gt; b
+                      <br>lhs -&gt; a
+                      <br>rhs -&gt; c</p>
+                    <p>unction g({name:x}){
+                      <br> return x;
+                      <br>}</p>
+                    <p>function m({name}){
+                      <br> return name
+                      <br>}
+                      <br>console.log(g({name:5}))
+                      <br>console.log(m({name:5}))</p>
+                    <p>g({name: 5}) -&gt; 5
+                      <br>m({name: 5}) -&gt; 5</p>
+                    <p>############################################################################################</p>
+                    <p>十六、模块和模块加载器</p>
+                    <p>ES6 模块不是对象，而是通过export命令显式指定输出的代码，再通过import命令输入。
+                      <br>eg: import { stat, exists, readFile } from ‘fs’;
+                      <br>上面代码的实质是从fs模块加载3个方法，其他方法不加载</p>
+                    <p>ES6 的模块自动采用严格模式，不管你有没有在模块头部加上”use strict”;。
+                      <br>ES6 的模块自动采用严格模式，不管你有没有在模块头部加上”use strict”;。
+                      <br>ES6 的模块自动采用严格模式，不管你有没有在模块头部加上”use strict”;。</p>
+                    <p>重要的事情说三遍！！！！！！</p>
+                    <p>严格模式主要有以下限制:
+                      <br>1、变量必须声明后再使用
+                      <br>2、函数的参数不能有同名属性，否则报错
+                      <br>3、不能使用with语句
+                      <br>4、不能对只读属性赋值，否则报错
+                      <br>5、不能使用前缀0表示八进制数，否则报错
+                      <br>6、不能删除不可删除的属性，否则报错
+                      <br>7、不能删除变量delete prop，会报错，只能删除属性delete global[prop]
+                      <br>8、eval不会在它的外层作用域引入变量
+                      <br>9、eval和arguments不能被重新赋值
+                      <br>10、arguments不会自动反映函数参数的变化
+                      <br>11、不能使用arguments.callee
+                      <br>12、不能使用arguments.caller
+                      <br>13、禁止this指向全局对象
+                      <br>14、不能使用fn.caller和fn.arguments获取函数调用的堆栈
+                      <br>15、增加了保留字（比如protected、static和interface）</p>
+                    <p>上个 🌰
+                      <br>import {firstName, lastName, year} from ‘./profile’;
+                      <br>//import后面的from指定模块文件的位置，可以是相对路径，也可以是绝对路径，.js后缀可以省略</p>
+                    <p>function setName(element) {
+                      <br> element.textContent = firstName + ‘ ‘ + lastName;
+                      <br>}
+                      <br>如果想为输入的变量重新取一个名字，import命令要使用as关键字，将输入的变量重命名。
+                      <br>import { lastName as surname } from ‘./profile’;</p>
+                    <p>警报警报 一大波 僵尸袭来
+                      <del>~</del>~</p>
+                    <p>import defaultMember from “module-name”;
+                      <br>import
+                      <em> as name from “module-name”;
+                        <br>import { member } from “module-name”;
+                        <br>import { member as alias } from “module-name”;
+                        <br>import { member1 , member2 } from “module-name”;
+                        <br>import { member1 , member2 as alias2 , […] } from “module-name”;
+                        <br>import defaultMember, { member [ , […] ] } from “module-name”;
+                        <br>import defaultMember, </em> as name from “module-name”;
+                      <br>import “module-name”;</p>
+                    <p>再来说说export这个小妖精
+                      <br>export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能</p>
+                    <p>export var firstName = ‘Michael’;
+                      <br>export var lastName = ‘Jackson’;
+                      <br>export var year = 1958;</p>
+                    <p>// profile.js
+                      <br>var firstName = ‘Michael’;
+                      <br>var lastName = ‘Jackson’;
+                      <br>var year = 1958;</p>
+                    <p>export {firstName, lastName, year};</p>
+                    <p>通常情况下，export输出的变量就是本来的名字，但是可以使用as关键字重命名
+                      <br>function v1() { … }
+                      <br>function v2() { … }</p>
+                    <p>export {
+                      <br> v1 as streamV1,
+                      <br> v2 as streamV2,
+                      <br> v2 as streamLatestVersion
+                      <br>};</p>
+                    <p>重命名后，v2可以用不同的名字输出两次</p>
+                    <p>哇呕
+                      <del>~</del>~~~有一大波僵尸正在狂奔而来！！！！！</p>
+                    <p>export { name1, name2, …, nameN };
+                      <br>export { variable1 as name1, variable2 as name2, …, nameN };
+                      <br>export let name1, name2, …, nameN; // also var
+                      <br>export let name1 = …, name2 = …, …, nameN; // also var, const</p>
+                    <p>export expression;
+                      <br>export default expression;
+                      <br>export default function (…) { … } // also class, function
+                      <em>
+                        <br>export default function name1(…) { … } // also class, function</em>
+                      <br>export { name1 as default, … };</p>
+                    <p>export * from …;
+                      <br>export { name1, name2, …, nameN } from …;
+                      <br>export { import1 as name1, import2 as name}</p>
+                    <p>############################################################################################</p>
+                    <p>十七、生成器</p>
+                    <p>生成器创建迭代器，并且比迭代器更具动态性</p>
+                    <p>先来一堆代码
+                      <br>var initinity = {</p>
+                    <pre><code>[Symbol.iterator]:function*(){
     var c = 1;
     for(;;){
         yield c++;
     }
 }
 </code></pre>
-          <p>}</p>
-          <p>console.log(“start”)
-            <br>for(var n of infinity){
-            <br> if(n&gt;10)
-            <br> break;
-            <br> console.log(n)
-            <br>}</p>
-          <p>“start” -&gt; start
-            <br>n -&gt; 1
-            <br>n -&gt; 2
-            <br>n -&gt; 3
-            <br>n -&gt; 4
-            <br>n -&gt; 5
-            <br>n -&gt; 6
-            <br>n -&gt; 7
-            <br>n -&gt; 8
-            <br>n -&gt; 9
-            <br>n -&gt; 10</p>
-          <p>interface Generator extends Iterator {
-            <br> next(value?: any): IteratorResult;
-            <br> throw(exception: any);
-            <br>}
-            <br>function* anotherGenerator(i) {
-            <br> yield i + 1;
-            <br> yield i + 2;
-            <br> yield i + 3;
-            <br>}</p>
-          <p>function
-            <em> generator(i) {
-              <br> yield i;
-              <br> yield</em> anotherGenerator(i);
-            <br> yield i + 10;
-            <br>}</p>
-          <p>var gen = generator(10);</p>
-          <p>console.log(gen.next().value);
-            <br>console.log(gen.next().value);
-            <br>console.log(gen.next().value);
-            <br>console.log(gen.next().value);
-            <br>console.log(gen.next().value);</p>
-          <p>gen.next().value -&gt; 10
-            <br>gen.next().value -&gt; 11
-            <br>gen.next().value -&gt; 12
-            <br>gen.next().value -&gt; 13
-            <br>gen.next().value -&gt; 20</p>
-          <p>function* list(value) {
-            <br> for (var item of value) {
-            <br> yield item;
-            <br> }
-            <br>}</p>
-          <p>for (var value of list([1, 2, 3])) {
-            <br> console.log(value);
-            <br>}</p>
-          <p>var iterator = list([1, 2, 3]);</p>
-          <p>console.log(typeof iterator.next); // function
-            <br>console.log(typeof iterator[Symbol.iterator]); // function</p>
-          <p>console.log(iterator.next().value); // 1</p>
-          <p>for (var value of iterator) {
-            <br> console.log(value); // 2, 3
-            <br>}
-            <br>table[Symbol.iterator] = function* () {
-            <br> var keys = Object.keys(this).sort();</p>
-          <p> for (var item of keys) {
-            <br> yield item;
-            <br> }
-            <br>}</p>
-          <p>执行 Generator 函数会返回一个遍历器对象，也就是说，
-            <br>Generator 函数除了状态机，还是一个遍历器对象生成函数
-            <br>返回的遍历器对象，可以依次遍历 Generator 函数内部的每一个状态</p>
-          <p>形式上，Generator 函数是一个普通函数，但是有两个特征
-            <br>一是，function关键字与函数名之间有一个星号；
-            <br>二是，函数体内部使用yield表达式，定义不同的内部状态</p>
-          <p>function* helloWorldGenerator() {
-            <br> yield ‘hello’;
-            <br> yield ‘world’;
-            <br> return ‘ending’;
-            <br>}
-            <br>然后，Generator 函数的调用方法与普通函数一样，也是在函数名后面加上一对圆括号。
-            <br>不同的是，调用 Generator 函数后，该函数并不执行，返回的也不是函数运行结果，
-            <br>而是一个指向内部状态的指针对象</p>
-          <p>下一步，必须调用遍历器对象的next方法，使得指针移向下一个状态
-            <br>也就是说，每次调用next方法，内部指针就从函数头部或上一次停下来的地方开始执行，
-            <br>直到遇到下一个yield表达式（或return语句）为止
-            <br>换言之，Generator 函数是分段执行的，yield表达式是暂停执行的标记，
-            <br>而next方法可以恢复执行</p>
-          <p>hw.next()
-            <br>// { value: ‘hello’, done: false }</p>
-          <p>hw.next()
-            <br>// { value: ‘world’, done: false }</p>
-          <p>hw.next()
-            <br>// { value: ‘ending’, done: true }</p>
-          <p>hw.next()
-            <br>// { value: undefined, done: true }</p>
-          <p>yield 表达式
-            <br>由于 Generator 函数返回的遍历器对象，只有调用next方法才会遍历下一个内部状态，
-            <br>所以其实提供了一种可以暂停执行的函数。yield表达式就是暂停标志。</p>
-          <p>############################################################################################</p>
-          <p>十八、迭代器</p>
-          <p>迭代器是一个比数组更动态的类型
-            <br>允许我们在语言层面上定义一个（有限或无限的）序列。
-            <br>对于for-in循环，它有许多的问题。但是最大的问题，便是它不保证迭代的顺序。
-            <br>但是当我们使用ES6迭代器时，这个问题就迎刃而解了。
-            <br>let infinite = {
-            <br>
-            <a href="">Symbol.iterator</a>{
-            <br> let c = 0;
-            <br> return {
-            <br> next(){
-            <br> c++;
-            <br> return { done:false,value:c }
-            <br> }
-            <br> }
-            <br> }
-            <br>}</p>
-          <p>console.log(“start”)</p>
-          <p>for(var n of infinite){
-            <br> if(n &gt; 10)
-            <br> break;
-            <br> console.log(n);
-            <br>}</p>
-          <p>“start” -&gt; start
-            <br>n -&gt; 1
-            <br>n -&gt; 2
-            <br>n -&gt; 3
-            <br>n -&gt; 4
-            <br>n -&gt; 5
-            <br>n -&gt; 6
-            <br>n -&gt; 7
-            <br>n -&gt; 8
-            <br>n -&gt; 9
-            <br>n -&gt; 10</p>
-          <p>//使用Typescript，我们可以看到它接口的样子
-            <br>interface IteratorResult {
-            <br> done:boolean;
-            <br> value:any;
-            <br>}</p>
-          <p>interface Iterator{
-            <br> next():IteratorResult;
-            <br>}</p>
-          <p>interface Iterable{
-            <br>
-            <a href="">Symbol.iterator</a>:Iterator
-            <br>}</p>
-          <p>使用for-of，我们得到的是一个可以保证顺序的迭代。
-            <br>为了让一个对象可以被迭代器所迭代，对象需要实现一个“迭代协议”，即拥有一个Symbol.iterator属性。
-            <br>这个属性会被for-of所使用，在我们的例子中，它就是table[Symbol.iterator]。
-            <br>Symbol.iterator只需认为它是对象的一个特殊属性，并且永远不会和其他普通属性产生冲突</p>
-          <p>table[Symbol.iterator]的值，必须是一个符合“迭代协议”的函数，
-            <br>即它需要返回一个类似于{ next: function () {} }的对象。
-            <br>table[Symbol.iterator] = function () {
-            <br> return {
-            <br> next: function () {}
-            <br> }
-            <br>}
-            <br>然后，在for-of循环每次调用next()函数时，
-            <br>它需要返回一个类似于{value: …, done: [true/false]}的对象。
-            <br>所以，一个迭代器的完整实现类似于如下的例子：</p>
-          <p>table[Symbol.iterator] = function () {
-            <br> var keys = Object.keys(this).sort();
-            <br> var index = 0;</p>
-          <p> return {
-            <br> next: function () {
-            <br> return {
-            <br> value: keys[index], done: index++ &gt;= keys.length
-            <br> };
-            <br> }
-            <br> }
-            <br>}
-            <br>惰性执行
-            <br>迭代器允许我们在第一次调用next()函数之后，再执行相应的逻辑。
-            <br>在上面的例子里，当我们调用迭代器的瞬间，我们就立刻执行了排序和取值的工作。
-            <br>但是，如果next()函数永远不被调用的话，我们就浪费了性能。所以让我们来优化它：</p>
-          <p>table[Symbol.iterator] = function () {
-            <br> var _this = this;
-            <br> var keys = null;
-            <br> var index = 0;</p>
-          <p> return {
-            <br> next: function () {
-            <br> if (keys === null) {
-            <br> keys = Object.keys(_this).sort();
-            <br> }</p>
-          <pre><code>  return {
+                    <p>}</p>
+                    <p>console.log(“start”)
+                      <br>for(var n of infinity){
+                      <br> if(n&gt;10)
+                      <br> break;
+                      <br> console.log(n)
+                      <br>}</p>
+                    <p>“start” -&gt; start
+                      <br>n -&gt; 1
+                      <br>n -&gt; 2
+                      <br>n -&gt; 3
+                      <br>n -&gt; 4
+                      <br>n -&gt; 5
+                      <br>n -&gt; 6
+                      <br>n -&gt; 7
+                      <br>n -&gt; 8
+                      <br>n -&gt; 9
+                      <br>n -&gt; 10</p>
+                    <p>interface Generator extends Iterator {
+                      <br> next(value?: any): IteratorResult;
+                      <br> throw(exception: any);
+                      <br>}
+                      <br>function* anotherGenerator(i) {
+                      <br> yield i + 1;
+                      <br> yield i + 2;
+                      <br> yield i + 3;
+                      <br>}</p>
+                    <p>function
+                      <em> generator(i) {
+                        <br> yield i;
+                        <br> yield</em> anotherGenerator(i);
+                      <br> yield i + 10;
+                      <br>}</p>
+                    <p>var gen = generator(10);</p>
+                    <p>console.log(gen.next().value);
+                      <br>console.log(gen.next().value);
+                      <br>console.log(gen.next().value);
+                      <br>console.log(gen.next().value);
+                      <br>console.log(gen.next().value);</p>
+                    <p>gen.next().value -&gt; 10
+                      <br>gen.next().value -&gt; 11
+                      <br>gen.next().value -&gt; 12
+                      <br>gen.next().value -&gt; 13
+                      <br>gen.next().value -&gt; 20</p>
+                    <p>function* list(value) {
+                      <br> for (var item of value) {
+                      <br> yield item;
+                      <br> }
+                      <br>}</p>
+                    <p>for (var value of list([1, 2, 3])) {
+                      <br> console.log(value);
+                      <br>}</p>
+                    <p>var iterator = list([1, 2, 3]);</p>
+                    <p>console.log(typeof iterator.next); // function
+                      <br>console.log(typeof iterator[Symbol.iterator]); // function</p>
+                    <p>console.log(iterator.next().value); // 1</p>
+                    <p>for (var value of iterator) {
+                      <br> console.log(value); // 2, 3
+                      <br>}
+                      <br>table[Symbol.iterator] = function* () {
+                      <br> var keys = Object.keys(this).sort();</p>
+                    <p> for (var item of keys) {
+                      <br> yield item;
+                      <br> }
+                      <br>}</p>
+                    <p>执行 Generator 函数会返回一个遍历器对象，也就是说，
+                      <br>Generator 函数除了状态机，还是一个遍历器对象生成函数
+                      <br>返回的遍历器对象，可以依次遍历 Generator 函数内部的每一个状态</p>
+                    <p>形式上，Generator 函数是一个普通函数，但是有两个特征
+                      <br>一是，function关键字与函数名之间有一个星号；
+                      <br>二是，函数体内部使用yield表达式，定义不同的内部状态</p>
+                    <p>function* helloWorldGenerator() {
+                      <br> yield ‘hello’;
+                      <br> yield ‘world’;
+                      <br> return ‘ending’;
+                      <br>}
+                      <br>然后，Generator 函数的调用方法与普通函数一样，也是在函数名后面加上一对圆括号。
+                      <br>不同的是，调用 Generator 函数后，该函数并不执行，返回的也不是函数运行结果，
+                      <br>而是一个指向内部状态的指针对象</p>
+                    <p>下一步，必须调用遍历器对象的next方法，使得指针移向下一个状态
+                      <br>也就是说，每次调用next方法，内部指针就从函数头部或上一次停下来的地方开始执行，
+                      <br>直到遇到下一个yield表达式（或return语句）为止
+                      <br>换言之，Generator 函数是分段执行的，yield表达式是暂停执行的标记，
+                      <br>而next方法可以恢复执行</p>
+                    <p>hw.next()
+                      <br>// { value: ‘hello’, done: false }</p>
+                    <p>hw.next()
+                      <br>// { value: ‘world’, done: false }</p>
+                    <p>hw.next()
+                      <br>// { value: ‘ending’, done: true }</p>
+                    <p>hw.next()
+                      <br>// { value: undefined, done: true }</p>
+                    <p>yield 表达式
+                      <br>由于 Generator 函数返回的遍历器对象，只有调用next方法才会遍历下一个内部状态，
+                      <br>所以其实提供了一种可以暂停执行的函数。yield表达式就是暂停标志。</p>
+                    <p>############################################################################################</p>
+                    <p>十八、迭代器</p>
+                    <p>迭代器是一个比数组更动态的类型
+                      <br>允许我们在语言层面上定义一个（有限或无限的）序列。
+                      <br>对于for-in循环，它有许多的问题。但是最大的问题，便是它不保证迭代的顺序。
+                      <br>但是当我们使用ES6迭代器时，这个问题就迎刃而解了。
+                      <br>let infinite = {
+                      <br>
+                      <a href="">Symbol.iterator</a>{
+                      <br> let c = 0;
+                      <br> return {
+                      <br> next(){
+                      <br> c++;
+                      <br> return { done:false,value:c }
+                      <br> }
+                      <br> }
+                      <br> }
+                      <br>}</p>
+                    <p>console.log(“start”)</p>
+                    <p>for(var n of infinite){
+                      <br> if(n &gt; 10)
+                      <br> break;
+                      <br> console.log(n);
+                      <br>}</p>
+                    <p>“start” -&gt; start
+                      <br>n -&gt; 1
+                      <br>n -&gt; 2
+                      <br>n -&gt; 3
+                      <br>n -&gt; 4
+                      <br>n -&gt; 5
+                      <br>n -&gt; 6
+                      <br>n -&gt; 7
+                      <br>n -&gt; 8
+                      <br>n -&gt; 9
+                      <br>n -&gt; 10</p>
+                    <p>//使用Typescript，我们可以看到它接口的样子
+                      <br>interface IteratorResult {
+                      <br> done:boolean;
+                      <br> value:any;
+                      <br>}</p>
+                    <p>interface Iterator{
+                      <br> next():IteratorResult;
+                      <br>}</p>
+                    <p>interface Iterable{
+                      <br>
+                      <a href="">Symbol.iterator</a>:Iterator
+                      <br>}</p>
+                    <p>使用for-of，我们得到的是一个可以保证顺序的迭代。
+                      <br>为了让一个对象可以被迭代器所迭代，对象需要实现一个“迭代协议”，即拥有一个Symbol.iterator属性。
+                      <br>这个属性会被for-of所使用，在我们的例子中，它就是table[Symbol.iterator]。
+                      <br>Symbol.iterator只需认为它是对象的一个特殊属性，并且永远不会和其他普通属性产生冲突</p>
+                    <p>table[Symbol.iterator]的值，必须是一个符合“迭代协议”的函数，
+                      <br>即它需要返回一个类似于{ next: function () {} }的对象。
+                      <br>table[Symbol.iterator] = function () {
+                      <br> return {
+                      <br> next: function () {}
+                      <br> }
+                      <br>}
+                      <br>然后，在for-of循环每次调用next()函数时，
+                      <br>它需要返回一个类似于{value: …, done: [true/false]}的对象。
+                      <br>所以，一个迭代器的完整实现类似于如下的例子：</p>
+                    <p>table[Symbol.iterator] = function () {
+                      <br> var keys = Object.keys(this).sort();
+                      <br> var index = 0;</p>
+                    <p> return {
+                      <br> next: function () {
+                      <br> return {
+                      <br> value: keys[index], done: index++ &gt;= keys.length
+                      <br> };
+                      <br> }
+                      <br> }
+                      <br>}
+                      <br>惰性执行
+                      <br>迭代器允许我们在第一次调用next()函数之后，再执行相应的逻辑。
+                      <br>在上面的例子里，当我们调用迭代器的瞬间，我们就立刻执行了排序和取值的工作。
+                      <br>但是，如果next()函数永远不被调用的话，我们就浪费了性能。所以让我们来优化它：</p>
+                    <p>table[Symbol.iterator] = function () {
+                      <br> var _this = this;
+                      <br> var keys = null;
+                      <br> var index = 0;</p>
+                    <p> return {
+                      <br> next: function () {
+                      <br> if (keys === null) {
+                      <br> keys = Object.keys(_this).sort();
+                      <br> }</p>
+                    <pre><code>  return {
     value: keys[index], done: index++ &gt;= keys.length
   };
 }
 </code></pre>
-          <p> }
-            <br>}
-            <br>String，Array，TypedArray，Map和Set都是内置迭代器，因为它们的原型中都有一个Symbol.iterator方法</p>
-          <p>只要永远不返回done: true，就实现了一个无限迭代器。当然，需要极力避免出现这种情况。
-            <br>var ids = {
-            <br> *[Symbol.iterator]: function () {
-            <br> var index = 0;</p>
-          <pre><code>return {
+                    <p> }
+                      <br>}
+                      <br>String，Array，TypedArray，Map和Set都是内置迭代器，因为它们的原型中都有一个Symbol.iterator方法</p>
+                    <p>只要永远不返回done: true，就实现了一个无限迭代器。当然，需要极力避免出现这种情况。
+                      <br>var ids = {
+                      <br> *[Symbol.iterator]: function () {
+                      <br> var index = 0;</p>
+                    <pre><code>return {
   next: function () {
     return { value: &apos;id-&apos; + index++, done: false };
   }
 };
 </code></pre>
-          <p> }
-            <br>};</p>
-          <p>var counter = 0;</p>
-          <p>for (var value of ids) {
-            <br> console.log(value);</p>
-          <p> if (counter++ &gt; 1000) { // let’s make sure we get out!
-            <br> break;
-            <br> }
-            <br>}</p>
-          <p>############################################################################################</p>
-          <p>十九、增强对象字面量</p>
-          <p>var theProtoObj = {
-            <br> toString:function(){
-            <br> return “the ProtoObject to string”
-            <br> }
-            <br>}</p>
-          <p>var handler = () =&gt; “handler”</p>
-          <p>var obj = {
-            <br>
-            <em>proto</em>:theProtoObj,
-            <br> handler,
-            <br> toString(){
-            <br> return “d “+super.toString();
-            <br> },</p>
-          <pre><code>[&quot;prop_&quot; + (() =&gt; 42)()]:42
+                    <p> }
+                      <br>};</p>
+                    <p>var counter = 0;</p>
+                    <p>for (var value of ids) {
+                      <br> console.log(value);</p>
+                    <p> if (counter++ &gt; 1000) { // let’s make sure we get out!
+                      <br> break;
+                      <br> }
+                      <br>}</p>
+                    <p>############################################################################################</p>
+                    <p>十九、增强对象字面量</p>
+                    <p>var theProtoObj = {
+                      <br> toString:function(){
+                      <br> return “the ProtoObject to string”
+                      <br> }
+                      <br>}</p>
+                    <p>var handler = () =&gt; “handler”</p>
+                    <p>var obj = {
+                      <br>
+                      <em>proto</em>:theProtoObj,
+                      <br> handler,
+                      <br> toString(){
+                      <br> return “d “+super.toString();
+                      <br> },</p>
+                    <pre><code>[&quot;prop_&quot; + (() =&gt; 42)()]:42
 </code></pre>
-          <p>}
-            <br>console.log(obj.handler)
-            <br>console.log(obj.handler())
-            <br>console.log(obj.toString())
-            <br>console.log(obj.prop_42)</p>
-          <p>############################################################################################</p>
-          <p>二十、字符串插值</p>
-          <p>var name = “Bob”,time = “today”;
-            <br>var multiLine = `This</p>
-          <p>Line</p>
-          <p>Spans Multiple</p>
-          <p>Line`</p>
-          <p>console.log(
-            <code>Hello ${name},how are you ${time}?</code>);
-            <br>console.log(multiLine)
-            <br>
-            <code>Hello ${name},how are you ${time}?</code> -&gt; Hello Bob,how are you
-            today?
-            <br>multiLine -&gt; This Line Spans Multiple Lines</p>
-          <p>想继续的宝宝 戳一戳 去下一弹👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇</p>
-          <p>
-            <a href="http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC3%E5%BC%B9/">http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC3%E5%BC%B9/</a>
-          </p>
-          <p>🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆</p>
+                    <p>}
+                      <br>console.log(obj.handler)
+                      <br>console.log(obj.handler())
+                      <br>console.log(obj.toString())
+                      <br>console.log(obj.prop_42)</p>
+                    <p>############################################################################################</p>
+                    <p>二十、字符串插值</p>
+                    <p>var name = “Bob”,time = “today”;
+                      <br>var multiLine = `This</p>
+                    <p>Line</p>
+                    <p>Spans Multiple</p>
+                    <p>Line`</p>
+                    <p>console.log(
+                      <code>Hello ${name},how are you ${time}?</code>);
+                      <br>console.log(multiLine)
+                      <br>
+                      <code>Hello ${name},how are you ${time}?</code> -&gt; Hello Bob,how
+                      are you today?
+                      <br>multiLine -&gt; This Line Spans Multiple Lines</p>
+                    <p>想继续的宝宝 戳一戳 去下一弹👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇</p>
+                    <p>
+                      <a href="http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC3%E5%BC%B9/">http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC3%E5%BC%B9/</a>
+                    </p>
+                    <p>🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆</p>
+
+                  </div>
+
+                  <div>
+                    <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+                      <div>如果你觉得还OK，可以打赏一下小仙女呦！</div>
+                      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+                        <span>Donate</span>
+                      </button>
+                      <div id="QR" style="display: none;">
+
+                        <div id="wechat" style="display: inline-block">
+                          <img id="wechat_qr" src="/images/wei.jpg" alt="吃多了的小仙女 WeChat Pay" />
+                          <p>WeChat Pay</p>
+                        </div>
+
+                        <div id="alipay" style="display: inline-block">
+                          <img id="alipay_qr" src="/images/zhi.jpg" alt="吃多了的小仙女 Alipay" />
+                          <p>Alipay</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-tags">
+
+                      <a href="/tags/ALL/" rel="tag"># ALL</a>
+
+                      <a href="/tags/ES6/" rel="tag"># ES6</a>
+
+                    </div>
+
+                    <div class="post-nav">
+                      <div class="post-nav-next post-nav-item">
+
+                        <a href="/2017/11/01/ES6重点/" rel="next" title="ES6所有特点应用 -- 第一弹">
+                          <i class="fa fa-chevron-left"></i> ES6所有特点应用 -- 第一弹
+                        </a>
+
+                      </div>
+
+                      <span class="post-nav-divider"></span>
+
+                      <div class="post-nav-prev post-nav-item">
+
+                        <a href="/2017/11/02/ES6第3弹/" rel="prev" title="ES6所有特点应用 -- 第三弹">
+                          ES6所有特点应用 -- 第三弹
+                          <i class="fa fa-chevron-right"></i>
+                        </a>
+
+                      </div>
+                    </div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <div class="post-spread">
+
+                <div class="ds-share flat" data-thread-key="2017/11/02/ES6第二弹/" data-title="ES6所有特点应用 -- 第二弹"
+                                                                                                data-content="" data-url="http://icey-monopolize.com/tags/ALL/2017/11/02/ES6第二弹/">
+                  <div class="ds-share-inline">
+                    <ul class="ds-share-icons-16">
+
+                      <li data-toggle="ds-share-icons-more">
+                        <a class="ds-more" href="javascript:void(0);">分享到：</a>
+                      </li>
+                      <li>
+                        <a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a>
+                      </li>
+                      <li>
+                        <a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a>
+                      </li>
+                      <li>
+                        <a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a>
+                      </li>
+                      <li>
+                        <a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a>
+                      </li>
+
+                    </ul>
+                    <div class="ds-share-icons-more">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="comments" id="comments">
+            <div class="ds-thread" data-thread-key="2017/11/02/ES6第二弹/" data-title="ES6所有特点应用 -- 第二弹"
+                                                                                            data-url="http://icey-monopolize.com/tags/ALL/2017/11/02/ES6第二弹/">
+            </div>
+          </div>
+
         </div>
-      </header>
-      <footer class="post__foot u-cf">
-        <ul class="post__tag u-fl">
-          <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/ALL/">ALL</a>
-          </li>
-          <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/ES6/">ES6</a>
-          </li>
-        </ul>
-      </footer>
-    </article>
-    <section class="reward">
-      <a class="btn-reward" href="#">打赏</a>
-      <div class="reward-wrapper clearfix">
-        <img src="/img/wei.jpg" title="微信">
-        <img src="/img/zhi.jpg" title="支付宝">
+
+        <div class="sidebar-toggle">
+          <div class="sidebar-toggle-line-wrap">
+            <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+          </div>
+        </div>
+
+        <aside id="sidebar" class="sidebar">
+
+          <div class="sidebar-inner">
+
+            <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+              <div class="site-overview">
+                <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+
+                  <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="吃多了的小仙女"
+                  />
+
+                  <p class="site-author-name" itemprop="name">吃多了的小仙女</p>
+                  <p class="site-description motion-element" itemprop="description">前端BLOG</p>
+                </div>
+
+                <nav class="site-state motion-element">
+
+                  <div class="site-state-item site-state-posts">
+
+                    <a href="/artical">
+
+                      <span class="site-state-item-count">12</span>
+                      <span class="site-state-item-name">posts</span>
+                    </a>
+                  </div>
+
+                  <div class="site-state-item site-state-tags">
+
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">tags</span>
+
+                  </div>
+
+                </nav>
+
+                <div class="links-of-author motion-element">
+
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/monipolize" target="_blank" title="GitHub">
+
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+
+                </div>
+
+              </div>
+            </section>
+
+          </div>
+        </aside>
+
       </div>
-    </section>
-  </main>
-  <footer class="foot">
-    <div class="foot-copy">&copy; 2016-2017 Yan Ni</div>
-  </footer>
-  <script src="/js/scroller.js"></script>
-  <script src="/js/main.js"></script>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash;
+          <span itemprop="copyrightYear">2017</span>
+          <span class="with-love">
+            <i class="fa fa-YAN NI"></i>
+          </span>
+          <span class="author" itemprop="copyrightHolder">吃多了的小仙女</span>
+
+        </div>
+
+        <div class="powered-by">Powered by
+          <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a>
+        </div>
+
+        <span class="post-meta-divider">|</span>
+
+        <div class="theme-info">Theme &mdash;
+          <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+    if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+      window.Promise = null;
+    }
+
+  </script>
+
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+  <script type="text/javascript">
+    var duoshuoQuery = {
+      short_name: "true"
+    };
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';
+      ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+
+  </script>
+
+  <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+  <script src="/js/src/hook-duoshuo.js"></script>
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+    var onPopupClose = function(e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append(
+          '<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css(
+        'text-align', 'center');
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(
+                  /<[^>]+>/g, "");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if (title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text,
+                      caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0,
+                        position = [],
+                        index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word,
+                          startPosition)) > -1) {
+                        index.push({
+                          position: position,
+                          word: word
+                        });
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+                    indexOfTitle = indexOfTitle.concat(
+                      getIndexByWord(keyword,
+                        titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(
+                      getIndexByWord(keyword,
+                        contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length >
+                    0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length +
+                      indexOfContent.length;
+                  }
+                }
+                // show search results
+                if (isMatch) {
+                  // sort index by position of keyword
+                  [indexOfTitle, indexOfContent].forEach(function(
+                    index) {
+                    index.sort(function(itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft
+                        .position) {
+                        return itemRight.position -
+                          itemLeft.position;
+                      } else {
+                        return itemLeft.word.length -
+                          itemRight.word.length;
+                      }
+                    });
+                  });
+                  // merge hits into slices
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index
+                      .length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({
+                        position: position,
+                        length: word.length
+                      });
+                      var wordEnd = position + word.length;
+                      // move to next position of hit
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0,
+                      title.length, indexOfTitle));
+                  }
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length -
+                      1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if (start < 0) {
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if (end > content.length) {
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content,
+                      start, end, indexOfContent));
+                  }
+                  // sort slices in content by search text's count and hits' count
+                  slicesOfContent.sort(function(sliceLeft,
+                    sliceRight) {
+                    if (sliceLeft.searchTextCount !==
+                      sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount -
+                        sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !==
+                      sliceRight.hits.length) {
+                      return sliceRight.hits.length -
+                        sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+                  // select top N slices in content
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0,
+                      upperBound);
+                  }
+                  // highlight title and content
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function(hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' +
+                        text.substring(hit.position, end) +
+                        '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+                  var resultItem = '';
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" +
+                      highlightKeyword(title, slicesOfTitle[0]) +
+                      "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" + title +
+                      "</a>";
+                  }
+                  slicesOfContent.forEach(function(slice) {
+                    resultItem += "<a href='" + articleUrl +
+                      "'>" +
+                      "<p class=\"search-result\">" +
+                      highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function(resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft
+                    .searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList =
+                '<ul class=\"search-result-list\">';
+              resultItems.forEach(function(result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function(event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+          proceedsearch();
+        }
+      });
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function(event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+  </script>
+
 </body>
 
 </html>

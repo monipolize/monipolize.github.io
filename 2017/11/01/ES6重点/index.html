@@ -1,143 +1,354 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+
+<html class="theme-next pisces use-motion" lang="">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Yan Ni">
-  <meta name="description" content="前端BLOG">
-  <link rel="alternative" href="/atom.xml" title="In My World" type="application/atom+xml">
-  <link rel="icon" href="/favicon.png">
-  <title>ES6所有特点应用 -- 第一弹 - In My World</title>
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
-  <!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]-->
-  <script src="/js/jquery-3.1.1.min.js"></script>
-  <script src="/js/fancybox/jquery.fancybox.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"
+  />
+  <meta name="theme-color" content="#222">
+
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"
+  />
+
+  <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"
+                                                                                  rel="stylesheet" type="text/css">
+
+  <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet"
+                                                                                  type="text/css" />
+
+  <link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+  <meta name="keywords" content="ALL,ES6," />
+
+  <meta name="description" content="ps：这是本宝宝搜罗N多个人的博客、资料最后的大汇总，如有雷同也是正常现象   pps：各位大大们请不要在意这些细节喽，宽容点噻。   ppps：由于本仙女实在是太懒了，so，嘿嘿!就只挑重点记录喽，please 不要喷我。。。 一、Let {    var globalVar = “from demo1”   }   {    let globalLet = “from demo2”   }">
+  <meta name="keywords" content="ALL,ES6">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ES6所有特点应用 -- 第一弹">
+  <meta property="og:url" content="http://icey-monopolize.com/tags/ALL/2017/11/01/ES6重点/index.html">
+  <meta property="og:site_name" content="In My World">
+  <meta property="og:description" content="ps：这是本宝宝搜罗N多个人的博客、资料最后的大汇总，如有雷同也是正常现象   pps：各位大大们请不要在意这些细节喽，宽容点噻。   ppps：由于本仙女实在是太懒了，so，嘿嘿!就只挑重点记录喽，please 不要喷我。。。 一、Let {    var globalVar = “from demo1”   }   {    let globalLet = “from demo2”   }">
+  <meta property="og:updated_time" content="2017-11-02T08:44:45.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ES6所有特点应用 -- 第一弹">
+  <meta name="twitter:description" content="ps：这是本宝宝搜罗N多个人的博客、资料最后的大汇总，如有雷同也是正常现象   pps：各位大大们请不要在意这些细节喽，宽容点噻。   ppps：由于本仙女实在是太懒了，so，嘿嘿!就只挑重点记录喽，please 不要喷我。。。 一、Let {    var globalVar = “from demo1”   }   {    let globalLet = “from demo2”   }">
+
+  <script type="text/javascript" id="hexo.configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {
+      root: '/',
+      scheme: 'Pisces',
+      version: '5.1.3',
+      sidebar: {
+        "position": "left",
+        "display": "post",
+        "offset": 12,
+        "b2t": false,
+        "scrollpercent": false,
+        "onmobile": false
+      },
+      fancybox: true,
+      tabs: true,
+      motion: {
+        "enable": true,
+        "async": false,
+        "transition": {
+          "post_block": "fadeIn",
+          "post_header": "slideDownIn",
+          "post_body": "slideDownIn",
+          "coll_header": "slideLeftIn",
+          "sidebar": "slideUpIn"
+        }
+      },
+      duoshuo: {
+        userId: '0',
+        author: 'ICEY'
+      },
+      algolia: {
+        applicationID: '',
+        apiKey: '',
+        indexName: '',
+        hits: {
+          "per_page": 10
+        },
+        labels: {
+          "input_placeholder": "Search for Posts",
+          "hits_empty": "We didn't find any results for the search: ${query}",
+          "hits_stats": "${hits} results found in ${time} ms"
+        }
+      }
+    };
+
+  </script>
+
+  <link rel="canonical" href="http://icey-monopolize.com/tags/ALL/2017/11/01/ES6重点/"
+  />
+
+  <title>ES6所有特点应用 -- 第一弹 | In My World</title>
+
 </head>
 
-<body style="opacity:0;">
-  <header class="head">
-    <h1 class="head-title u-fl">
-      <a href="/">In My World</a>
-    </h1>
-    <nav class="head-nav u-fr">
-      <ul class="head-nav__list">
-        <li class="head-nav__item">
-          <a class="head-nav__link" href="/tags/ALL">目录</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <main class="main">
-    <article class="post">
-      <header class="post__head">
-        <time class="post__time" datetime="2017-11-01T03:19:09.000Z">November 1, 2017</time>
-        <h1 class="post__title">
-          <a href="/2017/11/01/ES6重点/">ES6所有特点应用 -- 第一弹</a>
-        </h1>
-        <div class="post__main echo">
-          <p>ps：这是本宝宝搜罗N多个人的博客、资料最后的大汇总，如有雷同也是正常现象
-            <br>pps：各位大大们请不要在意这些细节喽，宽容点噻。
-            <br>ppps：由于本仙女实在是太懒了，so，嘿嘿!就只挑重点记录喽，please 不要喷我。。。</p>
-          <p>一、Let</p>
-          <p>{
-            <br> var globalVar = “from demo1”
-            <br>}
-            <br>{
-            <br> let globalLet = “from demo2”
-            <br>}
-            <br>console.log(globalVar)
-            <br>console.log(globalLet)</p>
-          <p>globalVar -&gt; from demo1
-            <br>globalLet -&gt; ReferenceError: globalLet is not defined</p>
-          <p>它不会向window分配任何内容：
-            <br>let me = “go”
-            <br>var i = “able”</p>
-          <p>console.log(window.me)
-            <br>console.log(window.i)</p>
-          <p>window.me -&gt; undefined
-            <br>window.i -&gt; able</p>
-          <p>不能使用let重新声明一个变量：
-            <br>let me = “foo”;
-            <br>let me = “bar”;
-            <br>console.log(me);
-            <br>SyntaxError: Identifier ‘me’ has already been declared</p>
-          <p>############################################################################################</p>
-          <p>二、Const</p>
-          <p>一个不能被更改的值
-            <br>const a = “b”
-            <br>a = “a”
-            <br>TypeError: Assignment to constant variable.</p>
-          <p>应该注意，const 对象仍然可以被改变的。
-            <br>const a = { a: “a” }
-            <br>a.a = “b”
-            <br>console.log(a)
-            <br>a -&gt; {“a”:”b”}</p>
-          <p>############################################################################################</p>
-          <p>三、Class类</p>
-          <p>class ColorPoint extends Point {
-            <br>}
-            <br>// 等同于
-            <br>class ColorPoint extends Point {
-            <br> constructor(…args) {
-            <br> super(…args);
-            <br> }
-            <br>}</p>
-          <p>举个🌰 吧
-            <br>class Point {
-            <br> constructor(x, y) {
-            <br> this.x = x;
-            <br> this.y = y;
-            <br> }
-            <br>}</p>
-          <p>class ColorPoint extends Point {
-            <br> constructor(x, y, color) {
-            <br> this.color = color; // ReferenceError</p>
-          <pre><code>super(x, y);
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner">
+        <div class="site-brand-wrapper">
+          <div class="site-meta ">
+
+            <div class="custom-logo-site-title">
+              <a href="/" class="brand" rel="start">
+                <span class="logo-line-before">
+                  <i></i>
+                </span>
+                <span class="site-title">In My World</span>
+                <span class="logo-line-after">
+                  <i></i>
+                </span>
+              </a>
+            </div>
+
+            <p class="site-subtitle">想去天边打个滚儿</p>
+
+          </div>
+
+          <div class="site-nav-toggle">
+            <button>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+              <span class="btn-bar"></span>
+            </button>
+          </div>
+        </div>
+
+        <nav class="site-nav">
+
+          <ul id="menu" class="menu">
+
+            <li class="menu-item menu-item-home">
+              <a href="/" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-question-circle"></i>
+                <br /> Home
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-commonweal">
+              <a href="/404.html" rel="section">
+
+                <i class="menu-item-icon fa fa-fw fa-question-circle"></i>
+                <br /> Commonweal 404
+              </a>
+            </li>
+
+            <li class="menu-item menu-item-search">
+
+              <a href="javascript:;" class="popup-trigger">
+
+                <i class="menu-item-icon fa fa-search fa-fw"></i>
+                <br /> Search
+              </a>
+            </li>
+
+          </ul>
+
+          <div class="site-search">
+
+            <div class="popup search-popup local-search-popup">
+              <div class="local-search-header clearfix">
+                <span class="search-icon">
+                  <i class="fa fa-search"></i>
+                </span>
+                <span class="popup-btn-close">
+                  <i class="fa fa-times-circle"></i>
+                </span>
+                <div class="local-search-input-wrapper">
+                  <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text"
+                                                                                                  id="local-search-input">
+                </div>
+              </div>
+              <div id="local-search-result"></div>
+            </div>
+
+          </div>
+
+        </nav>
+
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+
+            <div id="posts" class="posts-expand">
+
+              <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="http://icey-monopolize.com/tags/ALL/2017/11/01/ES6重点/">
+
+                  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="吃多了的小仙女">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.jpg">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="In My World">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h1 class="post-title" itemprop="name headline">ES6所有特点应用 -- 第一弹</h1>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">Posted on</span>
+
+                        <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-01T11:19:09+08:00">
+                          2017-11-01
+                        </time>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/2017/11/01/ES6重点/#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/01/ES6重点/"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    <p>ps：这是本宝宝搜罗N多个人的博客、资料最后的大汇总，如有雷同也是正常现象
+                      <br>pps：各位大大们请不要在意这些细节喽，宽容点噻。
+                      <br>ppps：由于本仙女实在是太懒了，so，嘿嘿!就只挑重点记录喽，please 不要喷我。。。</p>
+                    <p>一、Let</p>
+                    <p>{
+                      <br> var globalVar = “from demo1”
+                      <br>}
+                      <br>{
+                      <br> let globalLet = “from demo2”
+                      <br>}
+                      <br>console.log(globalVar)
+                      <br>console.log(globalLet)</p>
+                    <p>globalVar -&gt; from demo1
+                      <br>globalLet -&gt; ReferenceError: globalLet is not defined</p>
+                    <p>它不会向window分配任何内容：
+                      <br>let me = “go”
+                      <br>var i = “able”</p>
+                    <p>console.log(window.me)
+                      <br>console.log(window.i)</p>
+                    <p>window.me -&gt; undefined
+                      <br>window.i -&gt; able</p>
+                    <p>不能使用let重新声明一个变量：
+                      <br>let me = “foo”;
+                      <br>let me = “bar”;
+                      <br>console.log(me);
+                      <br>SyntaxError: Identifier ‘me’ has already been declared</p>
+                    <p>############################################################################################</p>
+                    <p>二、Const</p>
+                    <p>一个不能被更改的值
+                      <br>const a = “b”
+                      <br>a = “a”
+                      <br>TypeError: Assignment to constant variable.</p>
+                    <p>应该注意，const 对象仍然可以被改变的。
+                      <br>const a = { a: “a” }
+                      <br>a.a = “b”
+                      <br>console.log(a)
+                      <br>a -&gt; {“a”:”b”}</p>
+                    <p>############################################################################################</p>
+                    <p>三、Class类</p>
+                    <p>class ColorPoint extends Point {
+                      <br>}
+                      <br>// 等同于
+                      <br>class ColorPoint extends Point {
+                      <br> constructor(…args) {
+                      <br> super(…args);
+                      <br> }
+                      <br>}</p>
+                    <p>举个🌰 吧
+                      <br>class Point {
+                      <br> constructor(x, y) {
+                      <br> this.x = x;
+                      <br> this.y = y;
+                      <br> }
+                      <br>}</p>
+                    <p>class ColorPoint extends Point {
+                      <br> constructor(x, y, color) {
+                      <br> this.color = color; // ReferenceError</p>
+                    <pre><code>super(x, y);
 this.color = color; // 正确
 </code></pre>
-          <p> }
-            <br>}
-            <br>let cp = new ColorPoint(25, 8, ‘green’);
-            <br>//上面代码中，实例对象cp同时是ColorPoint和Point两个类的实例
-            <br>cp instanceof ColorPoint // true
-            <br>cp instanceof Point // true</p>
-          <p>再举个🌰
-            <br>class A {
-            <br> static hello() {
-            <br> console.log(‘hello world’);
-            <br> }
-            <br>}
-            <br>class B extends A {
-            <br>}
-            <br>B.hello() // hello world
-            <br>//hello()是A类的静态方法，B继承A，也继承了A的静态方法</p>
-          <p>还想再来个🌰
-            <br>class A {
-            <br> constructor() {
-            <br> console.log(new.target.name);
-            <br> //new.target指向当前正在执行的函数
-            <br> }
-            <br>}
-            <br>class B extends A {
-            <br> constructor() {
-            <br> super();
-            <br> }
-            <br>}
-            <br>new A() // A
-            <br>new B() // B</p>
-          <p>小可爱们看过来吖，看过来👀</p>
-          <p>class Student {
-            <br> // 构造函数
-            <br> // 只能声明一个，否则会报以下错误(Safari 10.0)：
-            <br> // SyntaxError: Cannot declare multiple constructors in a single class.
-            <br> constructor(name, age) {
-            <br> // 类成员变量不用事先声明
-            <br> this.name = name;
-            <br> this.age = age;</p>
-          <pre><code>    if (age === undefined) {
+                    <p> }
+                      <br>}
+                      <br>let cp = new ColorPoint(25, 8, ‘green’);
+                      <br>//上面代码中，实例对象cp同时是ColorPoint和Point两个类的实例
+                      <br>cp instanceof ColorPoint // true
+                      <br>cp instanceof Point // true</p>
+                    <p>再举个🌰
+                      <br>class A {
+                      <br> static hello() {
+                      <br> console.log(‘hello world’);
+                      <br> }
+                      <br>}
+                      <br>class B extends A {
+                      <br>}
+                      <br>B.hello() // hello world
+                      <br>//hello()是A类的静态方法，B继承A，也继承了A的静态方法</p>
+                    <p>还想再来个🌰
+                      <br>class A {
+                      <br> constructor() {
+                      <br> console.log(new.target.name);
+                      <br> //new.target指向当前正在执行的函数
+                      <br> }
+                      <br>}
+                      <br>class B extends A {
+                      <br> constructor() {
+                      <br> super();
+                      <br> }
+                      <br>}
+                      <br>new A() // A
+                      <br>new B() // B</p>
+                    <p>小可爱们看过来吖，看过来👀</p>
+                    <p>class Student {
+                      <br> // 构造函数
+                      <br> // 只能声明一个，否则会报以下错误(Safari 10.0)：
+                      <br> // SyntaxError: Cannot declare multiple constructors in a
+                      single class.
+                      <br> constructor(name, age) {
+                      <br> // 类成员变量不用事先声明
+                      <br> this.name = name;
+                      <br> this.age = age;</p>
+                    <pre><code>    if (age === undefined) {
         log(&apos;没有传age参数&apos;);
     }
 }
@@ -152,205 +363,769 @@ sayHelloEx(message) {
     log(&quot;Hello &quot; + this.name + &apos;[&apos; + this.age + &apos;]: &apos; + message);
 }
 </code></pre>
-          <p>}</p>
-          <p>class SkinnedMesh extends THREES.Mesh {
-            <br> constructor(geometry,materials){
-            <br> super(geometry,materials);// 调用父类的constructor
-            <br> //子类必须在constructor方法中调用super方法，否则新建实例时会报错
-            <br> //这是因为子类没有自己的this对象，而是继承父类的this对象
-            <br> this.idMatrix = SkinnedMesh.defaultMatrix();
-            <br> this.bones = [];
-            <br> this.bonesMatrices = []
-            <br> //在子类的构造函数中，只有调用super之后，才可以使用this关键字
-            <br> }
-            <br> //constructor方法之中，都出现了super关键字，它在这里表示父类的构造函数，用来新建父类的this对象。
-            <br> update(camera){
-            <br> super.update()
-            <br> }
-            <br> get boneCount(){
-            <br> return this.bones.length
-            <br> }
-            <br> set MatrixType(matrixType){
-            <br> this.idMatrix = SkinnedMesh
-            <a href="">matrixType</a>;
-            <br> }
-            <br> static defaultMatrix(){
-            <br> return new THREES.Matrix4();
-            <br> }
-            <br>}</p>
-          <p>############################################################################################</p>
-          <p>四、For…of</p>
-          <p>迭代器的新类型，可以替代for..in。 它返回的是值而不是keys
-            <br>let list = [4, 5, 6];
-            <br>console.log(list)
-            <br>for (let i of list) {
-            <br> console.log(i);
-            <br>}
-            <br>list -&gt; [4,5,6]
-            <br>i -&gt; 4
-            <br>i -&gt; 5
-            <br>i -&gt; 6</p>
-          <p>没有对比就没有伤害，看这里👇
-            <br>for(let i in list){
-            <br> console.log(i)
-            <br>}
-            <br>list -&gt; [4,5,6]
-            <br>i -&gt; 0
-            <br>i -&gt; 1
-            <br>i -&gt; 2</p>
-          <p>############################################################################################</p>
-          <p>五、Set</p>
-          <p>Set 为数学对应，其中所有项目都是唯一的
-            <br>var set = new Set();
-            <br>set.add(“Potato”).add(“Tomato”).add(“Tomato”)
-            <br>console.log(set.size)
-            <br>console.log(set.has(“Tomato”))
-            <br>for(var item of set) {
-            <br> console.log(item)
-            <br>}</p>
-          <p>set.size -&gt; 2
-            <br>set.has(“Tomato”) -&gt; true
-            <br>item -&gt; Potato
-            <br>item -&gt; Tomato</p>
-          <p>############################################################################################</p>
-          <p>六、Rest</p>
-          <p>我们可以使用 rest 操作符来允许无限参数 rest …
-            <br>function demo(part1,…part2){
-            <br> return {part1,part2}
-            <br>}
-            <br>console.log(demo(1,2,3,4,6))
-            <br>demo(1,2,3,4,5,6) -&gt; {“part1”:1,”part2”:[2,3,4,5,6]}</p>
-          <p>############################################################################################</p>
-          <p>七、Map</p>
-          <p>var map = new Map();
-            <br>map.set(“Potato”,12)
-            <br>map.set(“Tomato”,34)
-            <br>console.log(map.get(“Potato”))
-            <br>for(let item of map){
-            <br> console.log(item)
-            <br>}</p>
-          <p>map.get(“Potato”) -&gt; 12
-            <br>item -&gt; [“Potato”,12]
-            <br>item -&gt; [“Tomato”,34]</p>
-          <p>for(let item in map){
-            <br> console.log(item)
-            <br>}</p>
-          <p>//undefined</p>
-          <p>可以使用除字符串之外的其他类型。
-            <br>var map = new Map();
-            <br>var key = {a: “a”}
-            <br>map.set(key, 12);</p>
-          <p>console.log(map.get(key))
-            <br>console.log(map.get({a: “a”}))</p>
-          <p>map.get(key) -&gt; 12
-            <br>map.get({a: “a”}) -&gt; undefined</p>
-          <p>############################################################################################</p>
-          <p>八、WeakMap</p>
-          <p>使用键的对象，并且只保留对键的弱引用。
-            <br>var wm = new WeakMap();</p>
-          <p>var o1 = {}
-            <br>var o2 = {}
-            <br>var o3 = {}</p>
-          <p>wm.set(o1,1)
-            <br>wm.set(o2,2)
-            <br>wm.set(o3,{a:”a”})
-            <br>wm.set({},4)</p>
-          <p>console.log(wm.get(o2))
-            <br>console.log(wm.has({}))</p>
-          <p>delete o2;
-            <br>console.log(wm.get(o3))</p>
-          <p>for(let item in wm) {
-            <br> console.log(item)
-            <br>}
-            <br>for(let item of wm) {
-            <br> console.log(item)
-            <br>}
-            <br>接下来让我们来看一下输出的结果吧
-            <br>wm.get(o2) -&gt; 2
-            <br>wm.has({}) -&gt; false
-            <br>wm.get(o3) -&gt; {“a”:”a”}
-            <br>没有size属性,没有办法遍历它的成员
-            <br>TypeError: wm[Symbol.iterator] is not a function</p>
-          <p>surprise！！！🎉 有没有很惊喜吖 是不是和想的不一样捏
-            <br>吼吼 稳住 我们能赢
-            <br>让我们趁热打铁，来迎接下一个暴击</p>
-          <p>############################################################################################</p>
-          <p>九、WeakSet</p>
-          <p>也是不重复的值的集合
-            <br>WeakSet 的成员只能是对象
-            <br>WeakSet对象允许您在集合中存储弱持有的对象,没有引用的对象将被垃圾回收</p>
-          <p>var item = {a:”Potato”}
-            <br>var set new WeakSet();</p>
-          <p>set.add({a:”Potato”}).add(item).add({a:”Tomato”}).add({a:”Tomato”})
-            <br>console.log(set.size)
-            <br>console.log(set.has({a:”Tomato”}))
-            <br>console.log(set.has(item))</p>
-          <p>for(let item of set) {
-            <br> console.log(item)
-            <br>}
-            <br>※※※ ➡ WeakSet没有size属性,没有办法遍历它的成员</p>
-          <p>接下来让我们再来看一下输出的结果吧！！！！
-            <br>set.size -&gt; undefined
-            <br>set.has({a:”Tomato”}) -&gt; false
-            <br>set.has(item) -&gt; true
-            <br>TypeError: set[Symbol.iterator] is not a function</p>
-          <p>号外号外 📢
-            <br>const a = [[1, 2], [3, 4]];
-            <br>const ws = new WeakSet(a);
-            <br>// WeakSet {[1, 2], [3, 4]}
-            <br>注意，是a数组的成员成为 WeakSet 的成员，而不是a数组本身。这意味着，数组的成员只能是对象</p>
-          <p>############################################################################################</p>
-          <p>十、关于This</p>
-          <p>var object = {
-            <br> name:”Name”,
-            <br> arrowGetName:() =&gt; this.name,
-            <br> regularGetName:function(){ return this.name },
-            <br> arrowGetThis:() =&gt; this,
-            <br> regularGetThis:function(){ return this }
-            <br>}
-            <br>console.log(object.arrowGetName())
-            <br>console.log((object.arrowGetThis())
-            <br>console.log(this)
-            <br>console.log(object.regularGetName())
-            <br>console.log(object.regularGetThis())</p>
-          <p>object.arrowGetName() -&gt;
-            <br>object.arrowGetThis() -&gt; [object Window]
-            <br>this -&gt; [object Window]
-            <br>object.regularGetName() -&gt; Name
-            <br>object.regularGetThis() -&gt; {“name”:”Name”}</p>
-          <p>小葵花妈妈课堂开课了，小仙女感冒老不好，多半是废了。。。。。。。。
-            <br>各位道友们，咱们下一章见。。。咳咳。。。小仙女要去吃药了</p>
-          <p>想继续的宝宝 戳一戳 去下一弹👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇</p>
-          <p>
-            <a href="http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC%E4%BA%8C%E5%BC%B9/">http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC%E4%BA%8C%E5%BC%B9/</a>
-          </p>
-          <p>🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆</p>
+                    <p>}</p>
+                    <p>class SkinnedMesh extends THREES.Mesh {
+                      <br> constructor(geometry,materials){
+                      <br> super(geometry,materials);// 调用父类的constructor
+                      <br> //子类必须在constructor方法中调用super方法，否则新建实例时会报错
+                      <br> //这是因为子类没有自己的this对象，而是继承父类的this对象
+                      <br> this.idMatrix = SkinnedMesh.defaultMatrix();
+                      <br> this.bones = [];
+                      <br> this.bonesMatrices = []
+                      <br> //在子类的构造函数中，只有调用super之后，才可以使用this关键字
+                      <br> }
+                      <br> //constructor方法之中，都出现了super关键字，它在这里表示父类的构造函数，用来新建父类的this对象。
+                      <br> update(camera){
+                      <br> super.update()
+                      <br> }
+                      <br> get boneCount(){
+                      <br> return this.bones.length
+                      <br> }
+                      <br> set MatrixType(matrixType){
+                      <br> this.idMatrix = SkinnedMesh
+                      <a href="">matrixType</a>;
+                      <br> }
+                      <br> static defaultMatrix(){
+                      <br> return new THREES.Matrix4();
+                      <br> }
+                      <br>}</p>
+                    <p>############################################################################################</p>
+                    <p>四、For…of</p>
+                    <p>迭代器的新类型，可以替代for..in。 它返回的是值而不是keys
+                      <br>let list = [4, 5, 6];
+                      <br>console.log(list)
+                      <br>for (let i of list) {
+                      <br> console.log(i);
+                      <br>}
+                      <br>list -&gt; [4,5,6]
+                      <br>i -&gt; 4
+                      <br>i -&gt; 5
+                      <br>i -&gt; 6</p>
+                    <p>没有对比就没有伤害，看这里👇
+                      <br>for(let i in list){
+                      <br> console.log(i)
+                      <br>}
+                      <br>list -&gt; [4,5,6]
+                      <br>i -&gt; 0
+                      <br>i -&gt; 1
+                      <br>i -&gt; 2</p>
+                    <p>############################################################################################</p>
+                    <p>五、Set</p>
+                    <p>Set 为数学对应，其中所有项目都是唯一的
+                      <br>var set = new Set();
+                      <br>set.add(“Potato”).add(“Tomato”).add(“Tomato”)
+                      <br>console.log(set.size)
+                      <br>console.log(set.has(“Tomato”))
+                      <br>for(var item of set) {
+                      <br> console.log(item)
+                      <br>}</p>
+                    <p>set.size -&gt; 2
+                      <br>set.has(“Tomato”) -&gt; true
+                      <br>item -&gt; Potato
+                      <br>item -&gt; Tomato</p>
+                    <p>############################################################################################</p>
+                    <p>六、Rest</p>
+                    <p>我们可以使用 rest 操作符来允许无限参数 rest …
+                      <br>function demo(part1,…part2){
+                      <br> return {part1,part2}
+                      <br>}
+                      <br>console.log(demo(1,2,3,4,6))
+                      <br>demo(1,2,3,4,5,6) -&gt; {“part1”:1,”part2”:[2,3,4,5,6]}</p>
+                    <p>############################################################################################</p>
+                    <p>七、Map</p>
+                    <p>var map = new Map();
+                      <br>map.set(“Potato”,12)
+                      <br>map.set(“Tomato”,34)
+                      <br>console.log(map.get(“Potato”))
+                      <br>for(let item of map){
+                      <br> console.log(item)
+                      <br>}</p>
+                    <p>map.get(“Potato”) -&gt; 12
+                      <br>item -&gt; [“Potato”,12]
+                      <br>item -&gt; [“Tomato”,34]</p>
+                    <p>for(let item in map){
+                      <br> console.log(item)
+                      <br>}</p>
+                    <p>//undefined</p>
+                    <p>可以使用除字符串之外的其他类型。
+                      <br>var map = new Map();
+                      <br>var key = {a: “a”}
+                      <br>map.set(key, 12);</p>
+                    <p>console.log(map.get(key))
+                      <br>console.log(map.get({a: “a”}))</p>
+                    <p>map.get(key) -&gt; 12
+                      <br>map.get({a: “a”}) -&gt; undefined</p>
+                    <p>############################################################################################</p>
+                    <p>八、WeakMap</p>
+                    <p>使用键的对象，并且只保留对键的弱引用。
+                      <br>var wm = new WeakMap();</p>
+                    <p>var o1 = {}
+                      <br>var o2 = {}
+                      <br>var o3 = {}</p>
+                    <p>wm.set(o1,1)
+                      <br>wm.set(o2,2)
+                      <br>wm.set(o3,{a:”a”})
+                      <br>wm.set({},4)</p>
+                    <p>console.log(wm.get(o2))
+                      <br>console.log(wm.has({}))</p>
+                    <p>delete o2;
+                      <br>console.log(wm.get(o3))</p>
+                    <p>for(let item in wm) {
+                      <br> console.log(item)
+                      <br>}
+                      <br>for(let item of wm) {
+                      <br> console.log(item)
+                      <br>}
+                      <br>接下来让我们来看一下输出的结果吧
+                      <br>wm.get(o2) -&gt; 2
+                      <br>wm.has({}) -&gt; false
+                      <br>wm.get(o3) -&gt; {“a”:”a”}
+                      <br>没有size属性,没有办法遍历它的成员
+                      <br>TypeError: wm[Symbol.iterator] is not a function</p>
+                    <p>surprise！！！🎉 有没有很惊喜吖 是不是和想的不一样捏
+                      <br>吼吼 稳住 我们能赢
+                      <br>让我们趁热打铁，来迎接下一个暴击</p>
+                    <p>############################################################################################</p>
+                    <p>九、WeakSet</p>
+                    <p>也是不重复的值的集合
+                      <br>WeakSet 的成员只能是对象
+                      <br>WeakSet对象允许您在集合中存储弱持有的对象,没有引用的对象将被垃圾回收</p>
+                    <p>var item = {a:”Potato”}
+                      <br>var set new WeakSet();</p>
+                    <p>set.add({a:”Potato”}).add(item).add({a:”Tomato”}).add({a:”Tomato”})
+                      <br>console.log(set.size)
+                      <br>console.log(set.has({a:”Tomato”}))
+                      <br>console.log(set.has(item))</p>
+                    <p>for(let item of set) {
+                      <br> console.log(item)
+                      <br>}
+                      <br>※※※ ➡ WeakSet没有size属性,没有办法遍历它的成员</p>
+                    <p>接下来让我们再来看一下输出的结果吧！！！！
+                      <br>set.size -&gt; undefined
+                      <br>set.has({a:”Tomato”}) -&gt; false
+                      <br>set.has(item) -&gt; true
+                      <br>TypeError: set[Symbol.iterator] is not a function</p>
+                    <p>号外号外 📢
+                      <br>const a = [[1, 2], [3, 4]];
+                      <br>const ws = new WeakSet(a);
+                      <br>// WeakSet {[1, 2], [3, 4]}
+                      <br>注意，是a数组的成员成为 WeakSet 的成员，而不是a数组本身。这意味着，数组的成员只能是对象</p>
+                    <p>############################################################################################</p>
+                    <p>十、关于This</p>
+                    <p>var object = {
+                      <br> name:”Name”,
+                      <br> arrowGetName:() =&gt; this.name,
+                      <br> regularGetName:function(){ return this.name },
+                      <br> arrowGetThis:() =&gt; this,
+                      <br> regularGetThis:function(){ return this }
+                      <br>}
+                      <br>console.log(object.arrowGetName())
+                      <br>console.log((object.arrowGetThis())
+                      <br>console.log(this)
+                      <br>console.log(object.regularGetName())
+                      <br>console.log(object.regularGetThis())</p>
+                    <p>object.arrowGetName() -&gt;
+                      <br>object.arrowGetThis() -&gt; [object Window]
+                      <br>this -&gt; [object Window]
+                      <br>object.regularGetName() -&gt; Name
+                      <br>object.regularGetThis() -&gt; {“name”:”Name”}</p>
+                    <p>小葵花妈妈课堂开课了，小仙女感冒老不好，多半是废了。。。。。。。。
+                      <br>各位道友们，咱们下一章见。。。咳咳。。。小仙女要去吃药了</p>
+                    <p>想继续的宝宝 戳一戳 去下一弹👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇</p>
+                    <p>
+                      <a href="http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC%E4%BA%8C%E5%BC%B9/">http://icey-monopolize.com/2017/11/02/ES6%E7%AC%AC%E4%BA%8C%E5%BC%B9/</a>
+                    </p>
+                    <p>🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆🎆</p>
+
+                  </div>
+
+                  <div>
+                    <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+                      <div>如果你觉得还OK，可以打赏一下小仙女呦！</div>
+                      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+                        <span>Donate</span>
+                      </button>
+                      <div id="QR" style="display: none;">
+
+                        <div id="wechat" style="display: inline-block">
+                          <img id="wechat_qr" src="/images/wei.jpg" alt="吃多了的小仙女 WeChat Pay" />
+                          <p>WeChat Pay</p>
+                        </div>
+
+                        <div id="alipay" style="display: inline-block">
+                          <img id="alipay_qr" src="/images/zhi.jpg" alt="吃多了的小仙女 Alipay" />
+                          <p>Alipay</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-tags">
+
+                      <a href="/tags/ALL/" rel="tag"># ALL</a>
+
+                      <a href="/tags/ES6/" rel="tag"># ES6</a>
+
+                    </div>
+
+                    <div class="post-nav">
+                      <div class="post-nav-next post-nav-item">
+
+                        <a href="/2017/11/01/Website/" rel="next" title="This Is the Beginning of the Story">
+                          <i class="fa fa-chevron-left"></i> This Is the Beginning of the Story
+                        </a>
+
+                      </div>
+
+                      <span class="post-nav-divider"></span>
+
+                      <div class="post-nav-prev post-nav-item">
+
+                        <a href="/2017/11/02/ES6第二弹/" rel="prev" title="ES6所有特点应用 -- 第二弹">
+                          ES6所有特点应用 -- 第二弹
+                          <i class="fa fa-chevron-right"></i>
+                        </a>
+
+                      </div>
+                    </div>
+
+                  </footer>
+                </div>
+
+              </article>
+
+              <div class="post-spread">
+
+                <div class="ds-share flat" data-thread-key="2017/11/01/ES6重点/" data-title="ES6所有特点应用 -- 第一弹"
+                                                                                                data-content="" data-url="http://icey-monopolize.com/tags/ALL/2017/11/01/ES6重点/">
+                  <div class="ds-share-inline">
+                    <ul class="ds-share-icons-16">
+
+                      <li data-toggle="ds-share-icons-more">
+                        <a class="ds-more" href="javascript:void(0);">分享到：</a>
+                      </li>
+                      <li>
+                        <a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a>
+                      </li>
+                      <li>
+                        <a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a>
+                      </li>
+                      <li>
+                        <a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a>
+                      </li>
+                      <li>
+                        <a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a>
+                      </li>
+
+                    </ul>
+                    <div class="ds-share-icons-more">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="comments" id="comments">
+            <div class="ds-thread" data-thread-key="2017/11/01/ES6重点/" data-title="ES6所有特点应用 -- 第一弹"
+                                                                                            data-url="http://icey-monopolize.com/tags/ALL/2017/11/01/ES6重点/">
+            </div>
+          </div>
+
         </div>
-      </header>
-      <footer class="post__foot u-cf">
-        <ul class="post__tag u-fl">
-          <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/ALL/">ALL</a>
-          </li>
-          <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/ES6/">ES6</a>
-          </li>
-        </ul>
-      </footer>
-    </article>
-    <section class="reward">
-      <a class="btn-reward" href="#">打赏</a>
-      <div class="reward-wrapper clearfix">
-        <img src="/img/wei.jpg" title="微信">
-        <img src="/img/zhi.jpg" title="支付宝">
+
+        <div class="sidebar-toggle">
+          <div class="sidebar-toggle-line-wrap">
+            <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+            <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+          </div>
+        </div>
+
+        <aside id="sidebar" class="sidebar">
+
+          <div class="sidebar-inner">
+
+            <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+              <div class="site-overview">
+                <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+
+                  <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="吃多了的小仙女"
+                  />
+
+                  <p class="site-author-name" itemprop="name">吃多了的小仙女</p>
+                  <p class="site-description motion-element" itemprop="description">前端BLOG</p>
+                </div>
+
+                <nav class="site-state motion-element">
+
+                  <div class="site-state-item site-state-posts">
+
+                    <a href="/artical">
+
+                      <span class="site-state-item-count">12</span>
+                      <span class="site-state-item-name">posts</span>
+                    </a>
+                  </div>
+
+                  <div class="site-state-item site-state-tags">
+
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">tags</span>
+
+                  </div>
+
+                </nav>
+
+                <div class="links-of-author motion-element">
+
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/monipolize" target="_blank" title="GitHub">
+
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+
+                </div>
+
+              </div>
+            </section>
+
+          </div>
+        </aside>
+
       </div>
-    </section>
-  </main>
-  <footer class="foot">
-    <div class="foot-copy">&copy; 2016-2017 Yan Ni</div>
-  </footer>
-  <script src="/js/scroller.js"></script>
-  <script src="/js/main.js"></script>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash;
+          <span itemprop="copyrightYear">2017</span>
+          <span class="with-love">
+            <i class="fa fa-YAN NI"></i>
+          </span>
+          <span class="author" itemprop="copyrightHolder">吃多了的小仙女</span>
+
+        </div>
+
+        <div class="powered-by">Powered by
+          <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a>
+        </div>
+
+        <span class="post-meta-divider">|</span>
+
+        <div class="theme-info">Theme &mdash;
+          <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+    if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+      window.Promise = null;
+    }
+
+  </script>
+
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+  <script type="text/javascript">
+    var duoshuoQuery = {
+      short_name: "true"
+    };
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';
+      ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+
+  </script>
+
+  <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+  <script src="/js/src/hook-duoshuo.js"></script>
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+    var onPopupClose = function(e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append(
+          '<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css(
+        'text-align', 'center');
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(
+                  /<[^>]+>/g, "");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if (title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text,
+                      caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0,
+                        position = [],
+                        index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word,
+                          startPosition)) > -1) {
+                        index.push({
+                          position: position,
+                          word: word
+                        });
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+                    indexOfTitle = indexOfTitle.concat(
+                      getIndexByWord(keyword,
+                        titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(
+                      getIndexByWord(keyword,
+                        contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length >
+                    0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length +
+                      indexOfContent.length;
+                  }
+                }
+                // show search results
+                if (isMatch) {
+                  // sort index by position of keyword
+                  [indexOfTitle, indexOfContent].forEach(function(
+                    index) {
+                    index.sort(function(itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft
+                        .position) {
+                        return itemRight.position -
+                          itemLeft.position;
+                      } else {
+                        return itemLeft.word.length -
+                          itemRight.word.length;
+                      }
+                    });
+                  });
+                  // merge hits into slices
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index
+                      .length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({
+                        position: position,
+                        length: word.length
+                      });
+                      var wordEnd = position + word.length;
+                      // move to next position of hit
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0,
+                      title.length, indexOfTitle));
+                  }
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length -
+                      1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if (start < 0) {
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if (end > content.length) {
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content,
+                      start, end, indexOfContent));
+                  }
+                  // sort slices in content by search text's count and hits' count
+                  slicesOfContent.sort(function(sliceLeft,
+                    sliceRight) {
+                    if (sliceLeft.searchTextCount !==
+                      sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount -
+                        sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !==
+                      sliceRight.hits.length) {
+                      return sliceRight.hits.length -
+                        sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+                  // select top N slices in content
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0,
+                      upperBound);
+                  }
+                  // highlight title and content
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function(hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' +
+                        text.substring(hit.position, end) +
+                        '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+                  var resultItem = '';
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" +
+                      highlightKeyword(title, slicesOfTitle[0]) +
+                      "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl +
+                      "' class='search-result-title'>" + title +
+                      "</a>";
+                  }
+                  slicesOfContent.forEach(function(slice) {
+                    resultItem += "<a href='" + articleUrl +
+                      "'>" +
+                      "<p class=\"search-result\">" +
+                      highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML =
+                '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function(resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft
+                    .searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList =
+                '<ul class=\"search-result-list\">';
+              resultItems.forEach(function(result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function(event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+          proceedsearch();
+        }
+      });
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function(event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+  </script>
+
 </body>
 
 </html>
