@@ -38,6 +38,178 @@
           <a href="/2017/11/03/等高布局的五种方式/">等高布局的五种方式</a>
         </h1>
         <div class="post__main echo">
+          <p>方法一：伪等高
+            <br>这种方式，并不是真正的实现了元素等高
+            <br>上代码喽</p>
+          <pre><code>&lt;style&gt;
+    *{
+        margin: 0;
+    }
+    .p{
+        position: relative;
+    }
+    .left{
+        position: absolute;
+        top:0;
+        left: 0;
+        width:100px;
+        background: green
+    }
+    .right{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width:200px;
+        background: pink;
+    }
+    .center{
+        box-sizing:border-box;
+        background-clip: content-box;
+        padding:0 20px;
+        border-left: 100px solid green;
+         border-right: 200px solid pink;
+        background: red;
+    }
+
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;div class=&quot;par&quot;&gt;
+        &lt;div class=&quot;left&quot;&gt;
+            &lt;p&gt;jjj&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;center&quot;&gt;
+            &lt;p&gt;lllll&lt;/p&gt;
+            &lt;p&gt;jkljlkjl&lt;/p&gt;
+            &lt;p&gt;jlskjldjsas&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;right&quot;&gt;
+            &lt;p&gt;;;;;&lt;/p&gt;
+            &lt;p&gt;jjjjj&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+          <p>结果：
+            <img src="/2017/11/03/等高布局的五种方式/1.png" alt="这里是图片">
+          </p>
+          <p>方法二：伪等高</p>
+          <pre><code>&lt;style&gt;
+    *{
+        margin:0;
+    }
+    .par{
+        overflow: hidden;
+    }
+    .left{
+        float: left;
+        width: 20%;
+        padding-bottom: 9999px;
+        margin-bottom: -9999px;
+        background: red;
+    }
+    .center{
+        margin:0 20px;
+        background: pink;
+    }
+    .right{
+        float: right;
+        width: 20%;
+        padding-bottom: 9999px;
+        margin-bottom: -9999px;
+        background: red;
+    }
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;div class=&quot;par&quot;&gt;
+        &lt;div class=&quot;left&quot;&gt;
+            &lt;p&gt;jjj&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;right&quot;&gt;
+            &lt;p&gt;;;;;&lt;/p&gt;
+            &lt;p&gt;jjjjj&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;center&quot;&gt;
+            &lt;p&gt;lllll&lt;/p&gt;
+            &lt;p&gt;jkljlkjl&lt;/p&gt;
+            &lt;p&gt;jlskjldjsas&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;    
+&lt;/body&gt;
+</code></pre>
+          <p>结果：
+            <img src="/2017/11/03/等高布局的五种方式/2.png" alt="这里是图片">
+          </p>
+          <p>方法三：真等高</p>
+          <pre><code>&lt;style&gt;
+    body,p{margin: 0;}
+    .parent{
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+    .left,.centerWrap,.right{
+        display: table-cell;
+    }
+    .center{
+        margin: 0 20px;
+    }
+&lt;/style&gt;
+&lt;body&gt;
+&lt;div class=&quot;parent&quot; style=&quot;background-color: lightgrey;&quot;&gt;
+    &lt;div class=&quot;left&quot; style=&quot;background-color: lightblue;&quot;&gt;
+        &lt;p&gt;left&lt;/p&gt;
+    &lt;/div&gt;  
+    &lt;div class=&quot;centerWrap&quot;&gt;
+        &lt;div class=&quot;center&quot; style=&quot;background-color: pink;&quot;&gt;
+            &lt;p&gt;center&lt;/p&gt;
+            &lt;p&gt;center&lt;/p&gt;
+        &lt;/div&gt;         
+    &lt;/div&gt; 
+    &lt;div class=&quot;right&quot; style=&quot;background-color: lightgreen;&quot;&gt;
+        &lt;p&gt;right&lt;/p&gt;
+    &lt;/div&gt;        
+&lt;/div&gt;
+</code></pre>
+          <p>结果：
+            <img src="/2017/11/03/等高布局的五种方式/3.png" alt="这里是图片">
+          </p>
+          <p>方法四：真等高</p>
+          <p>//设置子元素的top:0;bottom:0
+            <br> body,p{margin: 0;}
+            <br> .parent{
+            <br> position: relative;
+            <br> height: 40px;
+            <br> }
+            <br> .left,.center,.right{
+            <br> position: absolute;
+            <br> top: 0;
+            <br> bottom: 0;
+            <br> }
+            <br> .left{
+            <br> left: 0;
+            <br> width: 100px;
+            <br> }
+            <br> .center{
+            <br> left: 120px;
+            <br> right: 120px;
+            <br> }
+            <br> .right{
+            <br> width: 100px;
+            <br> right: 0;
+            <br> }</p>
+          <p>方法五：flex</p>
+          <pre><code>&lt;!-- 　flex中的伸缩项目默认都拉伸为父元素的高度，也实现了等高效果 --&gt;
+body,p{margin: 0;}
+.parent{
+    display: flex;
+}
+.left,.center,.right{
+    flex: 1;
+}
+.center{
+    margin: 0 20px;
+}
+</code></pre>
         </div>
       </header>
       <footer class="post__foot u-cf">

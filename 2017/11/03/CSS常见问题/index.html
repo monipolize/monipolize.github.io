@@ -254,6 +254,26 @@
             <br>3、float布局
             <br>4、position布局
             <br>5、table布局</p>
+          <p>六、0.5边框问题</p>
+          <p>1、缩放
+            <br> .border {
+            <br> position: relative;
+            <br> }</p>
+          <pre><code>.border:after {
+    content: &quot; &quot;;
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    left: 0px;
+    top:0px;
+    height: 200%;
+    width: 200%;
+    transform-origin: 0 0;
+    border: 1px solid red;
+    transform: scale(.5);
+}
+</code></pre>
+          <p>2、图片</p>
         </div>
       </header>
       <footer class="post__foot u-cf">
