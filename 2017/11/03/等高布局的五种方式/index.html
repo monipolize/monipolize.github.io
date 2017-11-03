@@ -89,7 +89,8 @@
     &lt;/div&gt;
 &lt;/body&gt;
 </code></pre>
-          <p>结果：
+          <p>结果：</p>
+          <p>
             <img src="/2017/11/03/等高布局的五种方式/1.png" alt="这里是图片">
           </p>
           <p>方法二：伪等高</p>
@@ -136,7 +137,8 @@
     &lt;/div&gt;    
 &lt;/body&gt;
 </code></pre>
-          <p>结果：
+          <p>结果：</p>
+          <p>
             <img src="/2017/11/03/等高布局的五种方式/2.png" alt="这里是图片">
           </p>
           <p>方法三：真等高</p>
@@ -170,12 +172,15 @@
     &lt;/div&gt;        
 &lt;/div&gt;
 </code></pre>
-          <p>结果：
+          <p>结果：</p>
+          <p>
             <img src="/2017/11/03/等高布局的五种方式/3.png" alt="这里是图片">
           </p>
           <p>方法四：真等高</p>
           <p>//设置子元素的top:0;bottom:0
-            <br> body,p{margin: 0;}
+            <br> body,p{
+            <br> margin: 0;
+            <br> }
             <br> .parent{
             <br> position: relative;
             <br> height: 40px;
@@ -199,7 +204,9 @@
             <br> }</p>
           <p>方法五：flex</p>
           <pre><code>&lt;!-- 　flex中的伸缩项目默认都拉伸为父元素的高度，也实现了等高效果 --&gt;
-body,p{margin: 0;}
+body,p{
+    margin: 0;
+}
 .parent{
     display: flex;
 }
