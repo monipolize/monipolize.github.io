@@ -38,6 +38,64 @@
           <a href="/2017/11/02/JS2/">JS面试那些事 -- Part Two 基础篇</a>
         </h1>
         <div class="post__main echo">
+          <p>来来来 看过来。。。。继续挖坑。。。。</p>
+          <p>16、事件监听</p>
+          <p>直接上干货</p>
+          <p>
+
+            <body>
+              <br>
+              <div id="clickme">点我</div>
+              <br>
+              <div id="kk" onclick="handler()">注册时间</div>
+              <br>
+            </body>
+          </p>
+          <script type="text/javascript">
+            function handler() {
+              alert('aaaa')
+            }
+            window.onload = function() {
+              var btn = document.getElementById('clickme');
+              btn.addEventListener('click', function() {
+                alert("dddd")
+              }, false)
+              btn.addEventListener('click', function() {
+                alert("cccc")
+              }, false)
+              //错误写法，传入的function其实并不是同一个function
+              btn.removeEventListener('click', function() {
+                alert('nnnn')
+              })
+              //改写
+              function AAA() {
+                alert('lllll')
+              }
+              btn.addEventListener('click', AAA, false);
+              btn.removeEventListener('click', AAA, false)
+            }
+
+          </script>
+
+          <p>17、最常见的邮箱正则是什么？</p>
+          <p>function isAvailableEmail(sEmail) {
+            <br> var reg = /^(\w)+(.\w+)*@(\w)+((.\w+))+$/;
+            <br> return reg.test(sEmail);
+            <br>}</p>
+          <p>18、实现字符串驼峰</p>
+          <p>function cssStyle2DomStyle(sName) {
+            <br> return sName.replace(/(?!^)-(\w)(\w+)/g, function(a, b, c){
+            <br> return b.toUpperCase() + c.toLowerCase();
+            <br> }).replace(/^-/, ‘’);
+            <br>}</p>
+          <p>19、检查字符串重复数字</p>
+          <p>function containsRepeatingLetter(str) {
+            <br> return /([a-zA-Z])\1/.test(str);
+            <br> }</p>
+          <p>当然还有很多很多题目。。。BUT 有些是作为大前端必备的基础
+            <br>SO 本宝宝会单独列出专题
+            <br>FOR EXAMPLE 像是继承啦。。。一些基础算法啦。。对象啦等等一系列必备技能
+            <br>想看的宝宝 阔以去看看专题呦😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘</p>
         </div>
       </header>
       <footer class="post__foot u-cf">
@@ -46,10 +104,10 @@
             <a class="post__tag__link" href="/tags/ALL/">ALL</a>
           </li>
           <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/JS/">JS</a>
+            <a class="post__tag__link" href="/tags/前端面试题/">前端面试题</a>
           </li>
           <li class="post__tag__item">
-            <a class="post__tag__link" href="/tags/前端面试题/">前端面试题</a>
+            <a class="post__tag__link" href="/tags/JS/">JS</a>
           </li>
         </ul>
       </footer>

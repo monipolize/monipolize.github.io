@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Yan Ni">
+  <meta name="description" content="monopolize my hero">
+  <link rel="alternative" href="/atom.xml" title="In My World" type="application/atom+xml">
+  <link rel="icon" href="/favicon.png">
+  <title>CSS常见问题 - In My World</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
+  <!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]-->
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/fancybox/jquery.fancybox.min.js"></script>
+</head>
+
+<body style="opacity:0;">
+  <header class="head">
+    <h1 class="head-title u-fl">
+      <a href="/">In My World</a>
+    </h1>
+    <nav class="head-nav u-fr">
+      <ul class="head-nav__list">
+        <li class="head-nav__item">
+          <a class="head-nav__link" href="/tags/ALL">目录</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main class="main">
+    <article class="post">
+      <header class="post__head">
+        <time class="post__time" datetime="2017-11-03T03:12:35.000Z">November 3, 2017</time>
+        <h1 class="post__title">
+          <a href="/2017/11/03/CSS常见问题/">CSS常见问题</a>
+        </h1>
+        <div class="post__main echo">
+          <p>一、清除浮动的几种方式</p>
+          <p>1、额外标签法</p>
+          <p>&lt;!DOCTYPE html&gt;</p>
+          <html lang="en">
+          <br>
+
+          <head>
+            <br>
+            <meta charset="UTF-8">
+            <br>
+            <title></title>
+            <br>
+            <style>
+              <br>.outer {
+                <br>border: 1px solid black;
+                <br>width: 300px;
+                <br>
+              }
+
+              <br>.inner {
+                <br>width: 50px;
+                <br>height: 50px;
+                <br>background-color: #ff4400;
+                <br>margin-right: 20px;
+                <br>float: left;
+                <br>
+              }
+
+              <br>.footer {
+                <br>background-color: #005FC3;
+                <br>width: 200px;
+                <br>height: 100px;
+                <br>
+              }
+
+              <br>.clearfix {
+                <br>clear: both;
+                <br>
+              }
+
+              <br>
+
+            </style>
+            <br>
+          </head>
+          <br>
+
+          <body>
+            <br>
+            <div class="outer">
+              <br>
+              <div class="inner"></div>
+              <br>
+              <div class="inner"></div>
+              <br>
+              <div class="inner"></div>
+              <br>
+              <div class="clearfix"></div>
+              <br> </div>
+            <br>
+            <div class="footer"></div>
+            <br>
+          </body>
+          <br>
+
+          </html>
+          <br>2、使用:after 伪元素
+          <br>
+          <br>&lt;!DOCTYPE html&gt;
+          <br>
+          <html lang="en">
+          <br>
+
+          <head>
+            <br>
+            <meta charset="UTF-8">
+            <br>
+            <title></title>
+            <br>
+            <style>
+              <br>.outer {
+                <br>border: 1px solid black;
+                <br>width: 300px;
+                <br>
+              }
+
+              <br>.inner {
+                <br>width: 50px;
+                <br>height: 50px;
+                <br>background-color: #ff4400;
+                <br>margin-right: 20px;
+                <br>float: left;
+                <br>
+              }
+
+              <br>.footer {
+                <br>background-color: #005FC3;
+                <br>width: 200px;
+                <br>height: 100px;
+                <br>
+              }
+
+              <br>.clearfix:after {
+                /<em>最简方式</em>/<br>content: ‘’;
+                <br>display: block;
+                <br>clear: both;
+                <br>
+              }
+
+              <br>/<em>新浪使用方式<br>.clearfix:after {
+                <br>content: ‘’;
+                <br>display: block;
+                <br>clear: both;
+                <br>height: 0;
+                <br>visibility: hidden;
+                <br>
+              }
+
+              </em>/<br>.clearfix {
+                /<em>兼容 IE</em>/<br>zoom: 1;
+                <br>
+              }
+
+              <br>
+
+            </style>
+            <br>
+          </head>
+          <br>
+
+          <body>
+            <br>
+            <div class="outer clearfix">
+              <br>
+              <div class="inner"></div>
+              <br>
+              <div class="inner"></div>
+              <br>
+              <div class="inner"></div>
+              <br> </div>
+            <br>
+            <div class="footer"></div>
+            <br>
+          </body>
+          <br>
+
+          </html>
+
+          <p>3、给父元素定高</p>
+          <p>&lt;!DOCTYPE html&gt;</p>
+          <html lang="en">
+          <br>
+
+          <head>
+            <br>
+            <meta charset="UTF-8">
+            <br>
+            <title></title>
+            <br>
+            <style>
+              <br>.outer {
+                <br>border: 1px solid black;
+                <br>width: 300px;
+                <br>
+              }
+
+              <br>.inner {
+                <br>width: 50px;
+                <br>height: 50px;
+                <br>background-color: #ff4400;
+                <br>margin-right: 20px;
+                <br>float: left;
+                <br>
+              }
+
+              <br>.footer {
+                <br>background-color: #005FC3;
+                <br>width: 200px;
+                <br>height: 100px;
+                <br>
+              }
+
+              <br>.clearfix {
+                <br>clear: both;
+                <br>
+              }
+
+              <br>
+
+            </style>
+            <br>
+          </head>
+          <br>
+
+          <body>
+            <br>
+            <div class="outer">
+              <br>
+              <div class="inner"></div>
+              <br>
+              <div class="inner"></div>
+              <br>
+              <div class="inner"></div>
+              <br> </div>
+            <br>
+            <div class="footer"></div>
+            <br>
+          </body>
+          <br>
+
+          </html>
+
+          <p>4、利用overflow:hidden;属性</p>
+          <p>&lt;!DOCTYPE html&gt;</p>
+          <html lang="en">
+          <br>
+
+          <head>
+            <br>
+            <meta charset="UTF-8">
+            <br>
+            <title></title>
+            <br>
+            <style>
+              <br>.outer {
+                <br>border: 1px solid black;
+                <br>width: 300px;
+                <br>overflow: hidden;
+                <br>zoom: 1;
+                /<em>兼容 IE</em>/<br>
+              }
+
+              <br>.inner {
+                <br>width: 50px;
+                <br>height: 50px;
+                <br>background-color: #ff4400;
+                <br>margin-right: 20px;
+                <br>float: left;
+                <br>
+              }
+
+              <br>.footer {
+                <br>background-color: #005FC3;
+                <br>width: 200px;
+                <br>height: 100px;
+                <br>
+              }
+
+              <br>
+
+            </style>
+            <br>
+          </head>
+          <br>
+
+          <body>
+            <br>
+            <div class="outer">
+              <br>
+              <div class="inner"></div>
+              <br>
+              <div class="inner"></div>
+              <br>
+              <div class="inner"></div>
+              <br> </div>
+            <br>
+            <div class="footer"></div>
+            <br>
+          </body>
+          <br>
+
+          </html>
+
+          <p>5、父元素浮动</p>
+          <p>6、父元素处于绝对定位</p>
+          <p>&lt;!DOCTYPE html&gt;</p>
+          <html lang="en">
+          <br>
+
+          <head>
+            <br>
+            <meta charset="UTF-8">
+            <br>
+            <title></title>
+            <br>
+            <style>
+              <br>.outer {
+                <br>border: 1px solid black;
+                <br>width: 300px;
+                <br>position: absolute;
+                <br>
+              }
+
+              <br>.inner {
+                <br>width: 50px;
+                <br>height: 50px;
+                <br>background-color: #ff4400;
+                <br>margin-right: 20px;
+                <br>float: left;
+                <br>
+              }
+
+              <br>.footer {
+                <br>background-color: #005FC3;
+                <br>width: 200px;
+                <br>height: 100px;
+                <br>
+              }
+
+              <br>
+
+            </style>
+            <br>
+          </head>
+          <br>
+
+          <body>
+            <br>
+            <div class="outer">
+              <br>
+              <div class="inner"></div>
+              <br>
+              <div class="inner"></div>
+              <br>
+              <div class="inner"></div>
+              <br> </div>
+            <br>
+            <div class="clearfix"></div>
+            <br>
+            <div class="footer"></div>
+            <br>
+          </body>
+          <br>
+
+          </html>
+
+          <p>二、小箭头问题</p>
+          <div id="demo12"></div>
+          <br>
+          <style>
+            <br>#demo12 {
+              <br>border: 10px solid #000;
+              <br>border-left-color: #f00;
+              <br>width: 0;
+              <br>height: 0;
+              <br>
+            }
+
+            <br>
+
+          </style>
+          <br>
+          <br>即通过调整“边框”厚度可以配置出任意角度
+          <br>
+          <div id="demo14"></div>
+
+          <style>
+            #demo14 {
+              border: 10px solid transparent;
+              border-left: 20px solid #f00;
+              width: 0;
+              height: 0px;
+            }
+
+          </style>
+
+          <p>三、rem和em的区别</p>
+          <p>em是相对于父元素的属性而计算的
+            <br>Rem是相对于根元素
+            <html>
+
+            </html>
+          </p>
+          <p>四、viewport都有什么</p>
+          <p>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+            <br>让当前viewport的宽度等于设备的宽度，同时不允许用户手动缩放。也许允不允许用户缩放不同的网站有不同的要求</p>
+        </div>
+      </header>
+      <footer class="post__foot u-cf">
+        <ul class="post__tag u-fl">
+          <li class="post__tag__item">
+            <a class="post__tag__link" href="/tags/ALL/">ALL</a>
+          </li>
+          <li class="post__tag__item">
+            <a class="post__tag__link" href="/tags/CSS/">CSS</a>
+          </li>
+          <li class="post__tag__item">
+            <a class="post__tag__link" href="/tags/前端面试题/">前端面试题</a>
+          </li>
+        </ul>
+      </footer>
+    </article>
+    <section class="reward">
+      <a class="btn-reward" href="#">打赏</a>
+      <div class="reward-wrapper clearfix">
+        <img src="/img/wei.jpg" title="微信">
+        <img src="/img/zhi.jpg" title="支付宝">
+      </div>
+    </section>
+  </main>
+  <footer class="foot">
+    <div class="foot-copy">&copy; 2016-2017 Yan Ni</div>
+  </footer>
+  <script src="/js/scroller.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+
+</html>
