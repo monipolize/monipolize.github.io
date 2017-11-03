@@ -58,10 +58,68 @@
 &lt;/body&gt;
 </code></pre>
           <p>这样 原本看上去 很美好😊😊😊😊😊😊😊😊</p>
-          <p>but 当你将屏幕横向拉伸的时候 苦逼的事情就粗线了 😨 看这里 👇 </p>
+          <p>but 当你将屏幕横向拉伸的时候 苦逼的事情就粗线了 😨 看这里 👇👇👇👇</p>
           <p>
             <img src="/2017/11/03/文字分割线问题/1.png" alt="这里是图片">
           </p>
+          <p>AND 看这里 👇👇👇👇👇</p>
+          <p>
+            <img src="/2017/11/03/文字分割线问题/2.png" alt="这里是图片">
+          </p>
+          <p>真是要疯掉了，人家想要的是无论什么情况下，都是介个样子滴 👇👇👇👇👇</p>
+          <p>
+            <img src="/2017/11/03/文字分割线问题/2.png" alt="这里是图片">
+          </p>
+          <p>蓝瘦香菇😭 So 基于上线的小仙女 想了一个办法，总算可以解决这个问题，but 不一定是最好的，但是可以参考一下啦！！！！</p>
+          <p>🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉</p>
+          <pre><code>&lt;style&gt; 
+    .flex{
+        list-style:none;
+        display:-webkit-flex;
+        padding:0;
+        margin:0;
+        color:#fff;
+    }
+    .red{
+        background-color: red;
+        flex:2;
+    }
+    .blue{
+        background-color:green;
+        flex:3;
+        text-align: center;
+    }
+    .green{
+        background-color:red;
+        flex:2;
+    }
+
+    .three-column {
+        width: 100%;
+        height: 500px;
+        display: box;
+        display: -webkit-box;
+        display: flex;
+    }
+
+    .two {
+        -webkit-box-flex: 1;
+        flex: 1
+    }
+
+    .one, .three {
+        width: 200px;
+    }
+&lt;/style&gt;
+
+&lt;body&gt;
+    &lt;ul class=&quot;flex&quot;&gt;
+        &lt;li class=&quot;red&quot;&gt;11&lt;/li&gt;
+         &lt;li class=&quot;blue&quot;&gt;jjjjj&lt;/li&gt;
+         &lt;li class=&quot;green&quot;&gt;33&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/body&gt;
+</code></pre>
         </div>
       </header>
       <footer class="post__foot u-cf">
