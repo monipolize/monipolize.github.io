@@ -112,10 +112,11 @@
     <content type="text"><![CDATA[忘了是什么时间，忘了在什么地点，只记得有人写过这样的话。。。 我走过山的时候，山不说话 我路过海的时候，海不说话 我坐着的毛驴一步一步滴滴答答 我带着的倚天喑哑 大家说我因为爱着杨过大侠 找不到 所以在峨眉安家 其实我只是喜欢峨眉的雾 像十六岁那年绽放的烟花 我路过海的时候，海不说话 我走过山的时候也听不到回答 我骑的毛驴 步步滴滴答答 悠悠飘向远处可从不想要回家 正当喜乐无忧年 韶华如花 远游风尘之色却不似十九风华 –程灵素]]></content>
       <tags>
         <tag>ALL</tag>
+        <tag>ES6</tag>
         <tag>CSS</tag>
         <tag>前端面试题</tag>
-        <tag>ES6</tag>
         <tag>HTML</tag>
+        <tag>JS</tag>
         <tag>WEBPACK</tag>
         <tag>WEBFRAME</tag>
         <tag>NODEJS</tag>
@@ -123,7 +124,6 @@
         <tag>ARTICAL</tag>
         <tag>LIFT</tag>
         <tag>SENTIMENTS</tag>
-        <tag>JS</tag>
         <tag>JQ</tag>
         <tag>H5</tag>
       </tags>
@@ -131,6 +131,11 @@
   <entry>
     <title></title>
     <url>%2F404.html</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Photoes]]></title>
+    <url>%2Fphotoes%2Findex.html</url>
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
