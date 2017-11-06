@@ -2119,7 +2119,7 @@ pre .keyword, pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c3d4a1;
+  background: #d5ffff;
 }
 
 .links-of-blogroll {
@@ -3503,5 +3503,15 @@ pre .keyword, pre .javascript .function {
 @media (max-width: 767px) {
   .post-body {
     text-align: justify;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  body {
+    background-image: url("/images/back.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+    background-size: cover;
   }
 }

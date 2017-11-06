@@ -40,7 +40,7 @@
   <meta property="og:url" content="http://icey-monopolize.com/tags/ALL/2017/11/02/ES6第二弹/index.html">
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="吼吼，来吧，小宝贝，废话不多说，咱们书接上回。。。。 十一、Prosmises 异步编程   所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件   从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。 Promise对象有以下两个特点:   （1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfill">
-  <meta property="og:updated_time" content="2017-11-02T09:39:51.000Z">
+  <meta property="og:updated_time" content="2017-11-06T06:24:54.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ES6所有特点应用 -- 第二弹">
   <meta name="twitter:description" content="吼吼，来吧，小宝贝，废话不多说，咱们书接上回。。。。 十一、Prosmises 异步编程   所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件   从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。 Promise对象有以下两个特点:   （1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfill">
@@ -143,7 +143,7 @@
               <a href="/" rel="section">
 
                 <i class="menu-item-icon fa fa-fw fa-question-circle"></i>
-                <br /> Home
+                <br /> Startseite
               </a>
             </li>
 
@@ -168,7 +168,7 @@
               <a href="javascript:;" class="popup-trigger">
 
                 <i class="menu-item-icon fa fa-search fa-fw"></i>
-                <br /> Search
+                <br /> Suche
               </a>
             </li>
 
@@ -232,7 +232,7 @@
                           <i class="fa fa-calendar-o"></i>
                         </span>
 
-                        <span class="post-meta-item-text">Posted on</span>
+                        <span class="post-meta-item-text">Veröffentlicht am</span>
 
                         <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-02T16:35:00+08:00">
                           2017-11-02
@@ -327,7 +327,7 @@
                       <br>“error “ + res -&gt; error 2</p>
                     <p>Promise也有一些缺点。首先，无法取消Promise，
                       <br>Promise 新建后就会立即执行</p>
-                    <p>############################################################################################</p>
+                    <p>######################################################</p>
                     <p>十二、Symbol</p>
                     <p>话不多说，直接上干货</p>
                     <p>var typeSymbol = Symbol(“type”);
@@ -347,13 +347,13 @@
                     <p>a.getType() -&gt; dog
                       <br>Object.getOwnPropertyNames(a) -&gt; []
                       <br>Symbol(“a”) === Symbol(“a”) -&gt; false</p>
-                    <p>############################################################################################</p>
+                    <p>######################################################</p>
                     <p>十三、Unicode</p>
                     <p>var regex = new RegExp(‘\u{61}’,’u’)</p>
                     <p>console.log(regex.unicode)
                       <br>console.log(“\uD842\uDFD7”)
                       <br>console.log(“\uD842\uDFD7”.codePointAt())</p>
-                    <p>############################################################################################</p>
+                    <p>######################################################</p>
                     <p>十四、箭头函数</p>
                     <p>var evens = [2, 4, 6, 8, 10, 12, 14];
                       <br>var odds = evens.map(v =&gt; v + 1)
@@ -384,7 +384,7 @@
                       <br>const p2 = a =&gt;a*2
                       <br>const add = pip(p1,p2)
                       <br>add(5);</p>
-                    <p>############################################################################################</p>
+                    <p>######################################################</p>
                     <p>十五、解构</p>
                     <p>var [a,,b] = [1,2,3];
                       <br>console.log(a);
@@ -421,7 +421,7 @@
                       <br>console.log(m({name:5}))</p>
                     <p>g({name: 5}) -&gt; 5
                       <br>m({name: 5}) -&gt; 5</p>
-                    <p>############################################################################################</p>
+                    <p>######################################################</p>
                     <p>十六、模块和模块加载器</p>
                     <p>ES6 模块不是对象，而是通过export命令显式指定输出的代码，再通过import命令输入。
                       <br>eg: import { stat, exists, readFile } from ‘fs’;
@@ -500,7 +500,7 @@
                     <p>export * from …;
                       <br>export { name1, name2, …, nameN } from …;
                       <br>export { import1 as name1, import2 as name}</p>
-                    <p>############################################################################################</p>
+                    <p>######################################################</p>
                     <p>十七、生成器</p>
                     <p>生成器创建迭代器，并且比迭代器更具动态性</p>
                     <p>先来一堆代码
@@ -607,7 +607,7 @@
                     <p>yield 表达式
                       <br>由于 Generator 函数返回的遍历器对象，只有调用next方法才会遍历下一个内部状态，
                       <br>所以其实提供了一种可以暂停执行的函数。yield表达式就是暂停标志。</p>
-                    <p>############################################################################################</p>
+                    <p>######################################################</p>
                     <p>十八、迭代器</p>
                     <p>迭代器是一个比数组更动态的类型
                       <br>允许我们在语言层面上定义一个（有限或无限的）序列。
@@ -719,7 +719,7 @@
                       <br> break;
                       <br> }
                       <br>}</p>
-                    <p>############################################################################################</p>
+                    <p>######################################################</p>
                     <p>十九、增强对象字面量</p>
                     <p>var theProtoObj = {
                       <br> toString:function(){
@@ -741,7 +741,7 @@
                       <br>console.log(obj.handler())
                       <br>console.log(obj.toString())
                       <br>console.log(obj.prop_42)</p>
-                    <p>############################################################################################</p>
+                    <p>######################################################</p>
                     <p>二十、字符串插值</p>
                     <p>var name = “Bob”,time = “today”;
                       <br>var multiLine = `This</p>
@@ -894,14 +894,14 @@
                     <a href="/artical">
 
                       <span class="site-state-item-count">12</span>
-                      <span class="site-state-item-name">posts</span>
+                      <span class="site-state-item-name">Artikel</span>
                     </a>
                   </div>
 
                   <div class="site-state-item site-state-tags">
 
                     <span class="site-state-item-count">15</span>
-                    <span class="site-state-item-name">tags</span>
+                    <span class="site-state-item-name">Tags</span>
 
                   </div>
 
