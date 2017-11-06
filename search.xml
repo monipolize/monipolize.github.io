@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[原型链的理解]]></title>
+    <url>%2F2017%2F11%2F06%2F%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%9A%84%E7%90%86%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[原型链 其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。 每个构造函数都有一个原型对象,每个原型对象都包含一个指向构造函数的指针,而实例则包含一个指向原型对象的指针。 假如让A原型对象等于B构造函数的实例，那么A原型对象就会有一个[[Prototype]]指针指向B原型对象， 同时B原型对象的constructor属性又指向了B构造函数； 假如让B原型对象等于C构造函数的实例，上述关系依然成立； 如此层层递进，从而实现了实例与原型之间的链接；这就是原型链的基本概念。 下面是我画的一张图，方便理解吧 👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇 既然如此，Object构造函数是最顶层的构造函数，所有函数的默认原型都是Object的实例， 因此默认原型都会包含一个[[Prototype]]指针，指向Object.prototype； 这也是所有自定义类型都会继承Object类型所拥有的实例和方法的根本原因。 确认原型和实例之间的关系 instanceof操作符；只要是原型链上出现过的构造函数，都会返回true。instanceof操作符的本质在于：左边的操作数的原型链上是否有右边的操作数的prototype属性。 isPrototypeOf()方法，只要是原型链上出现过的原型，都会返回true function A(name){ this.name = name; }; A.prototype.sayName = function(){ alert(this.name); }; function B(age){ this.age = age; }; B.prototype = new A(); B.prototype.sayAge = function(){ alert(this.age); }; var x = new B(); x.name = “CC”; console.log(x.sayName()); //“CC” console.log(x instanceof B); //true console.log(x instanceof A); //true console.log(x instanceof Object); //true console.log(Object.prototype.isPrototypeOf(x)); //true console.log(A.prototype.isPrototypeOf(x)); //true console.log(B.prototype.isPrototypeOf(x)); //true]]></content>
+      <tags>
+        <tag>ALL</tag>
+        <tag>前端面试题</tag>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[对象问题]]></title>
     <url>%2F2017%2F11%2F03%2F%E5%AF%B9%E8%B1%A1%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[对象，一直是让小仙女头疼的问题。。。]]></content>
+    <content type="text"><![CDATA[对象，一直是让小仙女头疼的问题。。。 先说说最基础的属性吧，什么是对象的属性? //数据属性与访问器属性 //数据属性即有值的属性,访问器属性是用来设置getter和setter的,//在属性名前加上”_”（下划线）表示该属性只能通过访问器访问（私有属性) 数据属性具有4个描述其行为的特性： 1、Configurable：能否通过delete删除属性从而重新定义属性，能否修改属性的特性，能否把属性修改为访问器属性。 默认为true。 2、Enumerable：表示能否通过for-in循环返回属性。默认为true 除了for-in循环之外，ECMAScript5定义了两个用以枚举属性名称的函数 Object.keys()：返回一个数组，这个数组由对象中可枚举的自有属性的名称组成。 Object.getOwnPropertyNames()：返回对象的所有自有属性的名称，而不仅限于可枚举的属性 3、Writable：能否修改属性的值。默认为true。 4、Value： 包含这个属性的数据值；读取属性值的时候，从这个位置读取；写入属性值的时候，把值保存在这里。 特性默认为undefined。 访问器属性 包含一对getter和setter方法。访问器属性有如下4个特性： 1、Configurable 2、Enumerable 3、Get：在读取属性时调用的函数；默认值为undefined。在读取访问器属性时，会调用gette方法，这个函数负责返回有效的值。 4、Set：在写入属性时调用的函数；默认值为undefined。在写入访问器属性时，会调用setter方法并传入新值，这个函数负责决定如何处理数据。 访问器属性不能直接定义，必须使用Object.defineProperties()方法来定义。 属性的特性规则 1、如果对象是不可扩展的，则可以编辑已有的自有属性，但不能添加新属性； 2、如果属性是不可配置的，则不能修改它的可配置性和可枚举性 3、如果访问器属性是不可配置的，则不能修改其getter和setter方法 🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚🔚 通过描述符一次性定义多个属性； 接收两个对象参数：第一个对象是要添加或修改其属性的对象；第二个对象的属性与第一个对象中要添加或修改的属性一一对应。 var person = {} Object.defineProperties(person,{ name:{ value:”cc” }, age:{ value:23, writable:false } }) //要修改数据属性默认的特性，必须使用ECMAScript5中的Object.defineProperty()方法 //三个参数：属性所在的对象、属性的名字、描述符对象 //数据属性描述符对象的属性必须是：configurable、enumerable、writable、value //访问器属性的描述符对象的属性有configurable、enumerable、get、set。 //设置其中的一个或多个值，可以修改对应的特性值。 var person = {}; Object.defineProperty(person,”name”,{ witable:false, value:”CC” //如果不指定，configurable、enumerable、writable特性的值都是false。 }) console.log(person.name);//CC person.name = “VV”; console.log(person.name)//CC //注意：使用Object.defineProperty()方法，要么修改已有属性，要么新建自有属性，不能修改继承属性。 可以取得给定属性的描述符 接收两个参数：属性所在的对象，要读取其描述符的属性名称。 返回值是一个对象 //Object.getOwnPropertyDescriptor()方法，只能用于实例属性 var person = {}; Object.defineProperties(person, { name: { value: “CC”, writable: true }, age: { value: 23, writable: false } }); var descriptor = Object.getOwnPropertyDescriptor(person, “name”); alert(descriptor.value); //“CC” alert(descriptor.writable); //true 使用arguments function useArguments() { var result = Array.prototype.reduce.call(arguments,function(a,b){return a+b;}); return result; } 遍历对象 function iterate(obj) { return Object.getOwnPropertyNames(obj).map(function(key){ return key+”: “+obj[key]; }); }]]></content>
       <tags>
         <tag>ALL</tag>
         <tag>前端面试题</tag>
@@ -112,9 +122,9 @@
     <content type="text"><![CDATA[忘了是什么时间，忘了在什么地点，只记得有人写过这样的话。。。 我走过山的时候，山不说话 我路过海的时候，海不说话 我坐着的毛驴一步一步滴滴答答 我带着的倚天喑哑 大家说我因为爱着杨过大侠 找不到 所以在峨眉安家 其实我只是喜欢峨眉的雾 像十六岁那年绽放的烟花 我路过海的时候，海不说话 我走过山的时候也听不到回答 我骑的毛驴 步步滴滴答答 悠悠飘向远处可从不想要回家 正当喜乐无忧年 韶华如花 远游风尘之色却不似十九风华 –程灵素]]></content>
       <tags>
         <tag>ALL</tag>
-        <tag>ES6</tag>
         <tag>CSS</tag>
         <tag>前端面试题</tag>
+        <tag>ES6</tag>
         <tag>HTML</tag>
         <tag>JS</tag>
         <tag>WEBPACK</tag>
