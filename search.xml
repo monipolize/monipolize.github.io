@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[创建对象的几种方式]]></title>
+    <url>%2F2017%2F11%2F06%2F%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[没有对象的 看过来 看过来 1、工厂模式 function createPerson(name,age,job){ var obj = new Object(); obj.name = name; obj.age = age; obj.job = job; obj.sayHello = function(){ alert(‘hello!’) } return obj } var p1 = createPerson(‘nini’,29,’worker’); var p2 = createPerson(‘cc’,33,’doctor’) 2、构造函数方式 function Person(name,age){ this.name = name; this.age = age; this.say = function(){ alert(‘hello’) } } var p1 = new Person(…); var p2 = new Person(…); 3、原型模式 function Person(){} Person.prototype.name = “nini”; Person.prototype.age = 12; Person.prototype.say = function(){} var p1 = new Person(); p1.say(); p1.name; function Person(){ } Person.prototype={ name:”…”, age:29, job:”…”, sayName:function(){ … } }; Object.defineProperty(Person.prototype,”constructor”,{ enumerable:false, value:Person, }); 4、混合模式 function Person(name,age,job){ this.name = name; this.age = age; this.job = job; } Person.prototype = { constructor:Person, say:function(){ alert(this.name) } } var p1 = new Person(…) 5、动态原型 function Person(name,age,job){ this.name = name; this.age = age; this.job = job if(typeof this.sayName != “function”){ Person.prototype.say = function(){ alert(this.name) } } } 6、对象字面量 var person = { name:’aa’, age:19, say:function(){ } } person.say(); //对象字面量是一个表达式，这个表达式的每次运算都将创建并初始化一个新的对象 //每次计算对象字面量的时候，也都会计算它每个属性的值。 //也就是说，如果在一个重复调用的函数中的循环体内使用了对象字面量， //它将创建很多新对象，并且每次创建的新对象的属性值也有可能不同。 7、object实例 var person = new Object(); person.name = “aa”; person.age = 19; person.say = function(){ } person.name() 8、Object.create（）]]></content>
+      <tags>
+        <tag>ALL</tag>
+        <tag>前端面试题</tag>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[原型链的理解]]></title>
     <url>%2F2017%2F11%2F06%2F%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%9A%84%E7%90%86%E8%A7%A3%2F</url>
     <content type="text"><![CDATA[原型链 其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。 每个构造函数都有一个原型对象,每个原型对象都包含一个指向构造函数的指针,而实例则包含一个指向原型对象的指针。 假如让A原型对象等于B构造函数的实例，那么A原型对象就会有一个[[Prototype]]指针指向B原型对象， 同时B原型对象的constructor属性又指向了B构造函数； 假如让B原型对象等于C构造函数的实例，上述关系依然成立； 如此层层递进，从而实现了实例与原型之间的链接；这就是原型链的基本概念。 下面是我画的一张图，方便理解吧 👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇👇 既然如此，Object构造函数是最顶层的构造函数，所有函数的默认原型都是Object的实例， 因此默认原型都会包含一个[[Prototype]]指针，指向Object.prototype； 这也是所有自定义类型都会继承Object类型所拥有的实例和方法的根本原因。 确认原型和实例之间的关系 instanceof操作符；只要是原型链上出现过的构造函数，都会返回true。instanceof操作符的本质在于：左边的操作数的原型链上是否有右边的操作数的prototype属性。 isPrototypeOf()方法，只要是原型链上出现过的原型，都会返回true function A(name){ this.name = name; }; A.prototype.sayName = function(){ alert(this.name); }; function B(age){ this.age = age; }; B.prototype = new A(); B.prototype.sayAge = function(){ alert(this.age); }; var x = new B(); x.name = “CC”; console.log(x.sayName()); //“CC” console.log(x instanceof B); //true console.log(x instanceof A); //true console.log(x instanceof Object); //true console.log(Object.prototype.isPrototypeOf(x)); //true console.log(A.prototype.isPrototypeOf(x)); //true console.log(B.prototype.isPrototypeOf(x)); //true]]></content>
@@ -125,8 +135,6 @@
         <tag>CSS</tag>
         <tag>前端面试题</tag>
         <tag>ES6</tag>
-        <tag>HTML</tag>
-        <tag>JS</tag>
         <tag>WEBPACK</tag>
         <tag>WEBFRAME</tag>
         <tag>NODEJS</tag>
@@ -134,8 +142,10 @@
         <tag>ARTICAL</tag>
         <tag>LIFT</tag>
         <tag>SENTIMENTS</tag>
+        <tag>JS</tag>
         <tag>JQ</tag>
         <tag>H5</tag>
+        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
@@ -144,13 +154,13 @@
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
-    <title><![CDATA[Photoes]]></title>
-    <url>%2Fphotoes%2Findex.html</url>
+    <title><![CDATA[Tags]]></title>
+    <url>%2Ftags%2Findex.html</url>
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
-    <title><![CDATA[Tags]]></title>
-    <url>%2Ftags%2Findex.html</url>
+    <title><![CDATA[Photoes]]></title>
+    <url>%2Fphotoes%2Findex.html</url>
     <content type="text"><![CDATA[]]></content>
   </entry>
 </search>
