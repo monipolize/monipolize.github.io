@@ -45,7 +45,7 @@
   <meta property="og:description" content="仔细想想 用了那么多年JQ却从来没仔细研究过他的源码😨😨😨😨😨😨😨   知道前两天被小伙伴质疑，突然觉得 真心应该花点时间仔细研究一下!要不都对不起这么多年写过的BUG。。。。 BUT 每次一看源码总是头大。。。。。。   所以 浏览了一些大神的博客 从中找了一些经典的整理总结一下 嘿嘿 So如有雷同 嫑介意哈 🙂  JQ整体架构 -&amp;gt; {    1、变量，常规正则初始化">
   <meta property="og:locale" content="zh-Hans">
   <meta property="og:image" content="http://icey-monopolize.com/MyImages/jq.jpeg">
-  <meta property="og:updated_time" content="2017-11-07T08:57:11.000Z">
+  <meta property="og:updated_time" content="2017-11-07T08:58:17.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JQ源码解析--从放弃到入门">
   <meta name="twitter:description" content="仔细想想 用了那么多年JQ却从来没仔细研究过他的源码😨😨😨😨😨😨😨   知道前两天被小伙伴质疑，突然觉得 真心应该花点时间仔细研究一下!要不都对不起这么多年写过的BUG。。。。 BUT 每次一看源码总是头大。。。。。。   所以 浏览了一些大神的博客 从中找了一些经典的整理总结一下 嘿嘿 So如有雷同 嫑介意哈 🙂  JQ整体架构 -&amp;gt; {    1、变量，常规正则初始化">
@@ -401,20 +401,21 @@ jQuery(callback)
                     <p>※jQuery.fn.extend(object) 给 jQuery 对象添加实例方法，也就是通过这个 extend 添加的新方法，实例化的
                       jQuery 对象都能使用，因为它是挂载在 jQuery.fn 上的方法（上文有提到，jQuery.fn = jQuery.prototype
                       ）。 </p>
-                    <p>来看一下源码吧 👇 （比较长）
-                      <br>// 扩展合并函数
-                      <br>// 合并两个或更多对象的属性到第一个对象中，jQuery 后续的大部分功能都通过该函数扩展
-                      <br>// 虽然实现方式一样，但是要注意区分用法的不一样，那么为什么两个方法指向同一个函数实现，但是却实现不同的功能呢,
-                      <br>// 阅读源码就能发现这归功于 this 的强大力量
-                      <br>// 如果传入两个或多个对象，所有对象的属性会被添加到第一个对象 target
-                      <br>// 如果只传入一个对象，则将对象的属性添加到 jQuery 对象中，也就是添加静态方法
-                      <br>// 用这种方式，我们可以为 jQuery 命名空间增加新的方法，可以用于编写 jQuery 插件
-                      <br>// 如果不想改变传入的对象，可以传入一个空对象：$.extend({}, object1, object2);
-                      <br>// 默认合并操作是不迭代的，即便 target 的某个属性是对象或属性，也会被完全覆盖而不是合并
-                      <br>// 如果第一个参数是 true，则是深拷贝
-                      <br>// 从 object 原型继承的属性会被拷贝，值为 undefined 的属性不会被拷贝
-                      <br>// 因为性能原因，JavaScript </p>
-                    <pre><code>jQuery.extend = jQuery.fn.extend = function() {
+                    <p>来看一下源码吧 👇 （比较长）</p>
+                    <pre><code>// 扩展合并函数
+// 合并两个或更多对象的属性到第一个对象中，jQuery 后续的大部分功能都通过该函数扩展
+// 虽然实现方式一样，但是要注意区分用法的不一样，那么为什么两个方法指向同一个函数实现，但是却实现不同的功能呢,
+// 阅读源码就能发现这归功于 this 的强大力量
+// 如果传入两个或多个对象，所有对象的属性会被添加到第一个对象 target
+// 如果只传入一个对象，则将对象的属性添加到 jQuery 对象中，也就是添加静态方法
+// 用这种方式，我们可以为 jQuery 命名空间增加新的方法，可以用于编写 jQuery 插件
+// 如果不想改变传入的对象，可以传入一个空对象：$.extend({}, object1, object2);
+// 默认合并操作是不迭代的，即便 target 的某个属性是对象或属性，也会被完全覆盖而不是合并
+// 如果第一个参数是 true，则是深拷贝
+// 从 object 原型继承的属性会被拷贝，值为 undefined 的属性不会被拷贝
+// 因为性能原因，JavaScript 
+
+jQuery.extend = jQuery.fn.extend = function() {
     var src, copyIsArray, copy, name, options, clone,
         target = arguments[0] || {},
         i = 1,
