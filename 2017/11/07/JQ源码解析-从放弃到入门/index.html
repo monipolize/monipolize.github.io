@@ -45,7 +45,8 @@
   <meta property="og:description" content="仔细想想 用了那么多年JQ却从来没仔细研究过他的源码😨😨😨😨😨😨😨   知道前两天被小伙伴质疑，突然觉得 真心应该花点时间仔细研究一下!要不都对不起这么多年写过的BUG。。。。 BUT 每次一看源码总是头大。。。。。。   所以 浏览了一些大神的博客 从中找了一些经典的整理总结一下 嘿嘿 So如有雷同 嫑介意哈 🙂  JQ整体架构 -&amp;gt; {    1、变量，常规正则初始化">
   <meta property="og:locale" content="zh-Hans">
   <meta property="og:image" content="http://icey-monopolize.com/MyImages/jq.jpeg">
-  <meta property="og:updated_time" content="2017-11-07T09:20:35.000Z">
+  <meta property="og:image" content="http://icey-monopolize.com/MyImages/13.png">
+  <meta property="og:updated_time" content="2017-11-07T09:23:22.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JQ源码解析--从放弃到入门">
   <meta name="twitter:description" content="仔细想想 用了那么多年JQ却从来没仔细研究过他的源码😨😨😨😨😨😨😨   知道前两天被小伙伴质疑，突然觉得 真心应该花点时间仔细研究一下!要不都对不起这么多年写过的BUG。。。。 BUT 每次一看源码总是头大。。。。。。   所以 浏览了一些大神的博客 从中找了一些经典的整理总结一下 嘿嘿 So如有雷同 嫑介意哈 🙂  JQ整体架构 -&amp;gt; {    1、变量，常规正则初始化">
@@ -560,22 +561,9 @@ $(&apos;div&apos;).eq(0).show().end().eq(1).hide();
                     <p>7、变量冲突处理</p>
                     <p>通过一开始保存全局变量的 window.jQuery 以及 windw.$</p>
                     <p>过程大概是这样的：</p>
-                    <p> JQ开始加载 -&gt; 存储全局变量（
-                      <em>jQuery = window.jQuery</em>$ = window.$)
-                      <br> ↓
-                      <br> ↓
-                      <br> ↓ 需要处理冲突
-                      <br> ↓
-                      <br> ↓ No
-                      <br> 调用静态方法noCturnal(),判断$和Jq →→→→→→→→→→→→→→→→ 返回JQ库内部的变量（构造函数）
-                      <br> 是否被JQ库修改 ↑
-                      <br> ↓ ↑
-                      <br> ↓ ↑
-                      <br> ↓ ↑
-                      <br> ↓ ↑
-                      <br> ↓ ↑
-                      <br> 还原全局变量$，变为JQ库加载之前的状态。如果 →→→→→→→→→→→→→→→→→→→→→→→
-                      <br> deep为真，在还原jq，变为JQ库加载之前的状态。 Yes</p>
+                    <p>
+                      <img src="/MyImages/13.png" alt="这里是图片">
+                    </p>
                     <p>当需要处理冲突的时候，调用静态方法 noConflict()，让出变量的控制权，源码如下：👇</p>
                     <pre><code>(function(window, undefined) {
     var
