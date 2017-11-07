@@ -50,22 +50,26 @@
   <br>// 在这里边 var 定义的变量，属于这个函数域内的局部变量，避免污染全局
   <br>// 把当前沙箱需要的外部变量通过函数参数引入进来
   <br>// 只要保证参数对内提供的接口的一致性，你还可以随意替换传进来的这个参数</p>
-<p>(function(window, undefined) {
-  <br> // jQuery 代码
-  <br>})(window);</p>
+<pre><code>(function(window, undefined) {
+   // jQuery 代码
+})(window);
+</code></pre>
 <p>将代码包裹在一个闭包中，既不会污染全局，又方便好用，真是机智啊。。。。在最后暴露出$和JQuery这两个变量出来，
   <br>大大降低了冲突的可能性。</p>
-<p>// 压缩策略
-  <br>// w -&gt; windwow , u -&gt; undefined
-  <br>(function(w, u) {</p>
-<p>})(window);</p>
+<pre><code>// 压缩策略
+// w -&gt; windwow , u -&gt; undefined
+(function(w, u) {
+
+})(window);
+</code></pre>
 <p>2、拒绝new</p>
 <p>使用JQ的时候我们一般都会使用无new构造
-  <br>// 无 new 构造
-  <br>$(‘#test’).text(‘Test’);</p>
-<p>// 当然也可以使用 new
-  <br>var test = new $(‘#test’);
-  <br>test.text(‘Test’);</p>
+  <br> // 无 new 构造
+  <br> $(‘#test’).text(‘Test’);</p>
+<pre><code>// 当然也可以使用 new
+var test = new $(&apos;#test&apos;);
+test.text(&apos;Test&apos;);
+</code></pre>
 <p>其实无NEW构造就相当于new jQuery()，看一下源码是怎么定义的</p>
 <pre><code>(function(window, undefined) {
     var
@@ -134,6 +138,121 @@ jQuery()
 // 绑定一个在 DOM 文档载入完成后执行的函数
 jQuery(callback)
 </code></pre>
+<p>大家可以一边看那API一边区分各种场景</p>
+<p>4、 jQuery.fn.extend 与 jQuery.extend</p>
+<p>extend()是jq用来扩展静态方法和实例方法的，and一些开发过jq插件的小伙伴肯定对这个方法一点也不陌生
+  <br>开发插件的时候也会用到它。但是在JQ中实际是有两个extend()的。那我们怎么区分那？
+  <br>① jQuery.extend(): 把两个或者更多的对象合并到第一个当中
+  <br>② jQuery.fn.extend()：把对象挂载到 jQuery 的 prototype 属性，来扩展一个新的 jQuery 实例方法。
+  <br>这是比较官方的解释
+  <br>结论：也就是说，使用 jQuery.extend() 拓展的静态方法，我们可以直接使用 $.xxx 进行调用（xxx是拓展的方法名），
+  <br>而使用 jQuery.fn.extend() 拓展的实例方法，需要使用 $().xxx 调用。</p>
+<p>※jQuery.fn.extend(object) 给 jQuery 对象添加实例方法，也就是通过这个 extend 添加的新方法，实例化的 jQuery 对象都能使用，因为它是挂载在
+  jQuery.fn 上的方法（上文有提到，jQuery.fn = jQuery.prototype ）。 </p>
+<p>来看一下源码吧 👇 （比较长）
+  <br>// 扩展合并函数
+  <br>// 合并两个或更多对象的属性到第一个对象中，jQuery 后续的大部分功能都通过该函数扩展
+  <br>// 虽然实现方式一样，但是要注意区分用法的不一样，那么为什么两个方法指向同一个函数实现，但是却实现不同的功能呢,
+  <br>// 阅读源码就能发现这归功于 this 的强大力量
+  <br>// 如果传入两个或多个对象，所有对象的属性会被添加到第一个对象 target
+  <br>// 如果只传入一个对象，则将对象的属性添加到 jQuery 对象中，也就是添加静态方法
+  <br>// 用这种方式，我们可以为 jQuery 命名空间增加新的方法，可以用于编写 jQuery 插件
+  <br>// 如果不想改变传入的对象，可以传入一个空对象：$.extend({}, object1, object2);
+  <br>// 默认合并操作是不迭代的，即便 target 的某个属性是对象或属性，也会被完全覆盖而不是合并
+  <br>// 如果第一个参数是 true，则是深拷贝
+  <br>// 从 object 原型继承的属性会被拷贝，值为 undefined 的属性不会被拷贝
+  <br>// 因为性能原因，JavaScript </p>
+<pre><code>jQuery.extend = jQuery.fn.extend = function() {
+    var src, copyIsArray, copy, name, options, clone,
+        target = arguments[0] || {},
+        i = 1,
+        length = arguments.length,
+        deep = false;
+
+    // Handle a deep copy situation
+    // target 是传入的第一个参数
+    // 如果第一个参数是布尔类型，则表示是否要深递归，
+    if (typeof target === &quot;boolean&quot;) {
+        deep = target;
+        target = arguments[1] || {};
+        // skip the boolean and the target
+        // 如果传了类型为 boolean 的第一个参数，i 则从 2 开始
+        i = 2;
+    }
+
+    // Handle case when target is a string or something (possible in deep copy)
+    // 如果传入的第一个参数是 字符串或者其他
+    if (typeof target !== &quot;object&quot; &amp;&amp; !jQuery.isFunction(target)) {
+        target = {};
+    }
+
+    // extend jQuery itself if only one argument is passed
+    // 如果参数的长度为 1 ，表示是 jQuery 静态方法
+    if (length === i) {
+        target = this;
+        --i;
+    }
+
+    // 可以传入多个复制源
+    // i 是从 1或2 开始的
+    for (; i &lt; length; i++) {
+        // Only deal with non-null/undefined values
+        // 将每个源的属性全部复制到 target 上
+        if ((options = arguments[i]) != null) {
+            // Extend the base object
+            for (name in options) {
+                // src 是源（即本身）的值
+                // copy 是即将要复制过去的值
+                src = target[name];
+                copy = options[name];
+
+                // Prevent never-ending loop
+                // 防止有环，例如 extend(true, target, {&apos;target&apos;:target});
+                if (target === copy) {
+                    continue;
+                }
+
+                // Recurse if we&apos;re merging plain objects or arrays
+                // 这里是递归调用，最终都会到下面的 else if 分支
+                // jQuery.isPlainObject 用于测试是否为纯粹的对象
+                // 纯粹的对象指的是 通过 &quot;{}&quot; 或者 &quot;new Object&quot; 创建的
+                // 如果是深复制
+                if (deep &amp;&amp; copy &amp;&amp; (jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)))) {
+                    // 数组
+                    if (copyIsArray) {
+                        copyIsArray = false;
+                        clone = src &amp;&amp; jQuery.isArray(src) ? src : [];
+
+                        // 对象
+                    } else {
+                        clone = src &amp;&amp; jQuery.isPlainObject(src) ? src : {};
+                    }
+
+                    // Never move original objects, clone them
+                    // 递归
+                    target[name] = jQuery.extend(deep, clone, copy);
+
+                    // Don&apos;t bring in undefined values
+                    // 最终都会到这条分支
+                    // 简单的值覆盖
+                } else if (copy !== undefined) {
+                    target[name] = copy;
+                }
+            }
+        }
+    }
+
+    // Return the modified object
+    // 返回新的 target
+    // 如果 i &lt; length ，是直接返回没经过处理的 target，也就是 arguments[0]
+    // 也就是如果不传需要覆盖的源，调用 $.extend 其实是增加 jQuery 的静态方法
+    return target;
+};
+</code></pre>
+<p>※※※jQuery.extend = jQuery.fn.extend = function() {}也就是 jQuery.extend 的实现和 jQuery.fn.extend
+  的实现共用了同一个方法，但是却实现不同的功能。
+  <br>在 jQuery.extend() 中，this 的指向是 jQuery 对象(或者说是 jQuery 类)，所以这里扩展在 jQuery 上
+  <br>在 jQuery.fn.extend() 中，this 的指向是 fn 对象，前面有提到 jQuery.fn = jQuery.prototype ，也就是这里增加的是原型方法，也就是对象方法。</p>
 <p>📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢📢
   <br>由于篇幅比较长，小仙女是写一下点传一点，所以可能每次进来内容都会增多！！！！！！！</p>
 ]]></content>
