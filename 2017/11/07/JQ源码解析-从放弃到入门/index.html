@@ -45,7 +45,7 @@
   <meta property="og:description" content="仔细想想 用了那么多年JQ却从来没仔细研究过他的源码😨😨😨😨😨😨😨   知道前两天被小伙伴质疑，突然觉得 真心应该花点时间仔细研究一下!要不都对不起这么多年写过的BUG。。。。 BUT 每次一看源码总是头大。。。。。。   所以 浏览了一些大神的博客 从中找了一些经典的整理总结一下 嘿嘿 So如有雷同 嫑介意哈 🙂  JQ整体架构 -&amp;gt; {    1、变量，常规正则初始化">
   <meta property="og:locale" content="zh-Hans">
   <meta property="og:image" content="http://icey-monopolize.com/MyImages/jq.jpeg">
-  <meta property="og:updated_time" content="2017-11-07T08:45:19.000Z">
+  <meta property="og:updated_time" content="2017-11-07T08:46:44.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JQ源码解析--从放弃到入门">
   <meta name="twitter:description" content="仔细想想 用了那么多年JQ却从来没仔细研究过他的源码😨😨😨😨😨😨😨   知道前两天被小伙伴质疑，突然觉得 真心应该花点时间仔细研究一下!要不都对不起这么多年写过的BUG。。。。 BUT 每次一看源码总是头大。。。。。。   所以 浏览了一些大神的博客 从中找了一些经典的整理总结一下 嘿嘿 So如有雷同 嫑介意哈 🙂  JQ整体架构 -&amp;gt; {    1、变量，常规正则初始化">
@@ -316,31 +316,31 @@
                       <br>var test = new $(‘#test’);
                       <br>test.text(‘Test’);</p>
                     <p>其实无NEW构造就相当于new jQuery()，看一下源码是怎么定义的</p>
-                    <p>(function(window, undefined) {
-                      <br> var
-                      <br> // …
-                      <br> jQuery = function(selector, context) {
-                      <br> // The jQuery object is actually just the init constructor
-                      ‘enhanced’
-                      <br> // 看这里，实例化方法 jQuery() 实际上是调用了其拓展的原型方法 jQuery.fn.init
-                      <br> return new jQuery.fn.init(selector, context, rootjQuery);
-                      <br> },</p>
-                    <pre><code>// jQuery.prototype 即是 jQuery 的原型，挂载在上面的方法，即可让所有生成的 jQuery 对象使用
-jQuery.fn = jQuery.prototype = {
-    // 实例化化方法，这个方法可以称作 jQuery 对象构造器
-    init: function(selector, context, rootjQuery) {
-        // ...
+                    <pre><code>(function(window, undefined) {
+    var
+    // ...
+    jQuery = function(selector, context) {
+        // The jQuery object is actually just the init constructor &apos;enhanced&apos;
+        // 看这里，实例化方法 jQuery() 实际上是调用了其拓展的原型方法 jQuery.fn.init
+        return new jQuery.fn.init(selector, context, rootjQuery);
+    },
+    // jQuery.prototype 即是 jQuery 的原型，挂载在上面的方法，即可让所有生成的 jQuery 对象使用
+    jQuery.fn = jQuery.prototype = {
+        // 实例化化方法，这个方法可以称作 jQuery 对象构造器
+        init: function(selector, context, rootjQuery) {
+            // ...
+        }
     }
-}
-// 这一句很关键，也很绕
-// jQuery 没有使用 new 运算符将 jQuery 实例化，而是直接调用其函数
-// 要实现这样,那么 jQuery 就要看成一个类，且返回一个正确的实例
-// 且实例还要能正确访问 jQuery 类原型上的属性与方法
-// jQuery 的方式是通过原型传递解决问题，把 jQuery 的原型传递给jQuery.prototype.init.prototype
-// 所以通过这个方法生成的实例 this 所指向的仍然是 jQuery.fn，所以能正确访问 jQuery 类原型上的属性与方法
-jQuery.fn.init.prototype = jQuery.fn;
+    // 这一句很关键，也很绕
+    // jQuery 没有使用 new 运算符将 jQuery 实例化，而是直接调用其函数
+    // 要实现这样,那么 jQuery 就要看成一个类，且返回一个正确的实例
+    // 且实例还要能正确访问 jQuery 类原型上的属性与方法
+    // jQuery 的方式是通过原型传递解决问题，把 jQuery 的原型传递给jQuery.prototype.init.prototype
+    // 所以通过这个方法生成的实例 this 所指向的仍然是 jQuery.fn，所以能正确访问 jQuery 类原型上的属性与方法
+    jQuery.fn.init.prototype = jQuery.fn;
+
+})(window);
 </code></pre>
-                    <p>})(window);</p>
                     <p>① 首先要明确，使用 $(‘xxx’) 这种实例化方式，其内部调用的是 return new jQuery.fn.init(selector,
                       <br> context, rootjQuery) 这一句话，也就是构造实例是交给了 jQuery.fn.init() 方法去完成。</p>
                     <p>② 将jQuery.fn.init 的 prototype 属性设置为 jQuery.fn，那么使用 new jQuery.fn.init()
