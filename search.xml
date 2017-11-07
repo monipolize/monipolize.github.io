@@ -50,6 +50,9 @@
     <title><![CDATA[NodeJS的问题一]]></title>
     <url>%2F2017%2F11%2F06%2FNodeJS%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%80%2F</url>
     <content type="text"><![CDATA[几个node中需要注意的问题 1、什么是时间循环? Node采用的是单线程的处理机制（所有的I/O请求都采用非阻塞的工作方式） 2、什么是错误优先的回调函数？ 错误优先的回调函数用于传递错误和数据。第一个参数始终应该是一个错误对象， 用于检查程序是否发生了错误。 其余的参数用于传递数据。例如： fs.readFile(filePath, function(err, data) { if (err) { //handle the error } // use the data object }); 3、什么是stub？举个应用场景 Stub是用于模拟一个组件或模块的函数或程序 你可以用Stub去模拟一个方法，从而避免调用真实的方法， 使用Stub你还可以返回虚构的结果 举个例子，在一个读取文件的场景中，当你不想读取一个真正的文件时： var fs = require(‘fs’); var readFileStub = sinon.stub(fs, ‘readFile’, function (path, cb) { return cb(null, ‘filecontent’); }); expect(readFileStub).to.be.called; readFileStub.restore(); 4、如何用node监听80端口？ 在类Unix系统中你不应该尝试去监听80端口，因为这需要超级用户权限。 因此不推荐让你的应用直接监听这个端口。 在类Unix系统中你不应该尝试去监听80端口，因为这需要超级用户权限。 因此不推荐让你的应用直接监听这个端口。 目前，如果你一定要让你的应用监听80端口的话，你可以有通过在Node应用的前方再增加一层反向代理 （例如nginx）来实现 5、如何避免回调地狱？ 模块化：将回调函数分割为独立的函数 使用Promises 使用yield 来计算生成器或Promise 6、怎么处理异步? 初级方案：通过递归处理异步回调 var fs = require(‘fs’); // 要处理的文件列表 var files = [‘file1’, ‘file2’, ‘file3’]; function parseFile () { if (files.length == 0) { return; } var file = files.shift(); fs.readFile(file, function (err, data) { // 这里处理文件数据 parseFile(); // 处理完毕后，通过递归调用处理下一个文件 }); } // 开始处理 parseFile(); 华丽点：采用Async、Q、Promise等第三方库处理异步回调 优雅点：拥抱ES6，替代回调函数，解决回调地狱问题.使用Generator特性替代回调函数 var fs = require(‘fs’) , co = require(‘co’) , thunkify = require(‘thunkify’); var readFile = thunkify(fs.readFile); co(function *() { var test1 = yield readFile(‘test1.txt’); var test2 = yield readFile(‘test2.txt’); var test = test1.toString() + test2.toString(); console.log(test); })();]]></content>
+      <categories>
+        <category>NODEJS</category>
+      </categories>
       <tags>
         <tag>ALL</tag>
         <tag>前端面试题</tag>
@@ -237,6 +240,9 @@
     <title><![CDATA[This Is the Beginning of the Story]]></title>
     <url>%2F2017%2F11%2F01%2FWebsite%2F</url>
     <content type="text"><![CDATA[忘了是什么时间，忘了在什么地点，只记得有人写过这样的话。。。 我走过山的时候，山不说话 我路过海的时候，海不说话 我坐着的毛驴一步一步滴滴答答 我带着的倚天喑哑 大家说我因为爱着杨过大侠 找不到 所以在峨眉安家 其实我只是喜欢峨眉的雾 像十六岁那年绽放的烟花 我路过海的时候，海不说话 我走过山的时候也听不到回答 我骑的毛驴 步步滴滴答答 悠悠飘向远处可从不想要回家 正当喜乐无忧年 韶华如花 远游风尘之色却不似十九风华 –程灵素]]></content>
+      <categories>
+        <category>ALL</category>
+      </categories>
       <tags>
         <tag>ALL</tag>
         <tag>CSS</tag>
