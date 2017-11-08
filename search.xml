@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[JQ源码分段详细看]]></title>
     <url>%2F2017%2F11%2F07%2FJQ%E6%BA%90%E7%A0%81%E5%88%86%E6%AE%B5%E8%AF%A6%E7%BB%86%E7%9C%8B%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[最近读jQuery源码，记下我对大师作品的理解和心得，跟大家分享。 JQ的代码结构 (function(){ //变量定义 var jQuery = function(){...}; //原型定义(包含核心方法) jQuery.fn = jQuery.prototype = {...}; jQuery.fn.init.prototype = jQuery.fn; //提供jQuery静态方法与对象方法的扩展函数 jQuery.extend = jQuery.fn.extend = function(){...}; //后面依次有多个对jQuery静态方法的扩展 jQuery.extend({...}); //后面依次有多个对jQuery对象方法的扩展 jQuery.fn.extend({...}); jQuery.support = (function() {...})(); //提供统一时间管理,jQuery内部使用,并不对外开放 jQuery.event = {...}; //Event类似于Java的POJO类.传递事件的对象 jQuery.Event = function( src, props ) {...}; //Sizzle选择器,一个框架,可独立使用。 (function(){ ... jQuery.find = Sizzle; ... })(); ... //将定义的jQuery定义为全局变量 window.jQuery = window.$ = jQuery; ... })(); 一. 自执行匿名函数。 在函数里定义的变量都是局部变量，这样就很好的避免了过多的全局变量(jQuery仅仅2个全局变量jQuery和$)。由于闭包属性，虽然函数自执行结束了，但自执行函数里面定义的局部函数和变量还是能够被定义成全局变量的jQuery和$所引用到。 二. extend 函数 在后面的段落中有大段大段的 jQuery.extend({…}) 和 jQuery.fn.extend({…}) 代码 在jQuery中有2中调用形式： 1）$.Ajax(…); 2）$(“#id”).data(“xxx”); 第一种调用我称为静态调用，就类似于Java的静态方法一样，不用生成对象，而是类级函数。这里的$就相当于命名空间一样。 第二种调用我成为对象调用，因为.data()方法是定义在原型中的，只有new个对象才能调用的，所以成为对象方法。]]></content>
       <categories>
         <category>JQ</category>
       </categories>
