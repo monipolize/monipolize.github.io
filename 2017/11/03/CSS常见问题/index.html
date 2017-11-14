@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="一、清除浮动的几种方式 1、额外标签法 &amp;lt;style&amp;gt;     .outer{         border: 1px solid black;         width: 300px;     }     .inner{         width: 50px;         height: 50px;         background-color: #ff4400;">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-07T10:05:26.000Z">
+  <meta property="og:updated_time" content="2017-11-14T11:08:16.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="CSS常见问题">
   <meta name="twitter:description" content="一、清除浮动的几种方式 1、额外标签法 &amp;lt;style&amp;gt;     .outer{         border: 1px solid black;         width: 300px;     }     .inner{         width: 50px;         height: 50px;         background-color: #ff4400;">
@@ -513,6 +513,95 @@
 }
 </code></pre>
                     <p>2、图片</p>
+                    <p>七、垂直居中
+                      <br>1、table-cell</p>
+                    <pre><code>&lt;div class=&quot;box box1&quot;&gt;
+        &lt;span&gt;垂直居中&lt;/span&gt;
+&lt;/div&gt;
+.box1{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;        
+}
+</code></pre>
+                    <p>2、display:flex
+                      <br> .box2{
+                      <br> display: flex;
+                      <br> justify-content:center;
+                      <br> align-items:Center;
+                      <br> }</p>
+                    <p>3、绝对定位和负边距</p>
+                    <pre><code>.box3{position:relative;}
+.box3 span{
+            position: absolute;
+            width:100px;
+            height: 50px;
+            top:50%;
+            left:50%;
+            margin-left:-50px;
+            margin-top:-25px;
+        text-align: center;
+    }
+</code></pre>
+                    <p>4、绝对定位和0</p>
+                    <pre><code>.box4 span{
+  width: 50%; 
+  height: 50%; 
+  background: #000;
+  overflow: auto; 
+  margin: auto; 
+  position: absolute; 
+  top: 0; left: 0; bottom: 0; right: 0; 
+}
+</code></pre>
+                    <p>5、translate</p>
+                    <pre><code>.box6 span{
+        position: absolute;
+        top:50%;
+        left:50%;
+        width:100%;
+        transform:translate(-50%,-50%);
+        text-align: center;
+    }
+</code></pre>
+                    <p>6、display:inline-block
+                      <br> .box7{
+                      <br> text-align:center;
+                      <br> font-size:0;
+                      <br> }
+                      <br> .box7 span{
+                      <br> vertical-align:middle;
+                      <br> display:inline-block;
+                      <br> font-size:16px;
+                      <br> }
+                      <br> .box7:after{
+                      <br> content:’’;
+                      <br> width:0;
+                      <br> height:100%;
+                      <br> display:inline-block;
+                      <br> vertical-align:middle;
+                      <br> }
+                      <br>after来占位</p>
+                    <p>7、display:flex和margin:auto</p>
+                    <p>.box8{
+                      <br> display: flex;
+                      <br> text-align: center;
+                      <br>}
+                      <br>.box8 span{margin: auto;}</p>
+                    <p>8、display:-webkit-box</p>
+                    <pre><code>&lt;div class=&quot;floater&quot;&gt;&lt;/div&gt;  
+&lt;div class=&quot;content&quot;&gt; Content here &lt;/div&gt;  
+.floater {
+    float:left; 
+    height:50%; 
+    margin-bottom:-120px;
+}
+.content {
+    clear:both; 
+    height:240px; 
+    position:relative;
+}
+</code></pre>
 
                   </div>
 
@@ -652,7 +741,7 @@
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">32</span>
+                      <span class="site-state-item-count">34</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>

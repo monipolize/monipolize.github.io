@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="咱们书接上回😊 额O__O “…”貌似真的有点久远 20、vue的数据理解 data:是vue绑定数据的数据源    原理:vue会自动将data里面的数据进行递归。抓换成getter和setter   computed:计算属性   watch:监听    watch：{    a:function（val，oldval）{}    handler:function(){    deep：tr">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-14T10:50:07.000Z">
+  <meta property="og:updated_time" content="2017-11-14T11:13:46.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JS面试那些事 -- Part Three 基础篇">
   <meta name="twitter:description" content="咱们书接上回😊 额O__O “…”貌似真的有点久远 20、vue的数据理解 data:是vue绑定数据的数据源    原理:vue会自动将data里面的数据进行递归。抓换成getter和setter   computed:计算属性   watch:监听    watch：{    a:function（val，oldval）{}    handler:function(){    deep：tr">
@@ -405,6 +405,33 @@
                       <br>③ 对于get方式，服务器端用Request.QueryString获取变量的值，对于post方式，服务器端用Request.Form获取提交的数据。
                       <br>④ get传送的数据量较小，不能大于2KB。post传送的数据量较大，一般被默认为不受限制
                       <br>⑤ get安全性非常低，post安全性较高。但是执行效率却比Post方法好</p>
+                    <p>27、前端性能优化
+                      <br>（1） 减少http请求次数：CSS Sprites, JS、CSS源码压缩、图片大小控制合适；网页Gzip，CDN托管，data缓存
+                      ，图片服务器。
+                      <br>（2） 前端模板 JS+数据，减少由于HTML标签导致的带宽浪费，前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数
+                      <br>（3） 用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能。
+                      <br>（4） 当需要设置的样式很多时设置className而不是直接操作style。
+                      <br>（5） 少用全局变量、缓存DOM节点查找的结果。减少IO读取操作。
+                      <br>（6） 避免使用CSS Expression（css表达式)又称Dynamic properties(动态属性)。
+                      <br>（7） 图片预加载，将样式表放在顶部，将脚本放在底部 加上时间戳。
+                      <br>（8） 避免在页面的主体布局中使用table，table要等其中的内容完全下载之后才会显示出来，显示比div+css布局慢。</p>
+                    <p>28、服务器端怎么获取客户端Ip地址</p>
+                    <p> public String getIpAddr(HttpServletRequest request) {
+                      <br> String ip = request.getHeader(“x-forwarded-for”);
+                      <br> if(ip == null || ip.length() == 0 || “unknown”.equalsIgnoreCase(ip))
+                      {
+                      <br> ip = request.getHeader(“Proxy-Client-IP”);
+                      <br> }
+                      <br> if(ip == null || ip.length() == 0 || “unknown”.equalsIgnoreCase(ip))
+                      {
+                      <br> ip = request.getHeader(“WL-Proxy-Client-IP”);
+                      <br> }
+                      <br> if(ip == null || ip.length() == 0 || “unknown”.equalsIgnoreCase(ip))
+                      {
+                      <br> ip = request.getRemoteAddr();
+                      <br> }
+                      <br> return ip;
+                      <br> } </p>
 
                   </div>
 
@@ -542,7 +569,7 @@
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">32</span>
+                      <span class="site-state-item-count">34</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>

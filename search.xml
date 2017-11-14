@@ -3,6 +3,104 @@
   
     
     <entry>
+      <title><![CDATA[浏览器缓存]]></title>
+      <url>/2017/11/14/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/</url>
+      <content type="html"><![CDATA[<p>浏览器缓存就是把一个已经请求过的Web资源（如html页面，图片，js，数据等）拷贝一份副本储存在浏览器中</p>
+<p>为什么使用缓存
+  <br>（1）减少网络带宽消耗
+  <br>（2）降低服务器压力
+  <br>（3）减少网络延迟，加快页面打开速度</p>
+<p>浏览器端的缓存规则
+  <br>对于浏览器端的缓存来讲，这些规则是在HTTP协议头和HTML页面的Meta标签中定义的
+  <br>分别从新鲜度和校验值两个维度来规定浏览器是否可以直接使用缓存中的副本，
+  <br>还是需要去源服务器获取更新的版本。</p>
+<p>新鲜度（过期机制）：也就是缓存副本有效期。一个缓存副本必须满足以下条件，浏览器会认为它是有效的，足够新的：
+  <br> 含有完整的过期时间控制头信息（HTTP协议报头），并且仍在有效期内；
+  <br> 浏览器已经使用过这个缓存副本，并且在一个会话中已经检查过新鲜度</p>
+<p>校验值（验证机制）：服务器返回资源的时候有时在控制头信息带上这个资源的实体标签Etag（Entity Tag），
+  <br> 它可以用来作为浏览器再次请求过程的校验标识。如过发现校验标识不匹配，说明资源已经被修改或过期，
+  <br> 浏览器需求重新获取资源内容。</p>
+<p>1、使用HTML Meta 标签
+  <br>
+  <meta http-equiv="Pragma" content="no-cache">
+  <br> &lt;!- Pragma是http1.0版本中给客户端设定缓存方式之一 -&gt;–&gt;
+  <br>事实上这种禁用缓存的形式用处很有限：
+  <br>a. 仅有IE才能识别这段meta标签含义，其它主流浏览器仅识别“Cache-Control: no-store”的meta标签。
+  <br>b. 在IE中识别到该meta标签含义，并不一定会在请求字段加上Pragma，但的确会让当前页面每次都发新请求（仅限页面，页面上的资源则不受影响）。
+  <br>2、HTTP消息报头
+  <br>Pragma：no-cache
+  <br> 诉浏览器忽略资源的缓存副本，每次访问都需要去服务器拉取【http1.0中存在的字段，在http1.1已被抛弃，使用Cache-Control替代，但为了做http协议的向下兼容，很多网站依旧会带上这个字段】
+  <br>Expires：Mon, 15 Aug 2016 03:56:47 GMT
+  <br>告诉浏览器资源缓存过期时间，如果还没过该时间点则不发请求。在HTTP 1.1版开始，使用Cache-Control: max-age=秒替代
+  <br>Cache-Control：no-cache 告诉浏览器忽略资源的缓存副本，强制每次请求直接发送给服务器，拉取资源，但不是“不缓存”
+  <br> no-store 强制缓存在任何情况下都不要保留任何副本
+  <br> max-age=[秒] 指明缓存副本的有效时长，从请求时间开始到过期时间之间的秒数
+  <br> public 任何路径的缓存者（本地缓存、代理服务器），可以无条件的缓存改资源
+  <br> private 只针对单个用户或者实体（不同用户、窗口）缓存资源
+  <br>Last-Modified：Mon, 15 Aug 2016 03:56:47 GMT
+  <br> 告诉浏览器这个资源最后的修改时间
+  <br>If-Modified-Since：Mon, 15 Aug 2016 03:56:47 GMT
+  <br> 其值为上次响应头的Last-Modified值，再次向web服务器请求时带上头If-Modified-Since。
+  <br> web服务器收到请求后发现有头If-Modified-Since则与被请求资源的最后修改时间进行比对。
+  <br> 若最后修改时间较新，说明资源又被改动过，则响应整片资源内容（写在响应消息包体内），
+  <br> 包括更新Last-Modified的值，HTTP 200；若最后修改时间较旧，说明资源无新修改，
+  <br> 则响应HTTP 304
+  <br>ETag：”fd56273325a2114818df4f29a628226d”
+  <br> 告诉浏览器当前资源在服务器的唯一标识符（生成规则又服务器决定）
+  <br>If-None-Match：”fd56273325a2114818df4f29a628226d”
+  <br> 当资源过期时（使用Cache-Control标识的max-age），发现资源具有Etage声明，则再次向web服务器请求时带上头If-None-Match（Etag的值）。
+  <br> web服务器收到请求后发现有头If-None-Match则与被请求资源的相应校验串进行比对，决定返回200或304 </p>
+<p>变更后对比
+  <br>Cache-Control与Expires：Cache-Control与Expires的作用一致，都是指明当前资源的有效期
+  <br> 只不过Cache-Control的选择更多，设置更细致，如果同时设置的话，其优先级高于Expires。</p>
+<p>注意：</p>
+<ol>
+  <li>Etag是服务器自动生成或者由开发者生成的对应资源在服务器端的唯一标识符，能够更加准确的控制缓存，
+    <br>但是需要注意的是分布式系统里多台机器间文件的last-modified必须保持一致，
+    <br>以免负载均衡到不同机器导致比对失败</li>
+</ol>
+<p>不能缓存的请求：</p>
+<ol>
+  <li>HTTP信息头中包含Cache-Control:no-cache，pragma:no-cache（HTTP1.0），
+    <br>或Cache-Control:max-age=0等告诉浏览器不用缓存的请求</li>
+</ol>
+<p>2、需要根据Cookie，认证信息等决定输入内容的动态请求是不能被缓存的</p>
+<ol>
+  <li>经过HTTPS安全加密的请求（有人也经过测试发现，ie其实在头部加入Cache-Control：max-age信息，firefox在头部加入Cache-Control:Public之后，能够对HTTPS的资源进行缓存</li>
+  <li>POST请求无法被缓存</li>
+  <li>HTTP响应头中不包含Last-Modified/Etag，也不包含Cache-Control/Expires的请求无法被缓存</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端面试题 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> ALL </tag>
+            
+            <tag> 前端面试题 </tag>
+            
+            <tag> JS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[CSS3动画]]></title>
+      <url>/2017/11/14/CSS3%E5%8A%A8%E7%94%BB/</url>
+      <content type="html"><![CDATA[
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[没事唠唠原生AJAX]]></title>
       <url>/2017/11/14/%E6%B2%A1%E4%BA%8B%E5%94%A0%E5%94%A0%E5%8E%9F%E7%94%9FAJAX/</url>
       <content type="html"><![CDATA[<p>什么事ajax那？简单点来说就是“无刷新数据读取,读取服务器上的信息”。支持GET/POST请求。
@@ -11870,6 +11968,29 @@ $(&apos;div&apos;).eq(0).show().end().eq(1).hide();
   <br>③ 对于get方式，服务器端用Request.QueryString获取变量的值，对于post方式，服务器端用Request.Form获取提交的数据。
   <br>④ get传送的数据量较小，不能大于2KB。post传送的数据量较大，一般被默认为不受限制
   <br>⑤ get安全性非常低，post安全性较高。但是执行效率却比Post方法好</p>
+<p>27、前端性能优化
+  <br>（1） 减少http请求次数：CSS Sprites, JS、CSS源码压缩、图片大小控制合适；网页Gzip，CDN托管，data缓存 ，图片服务器。
+  <br>（2） 前端模板 JS+数据，减少由于HTML标签导致的带宽浪费，前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数
+  <br>（3） 用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能。
+  <br>（4） 当需要设置的样式很多时设置className而不是直接操作style。
+  <br>（5） 少用全局变量、缓存DOM节点查找的结果。减少IO读取操作。
+  <br>（6） 避免使用CSS Expression（css表达式)又称Dynamic properties(动态属性)。
+  <br>（7） 图片预加载，将样式表放在顶部，将脚本放在底部 加上时间戳。
+  <br>（8） 避免在页面的主体布局中使用table，table要等其中的内容完全下载之后才会显示出来，显示比div+css布局慢。</p>
+<p>28、服务器端怎么获取客户端Ip地址</p>
+<p> public String getIpAddr(HttpServletRequest request) {
+  <br> String ip = request.getHeader(“x-forwarded-for”);
+  <br> if(ip == null || ip.length() == 0 || “unknown”.equalsIgnoreCase(ip)) {
+  <br> ip = request.getHeader(“Proxy-Client-IP”);
+  <br> }
+  <br> if(ip == null || ip.length() == 0 || “unknown”.equalsIgnoreCase(ip)) {
+  <br> ip = request.getHeader(“WL-Proxy-Client-IP”);
+  <br> }
+  <br> if(ip == null || ip.length() == 0 || “unknown”.equalsIgnoreCase(ip)) {
+  <br> ip = request.getRemoteAddr();
+  <br> }
+  <br> return ip;
+  <br> } </p>
 ]]></content>
       
         <categories>
@@ -13527,6 +13648,95 @@ body,p{
 }
 </code></pre>
 <p>2、图片</p>
+<p>七、垂直居中
+  <br>1、table-cell</p>
+<pre><code>&lt;div class=&quot;box box1&quot;&gt;
+        &lt;span&gt;垂直居中&lt;/span&gt;
+&lt;/div&gt;
+.box1{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;        
+}
+</code></pre>
+<p>2、display:flex
+  <br> .box2{
+  <br> display: flex;
+  <br> justify-content:center;
+  <br> align-items:Center;
+  <br> }</p>
+<p>3、绝对定位和负边距</p>
+<pre><code>.box3{position:relative;}
+.box3 span{
+            position: absolute;
+            width:100px;
+            height: 50px;
+            top:50%;
+            left:50%;
+            margin-left:-50px;
+            margin-top:-25px;
+        text-align: center;
+    }
+</code></pre>
+<p>4、绝对定位和0</p>
+<pre><code>.box4 span{
+  width: 50%; 
+  height: 50%; 
+  background: #000;
+  overflow: auto; 
+  margin: auto; 
+  position: absolute; 
+  top: 0; left: 0; bottom: 0; right: 0; 
+}
+</code></pre>
+<p>5、translate</p>
+<pre><code>.box6 span{
+        position: absolute;
+        top:50%;
+        left:50%;
+        width:100%;
+        transform:translate(-50%,-50%);
+        text-align: center;
+    }
+</code></pre>
+<p>6、display:inline-block
+  <br> .box7{
+  <br> text-align:center;
+  <br> font-size:0;
+  <br> }
+  <br> .box7 span{
+  <br> vertical-align:middle;
+  <br> display:inline-block;
+  <br> font-size:16px;
+  <br> }
+  <br> .box7:after{
+  <br> content:’’;
+  <br> width:0;
+  <br> height:100%;
+  <br> display:inline-block;
+  <br> vertical-align:middle;
+  <br> }
+  <br>after来占位</p>
+<p>7、display:flex和margin:auto</p>
+<p>.box8{
+  <br> display: flex;
+  <br> text-align: center;
+  <br>}
+  <br>.box8 span{margin: auto;}</p>
+<p>8、display:-webkit-box</p>
+<pre><code>&lt;div class=&quot;floater&quot;&gt;&lt;/div&gt;  
+&lt;div class=&quot;content&quot;&gt; Content here &lt;/div&gt;  
+.floater {
+    float:left; 
+    height:50%; 
+    margin-bottom:-120px;
+}
+.content {
+    clear:both; 
+    height:240px; 
+    position:relative;
+}
+</code></pre>
 ]]></content>
       
         <categories>
@@ -15078,13 +15288,13 @@ sayHelloEx(message) {
             
             <tag> ALL </tag>
             
+            <tag> ES6 </tag>
+            
             <tag> 前端面试题 </tag>
             
             <tag> 算法 </tag>
             
             <tag> CSS </tag>
-            
-            <tag> ES6 </tag>
             
             <tag> JS </tag>
             
@@ -15092,11 +15302,11 @@ sayHelloEx(message) {
             
             <tag> JQ </tag>
             
+            <tag> NODEJS </tag>
+            
             <tag> WEBPACK </tag>
             
             <tag> VUE </tag>
-            
-            <tag> NODEJS </tag>
             
             <tag> PIT </tag>
             
@@ -15143,6 +15353,13 @@ sayHelloEx(message) {
     </entry>
     
     <entry>
+      <title><![CDATA[Tags]]></title>
+      <url>/tags/index.html</url>
+      <content type="html"><![CDATA[
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Photoes]]></title>
       <url>/photoes/index.html</url>
       <content type="html"><![CDATA[
@@ -15152,13 +15369,6 @@ sayHelloEx(message) {
     <entry>
       <title><![CDATA[Categories]]></title>
       <url>/categories/index.html</url>
-      <content type="html"><![CDATA[
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Tags]]></title>
-      <url>/tags/index.html</url>
       <content type="html"><![CDATA[
 ]]></content>
     </entry>
