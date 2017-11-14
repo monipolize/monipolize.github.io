@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="什么事ajax那？简单点来说就是“无刷新数据读取,读取服务器上的信息”。支持GET/POST请求。   GET用于获取数据，POST用于上传数据   GET的特点:1.通过网址传递(放入url中),会将传递的数据放到网址上面,–名字=值&amp;amp;名字=值    2.容量小    3.安全性低    4.有缓存   POST的特点:1.不通过网址传递    2.容量较大,一般可达2G    3.安全">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-14T09:48:10.000Z">
+  <meta property="og:updated_time" content="2017-11-14T09:48:47.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="没事唠唠原生AJAX">
   <meta name="twitter:description" content="什么事ajax那？简单点来说就是“无刷新数据读取,读取服务器上的信息”。支持GET/POST请求。   GET用于获取数据，POST用于上传数据   GET的特点:1.通过网址传递(放入url中),会将传递的数据放到网址上面,–名字=值&amp;amp;名字=值    2.容量小    3.安全性低    4.有缓存   POST的特点:1.不通过网址传递    2.容量较大,一般可达2G    3.安全">
@@ -392,7 +392,7 @@ alert(window.a);//如果是这样写，系统就不会报错了，会显示undef
 &lt;/script&gt;
 </code></pre>
                     <p> 用JS写一个ajax 来个完整的 🌰</p>
-                    <pre><code>var Ajax={
+                    <pre><code>&quot;var Ajax={
     get: function(url, fn) {
         var obj = new XMLHttpRequest();  // XMLHttpRequest对象用于在后台与服务器交换数据          
         obj.open(&apos;GET&apos;, url, true);
@@ -414,7 +414,7 @@ alert(window.a);//如果是这样写，系统就不会报错了，会显示undef
         };
         obj.send(data);
     }
-}
+}&quot;
 </code></pre>
                     <p> JQ提供的ajax
                       <br> $.ajax({
@@ -422,15 +422,15 @@ alert(window.a);//如果是这样写，系统就不会报错了，会显示undef
                       <br> type: ‘’,
                       <br> dataType: ‘’,
                       <br> data: {</p>
-                    <pre><code>},
-success: function(){
+                    <pre><code>   },
+   success: function(){
 
-},
-error: function(){
+   },
+   error: function(){
 
-}
+   }
+})
 </code></pre>
-                    <p> })</p>
                     <p>推荐参考链接：
                       <a href="https://www.cnblogs.com/yufann/p/JS-Ajax.html" target="_blank" rel="external">https://www.cnblogs.com/yufann/p/JS-Ajax.html</a>
                       <br>
