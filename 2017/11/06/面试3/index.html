@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="咱们书接上回😊 额O__O “…”貌似真的有点久远 20、vue的数据理解 data:是vue绑定数据的数据源    原理:vue会自动将data里面的数据进行递归。抓换成getter和setter   computed:计算属性   watch:监听    watch：{    a:function（val，oldval）{}    handler:function(){    deep：tr">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-14T11:13:46.000Z">
+  <meta property="og:updated_time" content="2017-11-14T11:34:04.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JS面试那些事 -- Part Three 基础篇">
   <meta name="twitter:description" content="咱们书接上回😊 额O__O “…”貌似真的有点久远 20、vue的数据理解 data:是vue绑定数据的数据源    原理:vue会自动将data里面的数据进行递归。抓换成getter和setter   computed:计算属性   watch:监听    watch：{    a:function（val，oldval）{}    handler:function(){    deep：tr">
@@ -432,6 +432,17 @@
                       <br> }
                       <br> return ip;
                       <br> } </p>
+                    <p>27、原生Js怎么封装一个类
+                      <br>立即执行函数+闭包</p>
+                    <p>28、requreJs做模块化开发有什么问题</p>
+                    <p>requirejs采用lazyload的方式（后加载）加载js脚本，这样的加载方式大大的提高了性能
+                      <br>requirejs采用模块化的加载js的方式，可以让代码松耦合
+                      <br>所以如果用nodejs做webapp，nodejs+requirejs是很不错的组合，requirejs也很适合做游戏开发
+                      <br>但是，和任何框架一样，有优点也必然有一定缺点，requirejs是强迫第三方插件适应其框架，以至于有许多不支持amd和cmd
+                      的插件不能直接被requirejs使用，也就意味着如果使用这些插件，需要将其进行一定的修改，使其符合cmd的规范。这对于一些大量使用第三方插件的网站是很不利的。另外，使用requirejs之后，所有的事件都需要进行绑定。这对于很多前端开发者来说是很不适应的。
+                      <br>所以如果是开发的网站含有大量的js代码，并且大多数是自己编写的js，或者开发webapp，游戏，那么推荐用requirejs；
+                      <br>如果开发的网站含有大量第三方插件，建议放弃requirejs</p>
+                    <p>29、</p>
 
                   </div>
 
