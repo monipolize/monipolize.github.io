@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="用了一阵子vue，踩了无数的坑，回头发现貌似自己只是会用vue，但并不是了解，理解vue，所以在网上   搜罗了很多大神们对于vue底层源码的理解。现在总结一下。   ps：由于借鉴了很多很多大神的blog，so 就不一一列举了。如有雷同纯属正常。   能记住的：   https://segmentfault.com/a/1190000010646462  vue程序大概可以分为两大部分   1、">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-14T03:40:44.000Z">
+  <meta property="og:updated_time" content="2017-11-14T03:43:34.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Vue源码理解">
   <meta name="twitter:description" content="用了一阵子vue，踩了无数的坑，回头发现貌似自己只是会用vue，但并不是了解，理解vue，所以在网上   搜罗了很多大神们对于vue底层源码的理解。现在总结一下。   ps：由于借鉴了很多很多大神的blog，so 就不一一列举了。如有雷同纯属正常。   能记住的：   https://segmentfault.com/a/1190000010646462  vue程序大概可以分为两大部分   1、">
@@ -286,14 +286,15 @@
                     <p>vue程序大概可以分为两大部分
                       <br>1、全局设计：全局接口，默认选项等
                       <br>2、vm实例设计：包括接口，实例初始化过程设计</p>
-                    <p>init -&gt; data -&gt; computed
-                      <br> -&gt; watch</p>
-                    <pre><code>-&gt; template -&gt; directive  -&gt; repeat / if
-                           -&gt; component
-                           -&gt; transition
+                    <pre><code>init -&gt; data -&gt; computed
+             -&gt; watch
 
-             -&gt; expression -&gt; path
-             -&gt; filter
+      -&gt; template -&gt; directive  -&gt; repeat / if
+                                 -&gt; component
+                                 -&gt; transition
+
+                   -&gt; expression -&gt; path
+                   -&gt; filter
 </code></pre>
                     <p>整个实例化的过程中，重中之重就是把数据model和试图view建立联系
                       <br>真个过程是这样的，首先对data进行监听，把template解析成一段document fragment，然后解析其中的directive
