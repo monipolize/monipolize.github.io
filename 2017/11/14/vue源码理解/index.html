@@ -36,15 +36,18 @@
 
   <meta name="keywords" content="ALL,前端面试题,VUE," />
 
+  <meta name="description" content="用了一阵子vue，踩了无数的坑，回头发现貌似自己只是会用vue，但并不是了解，理解vue，所以在网上   搜罗了很多大神们对于vue底层源码的理解。现在总结一下。   ps：由于借鉴了很多很多大神的blog，so 就不一一列举了。如有雷同纯属正常。   能记住的：   https://segmentfault.com/a/1190000010646462  vue程序大概可以分为两大部分   1、">
   <meta name="keywords" content="ALL,前端面试题,VUE">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Vue源码理解">
   <meta property="og:url" content="http://icey-monopolize.com/tags/ALL/2017/11/14/vue源码理解/index.html">
   <meta property="og:site_name" content="In My World">
+  <meta property="og:description" content="用了一阵子vue，踩了无数的坑，回头发现貌似自己只是会用vue，但并不是了解，理解vue，所以在网上   搜罗了很多大神们对于vue底层源码的理解。现在总结一下。   ps：由于借鉴了很多很多大神的blog，so 就不一一列举了。如有雷同纯属正常。   能记住的：   https://segmentfault.com/a/1190000010646462  vue程序大概可以分为两大部分   1、">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-14T03:19:05.000Z">
+  <meta property="og:updated_time" content="2017-11-14T03:22:24.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Vue源码理解">
+  <meta name="twitter:description" content="用了一阵子vue，踩了无数的坑，回头发现貌似自己只是会用vue，但并不是了解，理解vue，所以在网上   搜罗了很多大神们对于vue底层源码的理解。现在总结一下。   ps：由于借鉴了很多很多大神的blog，so 就不一一列举了。如有雷同纯属正常。   能记住的：   https://segmentfault.com/a/1190000010646462  vue程序大概可以分为两大部分   1、">
 
   <script type="text/javascript" id="hexo.configurations">
     var NexT = window.NexT || {};
@@ -273,6 +276,45 @@
                   </header>
 
                   <div class="post-body" itemprop="articleBody">
+
+                    <p>用了一阵子vue，踩了无数的坑，回头发现貌似自己只是会用vue，但并不是了解，理解vue，所以在网上
+                      <br>搜罗了很多大神们对于vue底层源码的理解。现在总结一下。
+                      <br>ps：由于借鉴了很多很多大神的blog，so 就不一一列举了。如有雷同纯属正常。
+                      <br>能记住的：
+                      <a href="https://segmentfault.com/a/1190000010646462" target="_blank" rel="external">https://segmentfault.com/a/1190000010646462</a>
+                    </p>
+                    <p>vue程序大概可以分为两大部分
+                      <br>1、全局设计：全局接口，默认选项等
+                      <br>2、vm实例设计：包括接口，实例初始化过程设计</p>
+                    <p>init -&gt; data -&gt; computed
+                      <br> -&gt; watch</p>
+                    <pre><code>-&gt; template -&gt; directive  -&gt; repeat / if
+                           -&gt; component
+                           -&gt; transition
+
+             -&gt; expression -&gt; path
+             -&gt; filter
+</code></pre>
+                    <p>整个实例化的过程中，重中之重就是把数据model和试图view建立联系
+                      <br>真个过程是这样的，首先对data进行监听，把template解析成一段document fragment，然后解析其中的directive
+                      <br>得到每一个指令所以来的数据项。
+                      <br>举个 栗子</p>
+                    <p>v-text=”message”
+                      <br>解析：所依赖的数据项 this.$data.message，相应的视图更新方法 node.textContent =
+                      this.$data.message</p>
+                    <p>最后通过watcher把data和template结合起来，当数据变化的时候就会触发observer进而跟新视图</p>
+                    <p>从文件结构上来看。vue的源代码放在项目的src中，src目录下存在很多文件，
+                      <br>上一张图片 </p>
+                    <p>① instance/init.js
+                      <br> instance/scope.js : 数据初始化，相关的子程序 -&gt; observer/**/
+                      <br> -&gt; batcher.js
+                      <br> -&gt; observer/dep</p>
+                    <p> instance/compile.js : 视图初始化 + 相关子程序 -&gt; compile/**/
+                      <br> -&gt; directive.js
+                      <br> -&gt; parsers
+                      <br>② 核心要素：directives,element-directives,filter,transition
+                      <br>③ 工具方法 util/
+                      <br>④ config.js 默认配置</p>
 
                   </div>
 
