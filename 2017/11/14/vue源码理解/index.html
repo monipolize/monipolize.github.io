@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="用了一阵子vue，踩了无数的坑，回头发现貌似自己只是会用vue，但并不是了解，理解vue，所以在网上   搜罗了很多大神们对于vue底层源码的理解。现在总结一下。   ps：由于借鉴了很多很多大神的blog，so 就不一一列举了。如有雷同纯属正常。   能记住的：   https://segmentfault.com/a/1190000010646462  vue程序大概可以分为两大部分   1、">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-14T03:23:43.000Z">
+  <meta property="og:updated_time" content="2017-11-14T03:24:48.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Vue源码理解">
   <meta name="twitter:description" content="用了一阵子vue，踩了无数的坑，回头发现貌似自己只是会用vue，但并不是了解，理解vue，所以在网上   搜罗了很多大神们对于vue底层源码的理解。现在总结一下。   ps：由于借鉴了很多很多大神的blog，so 就不一一列举了。如有雷同纯属正常。   能记住的：   https://segmentfault.com/a/1190000010646462  vue程序大概可以分为两大部分   1、">
@@ -361,6 +361,68 @@ parse(obj, path) // 2
                     <p>视图的解析过程，Vue.js 的策略是把 element 或 template string 先统一转换成 document
                       fragment，然后再分解和解析其中的子组件和 directives。
                     </p>
+                    <p>6、双向数据绑定</p>
+                    <p>双向数据绑定说的直接一点 ，就是在单项数据绑定的基础上给可输入的元素增加了change事件，动态修稿model和view
+                      <br>官方解释：将对象属性变化绑定到UI
+                      <br>实现数据绑定的做法大概有几种</p>
+                    <p>发布者-订阅者模式（backbone.js）
+                      <br>脏值检查（angular.js）
+                      <br>数据劫持（vue.js）</p>
+                    <p>① 发布者-订阅者模式: 一般通过sub, pub的方式实现数据和视图的绑定监听，更新数据方式通常做法是 vm.set(‘property’,
+                      value)
+                      <br>但是我们不推荐这种方式我们更希望通过 vm.property = value 这种方式更新数据，同时自动更新视图，</p>
+                    <p>② 脏值检查: angular.js 是通过脏值检测的方式比对数据是否有变更，来决定是否更新视图，最简单的方式就是通过 setInterval()
+                      定
+                      <br>时轮询检测数据变动。angular只有在指定的事件触发时进入脏值检测</p>
+                    <p>DOM事件，譬如用户输入文本，点击按钮等。( ng-click )
+                      <br>XHR响应事件 ( $http )
+                      <br>浏览器Location变更事件 ( $location )
+                      <br>Timer事件( $timeout , $interval )
+                      <br>执行 $digest() 或 $apply()</p>
+                    <p>③ 数据劫持: vue.js 则是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，
+                      <br>在数据变动时发布消息给订阅者，触发相应的监听回调。其中最核心的方法便是通过Object.defineProperty()来实现对属性的劫持，
+                      <br>达到监听数据变动的目的</p>
+                    <p>要实现mvvm的双向绑定，就必须要实现以下几点：
+                      <br>1、实现一个数据监听器Observer，能够对数据对象的所有属性进行监听
+                      <br>2、实现一个指令解析器Compile，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数
+                      <br>3、实现一个Watcher，作为连接Observer和Compile的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图
+                      <br>4、mvvm入口函数</p>
+                    <p>new MVVM() -&gt; observer -&gt; 通知变化-&gt;dep -&gt; watcher
+                      <br> -&gt; compile -&gt; 数据变化，绑定更新函数 -&gt; watcher
+                      <br> -&gt; 初始化视图 -&gt; updater &lt;- watcher</p>
+                    <p>实现Observer：知道可以利用Obeject.defineProperty()来监听属性变动
+                      <br> 那么将需要observe的数据对象进行递归遍历，包括子属性
+                      <br> 对象的属性，都加上 setter和getter</p>
+                    <p> var data = {name:”myself”}
+                      <br> observe(data)
+                      <br> data.name = “dmq”</p>
+                    <p> function observe(data){
+                      <br> if(!data || typeof data !== ‘object’){
+                      <br> return
+                      <br> }
+                      <br> Object.key(data).forEach(function(key){
+                      <br> defineReactive(data,key,data[key])
+                      <br> })
+                      <br> }
+                      <br> function defineReactive(data,key,val){
+                      <br> var dep = new Dep();
+                      <br> observe(val)//监听子属性
+                      <br> Object.defineProperty(data,key,{
+                      <br> enumerable:true,
+                      <br> configutable:false,
+                      <br> get:function(){
+                      <br> // 由于需要在闭包内添加watcher，所以通过Dep定义一个全局target属性，暂存watcher, 添加完移除
+                      <br> Dep.target &amp;&amp; dep.addDep(Dep.target);
+                      <br> return val
+                      <br> },
+                      <br> set:function(newVal){
+                      <br> if (val === newVal) return;
+                      <br> console.log(“监听到”+val+”变化成了”+newVal)
+                      <br> val = newVal
+                      <br> dep.notify()// 通知所有订阅者
+                      <br> }
+                      <br> })
+                      <br> }</p>
 
                   </div>
 
