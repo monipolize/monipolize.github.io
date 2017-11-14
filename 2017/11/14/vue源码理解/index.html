@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="用了一阵子vue，踩了无数的坑，回头发现貌似自己只是会用vue，但并不是了解，理解vue，所以在网上   搜罗了很多大神们对于vue底层源码的理解。现在总结一下。   ps：由于借鉴了很多很多大神的blog，so 就不一一列举了。如有雷同纯属正常。   能记住的：   https://segmentfault.com/a/1190000010646462  vue程序大概可以分为两大部分   1、">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-14T03:22:24.000Z">
+  <meta property="og:updated_time" content="2017-11-14T03:23:01.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Vue源码理解">
   <meta name="twitter:description" content="用了一阵子vue，踩了无数的坑，回头发现貌似自己只是会用vue，但并不是了解，理解vue，所以在网上   搜罗了很多大神们对于vue底层源码的理解。现在总结一下。   ps：由于借鉴了很多很多大神的blog，so 就不一一列举了。如有雷同纯属正常。   能记住的：   https://segmentfault.com/a/1190000010646462  vue程序大概可以分为两大部分   1、">
@@ -315,6 +315,21 @@
                       <br>② 核心要素：directives,element-directives,filter,transition
                       <br>③ 工具方法 util/
                       <br>④ config.js 默认配置</p>
+                    <p>一些细节
+                      <br>1、this._eventsCount</p>
+                    <p>this._eventsCount = {}
+                      <br>为了避免不必要的深度遍历，当事件发生时，如果当前vm的_eventsCount
+                      <br>的值为0，则不必向其子vm继续传播 该事件</p>
+                    <p>看代码</p>
+                    <p>2、数据更新的diff机制</p>
+                    <p>视图更新主要在于大列表的更新和深层数据更新这两方面
+                      <br>首先遍历新列表里的每一项，如果该项的 vm 之前就存在，则打一个 _reused 的标
+                      <br>如果不存在对应的 vm，则创建一个新的。其次，遍历旧列表里的每一项，如果 _reused 的标没有被打上，
+                      <br>则说明新列表里已经没有它了，就地销毁该 vm。然后，整理新的 vm 在视图里的顺序，同时还原之前打上
+                      <br>的 _reused 标。就此列表更新完成。</p>
+                    <p>3、[keep-alive]特性</p>
+                    <p>Vue.js 为其组件设计了一个 [keep-alive] 的特性，如果这个特性存在，那么在组件被重复创建的时候，
+                      <br>会通过缓存机制快速创建组件，以提升视图更新的性能。代码在 directives/component.js。</p>
 
                   </div>
 
