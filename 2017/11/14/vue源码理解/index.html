@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="用了一阵子vue，踩了无数的坑，回头发现貌似自己只是会用vue，但并不是了解，理解vue，所以在网上   搜罗了很多大神们对于vue底层源码的理解。现在总结一下。   ps：由于借鉴了很多很多大神的blog，so 就不一一列举了。如有雷同纯属正常。   能记住的：   https://segmentfault.com/a/1190000010646462  vue程序大概可以分为两大部分   1、">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-14T03:23:01.000Z">
+  <meta property="og:updated_time" content="2017-11-14T03:23:43.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Vue源码理解">
   <meta name="twitter:description" content="用了一阵子vue，踩了无数的坑，回头发现貌似自己只是会用vue，但并不是了解，理解vue，所以在网上   搜罗了很多大神们对于vue底层源码的理解。现在总结一下。   ps：由于借鉴了很多很多大神的blog，so 就不一一列举了。如有雷同纯属正常。   能记住的：   https://segmentfault.com/a/1190000010646462  vue程序大概可以分为两大部分   1、">
@@ -330,6 +330,37 @@
                     <p>3、[keep-alive]特性</p>
                     <p>Vue.js 为其组件设计了一个 [keep-alive] 的特性，如果这个特性存在，那么在组件被重复创建的时候，
                       <br>会通过缓存机制快速创建组件，以提升视图更新的性能。代码在 directives/component.js。</p>
+                    <p>4、数据监听</p>
+                    <p>很容易想到 Object.defineProperty 这个 API，为此属性设计一个特殊的 getter/setter，然后在
+                      setter 里
+                      <br>触发一个函数，就可以达到监听的效果。</p>
+                    <p>看一段代码</p>
+                    <p>数组可能会有点麻烦，Vue.js 采取的是对几乎每一个可能改变数据的方法进行 prototype 更改：
+                      <br>看代码</p>
+                    <p>BUT会有两个问题出现
+                      <br>① 无法监听数据的 length，导致 arr.length 这样的数据改变无法被监听
+                      <br>② 通过角标更改数据，即类似 arr[2] = 1 这样的赋值操作，也无法被监听</p>
+                    <p>不过不用担心，同时 Vue.js 提供了两个额外的“糖方法” $set 和 $remove
+                      <br>来弥补这方面限制带来的不便。</p>
+                    <p>5、path 解析器</p>
+                    <p>parsers 文件夹里有各种文件，其中parsers/path.js 主要的职责是可以把一个 JSON 数据里的某一个“路径”下的数据取出来，比如：</p>
+                    <pre><code>var path = &apos;a.b[1].v&apos;
+var obj = {
+a: {
+    b: [
+      {v: 1},
+      {v: 2},
+      {v: 3}
+    ]
+  }
+}
+parse(obj, path) // 2
+</code></pre>
+                    <p>具体代码可以看Js文件，稍微梳理一下
+                      <br>看图</p>
+                    <p>视图的解析过程，Vue.js 的策略是把 element 或 template string 先统一转换成 document
+                      fragment，然后再分解和解析其中的子组件和 directives。
+                    </p>
 
                   </div>
 
