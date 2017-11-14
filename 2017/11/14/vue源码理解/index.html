@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="用了一阵子vue，踩了无数的坑，回头发现貌似自己只是会用vue，但并不是了解，理解vue，所以在网上   搜罗了很多大神们对于vue底层源码的理解。现在总结一下。   ps：由于借鉴了很多很多大神的blog，so 就不一一列举了。如有雷同纯属正常。   能记住的：   https://segmentfault.com/a/1190000010646462  vue程序大概可以分为两大部分   1、">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-14T03:24:48.000Z">
+  <meta property="og:updated_time" content="2017-11-14T03:25:44.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Vue源码理解">
   <meta name="twitter:description" content="用了一阵子vue，踩了无数的坑，回头发现貌似自己只是会用vue，但并不是了解，理解vue，所以在网上   搜罗了很多大神们对于vue底层源码的理解。现在总结一下。   ps：由于借鉴了很多很多大神的blog，so 就不一一列举了。如有雷同纯属正常。   能记住的：   https://segmentfault.com/a/1190000010646462  vue程序大概可以分为两大部分   1、">
@@ -423,6 +423,80 @@ parse(obj, path) // 2
                       <br> }
                       <br> })
                       <br> }</p>
+                    <p> 这样我们已经可以监听每个数据的变化了,其中 dep.notify()见下文
+                      <br> 接下来我们需要实现一个消息订阅器，很简单，维护一个数组，用来收集订阅者，数据变动触发notify，再调用订阅者的update方法</p>
+                    <pre><code>function Dep() {
+    this.subs = [];
+}
+Dep.prototype = {
+    addSub: function(sub) {
+        this.subs.push(sub);
+    },
+    notify: function() {
+        this.subs.forEach(function(sub) {
+            sub.update();
+        });
+    }
+};
+</code></pre>
+                    <p>接下来 我们需要一个订阅者订阅者Watcher
+                      <br>var dep = new Dep();是在 defineReactive方法内部定义的，所以想通过dep添加订阅者，就必须要在闭包内操作，
+                      <br>所以我们可以在 getter里面动手脚：
+                      <br>Watcher.prototype = {
+                      <br> get: function(key) {
+                      <br> Dep.target = this;
+                      <br> this.value = data[key]; // 这里会触发属性的getter，从而添加订阅者
+                      <br> Dep.target = null;
+                      <br> }
+                      <br>}</p>
+                    <p>实现compile</p>
+                    <p>compile主要是负责解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，
+                      <br>一旦数据有变动，收到通知，更新视图，如图所示：</p>
+                    <p>new Compile -&gt; 指令解析-&gt;模板指令替换对应数据 -&gt; update
+                      <br> -&gt;new Updater()监听数据绑定新函数-&gt;update</p>
+                    <p>因为遍历解析的过程有多次操作dom节点，为提高性能和效率，会先将跟节点el转换成文档碎片fragment进行解析编译操作，解析完成，再将fragment添加回
+                      <br>原来的真实dom节点中</p>
+                    <pre><code>function Compile(el){
+    this.$el = this.isElementNode(el) ? el : document.querySelector(el)
+    if(this.$el){
+        this.$fragment = this.node2Fragment(this.$el)
+        this.init();
+        this.$el.appendChild(this.$fragment)
+    }
+}
+
+Compile.prototype = {
+    compileElement:function(el) {
+        var childNodes = el.childNodes, me = this;
+        [].slice.call(childNodes).forEach(function(node) {
+        var text = node.textContent;
+        var reg = /\{\{(.*)\}\}/;    // 表达式文本
+        // 按元素节点方式编译
+        if (me.isElementNode(node)) {
+            me.compile(node);
+        } else if (me.isTextNode(node) &amp;&amp; reg.test(text)) {
+            me.compileText(node, RegExp.$1);
+        }
+        // 遍历编译子节点
+        if (node.childNodes &amp;&amp; node.childNodes.length) {
+            me.compileElement(node);
+        }
+    },
+    init:function(){
+        this.compileElement(this.$fragment)
+    },
+    node2Fragment:function(el){
+        var fragment = document.createDocumentFrgment()
+        var child;
+        while(chile = el.firstChild){
+            fragment.appendChild(child)
+        }
+        return fragment;
+    }
+
+}
+</code></pre>
+                    <p>compileElement方法将遍历所有节点及其子节点，进行扫描解析编译，调用对应的指令渲染函数进行数据渲染，并调用对应的指令更新函数进行绑定</p>
 
                   </div>
 
