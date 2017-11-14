@@ -34,16 +34,20 @@
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
 
-  <meta name="keywords" content="In My World" />
+  <meta name="keywords" content="ALL,前端面试题," />
 
+  <meta name="description" content="什么事ajax那？简单点来说就是“无刷新数据读取,读取服务器上的信息”。支持GET/POST请求。   GET用于获取数据，POST用于上传数据   GET的特点:1.通过网址传递(放入url中),会将传递的数据放到网址上面,–名字=值&amp;amp;名字=值    2.容量小    3.安全性低    4.有缓存   POST的特点:1.不通过网址传递    2.容量较大,一般可达2G    3.安全">
+  <meta name="keywords" content="ALL,前端面试题">
   <meta property="og:type" content="article">
   <meta property="og:title" content="没事唠唠原生AJAX">
   <meta property="og:url" content="http://icey-monopolize.com/tags/ALL/2017/11/14/没事唠唠原生AJAX/index.html">
   <meta property="og:site_name" content="In My World">
+  <meta property="og:description" content="什么事ajax那？简单点来说就是“无刷新数据读取,读取服务器上的信息”。支持GET/POST请求。   GET用于获取数据，POST用于上传数据   GET的特点:1.通过网址传递(放入url中),会将传递的数据放到网址上面,–名字=值&amp;amp;名字=值    2.容量小    3.安全性低    4.有缓存   POST的特点:1.不通过网址传递    2.容量较大,一般可达2G    3.安全">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-14T08:45:52.000Z">
+  <meta property="og:updated_time" content="2017-11-14T09:48:10.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="没事唠唠原生AJAX">
+  <meta name="twitter:description" content="什么事ajax那？简单点来说就是“无刷新数据读取,读取服务器上的信息”。支持GET/POST请求。   GET用于获取数据，POST用于上传数据   GET的特点:1.通过网址传递(放入url中),会将传递的数据放到网址上面,–名字=值&amp;amp;名字=值    2.容量小    3.安全性低    4.有缓存   POST的特点:1.不通过网址传递    2.容量较大,一般可达2G    3.安全">
 
   <script type="text/javascript" id="hexo.configurations">
     var NexT = window.NexT || {};
@@ -239,6 +243,24 @@
 
                       </span>
 
+                      <span class="post-category">
+
+                        <span class="post-meta-divider">|</span>
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-folder-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">分类于</span>
+
+                        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                          <a href="/categories/前端面试题/" itemprop="url" rel="index">
+                            <span itemprop="name">前端面试题</span>
+                          </a>
+                        </span>
+
+                      </span>
+
                       <span class="post-comments-count">
                         <span class="post-meta-divider">|</span>
                         <span class="post-meta-item-icon">
@@ -254,6 +276,166 @@
                   </header>
 
                   <div class="post-body" itemprop="articleBody">
+
+                    <p>什么事ajax那？简单点来说就是“无刷新数据读取,读取服务器上的信息”。支持GET/POST请求。
+                      <br>GET用于获取数据，POST用于上传数据
+                      <br>GET的特点:1.通过网址传递(放入url中),会将传递的数据放到网址上面,–名字=值&amp;名字=值
+                      <br> 2.容量小
+                      <br> 3.安全性低
+                      <br> 4.有缓存
+                      <br>POST的特点:1.不通过网址传递
+                      <br> 2.容量较大,一般可达2G
+                      <br> 3.安全性相对较高
+                      <br> 4.没有缓存
+                      <br>ajax的流程:
+                      <br> 1.建立xmlHttpRequrest连接；
+                      <br> 非IE6浏览器:var oAjax = new XMLHttpRequest();
+                      <br> IE6浏览器:var oAjax = new ActiveXObject(“Microsoft.XMLHTTP”);
+                      <br> 2.请求向台台服务器发送请求；
+                      <br> oAjax.open(方法,文件名,异步传输);
+                      <br> 👉 oAjax.open(‘GET’,’a.txt?t=’+new Date().getTime(),true);（阻止缓存）
+                      <br> oAjax.send();
+                      <br> 3.根据服务器返回状态码进行相关的操作.
+                      <br> readyState属性：0(未初始化)还没有调用open方法
+                      <br> 1(载入)已经调用send()方法,正在发送请求
+                      <br> 2(载入完成)send()方法完成,已经收到全部相应内容
+                      <br> 3(解析)正在解析收到的响应内容
+                      <br> 4(完成)响应内容解析完成,可以在客户端调用(完成并不一定成功,需要status来检测是成功还是失败)
+                      <br> status属性：200 成功
+                      <br> 404
+                      <br> 返回值responseText:从服务器返回来的文本:oAjax.responseText
+                      <br> oAjax.onreadystatechange=function(){
+                      <br> 　 //oAjax.readyState: 表示浏览器和服务器之间进行到哪一步了
+                      <br> 　 if(oAjax.readyState==4){ //读取完成
+                      <br> 　if(oAjax.status==200){ //读取的结果是成功
+                      <br> 　alert(‘成功:’+oAjax.responseText);
+                      <br> 　 }
+                      <br> 　}
+                      <br> 　 }
+                      <br> 4.返回的数据进行格式化</p>
+                    <p>上代码</p>
+                    <pre><code>&lt;script&gt;
+window.onload=function()
+{
+    var oBtn = document.getElementById(&quot;btn1&quot;);
+    oBtn.onclick = function()
+    {
+
+        if(window.XMLHttpRequest)//如果有XMLHttpRequest，那就是非IE6浏览器。()
+        {
+            var oAjax = new XMLHttpRequest();//创建ajax对象
+        }
+        else//如果没有XMLHttpRequest，那就是IE6浏览器
+        {
+            var oAjax = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);//IE6浏览器创建ajax对象
+        }
+
+        //open(方法、文件名、异步传输）
+        //方法：
+            //传输方式是get方式还是post方式。
+        //文件名
+            //告诉服务器要读哪个文件
+        //异步传输
+            //异步：多件事一件一件的做
+            //同步：多件事情一起进行
+            //但是js里面的同步和异步和现实的同步异步相反。
+                //同步：多件事一件一件的做
+                //异步：多件事情一起进行
+        //ajax天生是用来做异步的
+
+        oAjax.open(&quot;GET&quot;,&quot;a.txt?t=&apos;+new Date().getTime()&quot;,true);//加上t=&apos;+new Date().getTime()&quot;的目的是为了消除缓存，每次的t的值不一样。
+
+        //3.发送请求
+        oAjax.send();
+
+        //4.接收返回
+        //客户端和服务器端有交互的时候会调用onreadystatechange
+        oAjax.onreadystatechange=function()
+        {
+            //oAjax.readyState  //浏览器和服务器，进行到哪一步了。
+                //0-&gt;（未初始化）：还没有调用 open() 方法。
+                //1-&gt;（载入）：已调用 send() 方法，正在发送请求。
+                //2-&gt;载入完成）：send() 方法完成，已收到全部响应内容。
+                //3-&gt;（解析）：正在解析响应内容。
+                //4-&gt;（完成）：响应内容解析完成，可以在客户端调用。
+            if(oAjax.readyState==4)
+            {
+                if(oAjax.status==200)//判断是否成功,如果是200，就代表成功
+                {
+                    alert(&quot;成功&quot;+oAjax.responseText);//读取a.txt文件成功就弹出成功。后面加上oAjax.responseText会输出a.txt文本的内容
+                }
+                else
+                {
+                    alert(&quot;失败&quot;);
+                }
+            }
+        };
+    }
+};
+
+/*//上面if里面需要些window的原因
+//js里面的变量和属性
+
+var a = 12;
+alert(a);//页面上弹出12很正常，而实际上输出的是下面的写法，是属于window的，只是window能省就省了。
+alert(window.a);//输出结果是一样的
+window.alert(window.a);
+
+//想a这种全局变量实际上是winow的一个属性。
+//如果不定义一个变量a直接像下面那样输出a
+alert(a)//系统会报错，而不是undefind，因为没有定义变量a。
+alert(window.a);//如果是这样写，系统就不会报错了，会显示undefind。
+
+//出现上面的原因是因为直接写a从根上就找不到a，而前面加上window只是找不到window的属性a了。*/
+
+
+&lt;/script&gt;
+</code></pre>
+                    <p> 用JS写一个ajax 来个完整的 🌰</p>
+                    <pre><code>var Ajax={
+    get: function(url, fn) {
+        var obj = new XMLHttpRequest();  // XMLHttpRequest对象用于在后台与服务器交换数据          
+        obj.open(&apos;GET&apos;, url, true);
+        obj.onreadystatechange = function() {
+            if (obj.readyState == 4 &amp;&amp; obj.status == 200 || obj.status == 304) { // readyState == 4说明请求已完成
+                fn.call(this, obj.responseText);  //从服务器获得数据
+            }
+        };
+        obj.send();
+    },
+    post: function (url, data, fn) {         // datat应为&apos;a=a1&amp;b=b1&apos;这种字符串格式，在jq里如果data为对象会自动将对象转成这种字符串格式
+        var obj = new XMLHttpRequest();
+        obj.open(&quot;POST&quot;, url, true);
+        obj.setRequestHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded&quot;);  // 添加http头，发送信息至服务器时内容编码类型
+        obj.onreadystatechange = function() {
+            if (obj.readyState == 4 &amp;&amp; (obj.status == 200 || obj.status == 304)) {  // 304未修改
+                fn.call(this, obj.responseText);
+            }
+        };
+        obj.send(data);
+    }
+}
+</code></pre>
+                    <p> JQ提供的ajax
+                      <br> $.ajax({
+                      <br> url: ,
+                      <br> type: ‘’,
+                      <br> dataType: ‘’,
+                      <br> data: {</p>
+                    <pre><code>},
+success: function(){
+
+},
+error: function(){
+
+}
+</code></pre>
+                    <p> })</p>
+                    <p>推荐参考链接：
+                      <a href="https://www.cnblogs.com/yufann/p/JS-Ajax.html" target="_blank" rel="external">https://www.cnblogs.com/yufann/p/JS-Ajax.html</a>
+                      <br>
+                      <a href="https://www.cnblogs.com/Strive-count/p/6386074.html" target="_blank" rel="external">https://www.cnblogs.com/Strive-count/p/6386074.html</a>
+                    </p>
 
                   </div>
 
@@ -285,6 +467,14 @@
                   </div>
 
                   <footer class="post-footer">
+
+                    <div class="post-tags">
+
+                      <a href="/tags/ALL/" rel="tag"># ALL</a>
+
+                      <a href="/tags/前端面试题/" rel="tag"># 前端面试题</a>
+
+                    </div>
 
                     <div class="post-nav">
                       <div class="post-nav-next post-nav-item">
