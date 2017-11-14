@@ -15,7 +15,15 @@
   <entry>
     <title><![CDATA[跨域的理解以及方法]]></title>
     <url>%2F2017%2F11%2F14%2F%E8%B7%A8%E5%9F%9F%E7%9A%84%E7%90%86%E8%A7%A3%E4%BB%A5%E5%8F%8A%E6%96%B9%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[参考地址： http://blog.csdn.net/kongjiea/article/details/44201021 http://blog.csdn.net/Joyhen/article/details/21631833 受浏览器同源策略的限制，本域的js不能操作其他域的页面对象（比如DOM）。但在安全限制的同时也给注入iframe或是ajax应用上带来了不少麻烦。所以我们要通过一些方法使本域的js能够操作其他域的页面对象或者使其他域的js能操作本域的页面对象（iframe之间） 这里需要明确的一点是：所谓的域跟js的存放服务器没有关系，比如baidu.com的页面加载了google.com的js，那么此js的所在域是”baidu.com”而不是google.com。也就是说，此时该js能操作baidu.com的页面对象，而不能操作”google.com”的页面对象。 注意注意 📢 第一，如果是协议和端口造成的跨域问题“前台”是无能为力的， 第二：在跨域问题上，域仅仅是通过“URL的首部”来识别而不会去尝试判断相同的ip地址对应着两个域或两个域是否在同一个ip上。 跨域的方法总结 单向跨域（一般用于获取数据） 1、使用JSONP跨域（动态创建script标签） 原理：因为通过script标签引入的js是不受同源策略的限制的。所以我们可以通过script标签引入一个js或者是一个其他后缀形式（如php，jsp等）的文件，此文件返回一个js函数的调用，如返回JSONP_getUsers([“paco”,”john”,”lili”])，也就是说此文件返回的结果调用了JSONP_getUsers函数，并且把[“paco”,”john”,”lili”]传进去，这个[“paco”,”john”,”lili”]是一个用户列表。那么如果此时我们的页面中有一个JSONP_getUsers函数，那么JSONP_getUsers就被调用到，并且传入了用户列表。此时就实现了在本域获取其他域数据的功能，也就是跨域。 JSONP的缺点则是：它只支持GET请求而不支持POST等其它类型的HTTP请求 JSONP易于实现，但是也会存在一些安全隐患，如果第三方的脚本随意地执行，那么它就可以篡改页面内容，截获敏感数据。但是在受信任的双方传递数据，JSONP是非常合适的选择。可以看出来JSONP跨域一般用于获取其他域的数据。 2、flash URLLoader 3、”window.name” window 对象的name属性是一个很特别的属性，当该window的location变化，然后重新加载，它的name属性可以依然保持不变。那么我们可以在页面 A中用iframe加载其他域的页面B，而页面B中用JavaScript把需要传递的数据赋值给window.name，iframe加载完成之后（iframe.onload），页面A修改iframe的地址，将其变成同域的一个地址，然后就可以读出iframe的window.name的值了（因为A中的”window.name”和iframe中的”window.name”互相独立的，所以不能直接在A中获取”window.name”，而要通过iframe获取 4、服务器代理 5、”location.hash（两个iframe之间）+ iframe，又称FIM，Fragment Identitier Messaging的简写” 6、”document.domain + iframe” 7、 postMessage “window.onload = function() { var ifr = document.getElementById(‘ifr’); var targetOrigin = ‘ http://b.com‘; // 若写成’ http://b.com/c/proxy.html&#39;效果一样 // 若写成’ http://c.com&#39;就不会执行postMessage了 ifr.contentWindow.postMessage(‘I was there!’, targetOrigin); };” //b.html “window.addEventListener(‘message’, function(event){ // 通过origin属性判断消息来源地址 if (event.origin == ‘ http://a.com‘) { alert(event.data); // 弹出”I was there!” alert(event.source); // 对a.com、index.html中window对象的引用 // 但由于同源策略，这里event.source不可以访问window对象 } }, false);” 8、CORS CORS背后的思想，就是使用自定义的HTTP头部让浏览器与服务器进行沟通，从而决定请求或响应是应该成功，还是应该失败]]></content>
+      <categories>
+        <category>前端面试题</category>
+      </categories>
+      <tags>
+        <tag>ALL</tag>
+        <tag>前端面试题</tag>
+        <tag>JS</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[HTTP以及HTTPS详解以及对比]]></title>
