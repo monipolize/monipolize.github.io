@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="咱们书接上回😊 额O__O “…”貌似真的有点久远 20、vue的数据理解 data:是vue绑定数据的数据源    原理:vue会自动将data里面的数据进行递归。抓换成getter和setter   computed:计算属性   watch:监听    watch：{    a:function（val，oldval）{}    handler:function(){    deep：tr">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-07T10:05:34.000Z">
+  <meta property="og:updated_time" content="2017-11-14T10:50:07.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JS面试那些事 -- Part Three 基础篇">
   <meta name="twitter:description" content="咱们书接上回😊 额O__O “…”貌似真的有点久远 20、vue的数据理解 data:是vue绑定数据的数据源    原理:vue会自动将data里面的数据进行递归。抓换成getter和setter   computed:计算属性   watch:监听    watch：{    a:function（val，oldval）{}    handler:function(){    deep：tr">
@@ -397,6 +397,14 @@
                     <p>① state是react中一个对象，用来存储状态值，一般用setstate(data，callback)
                       <br>② state存储可能被事件处理器修改的数据
                       <br>③ 一般用来传递数据，setprop()</p>
+                    <p>26、post与get的区别</p>
+                    <p>① get是从服务器上获取数据，post是向服务器传送数据。
+                      <br>② get是把参数数据队列加到提交表单的ACTION属性所指的URL中，值和表单内各个字段一一对应，在URL中可以看到
+                      <br> post是通过HTTP post机制，将表单内各个字段与其内容放置在HTML HEADER内一起传送到ACTION属性所指
+                      <br> URL地址。用户看不到这个过程
+                      <br>③ 对于get方式，服务器端用Request.QueryString获取变量的值，对于post方式，服务器端用Request.Form获取提交的数据。
+                      <br>④ get传送的数据量较小，不能大于2KB。post传送的数据量较大，一般被默认为不受限制
+                      <br>⑤ get安全性非常低，post安全性较高。但是执行效率却比Post方法好</p>
 
                   </div>
 

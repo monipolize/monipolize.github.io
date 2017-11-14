@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="1、斐波那契数列 function fibonacci(n){    if(n==1 || n==2) return 1;    return fibonacci(n-1)+fibonacci(n-2)   } 2、快排 var quickSort = function(arr) {   　　if (arr.length &amp;lt;= 1) { return arr; }   　　var pivot">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-07T10:05:59.000Z">
+  <meta property="og:updated_time" content="2017-11-14T10:53:23.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="常见入门算法">
   <meta name="twitter:description" content="1、斐波那契数列 function fibonacci(n){    if(n==1 || n==2) return 1;    return fibonacci(n-1)+fibonacci(n-2)   } 2、快排 var quickSort = function(arr) {   　　if (arr.length &amp;lt;= 1) { return arr; }   　　var pivot">
@@ -326,6 +326,50 @@
                       <em>|\s</em>$/g;
                       <br>var str = “”;
                       <br>str.replace(reg, “”)</p>
+                    <p>5、千分位分割
+                      <br>千位分隔符格式的规则是数字的整数部分每三位一组，以“，”分节。小数部分不分节 。
+                      <br>示例：19,351,235.235767</p>
+                    <p>方法一：将数字转换为字符数组，再循环整个数组， 每三位添加一个分隔逗号，最后再合并成字符串</p>
+                    <p> function numFormat(num){
+                      <br> num=num.toString().split(“.”); // 分隔小数点
+                      <br> var arr=num[0].split(“”).reverse(); // 转换成字符数组并且倒序排列
+                      <br> var res=[];
+                      <br> for(var i=0,len=arr.length;i&lt;len;i++){
+                      <br> if(i%3===0&amp;&amp;i!==0){
+                      <br> res.push(“,”); // 添加分隔符
+                      <br> }
+                      <br> res.push(arr[i]);
+                      <br> }
+                      <br> res.reverse(); // 再次倒序成为正确的顺序
+                      <br> if(num[1]){ // 如果有小数的话添加小数部分
+                      <br> res=res.join(“”).concat(“.”+num[1]);
+                      <br> }else{
+                      <br> res=res.join(“”);
+                      <br> }
+                      <br> return res;
+                      <br> }</p>
+                    <p> var a=1234567894532;
+                      <br> var b=673439.4542;
+                      <br> console.log(numFormat(a)); // “1,234,567,894,532”
+                      <br> console.log(numFormat(b)); // “673,439.4542”</p>
+                    <p>方法二：使用JS自带的函数 toLocaleString
+                      <br> var a=1234567894532;
+                      <br> var b=673439.4542;</p>
+                    <p> console.log(a.toLocaleString()); // “1,234,567,894,532”
+                      <br> console.log(b.toLocaleString()); // “673,439.454” （小数部分四舍五入了）</p>
+                    <p>方法三：正则和replace
+                      <br> function numFormat(num){
+                      <br> var res=num.toString().replace(/\d+/, function(n){ // 先提取整数部分
+                      <br> return n.replace(/(\d)(?=(\d{3})+$)/g,function($1){
+                      <br> return $1+”,”;
+                      <br> });
+                      <br> })
+                      <br> return res;
+                      <br> }</p>
+                    <p> var a=1234567894532;
+                      <br> var b=673439.4542;
+                      <br> console.log(numFormat(a)); // “1,234,567,894,532”
+                      <br> console.log(numFormat(b)); // “673,439.4542</p>
 
                   </div>
 
