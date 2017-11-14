@@ -36,18 +36,18 @@
 
   <meta name="keywords" content="ALL,前端面试题,JS," />
 
-  <meta name="description" content="先来个简单对比哈   http和https ① HTTPS是以安全为目标的HTTP通道，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL   ② https具有安全性的ssl加密传输协议需要到ca申请证书，http是超文本传输协议，明文传输   ③ http和https使用的是完全不同的连接方式用的端口也不一样,前者是80,后者是443 SSL的位置介于应用层">
+  <meta name="description" content="现在很多网站都已经从原来的HTTP切换到了HTTPS这中间出现了很多疑惑和问题，所以小仙女就很疑惑，为什么要大费周章的切换那？HTTPS到底有什么好处，新增加了什么？   👀👇   看了一些大牛的介绍，从中总结了一下   参考博客：   https://www.cnblogs.com/qiangxia/p/5261813.html  ※https就是http和TCP之间有一层SSL层，这一层的">
   <meta name="keywords" content="ALL,前端面试题,JS">
   <meta property="og:type" content="article">
   <meta property="og:title" content="HTTP以及HTTPS详解以及对比">
   <meta property="og:url" content="http://icey-monopolize.com/tags/ALL/2017/11/14/HTTP以及HTTPS详解以及对比/index.html">
   <meta property="og:site_name" content="In My World">
-  <meta property="og:description" content="先来个简单对比哈   http和https ① HTTPS是以安全为目标的HTTP通道，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL   ② https具有安全性的ssl加密传输协议需要到ca申请证书，http是超文本传输协议，明文传输   ③ http和https使用的是完全不同的连接方式用的端口也不一样,前者是80,后者是443 SSL的位置介于应用层">
+  <meta property="og:description" content="现在很多网站都已经从原来的HTTP切换到了HTTPS这中间出现了很多疑惑和问题，所以小仙女就很疑惑，为什么要大费周章的切换那？HTTPS到底有什么好处，新增加了什么？   👀👇   看了一些大牛的介绍，从中总结了一下   参考博客：   https://www.cnblogs.com/qiangxia/p/5261813.html  ※https就是http和TCP之间有一层SSL层，这一层的">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-14T08:39:11.000Z">
+  <meta property="og:updated_time" content="2017-11-14T09:10:42.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="HTTP以及HTTPS详解以及对比">
-  <meta name="twitter:description" content="先来个简单对比哈   http和https ① HTTPS是以安全为目标的HTTP通道，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL   ② https具有安全性的ssl加密传输协议需要到ca申请证书，http是超文本传输协议，明文传输   ③ http和https使用的是完全不同的连接方式用的端口也不一样,前者是80,后者是443 SSL的位置介于应用层">
+  <meta name="twitter:description" content="现在很多网站都已经从原来的HTTP切换到了HTTPS这中间出现了很多疑惑和问题，所以小仙女就很疑惑，为什么要大费周章的切换那？HTTPS到底有什么好处，新增加了什么？   👀👇   看了一些大牛的介绍，从中总结了一下   参考博客：   https://www.cnblogs.com/qiangxia/p/5261813.html  ※https就是http和TCP之间有一层SSL层，这一层的">
 
   <script type="text/javascript" id="hexo.configurations">
     var NexT = window.NexT || {};
@@ -277,13 +277,29 @@
 
                   <div class="post-body" itemprop="articleBody">
 
-                    <p>先来个简单对比哈
-                      <br>http和https</p>
+                    <p>现在很多网站都已经从原来的HTTP切换到了HTTPS这中间出现了很多疑惑和问题，所以小仙女就很疑惑，为什么要大费周章的切换那？HTTPS到底有什么好处，新增加了什么？
+                      👀👇
+                      <br>看了一些大牛的介绍，从中总结了一下
+                      <br>参考博客：
+                      <a href="https://www.cnblogs.com/qiangxia/p/5261813.html" target="_blank" rel="external">https://www.cnblogs.com/qiangxia/p/5261813.html</a>
+                    </p>
+                    <p>※https就是http和TCP之间有一层SSL层，这一层的实际作用是防止钓鱼和加密。防止钓鱼通过网站的证书，网站必须有CA证书，证书类似于一个解密的签名。另外是加密，加密需要一个密钥交换算法，双方通过交换后的密钥加解密。</p>
+                    <p>我们先简明扼要的说列举一下他们区别，后文在分别详细介绍</p>
+                    <p>http和https</p>
                     <p>① HTTPS是以安全为目标的HTTP通道，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL
                       <br>② https具有安全性的ssl加密传输协议需要到ca申请证书，http是超文本传输协议，明文传输
-                      <br>③ http和https使用的是完全不同的连接方式用的端口也不一样,前者是80,后者是443</p>
-                    <p>SSL的位置介于应用层和TCP层之间，应用层数据不再直接传递给传输层，而是传递给SSL层，SSL层对从应用层收到的数据进行加密，并增加自己的SSL头
+                      <br>③ http和https使用的是完全不同的连接方式用的端口也不一样,前者是80,后者是443
+                      <br>SSL的位置介于应用层和TCP层之间，应用层数据不再直接传递给传输层，而是传递给SSL层，SSL层对从应用层收到的数据进行加密，并增加自己的SSL头
                       <br>TLS/SSL中使用了非对称加密，对称加密以及HASH算法</p>
+                    <p>先说一下HTTP吧，http的全称是Hypertext Transfer Protocol Vertion （超文本传输协议），说通俗点就是用网络链接传输文本信息的协议，每次开网页时为什么要出现“
+                      <a href="http://”呢？" target="_blank" rel="external">http://”呢？</a> 其实这个道理非常简单，因为你要获得网络上超文本信息，那么你肯定要遵循其超文本传输的规范。所以每次开网页出现的
+                      “http：//”就如暗号，当暗号正确后才能获得相关信息。
+                      <br>HTTPS的全称是Secure Hypertext Transfer Protocol（安全超文本传输协议），是在http协议基础上增加了使用SSL加密传送信息的协议，它是一个安全通信通道，它基于HTTP开发，在客户计算机和服务器之间交换信息。它使用SSL进行信息交换。SSL使
+                      用40 位关键字作为RC4流加密算法，SSL\TLS保护整个上层应用协议的通信包，Cookie是HTTP包的一部分。
+                      <br>你访问HTTPS网站，网站把公钥给你。验证公钥，然后生成一个串随机AES_128密码（假如是用AES加密），并把这个
+                      <br>密码用刚才那个公钥加密，发给服务端。服务端用私钥解密你的发送的数据，得到你随机生成的AES_128密码，并把网页内容全部用AES_128加密器起来，发会给你。浏览器用刚刚的AES_128密码解密
+                      服务器返回的数据，得到你可读的内容。之后你发出的请求数据，也是用AES_128密码来加密。
+                    </p>
 
                   </div>
 
@@ -338,6 +354,11 @@
                       <span class="post-nav-divider"></span>
 
                       <div class="post-nav-prev post-nav-item">
+
+                        <a href="/2017/11/14/跨域的理解以及方法/" rel="prev" title="跨域的理解以及方法">
+                          跨域的理解以及方法
+                          <i class="fa fa-chevron-right"></i>
+                        </a>
 
                       </div>
                     </div>
@@ -418,7 +439,7 @@
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">30</span>
+                      <span class="site-state-item-count">32</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>
