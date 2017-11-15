@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="具体项目 小伙伴们可以 clone我的git上的demo   上连接: 1、概念： webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph) ，    其中包含应用程序需要的每个模块，然后将所有这些模块打包成少量的 bundle - 通常只有一个，由浏览器加载 2、入口：告诉webpack从哪里开始，并根据相关依赖确定打包内容。    用entry属性来定义">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-15T06:28:30.000Z">
+  <meta property="og:updated_time" content="2017-11-15T07:27:31.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="漫谈Webpack">
   <meta name="twitter:description" content="具体项目 小伙伴们可以 clone我的git上的demo   上连接: 1、概念： webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph) ，    其中包含应用程序需要的每个模块，然后将所有这些模块打包成少量的 bundle - 通常只有一个，由浏览器加载 2、入口：告诉webpack从哪里开始，并根据相关依赖确定打包内容。    用entry属性来定义">
@@ -322,6 +322,7 @@
                       <br> entry:’./demo1/index.js’,
                       <br> output:{
                       <br> path:path.resolve(__dirname,’dist’),
+                      <br> //path.resolve用于将相对路径转为绝对路径
                       <br> filename:”demo1.bundle.js”
                       <br> }
                       <br> }</p>
@@ -410,6 +411,38 @@ const config = {
 }
 
 module.exports = config;
+</code></pre>
+                    <p>6、配置: webpack 的配置文件，是导出一个对象的 JavaScript 文件。是标准的 Node.js CommonJS
+                      模块
+                      <br>※※※做好避免编写很长的配置（应该将配置拆分为多个文件）</p>
+                    <p>7、依赖图表：一个文件依赖于另一个文件，webpack 就把此视为文件之间有依赖关系。</p>
+                    <p>8、构建目标：因为服务器和浏览器代码都可以用 JavaScript 编写，所以 webpack 提供了多种构建目标(target)
+                      <br> 你可以在你的 webpack 配置中设置。
+                      <br> 单个target
+                      <br> module.exports = {
+                      <br> target: ‘node’
+                      <br> //在上面例子中，使用 node webpack 会编译为用于「类 Node.js」环境
+                      <br> };
+                      <br> 多个target（webpack 不支持向 target 传入多个字符串，你可以通过打包两份分离的配置来创建同构的库）
+                      <br> var path = require(‘path’);
+                      <br> var serverConfig = {
+                      <br> target: ‘node’,
+                      <br> output: {
+                      <br> path: path.resolve(__dirname, ‘dist’),
+                      <br> filename: ‘lib.node.js’
+                      <br> }</p>
+                    <pre><code>};
+
+var clientConfig = {
+  target: &apos;web&apos;, // &lt;=== 默认是 &apos;web&apos;，可省略
+  output: {
+    path: path.resolve(__dirname, &apos;dist&apos;),
+    filename: &apos;lib.js&apos;
+  }
+  //…
+};
+module.exports = [ serverConfig, clientConfig ];
+//dist 文件夹下创建 lib.js 和 lib.node.js 文件。
 </code></pre>
 
                   </div>
