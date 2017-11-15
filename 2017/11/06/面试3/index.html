@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="咱们书接上回😊 额O__O “…”貌似真的有点久远 20、vue的数据理解 data:是vue绑定数据的数据源    原理:vue会自动将data里面的数据进行递归。抓换成getter和setter   computed:计算属性   watch:监听    watch：{    a:function（val，oldval）{}    handler:function(){    deep：tr">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-14T11:34:04.000Z">
+  <meta property="og:updated_time" content="2017-11-14T13:02:48.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JS面试那些事 -- Part Three 基础篇">
   <meta name="twitter:description" content="咱们书接上回😊 额O__O “…”貌似真的有点久远 20、vue的数据理解 data:是vue绑定数据的数据源    原理:vue会自动将data里面的数据进行递归。抓换成getter和setter   computed:计算属性   watch:监听    watch：{    a:function（val，oldval）{}    handler:function(){    deep：tr">
@@ -442,7 +442,50 @@
                       的插件不能直接被requirejs使用，也就意味着如果使用这些插件，需要将其进行一定的修改，使其符合cmd的规范。这对于一些大量使用第三方插件的网站是很不利的。另外，使用requirejs之后，所有的事件都需要进行绑定。这对于很多前端开发者来说是很不适应的。
                       <br>所以如果是开发的网站含有大量的js代码，并且大多数是自己编写的js，或者开发webapp，游戏，那么推荐用requirejs；
                       <br>如果开发的网站含有大量第三方插件，建议放弃requirejs</p>
-                    <p>29、</p>
+                    <p>29、常见的浏览器兼容问题
+                      <br>html部分</p>
+                    <p>①H5新标签在IE9以下的浏览器识别
+                      <br>
+                      <!--[if lt IE 9]>
+ <script type="text/javascript" src="js/html5shiv.js"></script>
+<![endif]-->
+                      <br>②ul标签内外边距问题ul标签在IE6\IE7中，有个默认的外边距，但是在IE8以上及其他浏览器中有个默认的内边距。解决方法：统一设置ul的内外边距为0</p>
+                    <p>CSS样式的兼容性
+                      <br>①css的hack问题：主要针对IE的不同版本，不同的浏览器的写法不同
+                      <br> IE的条件注释hack：
+                      <br>
+                      <!--[if IE 6]>此处内容只有IE6.0可见<![endif]-->
+                      <br>
+                      <!--[if IE 7]>此处内容只有IE7.0可见<![endif]-->
+                      <br>②IE6双边距问题：IE6在浮动后，又有横向的margin，此时，该元素的外边距是其值的2倍
+                      <br> 解决办法：display:block;
+                      <br>③IE6下图片的下方有空隙
+                      <br> 解决方法：给img设置display:block;
+                      <br>④IE6下两个float之间会有个3px的bug
+                      <br> 解决办法：给右边的元素也设置float:left;
+                      <br>⑤IE6下没有min-width的概念，其默认的width就是min-width
+                      <br>⑥IE6下在使用margin:0 auto;无法使其居中
+                      <br> 解决办法：为其父容器设置text-align:center;
+                      <br>⑦被点击过后的超链接不再具有hover和active属性
+                      <br> 解决办法:按lvha的顺序书写css样式，
+                      <br> “:link”: a标签还未被访问的状态；
+                      <br> “:visited”: a标签已被访问过的状态；
+                      <br> “:hover”: 鼠标悬停在a标签上的状态；
+                      <br> “:active”: a标签被鼠标按着时的状态；
+                      <br>⑧在使用绝对定位或者相对定位后，IE中设置z-index失效，原因是因为其元素依赖于父元素的z-index，但是父元素默认为0，
+                      子高父低，所以不会改变显示的顺序
+                      <br>⑨IE6下无法设置1px的行高，原因是由其默认行高引起的
+                      <br>解决办法：为期设置overflow:hidden;或者line-height:1px;</p>
+                    <p>JavaScript的兼容性</p>
+                    <p>①标准的事件绑定方法函数为addEventListener，但IE下是attachEvent；
+                      <br>②事件的捕获方式不一致，标准浏览器是由外至内，而IE是由内到外，但是最后的结果是将IE的标准定为标准
+                      <br>③window.event获取的。并且获取目标元素的方法也不同，标准浏览器是event.target，而IE下是event.srcElement
+                      <br>④在低版本的IE中获取的日期处理函数的值不是与1900的差值，但是在高版本的IE中和标准浏览器保持了一致，获取的值也是与1900的差值。
+                      <br>比如：var year= new Date().getYear();
+                      <br>⑤ajax的实现方式不同，这个我所理解的是获取XMLHttpRequest的不同，IE下是activeXObject</p>
+                    <p>6.IE中不能操作tr的innerHtml7.获得DOM节点的父节点、子节点的方式不同
+                      <br>其他浏览器：parentNode parentNode.childNodes
+                      <br>IE：parentElement parentElement.children</p>
 
                   </div>
 
