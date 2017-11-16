@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JS必须知道的几件事]]></title>
+    <url>%2F2017%2F11%2F15%2FJS%E5%9F%BA%E7%A1%80%E5%A4%A7%E6%B1%87%E6%80%BB%2F</url>
+    <content type="text"><![CDATA[一、JS的几种设计模式 1、工厂模式 理解：向工厂一样批量生产。解决多个相似的问题，解决多个类似对象声明的问题;解决实列化对象产生重复的问题 🌰 👇 function Person(name,age,sex){ var obj = new Object(); obj.name = name; obj.age = age; obj.sayName = function(){ return this.name } return obj; } var p1 = new Person(&quot;yan&quot;,&quot;22&quot;,&quot;男&quot;); var p2 = new Person(&quot;haha&quot;,&quot;22&quot;,&quot;女&quot;); console.log(typeof p1); // object console.log(typeof p2); // object console.log(p1 instanceof Object); // true 优点:解决多个相似的问题。 缺点:对象的类型不知道 再举一个复杂的 🌰 var Person = function(name){ this.name = name; this.method = function(){ return this.name } } Person.prototype = { constructor:Person, buy:function(sex){ var p1 = this.createPerson(sex) p1.boy(); p1.girl(); return p1 }, createPerson:function(sex){ throw new Error(&quot;父类是抽象类不能直接调用，需要子类重写该方法&quot;) } } // 实现原型继承 function extend(sub,sup){ //Sub表示子类，Sup表示超类 var F = function(){}; // 设置空函数的原型为超类的原型 F.prototype = sup.prototype; // 实例化空函数，并把超类原型引用传递给子类 sub.prototype = new F(); // 重置子类原型的构造器为子类自身 Sub.prototype.constructor = Sub; // 在子类中保存超类的原型,避免子类与超类耦合 Sub.sup = Sup.prototype; if(Sup.prototype.constructor === Object.prototype.constructor) { // 检测超类原型的构造器是否为原型自身 Sup.prototype.constructor = Sup; } } var Child = function(name){ this.name = name; Person.call(this,name) } // 子类继承父类原型方法 extend(Child,Person) // Child 子类重写父类的方法 Child.prototype.createPerson = function(){ var A = function(){ console.log(&quot;AAAA&quot;); }; var B = function(){ console.log(&quot;BBBBB&quot;); }; return { A: A, B: B } } var childClass = new Child(&quot;妮妮&quot;); console.log(childClass); 二、单体模式 理解:将代码组织为一个逻辑单元。用来划分命名空间并将一批属性和方法组织在一起的对象，如果它可以被实例化，那么它只能被实例化一次。 优点:以用来划分命名空间，减少全局变量的数量。可以被实例化，且实例化一次。 🌰 👇 var Person = { name:”haha”, age:”12”, method1:function(){ return this.name }, method2：function(){ return this.age } } 上面的只是不能被实例化的一个类，因此不是单体模式 改造一下吧 👇 var Person = function(name){ this.name = name; } Person.prototype.getName = function(){ return this.name; } function getInstance(name){ var instance = null; if(!instance){ instance = new Person(name) } return instance; } var a = getInstance(&quot;aa&quot;) var b = getInstance(&quot;bb&quot;); // 因为单体模式是只实例化一次，所以下面的实例是相等的 由于单体模式只实例化一次，因此第一次调用，返回的是a实例对象，当我们继续调用的时候，b的实例就是a的实例 console.log(a === b); // true console.log(a.getName());// aa console.log(b.getName());// aa 三、理解模块模式 理解：单体模式添加私有变量和私有方法能够减少全局变量的使用 var singleMode = (function(){ // 创建私有变量 var privateNum = 112; function privateFunc(){ // 实现自己的业务逻辑代码 } return { publicMethod1: publicMethod1, publicMethod2: publicMethod1 }; })() 来个 🌰 function CustomType() { this.name = “tugenhua”; }; CustomType.prototype.getName = function(){ return this.name; } var application = (function(){ // 定义私有 var privateA = “aa”; // 定义私有函数 function A(){}; // 实例化一个对象后，返回该实例，然后为该实例增加一些公有属性和方法 var object = new CustomType(); // 添加公有属性 object.A = &quot;aa&quot;; // 添加公有方法 object.B = function(){ return privateA; } // 返回该对象 return object; })(); console.log(application.A);// aa console.log(application.B()); // aa console.log(application.name); // tugenhua console.log(application.getName());// tugenhua 四、代理模式 理解:代理是一个对象，它可以用来控制对本体对象的访问，它与本体对象实现了同样的接口，代理对象会把所有的调用方法传递给本体对象的 五、职责链模式 理解：职责连是由多个不同的对象组成的，发送者是发送请求的对象，而接收者则是链中那些接收这种请求并且对其进行处理或传递的对象。请求本身有时候也可以是一个对象，它封装了和操作有关的所有数据，基本实现流程如下： 发送者知道链中的第一个接收者，它向这个接收者发送该请求 每一个接收者都对请求进行分析，然后要么处理它，要么它往下传递 每一个接收者知道其他的对象只有一个，即它在链中的下家(successor) 如果没有任何接收者处理请求，那么请求会从链中离开 优点：消除请求的发送者与接收者之间的耦合 链中的节点对象可以灵活地拆分重组，增加或删除一个节点，或者改变节点的位置都是很简单的事情 缺点：职责链模式中多了一点节点对象，可能在某一次请求过程中，大部分节点没有起到实质性作用，他们的作用只是让 请求传递下去，从性能方面考虑，避免过长的职责链提高性能。 六、命令模式 七、模板方法模式 八、策略模式 理解：定义一系列的算法，把它们一个个封装起来，并且使它们可以相互替换 优点：策略模式利用组合，委托等技术和思想，有效的避免很多if条件语句。 策略模式提供了开放-封闭原则，使代码更容易理解和扩展。 策略模式中的代码可以复用。 九、观察者模式 理解：它定义了对象间的一种一对多的关系，让多个观察者对象同时监听某一个主题对象，当一个对象发生改变时，所有依赖于它的对象都将得到通知 举个 🌰 var shoeObj = {}; // 定义发布者 shoeObj.list = []; // 缓存列表 存放订阅者回调函数 // 增加订阅者 shoeObj.listen = function(fn) { shoeObj.list.push(fn); // 订阅消息添加到缓存列表 } // 发布消息 shoeObj.trigger = function(){ for(var i = 0,fn; fn = this.list[i++];) { fn.apply(this,arguments); } } shoeObj.listen(function(color,size){ console.log(“颜色是：”+color); console.log(“尺码是：”+size); }); shoeObj.listen(function(color,size){ console.log(“再次打印颜色是：”+color); console.log(“再次打印尺码是：”+size); }); shoeObj.trigger(“红色”,40); shoeObj.trigger(“黑色”,42);]]></content>
+      <categories>
+        <category>前端面试题</category>
+      </categories>
+      <tags>
+        <tag>ALL</tag>
+        <tag>前端面试题</tag>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[浏览器缓存]]></title>
     <url>%2F2017%2F11%2F14%2F%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%2F</url>
     <content type="text"><![CDATA[浏览器缓存就是把一个已经请求过的Web资源（如html页面，图片，js，数据等）拷贝一份副本储存在浏览器中 为什么使用缓存 （1）减少网络带宽消耗 （2）降低服务器压力 （3）减少网络延迟，加快页面打开速度 浏览器端的缓存规则 对于浏览器端的缓存来讲，这些规则是在HTTP协议头和HTML页面的Meta标签中定义的 分别从新鲜度和校验值两个维度来规定浏览器是否可以直接使用缓存中的副本， 还是需要去源服务器获取更新的版本。 新鲜度（过期机制）：也就是缓存副本有效期。一个缓存副本必须满足以下条件，浏览器会认为它是有效的，足够新的： 含有完整的过期时间控制头信息（HTTP协议报头），并且仍在有效期内； 浏览器已经使用过这个缓存副本，并且在一个会话中已经检查过新鲜度 校验值（验证机制）：服务器返回资源的时候有时在控制头信息带上这个资源的实体标签Etag（Entity Tag）， 它可以用来作为浏览器再次请求过程的校验标识。如过发现校验标识不匹配，说明资源已经被修改或过期， 浏览器需求重新获取资源内容。 1、使用HTML Meta 标签 &lt;!- Pragma是http1.0版本中给客户端设定缓存方式之一 -&gt;–&gt; 事实上这种禁用缓存的形式用处很有限： a. 仅有IE才能识别这段meta标签含义，其它主流浏览器仅识别“Cache-Control: no-store”的meta标签。 b. 在IE中识别到该meta标签含义，并不一定会在请求字段加上Pragma，但的确会让当前页面每次都发新请求（仅限页面，页面上的资源则不受影响）。 2、HTTP消息报头 Pragma：no-cache 诉浏览器忽略资源的缓存副本，每次访问都需要去服务器拉取【http1.0中存在的字段，在http1.1已被抛弃，使用Cache-Control替代，但为了做http协议的向下兼容，很多网站依旧会带上这个字段】 Expires：Mon, 15 Aug 2016 03:56:47 GMT 告诉浏览器资源缓存过期时间，如果还没过该时间点则不发请求。在HTTP 1.1版开始，使用Cache-Control: max-age=秒替代 Cache-Control：no-cache 告诉浏览器忽略资源的缓存副本，强制每次请求直接发送给服务器，拉取资源，但不是“不缓存” no-store 强制缓存在任何情况下都不要保留任何副本 max-age=[秒] 指明缓存副本的有效时长，从请求时间开始到过期时间之间的秒数 public 任何路径的缓存者（本地缓存、代理服务器），可以无条件的缓存改资源 private 只针对单个用户或者实体（不同用户、窗口）缓存资源 Last-Modified：Mon, 15 Aug 2016 03:56:47 GMT 告诉浏览器这个资源最后的修改时间 If-Modified-Since：Mon, 15 Aug 2016 03:56:47 GMT 其值为上次响应头的Last-Modified值，再次向web服务器请求时带上头If-Modified-Since。 web服务器收到请求后发现有头If-Modified-Since则与被请求资源的最后修改时间进行比对。 若最后修改时间较新，说明资源又被改动过，则响应整片资源内容（写在响应消息包体内）， 包括更新Last-Modified的值，HTTP 200；若最后修改时间较旧，说明资源无新修改， 则响应HTTP 304 ETag：”fd56273325a2114818df4f29a628226d” 告诉浏览器当前资源在服务器的唯一标识符（生成规则又服务器决定） If-None-Match：”fd56273325a2114818df4f29a628226d” 当资源过期时（使用Cache-Control标识的max-age），发现资源具有Etage声明，则再次向web服务器请求时带上头If-None-Match（Etag的值）。 web服务器收到请求后发现有头If-None-Match则与被请求资源的相应校验串进行比对，决定返回200或304 变更后对比 Cache-Control与Expires：Cache-Control与Expires的作用一致，都是指明当前资源的有效期 只不过Cache-Control的选择更多，设置更细致，如果同时设置的话，其优先级高于Expires。 注意： Etag是服务器自动生成或者由开发者生成的对应资源在服务器端的唯一标识符，能够更加准确的控制缓存， 但是需要注意的是分布式系统里多台机器间文件的last-modified必须保持一致， 以免负载均衡到不同机器导致比对失败 不能缓存的请求： HTTP信息头中包含Cache-Control:no-cache，pragma:no-cache（HTTP1.0）， 或Cache-Control:max-age=0等告诉浏览器不用缓存的请求 2、需要根据Cookie，认证信息等决定输入内容的动态请求是不能被缓存的 经过HTTPS安全加密的请求（有人也经过测试发现，ie其实在头部加入Cache-Control：max-age信息，firefox在头部加入Cache-Control:Public之后，能够对HTTPS的资源进行缓存 POST请求无法被缓存 HTTP响应头中不包含Last-Modified/Etag，也不包含Cache-Control/Expires的请求无法被缓存]]></content>
@@ -98,7 +111,7 @@
   <entry>
     <title><![CDATA[漫谈Webpack]]></title>
     <url>%2F2017%2F11%2F09%2F%E6%BC%AB%E8%B0%88webpack%2F</url>
-    <content type="text"><![CDATA[具体项目 小伙伴们可以 clone我的git上的demo 上连接: 1、概念： webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph) ， 其中包含应用程序需要的每个模块，然后将所有这些模块打包成少量的 bundle - 通常只有一个，由浏览器加载 2、入口：告诉webpack从哪里开始，并根据相关依赖确定打包内容。 用entry属性来定义 单个入口 👇 const config = { entry: { main: ‘./demo1/index.js’ } }; 简写如下 👇 const config = { entry:&apos;./demo1/index.js&apos; } module.exports = config; 多个入口 👇 entry: {[entryChunkName: string]: string|Array&lt;string&gt;} const config = { entry: { index: &apos;./demo1/index.js&apos;, vendors: &apos;./demo1/vendors.js&apos; } }; 上面代码意味着从 index.js 和 vendors.js 开始创建依赖图，这些依赖图是彼此完全分离、互相独立的 3、出口：在哪里打包。filename 用于输出文件的文件名。目标输出目录 path 的绝对路径 用output 属性描述了如何处理归拢在一起的代码.”output.filename”代表打包名称。 “output.path”代表要打包emitted到哪里（emitted是生产或“排放的特殊术语。） //将一个单独的 bundle.js 文件输出到 /home/proj/public/assets 目录中 const config = { output: { filename: ‘bundle.js’, path: ‘/home/proj/public/assets’ } }; module.exports = config; ############################################################################## const path = require(‘path’); const config = { entry:’./demo1/index.js’, output:{ path:path.resolve(__dirname,’dist’), //path.resolve用于将相对路径转为绝对路径 filename:”demo1.bundle.js” } } module.exports = config; 如果配置创建了多个单独的 &quot;chunk&quot;（例如，使用多个入口起点或使用像 CommonsChunkPlugin 这样的插件），则应该使用占位符(substitutions)来确保每个文件具有唯一的名称 { entry: { app: &apos;./src/app.js&apos;, search: &apos;./src/search.js&apos; }, output: { filename: &apos;[name].js&apos;, path: __dirname + &apos;/dist&apos; } } // 写入到硬盘：./dist/app.js, ./dist/search.js 4、loader：loader 用于对模块的源代码进行转换,loader 可以将文件从不同的语言转换为JS 在文件被添加到依赖图中时，其转换为模块。在每个文件的基础上执行转换 识别出(identify)应该被对应的 loader 进行转换(transform)的那些文件 转换这些文件，从而使其能够被添加到依赖图中（并且最终添加到 bundle 中） ※※※ webpack 把每个文件(.css, .html, .scss, .jpg, etc.) 都作为模块处理。然而 webpack 自身只理解 JavaScript。 module:{ rules:[ { test:/\.txt$/,use:&apos;raw-loader&apos;} ] } 对一个module定义一个规则，里面包含test和use两个属性，意味着当遇到被解析为&apos;.txt&apos;的路径的时候，在 对其进行打包之前先使用raw-loader转换一下 使用 loader 告诉 webpack 加载 CSS 文件 module.exports = { module: { rules: [ { test: /\.css$/, use: &apos;css-loader&apos; } ] } }; 多个loader的时候 module: { rules: [ { test: /\.css$/, use: [ { loader: [&apos;style-loader&apos;](/loaders/style-loader) }, { loader: [&apos;css-loader&apos;](/loaders/css-loader), options: { modules: true } } ] } ] } ※※※ 内联写法：import Styles from ‘style-loader!css-loader?modules!./styles.css’; 通过前置所有规则及使用 !，可以对应覆盖到配置中的任意 loader ※※※ CLI：webpack –module-bind jade-loader –module-bind ‘css=style-loader!css-loader’ 5、插件（Plugins）：常用于（但不限于）在打包模块的 “compilation” 和 “chunk” 生命周期执行操作和自定义功能 想用一个插件的时候，只要require()即可 多数插件可以通过选项自定义。你也可以在一个配置文件中因为不同目的而多次使用同一个插件，这时需要通过使用 new 来创建它的一个实例。 webpack 插件是一个具有 apply 属性的JS对象 const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;); const webpack = require(&apos;webpack&apos;); const path = require(&apos;path&apos;); const config = { entry:&apos;./demo1/index.js&apos;, output:{ path:path.resolve(__dirname,&apos;dist&apos;), filename:&quot;demo1.bundle.js&quot; }, module:{ rules:[ { test:/\.txt$/,use:&apos;raw-loader&apos;} ] }, plugins:[ new webpack.optimize.UglifyJsPlugin(), new HtmlWebpackPlugin({template: &apos;./demo1/index.html&apos;}) ] } module.exports = config; 6、配置: webpack 的配置文件，是导出一个对象的 JavaScript 文件。是标准的 Node.js CommonJS 模块 ※※※做好避免编写很长的配置（应该将配置拆分为多个文件） 7、依赖图表：一个文件依赖于另一个文件，webpack 就把此视为文件之间有依赖关系。 8、构建目标：因为服务器和浏览器代码都可以用 JavaScript 编写，所以 webpack 提供了多种构建目标(target) 你可以在你的 webpack 配置中设置。 单个target module.exports = { target: ‘node’ //在上面例子中，使用 node webpack 会编译为用于「类 Node.js」环境 }; 多个target（webpack 不支持向 target 传入多个字符串，你可以通过打包两份分离的配置来创建同构的库） var path = require(‘path’); var serverConfig = { target: ‘node’, output: { path: path.resolve(__dirname, ‘dist’), filename: ‘lib.node.js’ } }; var clientConfig = { target: &apos;web&apos;, // &lt;=== 默认是 &apos;web&apos;，可省略 output: { path: path.resolve(__dirname, &apos;dist&apos;), filename: &apos;lib.js&apos; } //… }; module.exports = [ serverConfig, clientConfig ]; //dist 文件夹下创建 lib.js 和 lib.node.js 文件。]]></content>
+    <content type="text"><![CDATA[具体项目 小伙伴们可以 clone我的git上的demo 上连接: 1、概念： webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph) ， 其中包含应用程序需要的每个模块，然后将所有这些模块打包成少量的 bundle - 通常只有一个，由浏览器加载 2、入口：告诉webpack从哪里开始，并根据相关依赖确定打包内容。 用entry属性来定义 单个入口 👇 const config = { entry: { main: ‘./demo1/index.js’ } }; 简写如下 👇 const config = { entry:&apos;./demo1/index.js&apos; } module.exports = config; 多个入口 👇 entry: {[entryChunkName: string]: string|Array&lt;string&gt;} const config = { entry: { index: &apos;./demo1/index.js&apos;, vendors: &apos;./demo1/vendors.js&apos; } }; 上面代码意味着从 index.js 和 vendors.js 开始创建依赖图，这些依赖图是彼此完全分离、互相独立的 3、出口：在哪里打包。filename 用于输出文件的文件名。目标输出目录 path 的绝对路径 用output 属性描述了如何处理归拢在一起的代码.”output.filename”代表打包名称。 “output.path”代表要打包emitted到哪里（emitted是生产或“排放的特殊术语。） //将一个单独的 bundle.js 文件输出到 /home/proj/public/assets 目录中 const config = { output: { filename: ‘bundle.js’, path: ‘/home/proj/public/assets’ } }; module.exports = config; ############################################################################## const path = require(‘path’); const config = { entry:’./demo1/index.js’, output:{ path:path.resolve(__dirname,’dist’), //path.resolve用于将相对路径转为绝对路径 filename:”demo1.bundle.js” } } module.exports = config; 如果配置创建了多个单独的 &quot;chunk&quot;（例如，使用多个入口起点或使用像 CommonsChunkPlugin 这样的插件），则应该使用占位符(substitutions)来确保每个文件具有唯一的名称 { entry: { app: &apos;./src/app.js&apos;, search: &apos;./src/search.js&apos; }, output: { filename: &apos;[name].js&apos;, path: __dirname + &apos;/dist&apos; } } // 写入到硬盘：./dist/app.js, ./dist/search.js 4、loader：loader 用于对模块的源代码进行转换,loader 可以将文件从不同的语言转换为JS 在文件被添加到依赖图中时，其转换为模块。在每个文件的基础上执行转换 识别出(identify)应该被对应的 loader 进行转换(transform)的那些文件 转换这些文件，从而使其能够被添加到依赖图中（并且最终添加到 bundle 中） ※※※ webpack 把每个文件(.css, .html, .scss, .jpg, etc.) 都作为模块处理。然而 webpack 自身只理解 JavaScript。 module:{ rules:[ { test:/\.txt$/,use:&apos;raw-loader&apos;} ] } 对一个module定义一个规则，里面包含test和use两个属性，意味着当遇到被解析为&apos;.txt&apos;的路径的时候，在 对其进行打包之前先使用raw-loader转换一下 使用 loader 告诉 webpack 加载 CSS 文件 module.exports = { module: { rules: [ { test: /\.css$/, use: &apos;css-loader&apos; } ] } }; 多个loader的时候 module: { rules: [ { test: /\.css$/, use: [ { loader: [&apos;style-loader&apos;](/loaders/style-loader) }, { loader: [&apos;css-loader&apos;](/loaders/css-loader), options: { modules: true } } ] } ] } ※※※ 内联写法：import Styles from ‘style-loader!css-loader?modules!./styles.css’; 通过前置所有规则及使用 !，可以对应覆盖到配置中的任意 loader ※※※ CLI：webpack –module-bind jade-loader –module-bind ‘css=style-loader!css-loader’ 5、插件（Plugins）：常用于（但不限于）在打包模块的 “compilation” 和 “chunk” 生命周期执行操作和自定义功能 想用一个插件的时候，只要require()即可 多数插件可以通过选项自定义。你也可以在一个配置文件中因为不同目的而多次使用同一个插件，这时需要通过使用 new 来创建它的一个实例。 webpack 插件是一个具有 apply 属性的JS对象 const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;); const webpack = require(&apos;webpack&apos;); const path = require(&apos;path&apos;); const config = { entry:&apos;./demo1/index.js&apos;, output:{ path:path.resolve(__dirname,&apos;dist&apos;), filename:&quot;demo1.bundle.js&quot; }, module:{ rules:[ { test:/\.txt$/,use:&apos;raw-loader&apos;} ] }, plugins:[ new webpack.optimize.UglifyJsPlugin(), new HtmlWebpackPlugin({template: &apos;./demo1/index.html&apos;}) ] } module.exports = config; 6、配置: webpack 的配置文件，是导出一个对象的 JavaScript 文件。是标准的 Node.js CommonJS 模块 ※※※做好避免编写很长的配置（应该将配置拆分为多个文件） 7、依赖图表：一个文件依赖于另一个文件，webpack 就把此视为文件之间有依赖关系。 8、构建目标：因为服务器和浏览器代码都可以用 JavaScript 编写，所以 webpack 提供了多种构建目标(target) 你可以在你的 webpack 配置中设置。 单个target module.exports = { target: ‘node’ //在上面例子中，使用 node webpack 会编译为用于「类 Node.js」环境 }; 多个target（webpack 不支持向 target 传入多个字符串，你可以通过打包两份分离的配置来创建同构的库） var path = require(‘path’); var serverConfig = { target: ‘node’, output: { path: path.resolve(__dirname, ‘dist’), filename: ‘lib.node.js’ } }; var clientConfig = { target: &apos;web&apos;, // &lt;=== 默认是 &apos;web&apos;，可省略 output: { path: path.resolve(__dirname, &apos;dist&apos;), filename: &apos;lib.js&apos; } //… }; module.exports = [ serverConfig, clientConfig ]; //dist 文件夹下创建 lib.js 和 lib.node.js 文件。 9、安装使用]]></content>
       <categories>
         <category>WEBPACK</category>
       </categories>
@@ -229,8 +242,8 @@
       </categories>
       <tags>
         <tag>ALL</tag>
-        <tag>前端面试题</tag>
         <tag>CSS</tag>
+        <tag>前端面试题</tag>
         <tag>H5</tag>
       </tags>
   </entry>
@@ -243,8 +256,8 @@
       </categories>
       <tags>
         <tag>ALL</tag>
-        <tag>前端面试题</tag>
         <tag>CSS</tag>
+        <tag>前端面试题</tag>
       </tags>
   </entry>
   <entry>
@@ -295,8 +308,8 @@
       </categories>
       <tags>
         <tag>ALL</tag>
-        <tag>前端面试题</tag>
         <tag>CSS</tag>
+        <tag>前端面试题</tag>
       </tags>
   </entry>
   <entry>
@@ -308,8 +321,8 @@
       </categories>
       <tags>
         <tag>ALL</tag>
-        <tag>前端面试题</tag>
         <tag>CSS</tag>
+        <tag>前端面试题</tag>
       </tags>
   </entry>
   <entry>
@@ -333,8 +346,8 @@
       </categories>
       <tags>
         <tag>ALL</tag>
-        <tag>前端面试题</tag>
         <tag>CSS</tag>
+        <tag>前端面试题</tag>
       </tags>
   </entry>
   <entry>
@@ -421,12 +434,12 @@
       </categories>
       <tags>
         <tag>ALL</tag>
-        <tag>ES6</tag>
+        <tag>CSS</tag>
         <tag>前端面试题</tag>
         <tag>算法</tag>
-        <tag>CSS</tag>
-        <tag>JS</tag>
+        <tag>ES6</tag>
         <tag>HTML</tag>
+        <tag>JS</tag>
         <tag>JQ</tag>
         <tag>NODEJS</tag>
         <tag>WEBPACK</tag>
@@ -445,8 +458,8 @@
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
-    <title><![CDATA[Tags]]></title>
-    <url>%2Ftags%2Findex.html</url>
+    <title><![CDATA[Categories]]></title>
+    <url>%2Fcategories%2Findex.html</url>
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
@@ -455,8 +468,8 @@
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
-    <title><![CDATA[Categories]]></title>
-    <url>%2Fcategories%2Findex.html</url>
+    <title><![CDATA[Tags]]></title>
+    <url>%2Ftags%2Findex.html</url>
     <content type="text"><![CDATA[]]></content>
   </entry>
 </search>
