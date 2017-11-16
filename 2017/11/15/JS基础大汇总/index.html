@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="一、JS的几种设计模式   1、工厂模式   理解：向工厂一样批量生产。解决多个相似的问题，解决多个类似对象声明的问题;解决实列化对象产生重复的问题   🌰 👇    function Person(name,age,sex){    var obj = new Object();    obj.name = name;    obj.age = age;    obj.sayName = f">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-16T07:24:14.000Z">
+  <meta property="og:updated_time" content="2017-11-16T07:58:27.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JS必须知道的几件事">
   <meta name="twitter:description" content="一、JS的几种设计模式   1、工厂模式   理解：向工厂一样批量生产。解决多个相似的问题，解决多个类似对象声明的问题;解决实列化对象产生重复的问题   🌰 👇    function Person(name,age,sex){    var obj = new Object();    obj.name = name;    obj.age = age;    obj.sayName = f">
@@ -366,22 +366,24 @@ console.log(childClass);
                       <br>理解:将代码组织为一个逻辑单元。用来划分命名空间并将一批属性和方法组织在一起的对象，如果它可以被实例化，那么它只能被实例化一次。
                       <br>优点:以用来划分命名空间，减少全局变量的数量。可以被实例化，且实例化一次。</p>
                     <p>🌰 👇</p>
-                    <p>var Person = {
-                      <br> name:”haha”,
-                      <br> age:”12”,
-                      <br> method1:function(){
-                      <br> return this.name
-                      <br> },
-                      <br> method2：function(){
-                      <br> return this.age
-                      <br> }
-                      <br>}
-                      <br>上面的只是不能被实例化的一个类，因此不是单体模式
-                      <br>改造一下吧 👇
-                      <br> var Person = function(name){
-                      <br> this.name = name;
-                      <br> }</p>
-                    <pre><code>Person.prototype.getName = function(){
+                    <pre><code>var Person = {
+    name:&quot;haha&quot;,
+    age:&quot;12&quot;,
+    method1:function(){
+        return this.name
+    },
+    method2：function(){
+        return this.age
+    }
+}
+</code></pre>
+                    <p>上面的只是不能被实例化的一个类，因此不是单体模式
+                      <br>改造一下吧 👇</p>
+                    <pre><code>var Person = function(name){
+    this.name = name;
+}
+
+Person.prototype.getName = function(){
     return this.name;
 }
 
@@ -439,11 +441,11 @@ var b = getInstance(&quot;bb&quot;);
     // 返回该对象
     return object;
 })();
+console.log(application.A);// aa
+console.log(application.B()); // aa
+console.log(application.name); // tugenhua
+console.log(application.getName());// tugenhua
 </code></pre>
-                    <p>console.log(application.A);// aa
-                      <br>console.log(application.B()); // aa
-                      <br>console.log(application.name); // tugenhua
-                      <br>console.log(application.getName());// tugenhua</p>
                     <p>4、代理模式</p>
                     <p>理解:代理是一个对象，它可以用来控制对本体对象的访问，它与本体对象实现了同样的接口，代理对象会把所有的调用方法传递给本体对象的</p>
                     <p>5、职责链模式</p>
@@ -465,28 +467,79 @@ var b = getInstance(&quot;bb&quot;);
                     <p>9、观察者模式</p>
                     <p>理解：它定义了对象间的一种一对多的关系，让多个观察者对象同时监听某一个主题对象，当一个对象发生改变时，所有依赖于它的对象都将得到通知</p>
                     <p>举个 🌰
-                      <br>var shoeObj = {}; // 定义发布者
-                      <br>shoeObj.list = []; // 缓存列表 存放订阅者回调函数</p>
-                    <p>// 增加订阅者
-                      <br>shoeObj.listen = function(fn) {
-                      <br> shoeObj.list.push(fn); // 订阅消息添加到缓存列表
-                      <br>}</p>
-                    <p>// 发布消息
-                      <br>shoeObj.trigger = function(){
-                      <br> for(var i = 0,fn; fn = this.list[i++];) {
-                      <br> fn.apply(this,arguments);
-                      <br> }
-                      <br>}
-                      <br>shoeObj.listen(function(color,size){
-                      <br> console.log(“颜色是：”+color);
-                      <br> console.log(“尺码是：”+size);
-                      <br>});
-                      <br>shoeObj.listen(function(color,size){
-                      <br> console.log(“再次打印颜色是：”+color);
-                      <br> console.log(“再次打印尺码是：”+size);
-                      <br>});</p>
-                    <p>shoeObj.trigger(“红色”,40);
-                      <br>shoeObj.trigger(“黑色”,42);</p>
+                      <br> var shoeObj = {}; // 定义发布者
+                      <br> shoeObj.list = []; // 缓存列表 存放订阅者回调函数</p>
+                    <pre><code>// 增加订阅者
+shoeObj.listen = function(fn) {
+    shoeObj.list.push(fn);  // 订阅消息添加到缓存列表
+}
+
+// 发布消息
+shoeObj.trigger = function(){
+    for(var i = 0,fn; fn = this.list[i++];) {
+        fn.apply(this,arguments); 
+    }
+}
+shoeObj.listen(function(color,size){
+    console.log(&quot;颜色是：&quot;+color);
+    console.log(&quot;尺码是：&quot;+size);  
+});
+shoeObj.listen(function(color,size){
+    console.log(&quot;再次打印颜色是：&quot;+color);
+    console.log(&quot;再次打印尺码是：&quot;+size); 
+});
+
+shoeObj.trigger(&quot;红色&quot;,40);
+shoeObj.trigger(&quot;黑色&quot;,42);
+</code></pre>
+                    <p>参考博客：
+                      <a href="https://www.cnblogs.com/tugenhua0707/p/5198407.html" target="_blank" rel="external">https://www.cnblogs.com/tugenhua0707/p/5198407.html</a>
+                    </p>
+                    <p>二、理论知识
+                      <br>1、常用的有几种浏览器，内核是什么？
+                      <br>浏览器：IE，Chrome，FireFox，Safari，Opera。
+                      <br>内核：Trident，Gecko，Presto，Webkit。</p>
+                    <p>2、box-sizing常用的属性有哪些？分别有什么作用？
+                      <br>box-sizing: content-box|border-box|inherit;
+                      <br>content-box:宽度和高度分别应用到元素的内容框。在宽度和高度之外绘制元素的内边距和边框(元素默认效果)。
+                      <br>border-box:元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制。通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度。</p>
+                    <p>3、Doctype作用？标准模式与兼容模式各有什么区别?
+                      <br>&lt;!DOCTYPE&gt;告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。
+                      <br>标准模式的排版和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。</p>
+                    <p>4、HTML5 为什么只需要写 &lt;!DOCTYPE HTML&gt;？
+                      <br>HTML5不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为</p>
+                    <p>5、介绍一下你对浏览器内核的理解？
+                      <br>主要分成两部分：渲染引擎(layout engineer或Rendering Engine)和JS引擎
+                      <br>渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入CSS等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核。
+                      <br>JS引擎则：解析和执行javascript来实现网页的动态效果。</p>
+                    <p>6、html5有哪些新特性？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？
+                      <br>绘画 canvas;
+                      <br>用于媒介回放的 video 和 audio 元素;
+                      <br>本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;
+                      <br>sessionStorage 的数据在浏览器关闭后自动删除;
+                      <br>语意化更好的内容元素，比如 article、footer、header、nav、section;
+                      <br>表单控件，calendar、date、time、email、url、search;
+                      <br>新的技术webworker, websocket, Geolocation;</p>
+                    <p>7、简述一下你对HTML语义化的理解？
+                      <br>用正确的标签做正确的事情。
+                      <br>html语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析;
+                      <br>即使在没有样式CSS情况下也以一种文档格式显示，并且是容易阅读的;
+                      <br>搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO;
+                      <br>使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。</p>
+                    <p>8、this对象的理解
+                      <br>this总是指向函数的直接调用者（而非间接调用者）；
+                      <br>如果有new关键字，this指向new出来的那个对象；
+                      <br>在事件中，this指向触发这个事件的对象，特殊的是，IE中的attachEvent中的this总是指向全局对象Window；</p>
+                    <p>9、你有哪些性能优化的方法？
+                      <br>减少http请求次数：CSS Sprites, CSS源码压缩、图片大小控制合适；网页Gzip，CDN托管，data缓存
+                      ，图片服务器。
+                      <br>前端模板 JS+数据，减少由于HTML标签导致的带宽浪费，前端用变量保存AJAX请求结果，每次操作本地变量，不用请求，减少请求次数
+                      <br>用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能。
+                      <br>当需要设置的样式很多时设置className而不是直接操作style。
+                      <br>少用全局变量、缓存DOM节点查找的结果。减少IO读取操作。
+                      <br>避免使用CSS Expression（css表达式)又称Dynamic properties(动态属性)。
+                      <br>图片预加载，将样式表放在顶部，将脚本放在底部 加上时间戳。</p>
+                    <p>10、</p>
 
                   </div>
 
