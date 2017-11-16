@@ -45,7 +45,9 @@
   <meta property="og:description" content="下载地址:   http://getbootstrap.com/docs/4.0/getting-started/download/                   bootstrap是一个响应式CSS框架   1、入门demo    &amp;lt;!DOCTYPE html&amp;gt;                                           bootstrap起步">
   <meta property="og:locale" content="zh-Hans">
   <meta property="og:image" content="http://icey-monopolize.com/MyImages/bootstrap1.jpg">
-  <meta property="og:updated_time" content="2017-11-16T11:17:52.000Z">
+  <meta property="og:image" content="http://icey-monopolize.com/tags/ALL/2017/11/16/重学Bootstrap/...">
+  <meta property="og:image" content="http://icey-monopolize.com/MyImages/bootstrap2.jpg">
+  <meta property="og:updated_time" content="2017-11-16T16:29:22.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="重学Bootstrap">
   <meta name="twitter:description" content="下载地址:   http://getbootstrap.com/docs/4.0/getting-started/download/                   bootstrap是一个响应式CSS框架   1、入门demo    &amp;lt;!DOCTYPE html&amp;gt;                                           bootstrap起步">
@@ -428,6 +430,146 @@
                     <p>※※※用
                       <div class="col-xx-4">这是列（column）</div>表示,里面的xx可以填xs,sm,md,lg。分别对应上图表中屏幕尺寸</p>
                     <p>3、看文档吧</p>
+                    <p>css预览：
+                      <br> ① Bootstrap 使用了一些 HTML5 元素和 CSS
+                      <br> 属性。为了让这些正常工作，您需要使用 HTML5 文档类型（Doctype）。 因此，请在使用 Bootstrap
+                      项目的开头包含下面的代码段&lt;!DOCTYPE html&gt;
+                      <br> ② 移动设备优先是 Bootstrap 3 的最显著的变化，为了让 Bootstrap 开发的网站对移动设备友好，确保适当的绘制和触屏缩放，需要在网页的
+                      head 之中添加 viewport meta 标签，如下
+                      <br>
+                      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                      <br> ③ 响应式图片
+                      <img src="..." class="img-responsive" alt="响应式图像">
+                      <br> .img-responsive {
+                      <br> //设置 height:auto，相关元素的高度取决于浏览器。
+                      <br> //设置 max-width 为 100% 会重写任何通过 width 属性指定的宽度
+                      <br> display: block;
+                      <br> height: auto;
+                      <br> max-width: 100%;
+                      <br> }
+                      <br> ④ 基本的全局显示
+                      <br> Bootstrap 3 使用 body {margin: 0;} 来移除 body 的边距。
+                      <br> ⑤ 排版
+                      <br> 使用 @font-family-base、 @font-size-base 和 @line-height-base
+                      属性作为排版样式
+                      <br> ⑥ 链接样式
+                      <br> 通过属性 @link-color 设置全局链接的颜色。
+                      <br> ⑦ 容器
+                      <br>
+                      <div class="container"></div>
+                      <br> .container {
+                      <br> padding-right: 15px;
+                      <br> padding-left: 15px;
+                      <br> margin-right: auto;
+                      <br> margin-left: auto;
+                      <br> }</p>
+                    <pre><code>Chrome     Firefox    IE      Opera      Safari
+</code></pre>
+                    <p>Android YES YES 不适用 不适用 不适用
+                      <br>iOS YES 不适用 不适用 不适用 YES
+                      <br>Mac OS X YES YES 不适用 YES YES
+                      <br>Windows YES YES YES* YES 不适用</p>
+                    <p>网格系统</p>
+                    <p>原理：网格系统通过一系列包含内容的行和列来创建页面布局。下面列出
+                      <br> 了 Bootstrap 网格系统是如何工作的：
+                      <br> 行必须放置在 .container class内，以便获得适当的对齐（alignment）和内边距（padding）。使用行来创建列的水平组。
+                      <br> 内容应该放置在列内，且唯有列可以是行的直接子元素。预定义的网格类.
+                      <br> 比如 .row 和 .col-xs-4，可用于快速创建网格布局。LESS 混合类可用于更多语义布局。列通过内边距（padding）来创建列内容之间的间隙。该内边距是通过
+                      .rows上的外边距（margin）
+                      <br> 取负，表示第一列和最后一列的行偏移。</p>
+                    <p>媒体查询:
+                      <br> /
+                      <em> 超小设备（手机，小于 768px） </em>/
+                      <br> /
+                      <em> Bootstrap 中默认情况下没有媒体查询 </em>/
+                      <br> /
+                      <em> 小型设备（平板电脑，768px 起） </em>/
+                      <br> @media (min-width: @screen-sm-min) { … }
+                      <br> /
+                      <em> 中型设备（台式电脑，992px 起） </em>/
+                      <br> @media (min-width: @screen-md-min) { … }
+                      <br> /
+                      <em> 大型设备（大台式电脑，1200px 起） </em>/
+                      <br> @media (min-width: @screen-lg-min) { … }</p>
+                    <pre><code>@media (max-width: @screen-xs-max) { ... }
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
+@media (min-width: @screen-lg-min) { ... }
+</code></pre>
+                    <p>
+                      <img src="/MyImages/bootstrap2.jpg" alt="这里是图片">
+                    </p>
+                    <pre><code>具体例子 ➡️ 看这里：
+                （demo6，demo7，demo8）
+</code></pre>
+                    <p>响应式的列重置
+                      <br> &lt;!DOCTYPE html&gt;
+                      <br>
+                      <html>
+                      <br>
+
+                      <head>
+                        <br>
+                        <meta charset="utf-8">
+                        <br>
+                        <title>Bootstrap 实例 - 响应式的列重置</title>
+                        <br>
+                        <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+                        <br>
+                        <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+                        <br>
+                        <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                        <br> </head>
+                      <br>
+
+                      <body>
+                      </body>
+
+                      </html>
+                    </p>
+                    <pre><code>&lt;div class=&quot;container&quot;&gt;
+   &lt;div class=&quot;row&quot; &gt;
+      &lt;div class=&quot;col-xs-6 col-sm-3&quot; 
+         style=&quot;background-color: #dedef8;
+         box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;&quot;&gt;
+         &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col-xs-6 col-sm-3&quot; 
+         style=&quot;background-color: #dedef8;box-shadow: 
+         inset 1px -1px 1px #444, inset -1px 1px 1px #444;&quot;&gt;
+         &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+            enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+            nisi ut aliquip ex ea commodo consequat.
+         &lt;/p&gt;
+         &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
+            eiusmod tempor incididunt ut. 
+         &lt;/p&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;clearfix visible-xs&quot;&gt;&lt;/div&gt;
+
+      &lt;div class=&quot;col-xs-6 col-sm-3&quot; 
+         style=&quot;background-color: #dedef8;
+         box-shadow:inset 1px -1px 1px #444, inset -1px 1px 1px #444;&quot;&gt;
+         &lt;p&gt;Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+            laboris nisi ut aliquip ex ea commodo consequat. 
+         &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;col-xs-6 col-sm-3&quot; 
+         style=&quot;background-color: #dedef8;box-shadow: 
+         inset 1px -1px 1px #444, inset -1px 1px 1px #444;&quot;&gt;
+         &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+            enim ad minim 
+         &lt;/p&gt;
+      &lt;/div&gt;
+   &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 
                   </div>
 
