@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="一、JS的几种设计模式   1、工厂模式   理解：向工厂一样批量生产。解决多个相似的问题，解决多个类似对象声明的问题;解决实列化对象产生重复的问题   🌰 👇    function Person(name,age,sex){    var obj = new Object();    obj.name = name;    obj.age = age;    obj.sayName = f">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-16T07:22:14.000Z">
+  <meta property="og:updated_time" content="2017-11-16T07:24:14.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JS必须知道的几件事">
   <meta name="twitter:description" content="一、JS的几种设计模式   1、工厂模式   理解：向工厂一样批量生产。解决多个相似的问题，解决多个类似对象声明的问题;解决实列化对象产生重复的问题   🌰 👇    function Person(name,age,sex){    var obj = new Object();    obj.name = name;    obj.age = age;    obj.sayName = f">
@@ -362,7 +362,7 @@ Child.prototype.createPerson = function(){
 var childClass = new Child(&quot;妮妮&quot;);
 console.log(childClass);
 </code></pre>
-                    <p>二、单体模式
+                    <p>2、单体模式
                       <br>理解:将代码组织为一个逻辑单元。用来划分命名空间并将一批属性和方法组织在一起的对象，如果它可以被实例化，那么它只能被实例化一次。
                       <br>优点:以用来划分命名空间，减少全局变量的数量。可以被实例化，且实例化一次。</p>
                     <p>🌰 👇</p>
@@ -400,7 +400,7 @@ var b = getInstance(&quot;bb&quot;);
                       <br> console.log(a === b); // true
                       <br> console.log(a.getName());// aa
                       <br> console.log(b.getName());// aa</p>
-                    <p>三、理解模块模式
+                    <p>3、理解模块模式
                       <br>理解：单体模式添加私有变量和私有方法能够减少全局变量的使用</p>
                     <pre><code>var singleMode = (function(){
     // 创建私有变量
@@ -444,9 +444,9 @@ var b = getInstance(&quot;bb&quot;);
                       <br>console.log(application.B()); // aa
                       <br>console.log(application.name); // tugenhua
                       <br>console.log(application.getName());// tugenhua</p>
-                    <p>四、代理模式</p>
+                    <p>4、代理模式</p>
                     <p>理解:代理是一个对象，它可以用来控制对本体对象的访问，它与本体对象实现了同样的接口，代理对象会把所有的调用方法传递给本体对象的</p>
-                    <p>五、职责链模式</p>
+                    <p>5、职责链模式</p>
                     <p>理解：职责连是由多个不同的对象组成的，发送者是发送请求的对象，而接收者则是链中那些接收这种请求并且对其进行处理或传递的对象。请求本身有时候也可以是一个对象，它封装了和操作有关的所有数据，基本实现流程如下：
                       <br>发送者知道链中的第一个接收者，它向这个接收者发送该请求
                       <br>每一个接收者都对请求进行分析，然后要么处理它，要么它往下传递
@@ -455,14 +455,14 @@ var b = getInstance(&quot;bb&quot;);
                     <p>优点：消除请求的发送者与接收者之间的耦合
                       <br> 链中的节点对象可以灵活地拆分重组，增加或删除一个节点，或者改变节点的位置都是很简单的事情
                       <br> 缺点：职责链模式中多了一点节点对象，可能在某一次请求过程中，大部分节点没有起到实质性作用，他们的作用只是让 请求传递下去，从性能方面考虑，避免过长的职责链提高性能。</p>
-                    <p>六、命令模式</p>
-                    <p>七、模板方法模式</p>
-                    <p>八、策略模式</p>
+                    <p>6、命令模式</p>
+                    <p>7、模板方法模式</p>
+                    <p>8、策略模式</p>
                     <p>理解：定义一系列的算法，把它们一个个封装起来，并且使它们可以相互替换
                       <br>优点：策略模式利用组合，委托等技术和思想，有效的避免很多if条件语句。
                       <br> 策略模式提供了开放-封闭原则，使代码更容易理解和扩展。
                       <br> 策略模式中的代码可以复用。</p>
-                    <p>九、观察者模式</p>
+                    <p>9、观察者模式</p>
                     <p>理解：它定义了对象间的一种一对多的关系，让多个观察者对象同时监听某一个主题对象，当一个对象发生改变时，所有依赖于它的对象都将得到通知</p>
                     <p>举个 🌰
                       <br>var shoeObj = {}; // 定义发布者
