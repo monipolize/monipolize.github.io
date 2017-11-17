@@ -36,18 +36,18 @@
 
   <meta name="keywords" content="ALL,VUEX," />
 
-  <meta name="description" content="Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式,它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化 我们先来看一个 🌰 new Vue({   // state   data () {     return {       count: 0     }   },   // view   template: `     &amp;lt;div&amp;gt;">
+  <meta name="description" content="参考博客：   https://segmentfault.com/a/1190000007516967   Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式,它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化 我们先来看一个 🌰 new Vue({   // state   data () {     return {       count">
   <meta name="keywords" content="ALL,VUEX">
   <meta property="og:type" content="article">
   <meta property="og:title" content="VUEX是什么">
   <meta property="og:url" content="http://icey-monopolize.com/tags/ALL/2017/11/17/VUEX是什么/index.html">
   <meta property="og:site_name" content="In My World">
-  <meta property="og:description" content="Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式,它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化 我们先来看一个 🌰 new Vue({   // state   data () {     return {       count: 0     }   },   // view   template: `     &amp;lt;div&amp;gt;">
+  <meta property="og:description" content="参考博客：   https://segmentfault.com/a/1190000007516967   Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式,它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化 我们先来看一个 🌰 new Vue({   // state   data () {     return {       count">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-17T03:57:17.000Z">
+  <meta property="og:updated_time" content="2017-11-17T04:01:43.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="VUEX是什么">
-  <meta name="twitter:description" content="Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式,它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化 我们先来看一个 🌰 new Vue({   // state   data () {     return {       count: 0     }   },   // view   template: `     &amp;lt;div&amp;gt;">
+  <meta name="twitter:description" content="参考博客：   https://segmentfault.com/a/1190000007516967   Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式,它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化 我们先来看一个 🌰 new Vue({   // state   data () {     return {       count">
 
   <script type="text/javascript" id="hexo.configurations">
     var NexT = window.NexT || {};
@@ -277,7 +277,9 @@
 
                   <div class="post-body" itemprop="articleBody">
 
-                    <p>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式,它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化</p>
+                    <p>参考博客：
+                      <a href="https://segmentfault.com/a/1190000007516967" target="_blank" rel="external">https://segmentfault.com/a/1190000007516967</a>
+                      <br>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式,它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化</p>
                     <p>我们先来看一个 🌰</p>
                     <pre><code>new Vue({
   // state
@@ -578,6 +580,25 @@ export default {
                       <br> type: ‘incrementAsync’,
                       <br> amount: 10
                       <br>})</p>
+                    <p>在组件中分发 Action</p>
+                    <p>import { mapActions } from ‘vuex’</p>
+                    <p>export default {
+                      <br> // …
+                      <br> methods: {
+                      <br> …mapActions([
+                      <br> ‘increment’, // 将
+                      <code>this.increment()</code> 映射为
+                      <code>this.$store.dispatch(&#39;increment&#39;)</code>
+                    </p>
+                    <pre><code>  // `mapActions` 也支持载荷：
+  &apos;incrementBy&apos; // 将 `this.incrementBy(amount)` 映射为 `this.$store.dispatch(&apos;incrementBy&apos;, amount)`
+]),
+...mapActions({
+  add: &apos;increment&apos; // 将 `this.add()` 映射为 `this.$store.dispatch(&apos;increment&apos;)`
+})
+</code></pre>
+                    <p> }
+                      <br>}</p>
 
                   </div>
 
@@ -630,6 +651,11 @@ export default {
                       <span class="post-nav-divider"></span>
 
                       <div class="post-nav-prev post-nav-item">
+
+                        <a href="/2017/11/17/VUE必须知道的几个问题/" rel="prev" title="VUE必须知道的几个问题">
+                          VUE必须知道的几个问题
+                          <i class="fa fa-chevron-right"></i>
+                        </a>
 
                       </div>
                     </div>
@@ -710,7 +736,7 @@ export default {
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">37</span>
+                      <span class="site-state-item-count">38</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>
