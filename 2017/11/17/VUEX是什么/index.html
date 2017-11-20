@@ -39,14 +39,14 @@
   <meta name="description" content="参考博客：   https://segmentfault.com/a/1190000007516967   Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式,它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化 我们先来看一个 🌰 new Vue({   // state   data () {     return {       count">
   <meta name="keywords" content="ALL,VUEX">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="VUEX是什么">
+  <meta property="og:title" content="VUEX摘要">
   <meta property="og:url" content="http://icey-monopolize.com/tags/ALL/2017/11/17/VUEX是什么/index.html">
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="参考博客：   https://segmentfault.com/a/1190000007516967   Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式,它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化 我们先来看一个 🌰 new Vue({   // state   data () {     return {       count">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-17T04:01:43.000Z">
+  <meta property="og:updated_time" content="2017-11-20T03:56:04.000Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="VUEX是什么">
+  <meta name="twitter:title" content="VUEX摘要">
   <meta name="twitter:description" content="参考博客：   https://segmentfault.com/a/1190000007516967   Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式,它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化 我们先来看一个 🌰 new Vue({   // state   data () {     return {       count">
 
   <script type="text/javascript" id="hexo.configurations">
@@ -100,7 +100,7 @@
   <link rel="canonical" href="http://icey-monopolize.com/tags/ALL/2017/11/17/VUEX是什么/"
   />
 
-  <title>VUEX是什么 | In My World</title>
+  <title>VUEX摘要 | In My World</title>
 
 </head>
 
@@ -226,7 +226,7 @@
 
                   <header class="post-header">
 
-                    <h1 class="post-title" itemprop="name headline">VUEX是什么</h1>
+                    <h1 class="post-title" itemprop="name headline">VUEX摘要</h1>
 
                     <div class="post-meta">
                       <span class="post-time">
@@ -599,6 +599,52 @@ export default {
 </code></pre>
                     <p> }
                       <br>}</p>
+                    <p>5、module
+                      <br>vuex 允许我们将 store 分割成模块（module）。每个模块拥有自己的 state、mutation、action、getter、甚至是嵌套子模块——从上至下进行同样方式的分割</p>
+                    <pre><code>const moduleA = {
+  state: { ... },
+  mutations: { ... },
+  actions: { ... },
+  getters: { ... }
+}
+const moduleB = {
+  state: { ... },
+  mutations: { ... },
+  actions: { ... }
+}
+
+const store = new Vuex.Store({
+  modules: {
+    a: moduleA,
+    b: moduleB
+  }
+})
+
+store.state.a // -&gt; moduleA 的状态
+store.state.b // -&gt; moduleB 的状态
+</code></pre>
+                    <p>模块的局部状态
+                      <br>对于模块内部的 mutation 和 getter，接收的第一个参数是模块的局部状态对象
+                      <br> const moduleA = {
+                      <br> state: { count: 0 },
+                      <br> mutations: {
+                      <br> increment (state) {
+                      <br> // 这里的
+                      <code>state</code> 对象是模块的局部状态
+                      <br> state.count++
+                      <br> }
+                      <br> },</p>
+                    <pre><code>  getters: {
+    doubleCount (state) {
+      return state.count * 2
+    }
+  }
+}
+</code></pre>
+                    <p>项目结构
+                      <br>遵守的规则：应用层级的状态应该集中到单个 store 对象中。
+                      <br> 提交 mutation 是更改状态的唯一方法，并且这个过程是同步的。
+                      <br> 异步逻辑都应该封装到 action 里面。</p>
 
                   </div>
 
@@ -667,7 +713,7 @@ export default {
 
               <div class="post-spread">
 
-                <div class="ds-share flat" data-thread-key="2017/11/17/VUEX是什么/" data-title="VUEX是什么"
+                <div class="ds-share flat" data-thread-key="2017/11/17/VUEX是什么/" data-title="VUEX摘要"
                                                                                                 data-content="" data-url="http://icey-monopolize.com/tags/ALL/2017/11/17/VUEX是什么/">
                   <div class="ds-share-inline">
                     <ul class="ds-share-icons-16">
@@ -700,7 +746,7 @@ export default {
           </div>
 
           <div class="comments" id="comments">
-            <div class="ds-thread" data-thread-key="2017/11/17/VUEX是什么/" data-title="VUEX是什么"
+            <div class="ds-thread" data-thread-key="2017/11/17/VUEX是什么/" data-title="VUEX摘要"
                                                                                             data-url="http://icey-monopolize.com/tags/ALL/2017/11/17/VUEX是什么/">
             </div>
           </div>
@@ -736,7 +782,7 @@ export default {
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">38</span>
+                      <span class="site-state-item-count">39</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>
