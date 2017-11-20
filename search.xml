@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[VUEX入门经典必备]]></title>
     <url>%2F2017%2F11%2F20%2FVUEX%E5%85%A5%E9%97%A8%2F</url>
-    <content type="text"><![CDATA[简单来说，用来集中管理数据，类似于React中的Redux，都是基于FLUX的前端状态管理框架 流程图 vue组件 -&gt; 发出动作 -&gt; action -&gt;提交改变 -&gt;mutation发生改变 -&gt; state -&gt; 更新组建 ###1、简介 ###2.基本用法 ####2.1 安装 cnpm install vuex -S ####2.2 创建store文件，在入口文件导入,并配置store选项 ####2.3 编辑store VUEX的核心就是store，相当于一个容器，一个store中包含几个属性 1.state 定义属性（状态数据） 2.getters 用来获取属性的 3.actions 定义方法（动作） 4.commit 提交变化 5.mutations 定义变化 注意：不要直接在action中修改数据，而是提交变化，目的是为了追踪数据变化 ####2.4 编辑App.vue 在子组件中，访问store对象的两种方式 方式1：通过this.$store.state.count 方式2：通过负主函数mapGetters，mapActions访问 mapGetters： 获取属性 mapActions： 获取方法]]></content>
+    <content type="text"><![CDATA[简单来说，用来集中管理数据，类似于React中的Redux，都是基于FLUX的前端状态管理框架 流程图 vue组件 -&gt; 发出动作 -&gt; action -&gt;提交改变 -&gt;mutation发生改变 -&gt; state -&gt; 更新组建 ###1、简介 ###2.基本用法 ####2.1 安装 cnpm install vuex -S ####2.2 创建store文件，在入口文件导入,并配置store选项 ####2.3 编辑store VUEX的核心就是store，相当于一个容器，一个store中包含几个属性 1.state 定义属性（状态数据） 2.getters 用来获取属性的 3.actions 定义方法（动作） 4.commit 提交变化 5.mutations 定义变化 注意：不要直接在action中修改数据，而是提交变化，目的是为了追踪数据变化 ####2.4 编辑App.vue 在子组件中，访问store对象的两种方式 方式1：通过this.$store.state.count 方式2：通过负主函数mapGetters，mapActions，mapState访问 mapGetters： 获取属性 mapActions： 获取方法 mapState: 或取的数据]]></content>
       <categories>
         <category>VUEX</category>
       </categories>
