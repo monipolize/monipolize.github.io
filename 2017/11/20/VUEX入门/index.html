@@ -39,14 +39,14 @@
   <meta name="description" content="简单来说，用来集中管理数据，类似于React中的Redux，都是基于FLUX的前端状态管理框架   流程图    vue组件 -&amp;gt; 发出动作 -&amp;gt; action -&amp;gt;提交改变 -&amp;gt;mutation发生改变 -&amp;gt; state -&amp;gt; 更新组建 ###1、简介 ###2.基本用法 ####2.1 安装    cnpm install vuex -S ####2.2 创">
   <meta name="keywords" content="ALL,VUEX">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="VUEX入门经典必备">
+  <meta property="og:title" content="VUEX的几个步骤">
   <meta property="og:url" content="http://icey-monopolize.com/tags/ALL/2017/11/20/VUEX入门/index.html">
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="简单来说，用来集中管理数据，类似于React中的Redux，都是基于FLUX的前端状态管理框架   流程图    vue组件 -&amp;gt; 发出动作 -&amp;gt; action -&amp;gt;提交改变 -&amp;gt;mutation发生改变 -&amp;gt; state -&amp;gt; 更新组建 ###1、简介 ###2.基本用法 ####2.1 安装    cnpm install vuex -S ####2.2 创">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-20T09:31:35.000Z">
+  <meta property="og:updated_time" content="2017-11-20T10:55:12.000Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="VUEX入门经典必备">
+  <meta name="twitter:title" content="VUEX的几个步骤">
   <meta name="twitter:description" content="简单来说，用来集中管理数据，类似于React中的Redux，都是基于FLUX的前端状态管理框架   流程图    vue组件 -&amp;gt; 发出动作 -&amp;gt; action -&amp;gt;提交改变 -&amp;gt;mutation发生改变 -&amp;gt; state -&amp;gt; 更新组建 ###1、简介 ###2.基本用法 ####2.1 安装    cnpm install vuex -S ####2.2 创">
 
   <script type="text/javascript" id="hexo.configurations">
@@ -100,7 +100,7 @@
   <link rel="canonical" href="http://icey-monopolize.com/tags/ALL/2017/11/20/VUEX入门/"
   />
 
-  <title>VUEX入门经典必备 | In My World</title>
+  <title>VUEX的几个步骤 | In My World</title>
 
 </head>
 
@@ -226,7 +226,7 @@
 
                   <header class="post-header">
 
-                    <h1 class="post-title" itemprop="name headline">VUEX入门经典必备</h1>
+                    <h1 class="post-title" itemprop="name headline">VUEX的几个步骤</h1>
 
                     <div class="post-meta">
                       <span class="post-time">
@@ -302,6 +302,19 @@
                       <br> mapGetters： 获取属性
                       <br> mapActions： 获取方法
                       <br> mapState: 或取的数据</p>
+                    <p>###3 更好的组织项目结构
+                      <br> 建议：store -&gt;index.js组装模块的地方+actions.js+mutations.js+mymodules</p>
+                    <pre><code>|-src 
+    |-store
+        |-index.js
+        |-getters.js
+        |-actions.js 
+        |-mutation.js
+        |-modules//分为多个模块，每个模块都可以拥有自己的state，getters,actiobs,mutations
+            |-user.js
+            |-cart.js
+            |-....
+</code></pre>
 
                   </div>
 
@@ -355,6 +368,11 @@
 
                       <div class="post-nav-prev post-nav-item">
 
+                        <a href="/2017/11/22/移动端问题总结/" rel="prev" title="移动端问题总结">
+                          移动端问题总结
+                          <i class="fa fa-chevron-right"></i>
+                        </a>
+
                       </div>
                     </div>
 
@@ -365,7 +383,7 @@
 
               <div class="post-spread">
 
-                <div class="ds-share flat" data-thread-key="2017/11/20/VUEX入门/" data-title="VUEX入门经典必备"
+                <div class="ds-share flat" data-thread-key="2017/11/20/VUEX入门/" data-title="VUEX的几个步骤"
                                                                                                 data-content="" data-url="http://icey-monopolize.com/tags/ALL/2017/11/20/VUEX入门/">
                   <div class="ds-share-inline">
                     <ul class="ds-share-icons-16">
@@ -398,7 +416,7 @@
           </div>
 
           <div class="comments" id="comments">
-            <div class="ds-thread" data-thread-key="2017/11/20/VUEX入门/" data-title="VUEX入门经典必备"
+            <div class="ds-thread" data-thread-key="2017/11/20/VUEX入门/" data-title="VUEX的几个步骤"
                                                                                             data-url="http://icey-monopolize.com/tags/ALL/2017/11/20/VUEX入门/">
             </div>
           </div>
@@ -434,7 +452,7 @@
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">39</span>
+                      <span class="site-state-item-count">40</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>

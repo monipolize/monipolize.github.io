@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="1、斐波那契数列 function fibonacci(n){    if(n==1 || n==2) return 1;    return fibonacci(n-1)+fibonacci(n-2)   } 2、快排 var quickSort = function(arr) {   　　if (arr.length &amp;lt;= 1) { return arr; }   　　var pivot">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-16T08:01:21.000Z">
+  <meta property="og:updated_time" content="2017-11-22T03:02:38.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="常见入门算法">
   <meta name="twitter:description" content="1、斐波那契数列 function fibonacci(n){    if(n==1 || n==2) return 1;    return fibonacci(n-1)+fibonacci(n-2)   } 2、快排 var quickSort = function(arr) {   　　if (arr.length &amp;lt;= 1) { return arr; }   　　var pivot">
@@ -644,6 +644,27 @@ console.timeEnd(&apos;Normal&apos;);
 
 }
 </code></pre>
+                    <p>11、求素数
+                      <br>function isPrimeNum(num){
+                      <br> if (!isNum(num)){
+                      <br> return false;
+                      <br> }
+                      <br> if (!isInteger(num)){
+                      <br> return false;
+                      <br> }
+                      <br> for (var i = 2; i &lt;= Math.sqrt(num); i++) {
+                      <br> if (num%i==0){
+                      <br> return false;
+                      <br> }
+                      <br> };
+                      <br> return true;
+                      <br>}
+                      <br>function isInteger(num){
+                      <br> return num == ~~num ? true : false;
+                      <br>}
+                      <br>function isNum(num){
+                      <br> return num == +num ? true : false;
+                      <br>}</p>
 
                   </div>
 
@@ -782,7 +803,7 @@ console.timeEnd(&apos;Normal&apos;);
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">39</span>
+                      <span class="site-state-item-count">40</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>

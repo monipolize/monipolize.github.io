@@ -36,16 +36,17 @@
 
   <meta name="keywords" content="In My World" />
 
-  <meta name="description" content="前端BLOG">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="In My World">
-  <meta property="og:url" content="http://icey-monopolize.com/tags/ALL/artical/2017/page/4/index.html">
+  <meta name="description" content="1、先来说说touch事件与点击穿透问题   touch事件的来源：PC网页上，响应的是鼠标事件，包括mousedown、mouseup、mousemove和click事件    。可被拆解成：mousedown -&amp;gt; click -&amp;gt; mouseup三步。手机上没有鼠标，所以就用触    摸事件去实现类似的功能。touch事件包含touchstart、touchmove、touche">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="移动端问题总结">
+  <meta property="og:url" content="http://icey-monopolize.com/tags/ALL/2017/11/22/移动端问题总结/index.html">
   <meta property="og:site_name" content="In My World">
-  <meta property="og:description" content="前端BLOG">
+  <meta property="og:description" content="1、先来说说touch事件与点击穿透问题   touch事件的来源：PC网页上，响应的是鼠标事件，包括mousedown、mouseup、mousemove和click事件    。可被拆解成：mousedown -&amp;gt; click -&amp;gt; mouseup三步。手机上没有鼠标，所以就用触    摸事件去实现类似的功能。touch事件包含touchstart、touchmove、touche">
   <meta property="og:locale" content="zh-Hans">
+  <meta property="og:updated_time" content="2017-11-22T03:30:13.000Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="In My World">
-  <meta name="twitter:description" content="前端BLOG">
+  <meta name="twitter:title" content="移动端问题总结">
+  <meta name="twitter:description" content="1、先来说说touch事件与点击穿透问题   touch事件的来源：PC网页上，响应的是鼠标事件，包括mousedown、mouseup、mousemove和click事件    。可被拆解成：mousedown -&amp;gt; click -&amp;gt; mouseup三步。手机上没有鼠标，所以就用触    摸事件去实现类似的功能。touch事件包含touchstart、touchmove、touche">
 
   <script type="text/javascript" id="hexo.configurations">
     var NexT = window.NexT || {};
@@ -95,16 +96,16 @@
 
   </script>
 
-  <link rel="canonical" href="http://icey-monopolize.com/tags/ALL/artical/2017/page/4/"
+  <link rel="canonical" href="http://icey-monopolize.com/tags/ALL/2017/11/22/移动端问题总结/"
   />
 
-  <title>归档 | In My World</title>
+  <title>移动端问题总结 | In My World</title>
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/monipolize/">
       <img style="position: absolute; top: 0; right: 0; border: 0;z-index:9999;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67"
@@ -205,262 +206,207 @@
         <div class="content-wrap">
           <div id="content" class="content">
 
-            <div class="post-block archive">
-              <div id="posts" class="posts-collapse">
-                <span class="archive-move-on"></span>
+            <div id="posts" class="posts-expand">
 
-                <span class="archive-page-counter">
+              <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
 
-                  OK! 目前共计 40 篇日志。 继续努力。
-                </span>
+                <div class="post-block">
+                  <link itemprop="mainEntityOfPage" href="http://icey-monopolize.com/tags/ALL/2017/11/22/移动端问题总结/">
 
-                <div class="collection-title">
-                  <h1 class="archive-year" id="archive-year-2017">2017</h1>
+                  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <meta itemprop="name" content="吃多了的小仙女">
+                    <meta itemprop="description" content="">
+                    <meta itemprop="image" content="/images/avatar.jpg">
+                  </span>
+
+                  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+                    <meta itemprop="name" content="In My World">
+                  </span>
+
+                  <header class="post-header">
+
+                    <h1 class="post-title" itemprop="name headline">移动端问题总结</h1>
+
+                    <div class="post-meta">
+                      <span class="post-time">
+
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-calendar-o"></i>
+                        </span>
+
+                        <span class="post-meta-item-text">发表于</span>
+
+                        <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-22T11:06:25+08:00">
+                          2017-11-22
+                        </time>
+
+                      </span>
+
+                      <span class="post-comments-count">
+                        <span class="post-meta-divider">|</span>
+                        <span class="post-meta-item-icon">
+                          <i class="fa fa-comment-o"></i>
+                        </span>
+                        <a href="/2017/11/22/移动端问题总结/#comments" itemprop="discussionUrl">
+                          <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/22/移动端问题总结/"
+                                                                                                          itemprop="commentCount"></span>
+                        </a>
+                      </span>
+
+                    </div>
+                  </header>
+
+                  <div class="post-body" itemprop="articleBody">
+
+                    <p>1、先来说说touch事件与点击穿透问题
+                      <br>touch事件的来源：PC网页上，响应的是鼠标事件，包括mousedown、mouseup、mousemove和click事件
+                      <br> 。可被拆解成：mousedown -&gt; click -&gt; mouseup三步。手机上没有鼠标，所以就用触
+                      <br> 摸事件去实现类似的功能。touch事件包含touchstart、touchmove、touchend.手指触发触摸事件的过程为：touchstart
+                      -&gt; touchmove -&gt; touchend。在手机上，当我们手触碰屏幕时，要过300ms左右才会触发mousedown事件
+                      <br> 所以click事件在手机上看起来就像慢半拍一样。手机上响应 click 事件会有300ms的延迟
+                      <br>touch事件中可以获取以下参数:touches 屏幕中每根手指信息列表
+                      <br> targetTouches 和touches类似，把同一节点的手指信息过滤掉
+                      <br> changedTouches 响应当前事件的每根手指的信息列表
+                      <br>在说一说tap：PC页面绑定click，相应地手机页面就绑定tap
+                      <br> 但原生的touch事件本身是没有tap的，js库里提供的tap事件都是模拟出来的
+                      <br> 浏览器在 touchend 后会等待约300ms，原因是判断用户是否有双击（double tap）行为。如果没有 tap
+                      行为，则触发 click 事件，而双击过程中就不适合触发 click 事件了。由此可以看出 click 事件触发代表一轮触摸事件的结束。
+                      <br>点击穿透问题：我们先看个 🌰</p>
+                    <pre><code>&lt;div class=&quot;container&quot;&gt;
+    &lt;div id=&quot;underLayer&quot;&gt;底层元素&lt;/div&gt;
+
+    &lt;div id=&quot;popupLayer&quot;&gt;
+        &lt;div class=&quot;layer-title&quot;&gt;弹出层&lt;/div&gt;
+        &lt;div class=&quot;layer-action&quot;&gt;
+            &lt;button class=&quot;btn&quot; id=&quot;closePopup&quot;&gt;关闭&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;bgMask&quot;&gt;&lt;/div&gt;
+</code></pre>
+                    <p>然后为底层元素绑定 click 事件，而弹出层的关闭按钮绑定 tap 事件。
+                      <br> $(‘#closePopup’).on(‘tap’, function(e){
+                      <br> $(‘#popupLayer’).hide();
+                      <br> $(‘#bgMask’).hide();
+                      <br> });</p>
+                    <pre><code>$(&apos;#underLayer&apos;).on(&apos;click&apos;, function(){
+    alert(&apos;underLayer clicked&apos;);
+});
+</code></pre>
+                    <p>点击关闭按钮，touchend首先触发tap，弹出层和遮罩就被隐藏了。touchend后继续等待300ms发现没有其他行为了，则继续触发click，由于这时弹出层已经消失，所以当前click事件的target就在底层元素上，于是就alert内容。整个事件触发过程为
+                      touchend -&gt; tap -&gt; click。由于click事件的滞后性（300ms），在这300ms内上层元素隐藏或消失了，下层同样位置的DOM元素触发了click事件（如果是input框则会触发focus事件），看起来就像点击的target“穿透”到下层去</p>
+                    <p>解决点击穿透问题：
+                      <br>方法一：遮挡
+                      <br> 由于 click 事件的滞后性，在这段时间内原来点击的元素消失了，于是便“穿透”了。因此我们顺着这个思路就想到，
+                      <br>可以给元素的消失做一个fade效果，类似jQuery里的fadeOut，并设置动画duration大于300ms，这样当延迟的
+                      click 触发时，就不会“穿透”到下方的元素了。不用延时动画，我们还可以动态地在触摸位置生成一个透明的元素，这样当上层元素消失而延迟的click来到时，它点击到的是那个透明的元素，也不会“穿透”到底下。在一定的timeout后再将生成的透明元素移除</p>
+                    <p>方法二： pointer-events
+                      <br>pointer-events是CSS3中的属性，它有很多取值，有用的主要是auto和none</p>
+                    <pre><code>$(&apos;#closePopup&apos;).on(&apos;tap&apos;, function(e){
+    $(&apos;#popupLayer&apos;).hide();
+    $(&apos;#bgMask&apos;).hide();
+
+    $(&apos;#underLayer&apos;).css(&apos;pointer-events&apos;, &apos;none&apos;);
+
+    setTimeout(function(){
+        $(&apos;#underLayer&apos;).css(&apos;pointer-events&apos;, &apos;auto&apos;);
+    }, 400);
+});
+</code></pre>
+                    <p>方法三：fastclick</p>
+                    <p>使用fastclick库，其实现思路是，取消 click 事件，用 touchend 模拟快速点击行为
+                      <br>FastClick.attach(document.body);</p>
+
+                  </div>
+
+                  <div>
+
+                  </div>
+
+                  <div>
+                    <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+                      <div>如果你觉得还OK，可以打赏一下小仙女呦！</div>
+                      <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+                        <span>打赏</span>
+                      </button>
+                      <div id="QR" style="display: none;">
+
+                        <div id="wechat" style="display: inline-block">
+                          <img id="wechat_qr" src="/images/wei.jpg" alt="吃多了的小仙女 微信支付" />
+                          <p>微信支付</p>
+                        </div>
+
+                        <div id="alipay" style="display: inline-block">
+                          <img id="alipay_qr" src="/images/zhi.jpg" alt="吃多了的小仙女 支付宝" />
+                          <p>支付宝</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <footer class="post-footer">
+
+                    <div class="post-nav">
+                      <div class="post-nav-next post-nav-item">
+
+                        <a href="/2017/11/20/VUEX入门/" rel="next" title="VUEX的几个步骤">
+                          <i class="fa fa-chevron-left"></i> VUEX的几个步骤
+                        </a>
+
+                      </div>
+
+                      <span class="post-nav-divider"></span>
+
+                      <div class="post-nav-prev post-nav-item">
+
+                      </div>
+                    </div>
+
+                  </footer>
                 </div>
 
-                <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-                  <header class="post-header">
+              </article>
 
-                    <h2 class="post-title">
+              <div class="post-spread">
 
-                      <a class="post-title-link" href="/2017/11/03/文字分割线问题/" itemprop="url">
+                <div class="ds-share flat" data-thread-key="2017/11/22/移动端问题总结/" data-title="移动端问题总结"
+                                                                                                data-content="" data-url="http://icey-monopolize.com/tags/ALL/2017/11/22/移动端问题总结/">
+                  <div class="ds-share-inline">
+                    <ul class="ds-share-icons-16">
 
-                        <span itemprop="name">文字分割线问题解决</span>
+                      <li data-toggle="ds-share-icons-more">
+                        <a class="ds-more" href="javascript:void(0);">分享到：</a>
+                      </li>
+                      <li>
+                        <a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a>
+                      </li>
+                      <li>
+                        <a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a>
+                      </li>
+                      <li>
+                        <a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a>
+                      </li>
+                      <li>
+                        <a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a>
+                      </li>
 
-                      </a>
-
-                    </h2>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2017-11-03T14:36:27+08:00"
-                                                                                                      content="2017-11-03">
-                        11-03
-                      </time>
+                    </ul>
+                    <div class="ds-share-icons-more">
                     </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h2 class="post-title">
-
-                      <a class="post-title-link" href="/2017/11/03/关于多栏布局/" itemprop="url">
-
-                        <span itemprop="name">关于多栏布局以及自适应问题</span>
-
-                      </a>
-
-                    </h2>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2017-11-03T14:27:03+08:00"
-                                                                                                      content="2017-11-03">
-                        11-03
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h2 class="post-title">
-
-                      <a class="post-title-link" href="/2017/11/03/CSS常见问题/" itemprop="url">
-
-                        <span itemprop="name">CSS常见问题</span>
-
-                      </a>
-
-                    </h2>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2017-11-03T11:12:35+08:00"
-                                                                                                      content="2017-11-03">
-                        11-03
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h2 class="post-title">
-
-                      <a class="post-title-link" href="/2017/11/03/HTML常见问题/" itemprop="url">
-
-                        <span itemprop="name">HTML常见问题</span>
-
-                      </a>
-
-                    </h2>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2017-11-03T11:09:24+08:00"
-                                                                                                      content="2017-11-03">
-                        11-03
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h2 class="post-title">
-
-                      <a class="post-title-link" href="/2017/11/02/JS2/" itemprop="url">
-
-                        <span itemprop="name">JS面试那些事 -- Part Two 基础篇</span>
-
-                      </a>
-
-                    </h2>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2017-11-02T18:54:11+08:00"
-                                                                                                      content="2017-11-02">
-                        11-02
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h2 class="post-title">
-
-                      <a class="post-title-link" href="/2017/11/02/JS1/" itemprop="url">
-
-                        <span itemprop="name">JS面试那些事 -- Part One 基础篇</span>
-
-                      </a>
-
-                    </h2>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2017-11-02T17:59:00+08:00"
-                                                                                                      content="2017-11-02">
-                        11-02
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h2 class="post-title">
-
-                      <a class="post-title-link" href="/2017/11/02/ES6第3弹/" itemprop="url">
-
-                        <span itemprop="name">ES6所有特点应用 -- 第三弹</span>
-
-                      </a>
-
-                    </h2>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2017-11-02T17:31:48+08:00"
-                                                                                                      content="2017-11-02">
-                        11-02
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h2 class="post-title">
-
-                      <a class="post-title-link" href="/2017/11/02/ES6第二弹/" itemprop="url">
-
-                        <span itemprop="name">ES6所有特点应用 -- 第二弹</span>
-
-                      </a>
-
-                    </h2>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2017-11-02T16:35:00+08:00"
-                                                                                                      content="2017-11-02">
-                        11-02
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h2 class="post-title">
-
-                      <a class="post-title-link" href="/2017/11/01/ES6重点/" itemprop="url">
-
-                        <span itemprop="name">ES6所有特点应用 -- 第一弹</span>
-
-                      </a>
-
-                    </h2>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2017-11-01T11:19:09+08:00"
-                                                                                                      content="2017-11-01">
-                        11-01
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
-
-                <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-                  <header class="post-header">
-
-                    <h2 class="post-title">
-
-                      <a class="post-title-link" href="/2017/11/01/Website/" itemprop="url">
-
-                        <span itemprop="name">This Is the Beginning of the Story</span>
-
-                      </a>
-
-                    </h2>
-
-                    <div class="post-meta">
-                      <time class="post-time" itemprop="dateCreated" datetime="2017-11-01T10:57:12+08:00"
-                                                                                                      content="2017-11-01">
-                        11-01
-                      </time>
-                    </div>
-
-                  </header>
-                </article>
+                  </div>
+                </div>
 
               </div>
             </div>
 
-            <nav class="pagination">
-              <a class="extend prev" rel="prev" href="/artical/2017/page/3/">
-                <i class="fa fa-angle-left"></i>
-              </a>
-              <a class="page-number" href="/artical/2017/">1</a>
-              <span class="space">&hellip;</span>
-              <a class="page-number" href="/artical/2017/page/3/">3</a>
-              <span class="page-number current">4</span>
-            </nav>
+          </div>
 
+          <div class="comments" id="comments">
+            <div class="ds-thread" data-thread-key="2017/11/22/移动端问题总结/" data-title="移动端问题总结"
+                                                                                            data-url="http://icey-monopolize.com/tags/ALL/2017/11/22/移动端问题总结/">
+            </div>
           </div>
 
         </div>
@@ -596,6 +542,9 @@
   <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
 
   <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
 
   <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
 
@@ -954,18 +903,6 @@
     });
 
   </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ], processEscapes:
-    true, skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
-    });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() { var all = MathJax.Hub.getAllJax(), i; for (i=0; i
-    < all.length; i +=1 ) { all[i].SourceElement().parentNode.className +=' has-jax'
-                                                                                    ; } }); </script>
-      <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 </body>
 

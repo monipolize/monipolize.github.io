@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[VUEX入门经典必备]]></title>
+    <title><![CDATA[移动端问题总结]]></title>
+    <url>%2F2017%2F11%2F22%2F%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[1、先来说说touch事件与点击穿透问题 touch事件的来源：PC网页上，响应的是鼠标事件，包括mousedown、mouseup、mousemove和click事件 。可被拆解成：mousedown -&gt; click -&gt; mouseup三步。手机上没有鼠标，所以就用触 摸事件去实现类似的功能。touch事件包含touchstart、touchmove、touchend.手指触发触摸事件的过程为：touchstart -&gt; touchmove -&gt; touchend。在手机上，当我们手触碰屏幕时，要过300ms左右才会触发mousedown事件 所以click事件在手机上看起来就像慢半拍一样。手机上响应 click 事件会有300ms的延迟 touch事件中可以获取以下参数:touches 屏幕中每根手指信息列表 targetTouches 和touches类似，把同一节点的手指信息过滤掉 changedTouches 响应当前事件的每根手指的信息列表 在说一说tap：PC页面绑定click，相应地手机页面就绑定tap 但原生的touch事件本身是没有tap的，js库里提供的tap事件都是模拟出来的 浏览器在 touchend 后会等待约300ms，原因是判断用户是否有双击（double tap）行为。如果没有 tap 行为，则触发 click 事件，而双击过程中就不适合触发 click 事件了。由此可以看出 click 事件触发代表一轮触摸事件的结束。 点击穿透问题：我们先看个 🌰 &lt;div class=&quot;container&quot;&gt; &lt;div id=&quot;underLayer&quot;&gt;底层元素&lt;/div&gt; &lt;div id=&quot;popupLayer&quot;&gt; &lt;div class=&quot;layer-title&quot;&gt;弹出层&lt;/div&gt; &lt;div class=&quot;layer-action&quot;&gt; &lt;button class=&quot;btn&quot; id=&quot;closePopup&quot;&gt;关闭&lt;/button&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;div id=&quot;bgMask&quot;&gt;&lt;/div&gt; 然后为底层元素绑定 click 事件，而弹出层的关闭按钮绑定 tap 事件。 $(‘#closePopup’).on(‘tap’, function(e){ $(‘#popupLayer’).hide(); $(‘#bgMask’).hide(); }); $(&apos;#underLayer&apos;).on(&apos;click&apos;, function(){ alert(&apos;underLayer clicked&apos;); }); 点击关闭按钮，touchend首先触发tap，弹出层和遮罩就被隐藏了。touchend后继续等待300ms发现没有其他行为了，则继续触发click，由于这时弹出层已经消失，所以当前click事件的target就在底层元素上，于是就alert内容。整个事件触发过程为 touchend -&gt; tap -&gt; click。由于click事件的滞后性（300ms），在这300ms内上层元素隐藏或消失了，下层同样位置的DOM元素触发了click事件（如果是input框则会触发focus事件），看起来就像点击的target“穿透”到下层去 解决点击穿透问题： 方法一：遮挡 由于 click 事件的滞后性，在这段时间内原来点击的元素消失了，于是便“穿透”了。因此我们顺着这个思路就想到， 可以给元素的消失做一个fade效果，类似jQuery里的fadeOut，并设置动画duration大于300ms，这样当延迟的 click 触发时，就不会“穿透”到下方的元素了。不用延时动画，我们还可以动态地在触摸位置生成一个透明的元素，这样当上层元素消失而延迟的click来到时，它点击到的是那个透明的元素，也不会“穿透”到底下。在一定的timeout后再将生成的透明元素移除 方法二： pointer-events pointer-events是CSS3中的属性，它有很多取值，有用的主要是auto和none $(&apos;#closePopup&apos;).on(&apos;tap&apos;, function(e){ $(&apos;#popupLayer&apos;).hide(); $(&apos;#bgMask&apos;).hide(); $(&apos;#underLayer&apos;).css(&apos;pointer-events&apos;, &apos;none&apos;); setTimeout(function(){ $(&apos;#underLayer&apos;).css(&apos;pointer-events&apos;, &apos;auto&apos;); }, 400); }); 方法三：fastclick 使用fastclick库，其实现思路是，取消 click 事件，用 touchend 模拟快速点击行为 FastClick.attach(document.body);]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[VUEX的几个步骤]]></title>
     <url>%2F2017%2F11%2F20%2FVUEX%E5%85%A5%E9%97%A8%2F</url>
-    <content type="text"><![CDATA[简单来说，用来集中管理数据，类似于React中的Redux，都是基于FLUX的前端状态管理框架 流程图 vue组件 -&gt; 发出动作 -&gt; action -&gt;提交改变 -&gt;mutation发生改变 -&gt; state -&gt; 更新组建 ###1、简介 ###2.基本用法 ####2.1 安装 cnpm install vuex -S ####2.2 创建store文件，在入口文件导入,并配置store选项 ####2.3 编辑store VUEX的核心就是store，相当于一个容器，一个store中包含几个属性 1.state 定义属性（状态数据） 2.getters 用来获取属性的 3.actions 定义方法（动作） 4.commit 提交变化 5.mutations 定义变化 注意：不要直接在action中修改数据，而是提交变化，目的是为了追踪数据变化 ####2.4 编辑App.vue 在子组件中，访问store对象的两种方式 方式1：通过this.$store.state.count 方式2：通过负主函数mapGetters，mapActions，mapState访问 mapGetters： 获取属性 mapActions： 获取方法 mapState: 或取的数据]]></content>
+    <content type="text"><![CDATA[简单来说，用来集中管理数据，类似于React中的Redux，都是基于FLUX的前端状态管理框架 流程图 vue组件 -&gt; 发出动作 -&gt; action -&gt;提交改变 -&gt;mutation发生改变 -&gt; state -&gt; 更新组建 ###1、简介 ###2.基本用法 ####2.1 安装 cnpm install vuex -S ####2.2 创建store文件，在入口文件导入,并配置store选项 ####2.3 编辑store VUEX的核心就是store，相当于一个容器，一个store中包含几个属性 1.state 定义属性（状态数据） 2.getters 用来获取属性的 3.actions 定义方法（动作） 4.commit 提交变化 5.mutations 定义变化 注意：不要直接在action中修改数据，而是提交变化，目的是为了追踪数据变化 ####2.4 编辑App.vue 在子组件中，访问store对象的两种方式 方式1：通过this.$store.state.count 方式2：通过负主函数mapGetters，mapActions，mapState访问 mapGetters： 获取属性 mapActions： 获取方法 mapState: 或取的数据 ###3 更好的组织项目结构 建议：store -&gt;index.js组装模块的地方+actions.js+mutations.js+mymodules |-src |-store |-index.js |-getters.js |-actions.js |-mutation.js |-modules//分为多个模块，每个模块都可以拥有自己的state，getters,actiobs,mutations |-user.js |-cart.js |-....]]></content>
       <categories>
         <category>VUEX</category>
       </categories>
@@ -489,8 +494,8 @@
         <tag>HTML</tag>
         <tag>JS</tag>
         <tag>JQ</tag>
-        <tag>VUEX</tag>
         <tag>NODEJS</tag>
+        <tag>VUEX</tag>
         <tag>VUE</tag>
         <tag>WEBPACK</tag>
         <tag>PIT</tag>
@@ -513,13 +518,13 @@
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
-    <title><![CDATA[Photoes]]></title>
-    <url>%2Fphotoes%2Findex.html</url>
+    <title><![CDATA[Tags]]></title>
+    <url>%2Ftags%2Findex.html</url>
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
-    <title><![CDATA[Tags]]></title>
-    <url>%2Ftags%2Findex.html</url>
+    <title><![CDATA[Photoes]]></title>
+    <url>%2Fphotoes%2Findex.html</url>
     <content type="text"><![CDATA[]]></content>
   </entry>
 </search>
