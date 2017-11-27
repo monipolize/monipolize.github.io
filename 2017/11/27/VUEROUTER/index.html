@@ -36,18 +36,18 @@
 
   <meta name="keywords" content="ALL,VUE," />
 
-  <meta name="description" content="单页面应用：根据不同的url，显示不同内容，但显示在同一个页面中 [参考]（   https://router.vuejs.org/zh-cn）  bower info vue-router cnpm install vue-router –s ###基本用法 -1、对页面布局   -2、配置路由    &amp;lt;!DOCTYPE html&amp;gt;">
+  <meta name="description" content="单页面应用：根据不同的url，显示不同内容，但显示在同一个页面中 [参考]（   https://router.vuejs.org/zh-cn）  bower info vue-router cnpm install vue-router –s ###基本用法 -1、对页面布局   -2、配置路由 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;en&amp;quot;">
   <meta name="keywords" content="ALL,VUE">
   <meta property="og:type" content="article">
   <meta property="og:title" content="浅谈VUE-ROUTER">
   <meta property="og:url" content="http://icey-monopolize.com/tags/ALL/2017/11/27/VUEROUTER/index.html">
   <meta property="og:site_name" content="In My World">
-  <meta property="og:description" content="单页面应用：根据不同的url，显示不同内容，但显示在同一个页面中 [参考]（   https://router.vuejs.org/zh-cn）  bower info vue-router cnpm install vue-router –s ###基本用法 -1、对页面布局   -2、配置路由    &amp;lt;!DOCTYPE html&amp;gt;">
+  <meta property="og:description" content="单页面应用：根据不同的url，显示不同内容，但显示在同一个页面中 [参考]（   https://router.vuejs.org/zh-cn）  bower info vue-router cnpm install vue-router –s ###基本用法 -1、对页面布局   -2、配置路由 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;en&amp;quot;">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-27T14:03:30.000Z">
+  <meta property="og:updated_time" content="2017-11-27T14:13:36.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="浅谈VUE-ROUTER">
-  <meta name="twitter:description" content="单页面应用：根据不同的url，显示不同内容，但显示在同一个页面中 [参考]（   https://router.vuejs.org/zh-cn）  bower info vue-router cnpm install vue-router –s ###基本用法 -1、对页面布局   -2、配置路由    &amp;lt;!DOCTYPE html&amp;gt;">
+  <meta name="twitter:description" content="单页面应用：根据不同的url，显示不同内容，但显示在同一个页面中 [参考]（   https://router.vuejs.org/zh-cn）  bower info vue-router cnpm install vue-router –s ###基本用法 -1、对页面布局   -2、配置路由 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;en&amp;quot;">
 
   <script type="text/javascript" id="hexo.configurations">
     var NexT = window.NexT || {};
@@ -285,73 +285,68 @@
                     <p>cnpm install vue-router –s</p>
                     <p>###基本用法</p>
                     <p>-1、对页面布局
-                      <br>-2、配置路由
-                      <br> &lt;!DOCTYPE html&gt;
-                      <br>
-                      <html lang="en">
-                      <br>
+                      <br>-2、配置路由</p>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;路由的基本用法&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;js/vue.js&quot;&gt;&lt;/script&gt;    
+    &lt;script type=&quot;text/javascript&quot; src=&quot;js/vue-router.js&quot;&gt;&lt;/script&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+    /*     .router-link-active{
+            font-size: 20px;
+            color:orange;
+            text-decoration: none;
+        } */
+        .active{
+            font-size: 20px;
+            color:orange;
+            text-decoration: none;
+        } 
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;main&quot;&gt;
+    &lt;div&gt;
+    &lt;!--router-link组件定义导航 to属性定义url --&gt;
+        &lt;router-link to=&quot;/home&quot;&gt;主页&lt;/router-link&gt;
+        &lt;router-link to=&quot;/new&quot;&gt;新闻&lt;/router-link&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;content&quot;&gt;
+&lt;!-- router-view 用来显示路由内容--&gt;
+    &lt;router-view&gt;&lt;/router-view&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    //1.定义相应的组件
+    var home = {
+        template:&quot;&lt;h3&gt;我是主页&lt;/h3&gt;&quot;
+    }
+    var news = {
+        template:&quot;&lt;h3&gt;我是新闻&lt;/h3&gt;&quot;
+    }
+    //2，配置路由
+    const myroutes = [
+        {path:&apos;/home&apos;,component:home},
+        {path:&apos;/news&apos;,component:news},
+        {path:&apos;*&apos;,redirect:&apos;/home&apos;}
+    ]
+    //3.创建路由实例
+    const router = new VueRouter({
+        routes:myroutes,
+        mode:&apos;history&apos;,
+        linkActiveClass:&apos;active&apos;//更改活动连接class类名
+    });
+    //4.创建VUE，并将路由挂载（注入路由）
+    new Vue({
+        el:&apos;#main&apos;,
+        router//相当于router：router
+    })
+&lt;/script&gt;
 
-                      <head>
-                        <br>
-                        <meta charset="UTF-8">
-                        <br>
-                        <title>路由的基本用法</title>
-                        <br>
-                        <script type="text/javascript" src="js/vue.js"></script>
-                        <br>
-                        <script type="text/javascript" src="js/vue-router.js"></script>
-                        <br>
-                        <style type="text/css">
-                          <br>/<em>.router-link-active {
-                            <br>font-size: 20px;
-                            <br>color: orange;
-                            <br>text-decoration: none;
-                            <br>
-                          }
 
-                          </em>/<br>.active {
-                            <br>font-size: 20px;
-                            <br>color: orange;
-                            <br>text-decoration: none;
-                            <br>
-                          }
-
-                          <br>
-
-                        </style>
-                        <br> </head>
-                      <br>
-
-                      <body>
-                        <br>
-                        <div id="main">
-                          <br>
-                          <div>
-                            <br>
-                            <!--router-link组件定义导航 to属性定义url -->
-                            <br>
-                            <router-link to="/home">主页</router-link>
-                            <br>
-                            <router-link to="/new">新闻</router-link>
-                            <br> </div>
-                          <br> </div>
-                        <br>
-                        <div id="content">
-                          <br>
-                          <!-- router-view 用来显示路由内容-->
-                          <br>
-                          <router-view></router-view>
-                          <br> </div>
-                        <br>
-                        <script>
-                          < br > //1.定义相应的组件<br>            var home = {<br>                template:”<h3>我是主页</h3>“<br>            }<br>            var news = {<br>                template:”<h3>我是新闻</h3>“<br>            }<br>            //2，配置路由<br>            const myroutes = [<br>                {path:’/home’,component:home},<br>                {path:’/news’,component:news},<br>                {path:’*’,redirect:’/home’}<br>            ]<br>            //3.创建路由实例<br>            const router = new VueRouter({<br>                routes:myroutes,<br>                mode:’history’,<br>                linkActiveClass:’active’//更改活动连接class类名<br>            });<br>            //4.创建VUE，并将路由挂载（注入路由）<br>            new Vue({<br>                el:’#main’,<br>                router//相当于router：router<br>            })<br>
-
-                        </script>
-                      </body>
-
-                      </html>
-                    </p>
-                    <pre><code>&lt;/body&gt;
+&lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
                     <p>###路由嵌套和参数传递
