@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="1、斐波那契数列 function fibonacci(n){    if(n==1 || n==2) return 1;    return fibonacci(n-1)+fibonacci(n-2)   } 2、快排 var quickSort = function(arr) {   　　if (arr.length &amp;lt;= 1) { return arr; }   　　var pivot">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-22T03:02:38.000Z">
+  <meta property="og:updated_time" content="2017-11-22T04:38:58.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="常见入门算法">
   <meta name="twitter:description" content="1、斐波那契数列 function fibonacci(n){    if(n==1 || n==2) return 1;    return fibonacci(n-1)+fibonacci(n-2)   } 2、快排 var quickSort = function(arr) {   　　if (arr.length &amp;lt;= 1) { return arr; }   　　var pivot">
@@ -665,6 +665,105 @@ console.timeEnd(&apos;Normal&apos;);
                       <br>function isNum(num){
                       <br> return num == +num ? true : false;
                       <br>}</p>
+                    <p>12、树形目录
+                      <br> var tree = {
+                      <br> “id”: 0,
+                      <br> “a1”: {
+                      <br> “id”: 1,
+                      <br> “name”: “a1”,
+                      <br> “children”: {
+                      <br> “b1”: “b1_1”,
+                      <br> “b2”: “b1_2”,
+                      <br> “b3”: “b1_3”
+                      <br> }
+                      <br> },
+                      <br> “a2”: {
+                      <br> “id”: 1,
+                      <br> “name”: “a2”,
+                      <br> “children”: {}
+                      <br> },
+                      <br> “a3”: {
+                      <br> “id”: 1,
+                      <br> “name”: “a3”,
+                      <br> “children”: {
+                      <br> “b1”: “b3_1”,
+                      <br> “b2”: “b3_2”,
+                      <br> “b3”: “b3_3”
+                      <br> }
+                      <br> }
+                      <br> };
+                      <br> var Tree = function ( module ){
+                      <br> function createNodeList( obj ) {
+                      <br> //创建ul节点和documentFragmeng中间变量
+                      <br> var n = document.createElement(“ul”),
+                      <br> docfrag = document.createDocumentFragment();</p>
+                    <pre><code>          //判断obj是根节点还是孩子节点
+          if(obj.id == 0) {
+              n.setAttribute(&quot;class&quot;, &quot;tree_0&quot;);
+
+              for(var key in obj) {
+                  if(key == &quot;id&quot;) continue;
+                  //将节点插入
+                  var c = document.createElement(&quot;li&quot;),
+                      span = document.createElement(&quot;span&quot;);
+                  span.appendChild(document.createTextNode( obj[key].name ));
+                  c.appendChild(span);
+                  docfrag.appendChild( c );
+              }
+          }else if(obj.id &amp;&amp; obj.id == 1) {
+              n.setAttribute(&quot;class&quot;, &quot;tree_1&quot;);
+
+              for(var key in obj) {
+                  if(key == &quot;id&quot; || key == &quot;name&quot; || !obj.children) continue;
+                  for( var item in obj.children){
+                      //将节点插入
+                      var c = document.createElement(&quot;li&quot;);
+                      c.appendChild(document.createTextNode( obj.children[item] ));
+                      docfrag.appendChild( c );
+                  }
+              }
+          }
+          n.appendChild( docfrag );
+          //返回开始构建的ul节点
+          return n;
+      }
+
+      //隐藏及显示 工具函数
+      function toggle(c){
+          c.style.display = ((c.style.display == &quot;none&quot;) ? &quot;&quot; : &quot;none&quot;);
+      }
+
+      function createTree( obj ) {
+          var root, child, count = 0;
+
+          root = createNodeList( obj );
+          for(var key in obj){
+              if(obj[key] == &quot;id&quot; || !obj[key].children) continue;
+              child = createNodeList(obj[key]);
+              root.children[count].appendChild( child );
+              //count来判断插入的位置
+              count++;
+          }
+          return root;
+      }
+
+      var T = createTree(module);
+      var list = T.children;
+      for(var i = 0, len = list.length; i &lt; len; i++){
+          list[i].getElementsByTagName(&quot;span&quot;)[0].onclick = function(){
+              var obj = this.nextSibling;
+              toggle(obj);
+          }
+      }
+      return T;
+  }
+
+
+window.onload = function(){
+    var T = new Tree(tree);
+    document.getElementsByTagName(&quot;body&quot;)[0].appendChild(T);
+}
+</code></pre>
 
                   </div>
 
@@ -803,7 +902,7 @@ console.timeEnd(&apos;Normal&apos;);
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">41</span>
+                      <span class="site-state-item-count">42</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>

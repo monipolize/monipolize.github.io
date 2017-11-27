@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="1、先叨叨生命周期吧 new Vue() -&amp;gt; beforecreated -&amp;gt; created -&amp;gt; beforeMount -&amp;gt; mounted -&amp;gt;   beforeDestory -&amp;gt; destoryed    -&amp;gt;beforeUpdate -&amp;gt; updated new: 创建一个新对象,将这个新对象的 proto 指向 构造函数的 prot">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-14T11:32:46.000Z">
+  <meta property="og:updated_time" content="2017-11-24T09:12:01.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Vue基础一">
   <meta name="twitter:description" content="1、先叨叨生命周期吧 new Vue() -&amp;gt; beforecreated -&amp;gt; created -&amp;gt; beforeMount -&amp;gt; mounted -&amp;gt;   beforeDestory -&amp;gt; destoryed    -&amp;gt;beforeUpdate -&amp;gt; updated new: 创建一个新对象,将这个新对象的 proto 指向 构造函数的 prot">
@@ -358,6 +358,37 @@
                       <br>都支持过滤器：内置过滤器和自定义过滤器。
                       <br>都支持双向数据绑定。
                       <br>都不支持低端浏览器。</p>
+                    <p>5、什么是虚拟DOM</p>
+                    <p>DOM是文档对象模型(Document Object Model)的简写，在浏览器中我们可以通过js来操作DOM，但是这样的操作性能很差，于是Virtual
+                      Dom应运而生。我的理解，Virtual Dom就是在js中模拟DOM对象树来优化DOM操作的一种技术或思路。
+                    </p>
+                    <p>一个VNode的实例对象包含了以下属性
+                      <br>tag: 当前节点的标签名
+                      <br>data: 当前节点的数据对象，具体包含哪些字段可以参考vue源码types/vnode.d.ts中对VNodeData的定义
+                      <br>children: 数组类型，包含了当前节点的子节点
+                      <br>text: 当前节点的文本，一般文本节点或注释节点会有该属性
+                      <br>elm: 当前虚拟节点对应的真实的dom节点
+                      <br>ns: 节点的namespace
+                      <br>context: 编译作用域
+                      <br>functionalContext: 函数化组件的作用域
+                      <br>key: 节点的key属性，用于作为节点的标识，有利于patch的优化
+                      <br>componentOptions: 创建组件实例时会用到的选项信息
+                      <br>child: 当前节点对应的组件实例
+                      <br>parent: 组件的占位节点
+                      <br>raw: raw html
+                      <br>isStatic: 静态节点的标识
+                      <br>isRootInsert: 是否作为根节点插入，被
+                      <transition>包裹的节点，该属性的值为false
+                        <br>isComment: 当前节点是否是注释节点
+                        <br>isCloned: 当前节点是否为克隆节点
+                        <br>isOnce: 当前节点是否有v-once指令</transition>
+                    </p>
+                    <p>VNode可以理解为vue框架的虚拟dom的基类，通过new实例化的VNode大致可以分为几类</p>
+                    <p>EmptyVNode: 没有内容的注释节点
+                      <br>TextVNode: 文本节点
+                      <br>ElementVNode: 普通元素节点
+                      <br>ComponentVNode: 组件节点
+                      <br>CloneVNode: 克隆节点，可以是以上任意类型的节点，唯一的区别在于isCloned属性为true</p>
 
                   </div>
 
@@ -496,7 +527,7 @@
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">41</span>
+                      <span class="site-state-item-count">42</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>
