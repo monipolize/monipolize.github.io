@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="1、先叨叨生命周期吧 new Vue() -&amp;gt; beforecreated -&amp;gt; created -&amp;gt; beforeMount -&amp;gt; mounted -&amp;gt;   beforeDestory -&amp;gt; destoryed    -&amp;gt;beforeUpdate -&amp;gt; updated new: 创建一个新对象,将这个新对象的 proto 指向 构造函数的 prot">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-28T10:30:56.000Z">
+  <meta property="og:updated_time" content="2017-11-28T11:10:22.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Vue基础">
   <meta name="twitter:description" content="1、先叨叨生命周期吧 new Vue() -&amp;gt; beforecreated -&amp;gt; created -&amp;gt; beforeMount -&amp;gt; mounted -&amp;gt;   beforeDestory -&amp;gt; destoryed    -&amp;gt;beforeUpdate -&amp;gt; updated new: 创建一个新对象,将这个新对象的 proto 指向 构造函数的 prot">
@@ -580,68 +580,6 @@
 }
 </code></pre>
                     <p>}).$mount(‘#main’)</p>
-                    <p>9、自定义指令
-                      <br>-9.1 自定义全局指令</p>
-                    <pre><code>Vue.directive(指令id，指令定义对象)
-
-&lt;div v-hello v-text=&quot;msg&quot;&gt;
-
-&lt;/div&gt;
-Vue.directive(&apos;hello&apos;,{
-    //钩子函数
-    bind(){
-        //指令第一次绑定时调用，只执行一次，可执行初始化操作
-    },
-    inserted(){
-        //当指令所绑定的元素,插入到dom中调用
-    },
-    update(){
-        //当指令所绑定的元素所在模板更新时调用
-    },
-    componentUpdated(){
-        //当指令所绑定的元素所在模板完后一次更新周期时
-    },
-    unbind(){
-    //指令解除绑定时调用
-    }
-})
-
-Vue.directive(&apos;world&apos;,{
-    bind(el,binding){
-        alert(1111)
-        //el 指令所绑定的元素
-        el.style.color = &apos;red&apos;
-    }
-})
-//简化写法 
-Vue.directive(&apos;world&apos;,function(){
-    //这个函数会被bind和update调用
-})
-var vm = new Vue({
-    el:&apos;main&apos;
-    data:{
-        msg:&apos;qqqq&apos;
-    }
-})
-</code></pre>
-                    <p>-9.2 自定义局部指令</p>
-                    <pre><code>var vm = new Vue({
-    el:&apos;main&apos;
-    data:{
-        msg:&apos;qqqq&apos;
-    },
-    directive:{
-        hello:function(el){
-            el.style.color = red;
-        },
-        world：{
-            inserted:function(el){
-                el.focus()
-            }
-        }
-    }
-})
-</code></pre>
 
                   </div>
 
@@ -780,7 +718,7 @@ var vm = new Vue({
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">44</span>
+                      <span class="site-state-item-count">45</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>
