@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="1、先叨叨生命周期吧 new Vue() -&amp;gt; beforecreated -&amp;gt; created -&amp;gt; beforeMount -&amp;gt; mounted -&amp;gt;   beforeDestory -&amp;gt; destoryed    -&amp;gt;beforeUpdate -&amp;gt; updated new: 创建一个新对象,将这个新对象的 proto 指向 构造函数的 prot">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-28T10:22:11.000Z">
+  <meta property="og:updated_time" content="2017-11-28T10:30:56.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Vue基础">
   <meta name="twitter:description" content="1、先叨叨生命周期吧 new Vue() -&amp;gt; beforecreated -&amp;gt; created -&amp;gt; beforeMount -&amp;gt; mounted -&amp;gt;   beforeDestory -&amp;gt; destoryed    -&amp;gt;beforeUpdate -&amp;gt; updated new: 创建一个新对象,将这个新对象的 proto 指向 构造函数的 prot">
@@ -625,6 +625,23 @@ var vm = new Vue({
 })
 </code></pre>
                     <p>-9.2 自定义局部指令</p>
+                    <pre><code>var vm = new Vue({
+    el:&apos;main&apos;
+    data:{
+        msg:&apos;qqqq&apos;
+    },
+    directive:{
+        hello:function(el){
+            el.style.color = red;
+        },
+        world：{
+            inserted:function(el){
+                el.focus()
+            }
+        }
+    }
+})
+</code></pre>
 
                   </div>
 
