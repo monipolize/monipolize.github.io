@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="1、先叨叨生命周期吧 new Vue() -&amp;gt; beforecreated -&amp;gt; created -&amp;gt; beforeMount -&amp;gt; mounted -&amp;gt;   beforeDestory -&amp;gt; destoryed    -&amp;gt;beforeUpdate -&amp;gt; updated new: 创建一个新对象,将这个新对象的 proto 指向 构造函数的 prot">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-28T11:10:22.000Z">
+  <meta property="og:updated_time" content="2017-12-01T08:52:15.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Vue基础">
   <meta name="twitter:description" content="1、先叨叨生命周期吧 new Vue() -&amp;gt; beforecreated -&amp;gt; created -&amp;gt; beforeMount -&amp;gt; mounted -&amp;gt;   beforeDestory -&amp;gt; destoryed    -&amp;gt;beforeUpdate -&amp;gt; updated new: 创建一个新对象,将这个新对象的 proto 指向 构造函数的 prot">
@@ -580,6 +580,51 @@
 }
 </code></pre>
                     <p>}).$mount(‘#main’)</p>
+                    <p>9、父子组件通信</p>
+                    <parent>
+                      <br>
+                      <child :child-msg="msg"></child>//这里必须要用 - 代替驼峰
+                      <br>
+                    </parent>
+
+                    <p>data(){
+                      <br> return {
+                      <br> msg: [1,2,3]
+                      <br> };
+                      <br>}</p>
+                    <p>props: [‘childMsg’]
+                      <br>props: {
+                      <br> childMsg: Array //这样可以指定传入的类型，如果类型不对，会警告
+                      <br>}
+                      <br>props: {
+                      <br> childMsg: {
+                      <br> type: Array,
+                      <br> default: [0,0,0] //这样可以指定默认的值
+                      <br> }
+                      <br>}</p>
+                    <p>子组件:</p>
+                    <template>
+                      <br>
+                      <div @click="up"></div>
+                      <br>
+                    </template>
+
+                    <p>methods: {
+                      <br> up() {
+                      <br> this.$emit(‘upup’,’hehe’); //主动触发upup方法，’hehe’为向父组件传递的数据
+                      <br> }
+                      <br>}</p>
+                    <p>
+                      <div>
+                        <br>
+                        <child @upup="change" :msg="msg"></child> //监听子组件触发的upup事件,然后调用change方法
+                        <br>
+                      </div>
+                      <br>methods: {
+                      <br> change(msg) {
+                      <br> this.msg = msg;
+                      <br> }
+                      <br>}</p>
 
                   </div>
 
@@ -718,14 +763,14 @@
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">45</span>
+                      <span class="site-state-item-count">46</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>
 
                   <div class="site-state-item site-state-categories">
                     <a href="/categories/index.html">
-                      <span class="site-state-item-count">16</span>
+                      <span class="site-state-item-count">17</span>
                       <span class="site-state-item-name">分类</span>
                     </a>
                   </div>

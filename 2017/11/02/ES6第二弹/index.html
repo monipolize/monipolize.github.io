@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="吼吼，来吧，小宝贝，废话不多说，咱们书接上回。。。。 十一、Prosmises 异步编程   所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件   从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。 Promise对象有以下两个特点:   （1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfill">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-11-07T10:05:05.000Z">
+  <meta property="og:updated_time" content="2017-12-01T08:58:36.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ES6所有特点应用 -- 第二弹">
   <meta name="twitter:description" content="吼吼，来吧，小宝贝，废话不多说，咱们书接上回。。。。 十一、Prosmises 异步编程   所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件   从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。 Promise对象有以下两个特点:   （1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfill">
@@ -348,6 +348,13 @@
                       <br>“error “ + res -&gt; error 2</p>
                     <p>Promise也有一些缺点。首先，无法取消Promise，
                       <br>Promise 新建后就会立即执行</p>
+                    <p>使用Promise解决多个异步依赖调用
+                      <br>Promise提供了一个方法Promise.all([p1,p2,p3]) ，用于将多个Promise实例，包装成一个新的Promise实例。接收的参数是一个数组,p1、p2、p3都是Promise对象。
+                      <br>此时Promise.all的状态取决于它的参数。
+                      <br>分两种情况：
+                      <br>p1、p2、p3的状态都是resolve的时候，Promise.all的状态才会变成resolve；
+                      <br>只要p1、p2、p3中有一个的状态为reject，那么Promise.all的状态就会变成reject；
+                      <br>所以我们可以用Promise.all()来解决多个异步依赖调用。</p>
                     <p>######################################################</p>
                     <p>十二、Symbol</p>
                     <p>话不多说，直接上干货</p>
@@ -918,14 +925,14 @@
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">45</span>
+                      <span class="site-state-item-count">46</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>
 
                   <div class="site-state-item site-state-categories">
                     <a href="/categories/index.html">
-                      <span class="site-state-item-count">16</span>
+                      <span class="site-state-item-count">17</span>
                       <span class="site-state-item-name">分类</span>
                     </a>
                   </div>

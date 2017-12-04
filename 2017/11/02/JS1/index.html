@@ -45,7 +45,7 @@
   <meta property="og:description" content="啦啦啦啦啦啦。。。。。这可是本仙女呕心沥血总结出的，关于JS面试会问到的一些面试题。。。。。   都是血和泪啊 😢😢😢😢😢😢😢😢😢😢😢😢😢   小伙伴们别在踩坑了 😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭 本章先说一说比较常见的、基础问题问题 🐩 1、什么是事件机制？ 先说说什么是事件流。   事件流：指从页面中接收事件的">
   <meta property="og:locale" content="zh-Hans">
   <meta property="og:image" content="http://icey-monopolize.com/MyImages/12.jpeg">
-  <meta property="og:updated_time" content="2017-11-07T10:04:15.000Z">
+  <meta property="og:updated_time" content="2017-12-04T08:17:18.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JS面试那些事 -- Part One 基础篇">
   <meta name="twitter:description" content="啦啦啦啦啦啦。。。。。这可是本仙女呕心沥血总结出的，关于JS面试会问到的一些面试题。。。。。   都是血和泪啊 😢😢😢😢😢😢😢😢😢😢😢😢😢   小伙伴们别在踩坑了 😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭 本章先说一说比较常见的、基础问题问题 🐩 1、什么是事件机制？ 先说说什么是事件流。   事件流：指从页面中接收事件的">
@@ -294,7 +294,17 @@
                       <br>那我们完全可以将子元素的事件要做的事写到父元素的事件里，
                       <br>也就是将子元素的事件处理程序写到父元素的事件处理程序中，这就是事件委托；
                       <br>利用事件委托，只指定一个事件处理程序，就可以管理某一个类型的所有事件</p>
-                    <p>2、伪数组转数组 </p>
+                    <p>为什么要有事件委托那？
+                      <br>利用冒泡的原理，把事件加到父级上，触发执行效果。
+                      <br>优点
+                      <br>1、提高性能。举个例子，如果我们要给li增加地阿基时间，如果说我们可能有很多个li用for循环的话就比较影响性能
+                      <br>2、新添加的元素还会有之前的事件.举个例子，我们要做动态的添加li
+                      <br>2、伪数组转数组 </p>
+                    <p>缺点
+                      <br>1、事件委托基于冒泡，对于不冒泡的事件不支持
+                      <br>2、层级过多，冒泡过程中，可能会被某层阻止掉
+                      <br>3、理论上委托会导致浏览器频繁调用处理函数，虽然很可能不需要处理。所以建议就近委托，比如在table上代理td，而不是在document上代理td。
+                      <br>4、把所有事件都用代理就可能会出现事件误判。比如，在document中代理了所有button的click事件，另外的人在引用改js时，可能不知道，造成单击button触发了两个click事件。</p>
                     <p>方法一、 声明一个空数组，通过遍历伪数组把它们重新添加到新的数组中，大家都会，这不是面试官要的
                       <br>var aLi = document.querySelectorAll(‘li’);
                       <br> var arr = [];
@@ -707,14 +717,14 @@
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">45</span>
+                      <span class="site-state-item-count">46</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>
 
                   <div class="site-state-item site-state-categories">
                     <a href="/categories/index.html">
-                      <span class="site-state-item-count">16</span>
+                      <span class="site-state-item-count">17</span>
                       <span class="site-state-item-name">分类</span>
                     </a>
                   </div>
