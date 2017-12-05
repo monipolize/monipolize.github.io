@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="最近小仙女中了一种毒，一种叫做”异步时序“的毒，为了解这种毒小仙女掉进了”回调地狱“ 举个🌰   我们所操作的数据往往是通过向后端大大请求而得来的，BUT有时候会出现这样一种情况，由于所有数据都是异步请求的得来的，没个请求的返回时间不一样，所以会出现有相关依赖，或者说递进关系的数据会有问题，所以为了解决问题，我往往会在一个请求成功之后，再去发送另一个请求，BUT   恐怖的事情粗线了，经常或有这">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-12-05T05:15:21.000Z">
+  <meta property="og:updated_time" content="2017-12-05T05:26:11.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Promise真是个磨人的小妖精">
   <meta name="twitter:description" content="最近小仙女中了一种毒，一种叫做”异步时序“的毒，为了解这种毒小仙女掉进了”回调地狱“ 举个🌰   我们所操作的数据往往是通过向后端大大请求而得来的，BUT有时候会出现这样一种情况，由于所有数据都是异步请求的得来的，没个请求的返回时间不一样，所以会出现有相关依赖，或者说递进关系的数据会有问题，所以为了解决问题，我往往会在一个请求成功之后，再去发送另一个请求，BUT   恐怖的事情粗线了，经常或有这">
@@ -389,6 +389,60 @@
                       <br>Promise.done() 的用法类似 .then() ，可以提供resolved和rejected方法，也可以不提供任何参数，它的主要作用是在回调链的尾端捕捉前面没有被
                       .catch() 捕捉到的错误
                       <br>Promise. finally() 接受一个方法作为参数，这个方法不管promise最终的状态是怎样，都一定会被执行</p>
+                    <p>// 简单的ajax原生实现
+                      <br>var url = ‘
+                      <a href="https://hq.tigerbrokers.com/fundamental/finance_calendar/getType/2017-02-26/2017-06-10"
+                                                                                                      target="_blank" rel="external">https://hq.tigerbrokers.com/fundamental/finance_calendar/getType/2017-02-26/2017-06-10</a>‘;
+                      <br>var result;</p>
+                    <p>var XHR = new XMLHttpRequest();
+                      <br>XHR.open(‘GET’, url, true);
+                      <br>XHR.send();</p>
+                    <p>XHR.onreadystatechange = function() {
+                      <br> if (XHR.readyState == 4 &amp;&amp; XHR.status == 200) {
+                      <br> result = XHR.response;
+                      <br> console.log(result);
+                      <br> }
+                      <br>}</p>
+                    <p>用Promise 实现AJAX
+                      <br>function getJSON (url) {
+                      <br> return new Promise( (resolve, reject) =&gt; {
+                      <br> var xhr = new XMLHttpRequest()
+                      <br> xhr.open(‘GET’, url, true)</p>
+                    <pre><code>    xhr.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                resolve(this.responseText, this)
+            } else {
+                var resJson = { code: this.status, response: this.response }
+                reject(resJson, this)
+            }
+        }
+    }
+
+    xhr.send()
+})
+</code></pre>
+                    <p>}
+                      <br>function postJSON(url, data) {
+                      <br> return new Promise( (resolve, reject) =&gt; {
+                      <br> var xhr = new XMLHttpRequest()
+                      <br> xhr.open(“POST”, url, true)
+                      <br> xhr.setRequestHeader(“Content-type”, “application/x-www-form-urlencoded”);</p>
+                    <pre><code>    xhr.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                resolve(JSON.parse(this.responseText), this)
+            } else {
+                var resJson = { code: this.status, response: this.response }
+                reject(resJson, this)
+            }
+        }
+    }
+
+    xhr.send(JSON.stringify(data))
+})
+</code></pre>
+                    <p>}</p>
 
                   </div>
 
@@ -441,6 +495,11 @@
                       <span class="post-nav-divider"></span>
 
                       <div class="post-nav-prev post-nav-item">
+
+                        <a href="/2017/12/05/JS中的类/" rel="prev" title="JS中的类">
+                          JS中的类
+                          <i class="fa fa-chevron-right"></i>
+                        </a>
 
                       </div>
                     </div>
@@ -521,7 +580,7 @@
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">47</span>
+                      <span class="site-state-item-count">49</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>

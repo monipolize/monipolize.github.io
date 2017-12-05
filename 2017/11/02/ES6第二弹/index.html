@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="吼吼，来吧，小宝贝，废话不多说，咱们书接上回。。。。 十一、Prosmises 异步编程   所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件   从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。 Promise对象有以下两个特点:   （1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfill">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-12-01T08:58:36.000Z">
+  <meta property="og:updated_time" content="2017-12-05T06:08:03.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ES6所有特点应用 -- 第二弹">
   <meta name="twitter:description" content="吼吼，来吧，小宝贝，废话不多说，咱们书接上回。。。。 十一、Prosmises 异步编程   所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件   从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。 Promise对象有以下两个特点:   （1）对象的状态不受外界影响。Promise对象代表一个异步操作，有三种状态：pending（进行中）、fulfill">
@@ -412,7 +412,18 @@
                       <br>const p2 = a =&gt;a*2
                       <br>const add = pip(p1,p2)
                       <br>add(5);</p>
-                    <p>######################################################</p>
+                    <p>######################################################
+                      <br>箭头函数和普通函数的区别
+                      <br>箭头函数中的 this 和调用时的上下文无关，而是取决于定义时的上下文
+                      <br>普通函数中的this:</p>
+                    <ol>
+                      <li>this总是代表它的直接调用者, 例如 obj.func ,那么func中的this就是obj</li>
+                    </ol>
+                    <p>2.在默认情况(非严格模式下,未使用 ‘use strict’),没找到直接调用者,则this指的是 window</p>
+                    <p>3.在严格模式下,没有直接调用者的函数中的this是 undefined</p>
+                    <p>4.使用call,apply,bind(ES5新增)绑定的,this指的是 绑定的对象</p>
+                    <p>箭头函数中的this</p>
+                    <p>默认指向在定义它时,它所处的对象,而不是执行时的对象, 定义它的时候,可能环境是window（即继承父级的this）;</p>
                     <p>十五、解构</p>
                     <p>var [a,,b] = [1,2,3];
                       <br>console.log(a);
@@ -925,7 +936,7 @@
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">47</span>
+                      <span class="site-state-item-count">49</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>
