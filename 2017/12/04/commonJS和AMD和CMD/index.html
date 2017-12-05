@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="先说说模块化，为什么要有模块化那，回想起最开始没有接触过模块化的日子，简直。。。。就不多说了，大家都懂。   模块化，从名字上来看，就是分块的意思，将大家写的veryvery长的代码，veryvery复杂的代码合理的分割成几个“快状”，这样不仅增加了清晰度，而且更利于与多人合作。 在JS中模块化规范有三种：CommonJS和AMD和CMD CommonJs 用在服务器端，AMD和CMD用在浏览器环">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-12-05T03:19:37.000Z">
+  <meta property="og:updated_time" content="2017-12-05T03:36:31.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="CommonJS和AMD和CMD">
   <meta name="twitter:description" content="先说说模块化，为什么要有模块化那，回想起最开始没有接触过模块化的日子，简直。。。。就不多说了，大家都懂。   模块化，从名字上来看，就是分块的意思，将大家写的veryvery长的代码，veryvery复杂的代码合理的分割成几个“快状”，这样不仅增加了清晰度，而且更利于与多人合作。 在JS中模块化规范有三种：CommonJS和AMD和CMD CommonJs 用在服务器端，AMD和CMD用在浏览器环">
@@ -296,7 +296,7 @@
                     <hr>
                     <p>一、CommonJS</p>
                     <p>CommonJS就是为JS的表现来制定规范，Commonjs是一个更偏向于服务器端的规范，NodeJS是CommonJS规范的实现，webpack
-                      也是以CommonJS的形式来书写。
+                      也是以CommonJS的形式来书写。CommonJS规范加载模块是同步的，也就是说，只有加载完成，才能执行后面的操作
                       <br>在CommonJS中，有一个全局性方法require()，用于加载模块。假定有一个模块A.js，就可以像下面这样加载。
                       <br>var A = require(‘A’);
                       <br>A.xxxx();</p>
@@ -314,7 +314,28 @@
                       <br> this.exports = {};
                       <br> this.parent = parent;
                       <br> …</p>
-                    <p> }</p>
+                    <p> }
+                      <br>module.id 模块的识别符，通常是带有绝对路径的模块文件名。
+                      <br>module.filename 模块的文件名，带有绝对路径。
+                      <br>module.loaded 返回一个布尔值，表示模块是否已经完成加载。
+                      <br>module.parent 返回一个对象，表示调用该模块的模块。
+                      <br>module.children 返回一个数组，表示该模块要用到的其他模块。
+                      <br>module.exports 表示模块对外输出的值。</p>
+                    <p>Node为每个模块提供一个exports变量，指向module.exports
+                      <br>exports.A = function (r) {
+                      <br> return a;
+                      <br>};</p>
+                    <p>exports.B= function (r) {
+                      <br> return b;
+                      <br>};
+                      <br>注意，不能直接将exports变量指向一个值，因为这样等于切断了exports与module.exports的联系。
+                      <br>exports = function(x) {console.log(x)};
+                      <br>上面这样的写法是无效的，因为exports不再指向module.exports了
+                      <br>exports.hello = function() {
+                      <br> return ‘hello’;
+                      <br>};
+                      <br>module.exports = ‘Hello world’;
+                      <br>上面代码中，hello函数是无法对外输出的，因为module.exports被重新赋值了</p>
                     <p>规范：一个单独的文件就是一个模块。每一个模块都有自己单独的作用域，在本模块定义额变量或函数如果不导出，其他模块无法使用but如果你定义为global对象，那就可以使用啦。commonjs输出变量一般是使用module.exports,引用一个模块一般用require
                       <br>看上面的例子，可以看出来requir其实是同步读取其他模块的内容，并编译执行，最后得到对应的模块接口。but在浏览器中会有问题，因为js脚本是异步的，CommonJS
                       模块在浏览器环境中无法正常加载。那怎么办呐？
@@ -346,6 +367,26 @@
                     <p>二、AMD</p>
                     <p>AMD是”Asynchronous Module Definition”的缩写，JS原生不支持，所以使用AMD的时候需要对应的库，也就是RequireJS它采用异步方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。
                       <br>当多个js文件可能有依赖关系，被依赖的文件需要早于依赖它的文件加载到浏览器的时候AMD是很好的选择。js加载的时候浏览器会停止页面渲染，加载文件越多，页面失去响应时间越长。由于AMD是异步方式所以也可以解决这个问题。</p>
+                    <p>AMD规范使用define方法定义模块，下面就是一个例子：</p>
+                    <p>define([‘package/lib’], function(lib){
+                      <br> function foo(){
+                      <br> lib.log(‘hello world!’);
+                      <br> }</p>
+                    <p> return {
+                      <br> foo: foo
+                      <br> };
+                      <br>});</p>
+                    <p>AMD规范允许输出的模块兼容CommonJS规范，这时define方法需要写成下面这样：</p>
+                    <p>define(function (require, exports, module){
+                      <br> var someModule = require(“someModule”);
+                      <br> var anotherModule = require(“anotherModule”);</p>
+                    <p> someModule.doTehAwesome();
+                      <br> anotherModule.doMoarAwesome();</p>
+                    <p> exports.asplode = function (){
+                      <br> someModule.doTehAwesome();
+                      <br> anotherModule.doMoarAwesome();
+                      <br> };
+                      <br>});</p>
                     <p>requireJS也是采用require()语句加载模块，但是他只有两个参数分别是module数组和callback
                       <br>require([module], callback);
                       <br>module数组:里面的成员就是要加载的模块
@@ -416,7 +457,8 @@
                       <br> …
                       <br>})</p>
                     <p>总结:
-                      <br>AMD/CMD/CommonJs是JS模块化开发的标准，目前对应的实现是RequireJs/SeaJs/nodeJs.</p>
+                      <br>CommonJS规范加载模块是同步的，也就是说，只有加载完成，才能执行后面的操作</p>
+                    <p>AMD/CMD/CommonJs是JS模块化开发的标准，目前对应的实现是RequireJs/SeaJs/nodeJs.</p>
                     <p>CommonJs主要针对服务端，AMD/CMD主要针对浏览器端</p>
                     <p>AMD/CMD区别，虽然都是并行加载js文件，但还是有所区别，AMD是预加载，在并行加载js文件同时，还会解析执行该模块（因为还需要执行，所以在加载某个模块前，这个模块的依赖模块需要先加载完成）；而CMD是懒加载，虽然会一开始就并行加载js文件，但是不会执行，而是在需要的时候才执行。</p>
                     <p>AMD优点：加载快速，尤其遇到多个大文件，因为并行解析，所以同一时间可以解析多个文件。
