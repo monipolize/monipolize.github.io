@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="来来来 看过来。。。。继续挖坑。。。。 16、事件监听 直接上干货 &amp;lt;body&amp;gt;     &amp;lt;div id=&amp;quot;clickme&amp;quot;&amp;gt;点我&amp;lt;/div&amp;gt;     &amp;lt;div id=&amp;quot;kk&amp;quot; onclick=&amp;quot;handler()&amp;quot;&amp;gt;注册时间&amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt;     &amp;l">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-12-07T03:16:39.000Z">
+  <meta property="og:updated_time" content="2017-12-07T05:01:03.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JS面试那些事 -- Part Two 基础篇">
   <meta name="twitter:description" content="来来来 看过来。。。。继续挖坑。。。。 16、事件监听 直接上干货 &amp;lt;body&amp;gt;     &amp;lt;div id=&amp;quot;clickme&amp;quot;&amp;gt;点我&amp;lt;/div&amp;gt;     &amp;lt;div id=&amp;quot;kk&amp;quot; onclick=&amp;quot;handler()&amp;quot;&amp;gt;注册时间&amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt;     &amp;l">
@@ -377,7 +377,16 @@ function cssStyle2DomStyle(sName) {
                     <p>　申明编码
                       <meta charset="utf-8">
                     </p>
-                    <p>22、</p>
+                    <p>22、js中new一个对象的过程</p>
+                    <p>创建空对象；
+                      <br>　　var obj = {};</p>
+                    <p>设置新对象的constructor属性为构造函数的名称，设置新对象的
+                      <strong>proto</strong>属性指向构造函数的prototype对象；
+                      <br>　　obj.
+                      <strong>proto</strong> = ClassA.prototype;</p>
+                    <p>使用新对象调用函数，函数中的this被指向新实例对象：
+                      <br>　　ClassA.call(obj);　　//{}.构造函数(); </p>
+                    <p>将初始化完毕的新对象地址，保存到等号左边的变量中</p>
                     <p>当然还有很多很多题目。。。BUT 有些是作为大前端必备的基础
                       <br>SO 本宝宝会单独列出专题
                       <br>FOR EXAMPLE 像是继承啦。。。一些基础算法啦。。对象啦等等一系列必备技能
