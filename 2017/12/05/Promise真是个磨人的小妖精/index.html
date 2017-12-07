@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="最近小仙女中了一种毒，一种叫做”异步时序“的毒，为了解这种毒小仙女掉进了”回调地狱“ 举个🌰   我们所操作的数据往往是通过向后端大大请求而得来的，BUT有时候会出现这样一种情况，由于所有数据都是异步请求的得来的，没个请求的返回时间不一样，所以会出现有相关依赖，或者说递进关系的数据会有问题，所以为了解决问题，我往往会在一个请求成功之后，再去发送另一个请求，BUT   恐怖的事情粗线了，经常或有这">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-12-05T05:26:11.000Z">
+  <meta property="og:updated_time" content="2017-12-06T10:57:07.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Promise真是个磨人的小妖精">
   <meta name="twitter:description" content="最近小仙女中了一种毒，一种叫做”异步时序“的毒，为了解这种毒小仙女掉进了”回调地狱“ 举个🌰   我们所操作的数据往往是通过向后端大大请求而得来的，BUT有时候会出现这样一种情况，由于所有数据都是异步请求的得来的，没个请求的返回时间不一样，所以会出现有相关依赖，或者说递进关系的数据会有问题，所以为了解决问题，我往往会在一个请求成功之后，再去发送另一个请求，BUT   恐怖的事情粗线了，经常或有这">
@@ -443,6 +443,63 @@
 })
 </code></pre>
                     <p>}</p>
+                    <p>但是如何处理超时那？
+                      <br>var http = require(‘http’);
+                      <br>var url = require(‘url’);</p>
+                    <p>function delayPromise(ms) {
+                      <br> return new Promise(function (resolve) {
+                      <br> setTimeout(resolve, ms);
+                      <br> });
+                      <br>}</p>
+                    <p>function timeoutPromise(promise, ms) {
+                      <br> var timeout = delayPromise(ms).then(function () {
+                      <br> throw new Error(‘Operation timed out after ‘ + ms + ‘ ms’);
+                      <br> });
+                      <br> return Promise.race([promise, timeout]);
+                      <br>}</p>
+                    <p>function get(addr) {
+                      <br> return new Promise(function(resolve, reject) {
+                      <br> var url_obj = url.parse(addr);
+                      <br> var options = {
+                      <br> hostname: url_obj.hostname,
+                      <br> path: url_obj.path,
+                      <br> method: ‘GET’
+                      <br> };</p>
+                    <pre><code>var req = http.request(options, function(res) {
+  res.setEncoding(&apos;utf8&apos;);
+
+  var data = &apos;&apos;;
+  res.on(&apos;data&apos;, function (chunk) {
+    data += chunk;
+  });
+  res.on(&apos;end&apos;, function () {
+    data = JSON.parse(data);
+    resolve(data);
+  });
+});
+
+req.on(&apos;error&apos;, function(e) {
+  reject(e)
+});
+req.end();
+</code></pre>
+                    <p> });
+                      <br>}</p>
+                    <p>timeoutPromise(get(‘
+                      <a href="http://demos.so/result/homework.promise.userInfo&#39;),1000).catch(function"
+                                                                                                      target="_blank" rel="external">http://demos.so/result/homework.promise.userInfo&#39;),1000).catch(function</a>
+                      (err) {
+                      <br> console.log(err);
+                      <br>}).then(function (args) {
+                      <br> return Promise.all([timeoutPromise(get(‘
+                      <a href="http://demos.so/result/userid=" target="_blank" rel="external">http://demos.so/result/userid=</a>‘ + args[‘_id’]), 1000),
+                      timeoutPromise(get(‘
+                      <a href="http://demos.so/result/student=" target="_blank" rel="external">http://demos.so/result/student=</a>‘ + args[‘_id’]), 1000)]);
+                      <br>}).then(function (args) {
+                      <br> console.log(args);
+                      <br>}).catch(function (err) {
+                      <br> console.log(err);
+                      <br>});</p>
 
                   </div>
 
