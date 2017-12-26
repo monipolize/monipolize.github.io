@@ -44,7 +44,7 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="一、JS的几种设计模式   1、工厂模式   理解：向工厂一样批量生产。解决多个相似的问题，解决多个类似对象声明的问题;解决实列化对象产生重复的问题   🌰 👇    function Person(name,age,sex){    var obj = new Object();    obj.name = name;    obj.age = age;    obj.sayName = f">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-12-01T08:48:18.000Z">
+  <meta property="og:updated_time" content="2017-12-07T05:24:18.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JS必须知道的几件事">
   <meta name="twitter:description" content="一、JS的几种设计模式   1、工厂模式   理解：向工厂一样批量生产。解决多个相似的问题，解决多个类似对象声明的问题;解决实列化对象产生重复的问题   🌰 👇    function Person(name,age,sex){    var obj = new Object();    obj.name = name;    obj.age = age;    obj.sayName = f">
@@ -560,7 +560,26 @@ shoeObj.trigger(&quot;黑色&quot;,42);
                       <br> }
                       <br> };
                       <br>}</p>
-                    <p>11、</p>
+                    <p>11、深拷贝</p>
+                    <p>function clone(obj){
+                      <br> var rs;
+                      <br> if(obj instanceof Array){
+                      <br> rs = [];
+                      <br> var i = obj.length;
+                      <br> while(i–){
+                      <br> rs[i] = clone(obj[i])
+                      <br> }
+                      <br> return rs
+                      <br> }else if(obj instanceof Object){
+                      <br> rs = {};
+                      <br> for(var key in obj){
+                      <br> rs[key] = clone(obj[key])
+                      <br> }
+                      <br> return rs;
+                      <br> }else{
+                      <br> return obj;
+                      <br> }
+                      <br>}</p>
 
                   </div>
 
