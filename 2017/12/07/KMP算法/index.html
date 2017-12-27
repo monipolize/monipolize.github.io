@@ -44,10 +44,14 @@
   <meta property="og:site_name" content="In My World">
   <meta property="og:description" content="1、解决的问题   KMP算法可以用来解决什么问题那？举个 🌰   现在有两个字符串，A,B，现在想判断B中是否包含A，如果包含，就返回包含的起始位置   var A = “abac”   var B = “nnkdjdhabacjdlkjabaccccccaaaabannnn” 通过观察可以看出B中有两个位置包含A，这是就可以采用KMP算法来解决问题 2、算法比较   一般情况：一般情况下我们">
   <meta property="og:locale" content="zh-Hans">
-  <meta property="og:updated_time" content="2017-12-25T03:46:26.000Z">
+  <meta property="og:image" content="http://icey-monopolize.com/MyImages/KMP1.jpeg">
+  <meta property="og:image" content="http://icey-monopolize.com/MyImages/KMP2.jpeg">
+  <meta property="og:image" content="http://icey-monopolize.com/MyImages/KMP3.jpeg">
+  <meta property="og:updated_time" content="2017-12-27T07:18:59.000Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="KMP算法">
   <meta name="twitter:description" content="1、解决的问题   KMP算法可以用来解决什么问题那？举个 🌰   现在有两个字符串，A,B，现在想判断B中是否包含A，如果包含，就返回包含的起始位置   var A = “abac”   var B = “nnkdjdhabacjdlkjabaccccccaaaabannnn” 通过观察可以看出B中有两个位置包含A，这是就可以采用KMP算法来解决问题 2、算法比较   一般情况：一般情况下我们">
+  <meta name="twitter:image" content="http://icey-monopolize.com/MyImages/KMP1.jpeg">
 
   <script type="text/javascript" id="hexo.configurations">
     var NexT = window.NexT || {};
@@ -297,6 +301,15 @@
                       <br>c=[-1,-1,’0’,-1],这里-1表示不存在，0表示存在长度为1</p>
                     <p>c的意思是一旦在某处不匹配时，移动A字符串，使B的对应的最大后坠和A对应的最大前缀对齐，然后比较A和Ｃ
                       <br>注意c数组的值，就是下次往前移动字符串ptr的移动距离，比如c中某个字符对应的值是4，则在该字符后的下一个字符不匹配时，可以直接移动往前移动A的5个长度，再次进行比较判别。</p>
+                    <p>
+                      <img src="/MyImages/KMP1.jpeg" alt="这里是图片">
+                    </p>
+                    <p>
+                      <img src="/MyImages/KMP2.jpeg" alt="这里是图片">
+                    </p>
+                    <p>
+                      <img src="/MyImages/KMP3.jpeg" alt="这里是图片">
+                    </p>
                     <pre><code>void cal_next(char *str, int *next, int len)
 {
     next[0] = -1;//next[0]初始化为-1，-1表示不存在相同的最大前缀和最大后缀
