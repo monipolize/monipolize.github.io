@@ -279,9 +279,9 @@
 
                     <p>参考地址：
                       <a href="http://blog.csdn.net/kongjiea/article/details/44201021" target="_blank"
-                                                                                                      rel="external">http://blog.csdn.net/kongjiea/article/details/44201021</a>
+                                                                                                      rel="noopener">http://blog.csdn.net/kongjiea/article/details/44201021</a>
                       <br>
-                      <a href="http://blog.csdn.net/Joyhen/article/details/21631833" target="_blank" rel="external">http://blog.csdn.net/Joyhen/article/details/21631833</a>
+                      <a href="http://blog.csdn.net/Joyhen/article/details/21631833" target="_blank" rel="noopener">http://blog.csdn.net/Joyhen/article/details/21631833</a>
                     </p>
                     <p>受浏览器同源策略的限制，本域的js不能操作其他域的页面对象（比如DOM）。但在安全限制的同时也给注入iframe或是ajax应用上带来了不少麻烦。所以我们要通过一些方法使本域的js能够操作其他域的页面对象或者使其他域的js能操作本域的页面对象（iframe之间）
                       <br>这里需要明确的一点是：所谓的域跟js的存放服务器没有关系，比如baidu.com的页面加载了google.com的js，那么此js的所在域是”baidu.com”而不是google.com。也就是说，此时该js能操作baidu.com的页面对象，而不能操作”google.com”的页面对象。
@@ -309,17 +309,17 @@
                       <br> “window.onload = function() {
                       <br> var ifr = document.getElementById(‘ifr’);
                       <br> var targetOrigin = ‘
-                      <a href="http://b.com" target="_blank" rel="external">http://b.com</a>‘; // 若写成’
-                      <a href="http://b.com/c/proxy.html&#39;效果一样" target="_blank" rel="external">http://b.com/c/proxy.html&#39;效果一样</a>
+                      <a href="http://b.com" target="_blank" rel="noopener">http://b.com</a>‘; // 若写成’
+                      <a href="http://b.com/c/proxy.html&#39;效果一样" target="_blank" rel="noopener">http://b.com/c/proxy.html&#39;效果一样</a>
                       <br> // 若写成’
-                      <a href="http://c.com&#39;就不会执行postMessage了" target="_blank" rel="external">http://c.com&#39;就不会执行postMessage了</a>
+                      <a href="http://c.com&#39;就不会执行postMessage了" target="_blank" rel="noopener">http://c.com&#39;就不会执行postMessage了</a>
                       <br> ifr.contentWindow.postMessage(‘I was there!’, targetOrigin);
                       <br> };”
                       <br> //b.html
                       <br> “window.addEventListener(‘message’, function(event){
                       <br> // 通过origin属性判断消息来源地址
                       <br> if (event.origin == ‘
-                      <a href="http://a.com" target="_blank" rel="external">http://a.com</a>‘) {
+                      <a href="http://a.com" target="_blank" rel="noopener">http://a.com</a>‘) {
                       <br> alert(event.data); // 弹出”I was there!”
                       <br> alert(event.source); // 对a.com、index.html中window对象的引用
                       <br> // 但由于同源策略，这里event.source不可以访问window对象
@@ -466,7 +466,7 @@
 
                     <a href="/artical">
 
-                      <span class="site-state-item-count">51</span>
+                      <span class="site-state-item-count">53</span>
                       <span class="site-state-item-name">日志</span>
                     </a>
                   </div>
@@ -510,7 +510,7 @@
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         <div class="copyright">&copy; 2016 &mdash;
-          <span itemprop="copyrightYear">2017</span>
+          <span itemprop="copyrightYear">2018</span>
           <span class="with-love">
             <i class="fa fa-YAN NI"></i>
           </span>

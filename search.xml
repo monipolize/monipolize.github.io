@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[nodeJs]]></title>
+    <url>%2F2018%2F04%2F16%2FnodeJs%2F</url>
+    <content type="text"><![CDATA[好久没有更新了，今天决定重新梳理一下node相关的东西，包含最基础安装，升级等等 回归一下吧 ！！！！毕竟，node会让人用到怀疑人生，每次出现报错，都让宝宝措手不及。。。心痛 一、安装（mac）=》毕竟mac界面颜值要比windows强多了。。。。没错 我就是个颜控 注意：nodeJS的版本要和文档保持一致，不同版本的nodeJS接口有所不同，用法也有所差异，偶数位版本是稳定版本，奇数为非稳定版本 step1：保证mac系统稳定，安装Xcode xcode-select -p 检查是否安装过Xcode xcode-select –install 安装Xcode step2：安装homebrew管理器 浏览器打开 brew.sh 将最下面的 ruby -e “$(curl ………)”复制到命令行 step3：安装nodejs brew install node brew 还可以安装很多东西，比如git MongoDB等等 step4 检查node是否安装成功 node -v step5 升级 安装好node后 可以在命令行使用 npm npm install -g n ; n 8.1.0 //安装8.1.0这个版本 或者 直接 npm 8.1.0 二、来个小demo，创建个server 创建目录node 代码块： 运行server (node xxx.js) 分析一下代码 var http = require(‘http’);//创建外部服务器引用 //创建外部服务器引用 http.createServer(function(req,resp){//匿名回调 resp.writeHead(200, {‘Content-Type’: ‘text/plain’}); resp.end(‘First Demo\n’); }).listen(8001, ‘127.0.0.1’); //当接收到来自8001端口传来的信息后，开始执行匿名回调， console.log(‘server running’) 三、关于node命令 在命令行中，输入 node ，则会进入node环境中 注意：在浏览器中，window是顶层全局变量，但在node中没有window,node环境有属于自己的变量，如：global，process 四、规范问题 基于commonJS规范 npm install ——&gt; node_modules 项目中有几个模块 -&gt; 核心模块、文件模块、第三方模块]]></content>
+      <categories>
+        <category>NODEJS</category>
+      </categories>
+      <tags>
+        <tag>ALL</tag>
+        <tag>NODEJS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Webpack优化]]></title>
+    <url>%2F2018%2F02%2F11%2Fwebpack%E4%BC%98%E5%8C%96%2F</url>
+    <content type="text"><![CDATA[###谈谈webpack打包和性能优化问题 ###打包过程： webpack在打包的过程中会针对不同的资源类型，根据loader处理。然后将静态资源整合到一个bundle中，这样做最初的目的]]></content>
+      <categories>
+        <category>WEBPACK</category>
+      </categories>
+      <tags>
+        <tag>ALL</tag>
+        <tag>WEBPACK</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[KMP算法]]></title>
     <url>%2F2017%2F12%2F07%2FKMP%E7%AE%97%E6%B3%95%2F</url>
     <content type="text"><![CDATA[1、解决的问题 KMP算法可以用来解决什么问题那？举个 🌰 现在有两个字符串，A,B，现在想判断B中是否包含A，如果包含，就返回包含的起始位置 var A = “abac” var B = “nnkdjdhabacjdlkjabaccccccaaaabannnn” 通过观察可以看出B中有两个位置包含A，这是就可以采用KMP算法来解决问题 2、算法比较 一般情况：一般情况下我们匹配字符串的方式是从目标字符串B(长度为n)的第一个位置开始，选取子串A(长度为m)的长度进行比较，若一样则返回开始处的下标，不一样，就选取B的下一个位置，同样以A长度为长度选取字符串，进行对比，知道B的最后一个位置。时间复杂度是O(n*m)。 KMP算法：充分利用了目标字符串ptr的性质（比如里面部分字符串的重复性，即使不存在重复字段，在比较时，实现最大的移动量）。 首先看字符串A：abac 这里我们要计算一个长度为m的转移函数C。C数组的含义就是一个固定字符串的最长前缀和最长后缀相同的长度。 比如：abcnnnnnnmmsdabc，那么这个数组的最长前缀和最长后缀相同必然是abc。 cbcbc，最长前缀和最长后缀相同是cbc。 abcbc，最长前缀和最长后缀相同是不存在的。 注意：最长前缀：是说以第一个字符开始，但是不包含最后一个字符 比如aaaa相同的最长前缀和最长后缀是aaa 综上所述，对于字符串A来说：abac，长度是4，所以，c[0],c[1],c[2],c[3],分别对应的是 a 、ab、aba、abac相同的最长前缀和最长后缀的长度，分别是”“，”“，”a“,””,所以数组C的最终值为 c=[-1,-1,’0’,-1],这里-1表示不存在，0表示存在长度为1 c的意思是一旦在某处不匹配时，移动A字符串，使B的对应的最大后坠和A对应的最大前缀对齐，然后比较A和Ｃ 注意c数组的值，就是下次往前移动字符串ptr的移动距离，比如c中某个字符对应的值是4，则在该字符后的下一个字符不匹配时，可以直接移动往前移动A的5个长度，再次进行比较判别。 void cal_next(char *str, int *next, int len) { next[0] = -1;//next[0]初始化为-1，-1表示不存在相同的最大前缀和最大后缀 int k = -1;//k初始化为-1 for (int q = 1; q &lt;= len-1; q++) { while (k &gt; -1 &amp;&amp; str[k + 1] != str[q])//如果下一个不同，那么k就变成next[k]，注意next[k]是小于k的，无论k取任何值。 { k = next[k];//往前回溯 } if (str[k + 1] == str[q])//如果相同，k++ { k = k + 1; } next[q] = k;//这个是把算的k的值（就是相同的最大前缀和最大后缀长）赋给next[q] } } int KMP(char *str, int slen, char *ptr, int plen) { int *next = new int[plen]; cal_next(ptr, next, plen);//计算next数组 int k = -1; for (int i = 0; i &lt; slen; i++) { while (k &gt;-1&amp;&amp; ptr[k + 1] != str[i])//ptr和str不匹配，且k&gt;-1（表示ptr和str有部分匹配） k = next[k];//往前回溯 if (ptr[k + 1] == str[i]) k = k + 1; if (k == plen-1)//说明k移动到ptr的最末端 { //cout &lt;&lt; &quot;在位置&quot; &lt;&lt; i-plen+1&lt;&lt; endl; //k = -1;//重新初始化，寻找下一个 //i = i - plen + 1;//i定位到该位置，外层for循环i++可以继续找下一个（这里默认存在两个匹配字符串可以部分重叠），感谢评论中同学指出错误。 return i-plen+1;//返回相应的位置 } } return -1; }]]></content>
@@ -436,8 +460,8 @@
       </categories>
       <tags>
         <tag>ALL</tag>
-        <tag>CSS</tag>
         <tag>前端面试题</tag>
+        <tag>CSS</tag>
         <tag>H5</tag>
       </tags>
   </entry>
@@ -450,8 +474,8 @@
       </categories>
       <tags>
         <tag>ALL</tag>
-        <tag>CSS</tag>
         <tag>前端面试题</tag>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -502,8 +526,8 @@
       </categories>
       <tags>
         <tag>ALL</tag>
-        <tag>CSS</tag>
         <tag>前端面试题</tag>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -515,8 +539,8 @@
       </categories>
       <tags>
         <tag>ALL</tag>
-        <tag>CSS</tag>
         <tag>前端面试题</tag>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -540,8 +564,8 @@
       </categories>
       <tags>
         <tag>ALL</tag>
-        <tag>CSS</tag>
         <tag>前端面试题</tag>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -629,10 +653,10 @@
       <tags>
         <tag>ALL</tag>
         <tag>绘图类</tag>
-        <tag>ES6</tag>
-        <tag>CSS</tag>
         <tag>前端面试题</tag>
         <tag>算法</tag>
+        <tag>CSS</tag>
+        <tag>ES6</tag>
         <tag>HTML</tag>
         <tag>JS</tag>
         <tag>JQ</tag>
@@ -656,13 +680,13 @@
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
-    <title><![CDATA[Photoes]]></title>
-    <url>%2Fphotoes%2Findex.html</url>
+    <title><![CDATA[Categories]]></title>
+    <url>%2Fcategories%2Findex.html</url>
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
-    <title><![CDATA[Categories]]></title>
-    <url>%2Fcategories%2Findex.html</url>
+    <title><![CDATA[Photoes]]></title>
+    <url>%2Fphotoes%2Findex.html</url>
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
