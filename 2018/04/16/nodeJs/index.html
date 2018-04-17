@@ -48,7 +48,7 @@
   <meta property="og:image" content="http://icey-monopolize.com/MyImages/node2.jpeg">
   <meta property="og:image" content="http://icey-monopolize.com/MyImages/node3.jpeg">
   <meta property="og:image" content="http://icey-monopolize.com/MyImages/node4.jpeg">
-  <meta property="og:updated_time" content="2018-04-16T11:42:06.070Z">
+  <meta property="og:updated_time" content="2018-04-17T03:30:07.376Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="nodeJs">
   <meta name="twitter:description" content="好久没有更新了，今天决定重新梳理一下node相关的东西，包含最基础安装，升级等等 回归一下吧 ！！！！毕竟，node会让人用到怀疑人生，每次出现报错，都让宝宝措手不及。。。心痛 一、安装（mac）=》毕竟mac界面颜值要比windows强多了。。。。没错 我就是个颜控   注意：nodeJS的版本要和文档保持一致，不同版本的nodeJS接口有所不同，用法也有所差异，偶数位版本是稳定版本，奇数为非稳">
@@ -332,6 +332,32 @@
                     <p>基于commonJS规范</p>
                     <p>npm install ——&gt; node_modules </p>
                     <p>项目中有几个模块 -&gt; 核心模块、文件模块、第三方模块</p>
+                    <p>exports.add = add和module.exports = add的区别是什么？</p>
+                    <p>后者是真实存在的，前者是后者的辅助方法；module.exports直接返回给调用者，exports将属性方法返回给module.exports,
+                      <br>若果后者已经有属性了，则忽略exports传来的属性。</p>
+                    <p>五、URL和URI</p>
+                    <p>URI:统一资源标志符，标识，字符串格式规范
+                      <br>URL:统一资源定位符，定位资源</p>
+                    <p>path：将url地址转换为对象（协议、ip（域名、端口）、哈希值、href）
+                      <br>formate：将url对象转为完整url地址
+                      <br>resolve: 合成url地址</p>
+                    <p>url.path()
+                      <br>url.path(url,true/false) =&gt;query是字符串/query是对象</p>
+                    <p>queryString解析 </p>
+                    <p>六、HTTP
+                      <br> http客户端发起请求，创建端口，http服务器在端口监听，若成功则返回数据</p>
+                    <p> chrome搜索自身DNS缓存，一般DNS缓存大概在一分钟左右，若存在则判断是否过期，（chrome://net-internals/#dns）
+                      <br> 若没有找到DNS缓存则开始搜索系统自身的DNS缓存，若存在则判断是否过期，若没有找到，则读取本地host文件，若host中没有找到对应的配置，则浏览器发起一个DNS域名解析请求。</p>
+                    <p> 宽带运营商收到请求后，先去找服务器本身的DNS缓存，若不存在则发起一个迭代的DNS解析请求，运营商服务器把结果返回给操作系统内核，并缓存起来，操作系统内核再把结果返回给浏览器，最终浏览器拿到对应ip地址</p>
+                    <p> TCP三这次握手，TCP/IP连接建立起来后，浏览器向服务器发送HTTP请求，服务器接收请求，开始处理，把处理后数据返回给浏览器，浏览器开始渲染页面</p>
+                    <p> http头+正文</p>
+                    <p>分析一下浏览器Timing，timing下面有几个阶段
+                      <br>stalled：发出这个请求到这个请求可以发出的等待时间。
+                      <br>proxy： 代里协商时间
+                      <br>request sent ：请求时间</p>
+                    <p>waiting：请求发出到响应的等待时间
+                      <br>content Downlode： 下载时间</p>
+                    <p>请求方法有8中：get，post，put（更新），delete（删除），head，trace，options</p>
 
                   </div>
 
