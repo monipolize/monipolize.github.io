@@ -48,7 +48,7 @@
   <meta property="og:image" content="http://icey-monopolize.com/MyImages/node2.jpeg">
   <meta property="og:image" content="http://icey-monopolize.com/MyImages/node3.jpeg">
   <meta property="og:image" content="http://icey-monopolize.com/MyImages/node4.jpeg">
-  <meta property="og:updated_time" content="2018-04-17T03:30:07.376Z">
+  <meta property="og:updated_time" content="2018-04-24T09:24:58.374Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="nodeJs">
   <meta name="twitter:description" content="好久没有更新了，今天决定重新梳理一下node相关的东西，包含最基础安装，升级等等 回归一下吧 ！！！！毕竟，node会让人用到怀疑人生，每次出现报错，都让宝宝措手不及。。。心痛 一、安装（mac）=》毕竟mac界面颜值要比windows强多了。。。。没错 我就是个颜控   注意：nodeJS的版本要和文档保持一致，不同版本的nodeJS接口有所不同，用法也有所差异，偶数位版本是稳定版本，奇数为非稳">
@@ -345,19 +345,26 @@
                       <br>url.path(url,true/false) =&gt;query是字符串/query是对象</p>
                     <p>queryString解析 </p>
                     <p>六、HTTP
-                      <br> http客户端发起请求，创建端口，http服务器在端口监听，若成功则返回数据</p>
-                    <p> chrome搜索自身DNS缓存，一般DNS缓存大概在一分钟左右，若存在则判断是否过期，（chrome://net-internals/#dns）
-                      <br> 若没有找到DNS缓存则开始搜索系统自身的DNS缓存，若存在则判断是否过期，若没有找到，则读取本地host文件，若host中没有找到对应的配置，则浏览器发起一个DNS域名解析请求。</p>
-                    <p> 宽带运营商收到请求后，先去找服务器本身的DNS缓存，若不存在则发起一个迭代的DNS解析请求，运营商服务器把结果返回给操作系统内核，并缓存起来，操作系统内核再把结果返回给浏览器，最终浏览器拿到对应ip地址</p>
-                    <p> TCP三这次握手，TCP/IP连接建立起来后，浏览器向服务器发送HTTP请求，服务器接收请求，开始处理，把处理后数据返回给浏览器，浏览器开始渲染页面</p>
-                    <p> http头+正文</p>
+                      <br>1、http客户端发起请求，创建端口，http服务器在端口监听，若成功则返回数据</p>
+                    <p>2、chrome搜索自身DNS缓存，一般DNS缓存大概在一分钟左右，若存在则判断是否过期，（chrome://net-internals/#dns）
+                      <br>若没有找到DNS缓存则开始搜索系统自身的DNS缓存，若存在则判断是否过期，若没有找到，则读取本地host文件，若host中没有找到对应的配置，则浏览器发起一个DNS域名解析请求。</p>
+                    <p>3、宽带运营商收到请求后，先去找服务器本身的DNS缓存，若不存在则发起一个迭代的DNS解析请求，运营商服务器把结果返回给操作系统内核，并缓存起来，操作系统内核再把结果返回给浏览器，最终浏览器拿到对应ip地址</p>
+                    <p>4、TCP三这次握手，TCP/IP连接建立起来后，浏览器向服务器发送HTTP请求，服务器接收请求，开始处理，把处理后数据返回给浏览器，浏览器开始渲染页面</p>
+                    <p>5、http头+正文</p>
                     <p>分析一下浏览器Timing，timing下面有几个阶段
                       <br>stalled：发出这个请求到这个请求可以发出的等待时间。
                       <br>proxy： 代里协商时间
                       <br>request sent ：请求时间</p>
                     <p>waiting：请求发出到响应的等待时间
-                      <br>content Downlode： 下载时间</p>
-                    <p>请求方法有8中：get，post，put（更新），delete（删除），head，trace，options</p>
+                      <br>content Downlode： 下载时间
+                      <br>压力测试：阿帕奇的ab还是很好用的
+                      <br> ab -n1000 -c10
+                      <a href="http://localhost:8001/" target="_blank" rel="noopener">http://localhost:8001/</a>
+                      <br> 用ab 发1000次请求 并发数为10 </p>
+                    <p>http - get/request
+                      <br>http.request(options,callback)
+                      <br>七 nodeJs的事件模块
+                      <br>具体见git</p>
 
                   </div>
 
